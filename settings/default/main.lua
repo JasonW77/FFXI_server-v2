@@ -12,11 +12,11 @@ xi.settings = xi.settings or {}
 xi.settings.main =
 {
     -- Server name (not longer than 15 characters)
-    SERVER_NAME = 'Nameless',
+    SERVER_NAME = "Nameless",
 
     SERVER_MESSAGE =
-        'Please visit https://github.com/LandSandBoat/server for the latest information on the project.\n' ..
-        'Thank you, and we hope you enjoy sailing the sands!',
+        "Please visit https://github.com/AirSkyBoat/AirSkyBoat for the latest information on the project.\n" ..
+        "Thank you, and we hope you enjoy soaring through the skies.",
 
     -- Setting to lock content more accurately to the expansions defined below.
     -- This generally results in a more accurate presentation of your selected expansions,
@@ -25,41 +25,35 @@ xi.settings.main =
     RESTRICT_CONTENT = 0,
 
     -- Enable Expansion (1 = Enabled, 0 = Disabled)
-    ENABLE_ROTZ      = 1,
     ENABLE_COP       = 1,
     ENABLE_TOAU      = 1,
     ENABLE_WOTG      = 1,
     ENABLE_ACP       = 1,
     ENABLE_AMK       = 1,
     ENABLE_ASA       = 1,
-    ENABLE_ABYSSEA   = 1,
-    ENABLE_SOA       = 1,
-    ENABLE_ROV       = 1,
-    ENABLE_TVR       = 1,
-    ENABLE_VOIDWATCH = 1, -- Not an expansion, but has its own storyline. (Not Implemented)
+    ENABLE_ABYSSEA   = 0,
+    ENABLE_SOA       = 0,
+    ENABLE_ROV       = 0,
+    ENABLE_VOIDWATCH = 0, -- Not an expansion, but has its own storyline. (Not Implemented)
+    ENABLE_NEODYNA   = 0,
 
     -- FIELDS OF VALOR/Grounds of Valor settings
     ENABLE_FIELD_MANUALS  = 1, -- Enables Fields of Valor
-    ENABLE_GROUNDS_TOMES  = 1, -- Enables Grounds of Valor
-    ENABLE_SURVIVAL_GUIDE = 1, -- Enables Survival Guides (Not Implemented)
+    ENABLE_GROUNDS_TOMES  = 0, -- Enables Grounds of Valor
+    ENABLE_SURVIVAL_GUIDE = 0, -- Enables Survival Guides (Not Implemented)
     REGIME_WAIT           = 1, -- Make people wait till 00:00 game time as in retail. If it's 0, there is no wait time.
     FOV_REWARD_ALLIANCE   = 0, -- Allow Fields of Valor rewards while being a member of an alliance. (default retail behavior: 0)
-    GOV_REWARD_ALLIANCE   = 1, -- Allow Grounds of Valor rewards while being a member of an alliance. (default retail behavior: 1)
+    GOV_REWARD_ALLIANCE   = 0, -- Allow Grounds of Valor rewards while being a member of an alliance. (default retail behavior: 1)
 
     -- Daily points / Gobbie mystery box.
-    ENABLE_DAILY_TALLY = 1,  -- Allows acquisition of daily points for gobbie mystery box.
+    ENABLE_DAILY_TALLY = 0,  -- Allows acquisition of daily points for gobbie mystery box.
     DAILY_TALLY_AMOUNT = 10,
     DAILY_TALLY_LIMIT  = 50000,
     GOBBIE_BOX_MIN_AGE = 45, -- Minimum character age in days before a character can sign up for Gobbie Mystery Box
 
-    -- A.M.A.N.
-    ASSIST_CHANNEL_ENABLED            = true, -- Enable Assist Channel
-    ASSIST_CHANNEL_MEMBERSHIP_LENGTH  = 240,  -- How long returnees and new players will have access to the assist channel, in playtime hours.
-    ASSIST_CHANNEL_RETURNEE_LOGIN_GAP =  48,  -- How many days must have elapsed before returnees are added to the assist channel.
-
     -- Records of Eminence
-    ENABLE_ROE            = 1, -- Enable Records of Eminence
-    ENABLE_ROE_TIMED      = 1, -- Enable 4-hour timed records
+    ENABLE_ROE            = 0, -- Enable Records of Eminence
+    ENABLE_ROE_TIMED      = 0, -- Enable 4-hour timed records
     ENABLE_EXCHANGE_LIMIT = 1, -- Enable Maximum limit of sparks spent per Week (default retail behavior: 1)
 
     WEEKLY_EXCHANGE_LIMIT = 100000, -- Maximum amount of sparks/accolades that can be spent per week (default retail value: 100000)
@@ -70,21 +64,25 @@ xi.settings.main =
     CAP_CURRENCY_SPARKS    = 99999,
     CAP_CURRENCY_VALOR     = 50000,
 
+    -- Player Data Sync/Save
+    PLAYER_DATA_SAVE = 120, -- Default time period to save player position, stats, and status effects in seconds.
+
+    -- PL EXP Nerf
+    PL_PENALTY = 0,
+
+    -- Land King System
+    LandKingSystem_NQ = 1, -- Default to pop system as loading the module turns off the pop system.
+
     -- Magian Trials
-    ENABLE_MAGIAN_TRIALS = 1,
+    ENABLE_MAGIAN_TRIALS             = 1,
+    MAGIAN_TRIALS_MOBKILL_MULTIPLIER = 1,
+    MAGIAN_TRIALS_TRADE_MULTIPLIER   = 1,
+
+    -- Explorer Moogles
+    ENABLE_EXPLORERMOOGLE = false,
 
     -- VoidWalker
-    ENABLE_VOIDWALKER = 1,
-
-    -- Moblin Maze Mongers
-    ENABLE_MMM = 0,
-
-    -- Monstrosity (Heavily in development, use at your own risk!)
-    ENABLE_MONSTROSITY               = 0,
-    MONSTROSITY_TELEPORT_TO_FERETORY = 0,   -- Return to Feretory instead of the zone where you entered Feretory when Relinquishing or after death.
-    MONSTROSITY_TRIGGER_NPCS         = 0,   -- Allow Monipulators to trigger NPCs outside of the Feretory.
-    MONSTROSITY_DONT_WIPE_BUFFS      = 0,   -- If set, buffs won't be wiped when changing species in the Feretory.
-    MONSTROSITY_PVP_ZONE_BYPASS = 0, -- Show the full zone teleport menu from Feretory while Belligerency is flagged.
+    ENABLE_VOIDWALKER = 0,
 
     -- TREASURE CASKETS
     -- Retail droprate = 0.1 (10%) with no other effects active
@@ -104,7 +102,7 @@ xi.settings.main =
 
     -- CHARACTER CONFIG
     INITIAL_LEVEL_CAP              = 50, -- The initial level cap for new players.  There seems to be a hardcap of 255.
-    MAX_LEVEL                      = 99, -- Level max of the server, lowers the attainable cap by disabling Limit Break quests.
+    MAX_LEVEL                      = 75, -- Level max of the server, lowers the attainable cap by disabling Limit Break quests.
     NORMAL_MOB_MAX_LEVEL_RANGE_MIN = 0,  -- Lower Bound of Max Level Range for Normal Mobs (0 = Uncapped)
     NORMAL_MOB_MAX_LEVEL_RANGE_MAX = 0,  -- Upper Bound of Max Level Range for Normal Mobs (0 = Uncapped)
     START_GIL                      = 10, -- Amount of gil given to newly created characters.
@@ -115,54 +113,32 @@ xi.settings.main =
     ALL_MAPS                       = 0,  -- Set to 1 to give starting characters all the maps.
     UNLOCK_OUTPOST_WARPS           = 0,  -- Set to 1 to give starting characters all outpost warps.  2 to add Tu'Lia and Tavnazia.
 
-    SHOP_PRICE          = 1.000, -- Multiplies prices in NPC shops.
-    GIL_RATE            = 1.000, -- Multiplies gil earned from quests.  Won't always display in game.
-    BAYLD_RATE          = 1.000, -- Multiples bayld earned from quests.
+    SHOP_PRICE      = 1.000, -- Multiplies prices in NPC shops.
+    GIL_RATE        = 1.000, -- Multiplies gil earned from quests.  Won't always display in game.
+    BAYLD_RATE      = 1.000, -- Multiples bayld earned from quests.
     -- Note: EXP rates are also influenced by conf setting
-    EXP_RATE            = 1.000, -- Multiplies exp from script (except FoV/GoV).
-    BOOK_EXP_RATE       = 1.000, -- Multiplies exp from FoV/GoV book pages.
-    TABS_RATE           = 1.000, -- Multiplies tabs earned from fov.
-    ROE_EXP_RATE        = 1.000, -- Multiplies exp earned from records of eminence.
-    SPARKS_RATE         = 1.000, -- Multiplies sparks earned from records of eminence.
-    CURE_POWER          = 1.000, -- Multiplies amount healed from Healing Magic, including the relevant Blue Magic.
-    ELEMENTAL_POWER     = 1.000, -- Multiplies damage dealt by Elemental and non-drain Dark Magic.
-    DIVINE_POWER        = 1.000, -- Multiplies damage dealt by Divine Magic.
-    NINJUTSU_POWER      = 1.000, -- Multiplies damage dealt by Ninjutsu Magic.
-    BLUE_POWER          = 1.000, -- Multiplies damage dealt by Blue Magic.
-    DARK_POWER          = 1.000, -- Multiplies amount drained by Dark Magic.
-    ITEM_POWER          = 1.000, -- Multiplies the effect of items such as Potions and Ethers.
+    EXP_RATE        = 1.000, -- Multiplies exp from script (except FoV/GoV).
+    SCROLL_EXP_RATE = 1.000, -- Multiplies exp from single use XP Scrolls (e.g. Miratete's Memoirs).
+    BOOK_EXP_RATE   = 1.000, -- Multiplies exp from FoV/GoV book pages.
+    TABS_RATE       = 1.000, -- Multiplies tabs earned from fov.
+    ROE_EXP_RATE    = 1.000, -- Multiplies exp earned from records of eminence.
+    SPARKS_RATE     = 1.000, -- Multiplies sparks earned from records of eminence.
+    CURE_POWER      = 1.000, -- Multiplies amount healed from Healing Magic, including the relevant Blue Magic.
+    ELEMENTAL_POWER = 1.000, -- Multiplies damage dealt by Elemental and non-drain Dark Magic.
+    DIVINE_POWER    = 1.000, -- Multiplies damage dealt by Divine Magic.
+    NINJUTSU_POWER  = 1.000, -- Multiplies damage dealt by Ninjutsu Magic.
+    BLUE_POWER      = 1.000, -- Multiplies damage dealt by Blue Magic.
+    DARK_POWER      = 1.000, -- Multiplies amount drained by Dark Magic.
+    ITEM_POWER      = 1.000, -- Multiplies the effect of items such as Potions and Ethers.
     WEAPON_SKILL_POWER  = 1.000, -- Multiplies damage dealt by Weapon Skills.
-    DELAY_REDUCTION_CAP = 0.80,  -- Set the cap for melee swing haste effect. (0.80 = 80% retail delay reduction max, 0.93 = 93% ToAU delay reduction max)
 
-    -- STR:ATT/RATT ratios. For players only. Mobs are hardcoded to 0.5
-    TWO_HANDED_STR_ATTACK_MULTIPLIER         = 1.0,  -- 1.0: 1 STR = 1 Attack. This has been 0.5 and 0.75 in previous eras
-    HAND_TO_HAND_STR_ATTACK_MULTIPLIER       = 1.0,  -- 1.0: 1 STR = 1 Attack. This has been 0.5 and 0.625 in previous eras.
-    ONE_HAND_MAIN_HAND_STR_ATTACK_MULTIPLIER = 0.75, -- 0.75: 1 STR = 0.75 Attack. This has been 0.5 in previous eras.
-    ONE_HAND_OFF_HAND_STR_ATTACK_MULTIPLIER  = 0.5,  -- 0.5: 1 STR = 0.5 Attack. This has always been 0.5 but is provided anyway.
-    RANGED_STR_ATTACK_MULTIPLIER             = 1.0,  -- 1.0: 1 STR = 1.0 Ranged Attack. This has been 0.5 and 0.75 in previous eras.
-
-    -- DEX:ACC ratios. For players only. Mobs are hardcoded to 0.5
-    TWO_HANDED_DEX_ACCURACY_MULTIPLIER         = 0.75, -- 0.75: 1 DEX = 0.75 Accuracy. This has been 0.5 and 0.75 in previous eras
-    HAND_TO_HAND_DEX_ACCURACY_MULTIPLIER       = 0.75, -- 0.75: 1 DEX = 0.75 Accuracy. This has been 0.5 in previous eras.
-    ONE_HAND_MAIN_HAND_DEX_ACCURACY_MULTIPLIER = 0.75, -- 0.75: 1 DEX = 0.75 Accuracy. This has been 0.5 in previous eras.
-    ONE_HAND_OFF_HAND_DEX_ACCURACY_MULTIPLIER  = 0.75, -- 0.75: 1 DEX = 0.75 Accuracy. This has been 0.5 in previous eras.
-
-    -- AGI:RACC ratio. Mobs are hardcoded to 0.5
-    RANGED_AGI_ACCURACY_MULTIPLIER = 0.75, -- 0.75: 1 AGI = 0.75 Ranged Accuracy. This has been 0.5 in previous eras.
-
-    -- VIT:DEF ratio. Applies to everything but mobs and charmed mobs. Those are hardcoded to 0.5.
-    PLAYER_ALLIES_VIT_DEF_MULTIPLIER = 1.5, -- 1.5: 1 VIT = 1.5 DEF. This has been 0.5 in previous eras.
-
-    USE_ADOULIN_WEAPON_SKILL_CHANGES = true,  -- true/false. Change to toggle new Adoulin weapon skill damage calculations
+    USE_ADOULIN_WEAPON_SKILL_CHANGES = true, -- true/false. Change to toggle new Adoulin weapon skill damage calculations
     DISABLE_PARTY_EXP_PENALTY        = false, -- true/false.
-    ENABLE_IMMUNOBREAK               = true,  -- true/false. Allow/Disallow immunobreaks to happen.
 
     -- TRUSTS
     ENABLE_TRUST_CASTING           = 1,
     ENABLE_TRUST_QUESTS            = 1,
     ENABLE_TRUST_CUSTOM_ENGAGEMENT = 0,
-
-    ENABLE_LIMITED_TIME_TRUST = 0, -- 0 = disabled, 1 = Cornelia, 2 = Matsui-P, will get automatically added to players trust list if the player has a trust permit KI.
 
     ENABLE_TRUST_ALTER_EGO_EXTRAVAGANZA          = 0, -- 0 = disabled, 1 = summer/ny, 2 = spring/autumn, 3 = both
     ENABLE_TRUST_ALTER_EGO_EXTRAVAGANZA_ANNOUNCE = 0, -- 0 = disabled, 1 = add announcement to player login
@@ -170,14 +146,14 @@ xi.settings.main =
     ENABLE_TRUST_ALTER_EGO_EXPO_ANNOUNCE         = 0, -- 0 = disabled, 1 = add announcement to player login
 
     TRUST_ALTER_EGO_EXTRAVAGANZA_MESSAGE =
-        '\n \n' .. -- The space between these newlines is intentional
-        '\129\153\129\154 The Alter Ego Extravaganza Campaign is active! \129\154\129\153\n' ..
-        'This is an excellent time to fill out your roster of Trusts!',
+        "\n \n" .. -- The space between these newlines is intentional
+        "\129\153\129\154 The Alter Ego Extravaganza Campaign is active! \129\154\129\153\n" ..
+        "This is an excellent time to fill out your roster of Trusts!",
 
     TRUST_ALTER_EGO_EXPO_MESSAGE =
-        '\n \n' .. -- The space between these newlines is intentional
-        '\129\153\129\154 The Alter Ego Expo Campaign is active! \129\154\129\153\n' ..
-        'Trusts gain the benefits of Increased HP, MP, and Status Resistances!',
+        "\n \n" .. -- The space between these newlines is intentional
+        "\129\153\129\154 The Alter Ego Expo Campaign is active! \129\154\129\153\n" ..
+        "Trusts gain the benefits of Increased HP, MP, and Status Resistances!",
 
     HARVESTING_BREAK_CHANCE = 33, -- % chance for the sickle to break during harvesting.  Set between 0 and 100.
     EXCAVATION_BREAK_CHANCE = 33, -- % chance for the pickaxe to break during excavation.  Set between 0 and 100.
@@ -187,7 +163,7 @@ xi.settings.main =
     EXCAVATION_RATE         = 50, -- % chance to recieve an item from excavation.  Set between 0 and 100.
     LOGGING_RATE            = 50, -- % chance to recieve an item from logging.  Set between 0 and 100.
     MINING_RATE             = 50, -- % chance to recieve an item from mining.  Set between 0 and 100.
-
+    MINING_YIELD_MULTIPLIER = 5, -- Number of items granted per successful mining result.
     HEALING_TP_CHANGE       = -100, -- Change in TP for each healing tick. Default is -100
 
     -- SE implemented coffer/chest illusion time in order to prevent coffer farming. No-one in the same area can open a chest or coffer for loot (gil, gems & items)
@@ -203,22 +179,22 @@ xi.settings.main =
     NM_LOTTERY_COOLDOWN = 1.0,
 
     -- GARRISON SETTINGS
-    ENABLE_GARRISON        = true,  -- If true, enables garrison functionality
-    GARRISON_LOCKOUT       = 1800,  -- Time in seconds before a new garrison can be started (default: 1800)
-    GARRISON_TIME_LIMIT    = 1800,  -- Time in seconds before lose ongoing garrison (default: 1800)
-    GARRISON_ONCE_PER_WEEK = true,  -- Set to false to bypass the limit of one garrison per Conquest Tally Week.
-    GARRISON_PARTY_LIMIT   = 18,    -- Set to max party members you want to do garrison (default: 18).
-    GARRISON_NATION_BYPASS = false, -- Set to true to bypass the nation requirement.
-    GARRISON_RANK          = 2,     -- Set to minumum Nation Rank to start Garrison (default: 2).
+    ENABLE_GARRISON              = false,  -- If true, enables garrison functionality
+    DEBUG_GARRISON               = false,  -- If true, garrison will print out debug messages in logs as well as players as smes.
+    GARRISON_LOCKOUT             = 1800,   -- Time in seconds before a new garrison can be started (default: 1800)
+    GARRISON_TIME_LIMIT          = 1800,   -- Time in seconds before lose ongoing garrison (default: 1800)
+    GARRISON_ONCE_PER_WEEK       = false,  -- Set to false to bypass the limit of one garrison per Conquest Tally Week.
+    GARRISON_PARTY_LIMIT         = 18,     -- Set to max party members you want to do garrison (default: 18).
+    GARRISON_NATION_BYPASS       = false,  -- Set to true to bypass the nation requirement.
+    GARRISON_RANK                = 2,      -- Set to minumum Nation Rank to start Garrison (default: 2).
 
     -- DYNAMIS SETTINGS
-    BETWEEN_2DYNA_WAIT_TIME     = 24,       -- Hours before player can re-enter Dynamis. Default is 1 Earthday (24 hours).
-    DYNA_MIDNIGHT_RESET         = true,     -- If true, makes the wait time count by number of server midnights instead of full 24 hour intervals
+    BETWEEN_2DYNA_WAIT_TIME     = 72,       -- Hours before player can re-enter Dynamis. Default is 1 Earthday (24 hours).
+    DYNA_MIDNIGHT_RESET         = false,     -- If true, makes the wait time count by number of server midnights instead of full 24 hour intervals
     DYNA_LEVEL_MIN              = 65,       -- Level min for entering in Dynamis
     TIMELESS_HOURGLASS_COST     = 500000,   -- Refund for the timeless hourglass for Dynamis.
     PRISMATIC_HOURGLASS_COST    = 50000,    -- Cost of the prismatic hourglass for Dynamis.
     CURRENCY_EXCHANGE_RATE      = 100,      -- X Tier 1 ancient currency -> 1 Tier 2, and so on. Certain values may conflict with shop items. Not designed to exceed 198.
-    ENABLE_EXCHANGE_100S_TO_1S  = false,    -- true/false. Allow exchange of 100s to 1s, like you can with 10Ks to 100s.
     RELIC_2ND_UPGRADE_WAIT_TIME = 7200,     -- Wait time for 2nd relic upgrade (stage 2 -> stage 3) in seconds. 7200s = 2 hours.
     RELIC_3RD_UPGRADE_WAIT_TIME = 3600,     -- Wait time for 3rd relic upgrade (stage 3 -> stage 4) in seconds. 3600s = 1 hour.
     FREE_COP_DYNAMIS            = 0,        -- Authorize player to entering inside COP Dynamis without completing COP mission (1 = enable 0 = disable)
@@ -226,41 +202,57 @@ xi.settings.main =
     -- LIMBUS SETTINGS
     COSMO_CLEANSE_BASE_COST     = 15000,    -- Base gil cost for a Cosmo Cleanse from Sagheera
 
+    -- BESIEGED SETTINGS
+    -- TODO: Proper captures for mirror formulas.
+    -- We have captures showing a rate of 1 force per Vana'Diel hour with 8 mirrors, but need captures of each mirror's contribution,
+    -- as well as what the minimum rate is with 0 mirrors.
+    BESIEGED_ENABLED                          = false,  -- Global toggle to enable / disable the besieged feature
+    BESIEGED_MIN_TRAINING_RATE                = 0.05,   -- Minimum rate at which beastmen forces increase during training stage. Even with 0 mirrors.
+    BESIEGED_PER_MIRROR_TRAINING_RATE         = 0.125,  -- Additive amount at which each mirror increases the beastment forces during training stage, per Vana'diel hour. 8x Mirrors = 1 force per vana hour.
+    BESIEGED_MIN_PREPARING_RATE               = 0.005,  -- Minimum rate at which beastmen forces increase during preparig stage. Even with 0 mirrors.
+    BESIEGED_PER_MIRROR_PREPARING_RATE        = 0.0050, -- Additive amount at which each mirror increases the beastment forces during preparing stage, per Vana'diel hour. 8x Mirrors ~= 1 force per vana day.
+
     -- QUEST/MISSION SPECIFIC SETTINGS
-    AF1_QUEST_LEVEL = 40,    -- Minimum level to start AF1 quest
-    AF2_QUEST_LEVEL = 50,    -- Minimum level to start AF2 quest
-    AF3_QUEST_LEVEL = 50,    -- Minimum level to start AF3 quest
-    OLDSCHOOL_G1    = false, -- Set to true to require farming Exoray Mold, Bombd Coal, and Ancient Papyrus drops instead of allowing key item method.
-    OLDSCHOOL_G2    = false, -- Set true to require the NMs for 'Atop the Highest Mountains' be dead to get KI like before SE changed it.
-    FRIGICITE_TIME  = 30,    -- When OLDSCHOOL_G2 is enabled, this is the time (in seconds) you have from killing Boreal NMs to click the '???' target.
-    ASSAULT_MINIMUM = 1,     -- Minimum amount of people needed to start an assault mission. TOAU era is 3, Default is 1.
+    AF1_QUEST_LEVEL     = 40,               -- Minimum level to start AF1 quest
+    AF2_QUEST_LEVEL     = 50,               -- Minimum level to start AF2 quest
+    AF3_QUEST_LEVEL     = 50,               -- Minimum level to start AF3 quest
+    ERA_CHOCOBOS_WOUNDS = true,             -- Era Chocobos Wounds wait times that requires waiting a full Vana'Diel day, set to false to have it be every Vana'Diel hour.
+    OLDSCHOOL_G1        = true,             -- Set to true to require farming Exoray Mold, Bombd Coal, and Ancient Papyrus drops instead of allowing key item method.
+    OLDSCHOOL_G2        = true,             -- Set true to require the NMs for "Atop the Highest Mountains" be dead to get KI like before SE changed it.
+    FRIGICITE_TIME      = 30,               -- When OLDSCHOOL_G2 is enabled, this is the time (in seconds) you have from killing Boreal NMs to click the "???" target.
+    ASSAULT_MINIMUM     = 3,                -- Minimum amount of people needed to start an assault mission. TOAU era is 3, Default is 1.
 
     -- SPELL SPECIFIC SETTINGS
+    DIA_OVERWRITE                   = 1,     -- Set to 1 to allow Bio to overwrite same tier Dia.  Default is 1.
+    BIO_OVERWRITE                   = 0,     -- Set to 1 to allow Dia to overwrite same tier Bio.  Default is 0.
     STONESKIN_CAP                   = 350,   -- Soft cap for hp absorbed by stoneskin
+    BLINK_SHADOWS                   = 2,     -- Number of shadows supplied by Blink spell
+    SPIKE_EFFECT_DURATION           = 180,   -- the duration of RDM, BLM spikes effects (not Reprisal)
+    ELEMENTAL_DEBUFF_DURATION       = 120,   -- base duration of elemental debuffs
+    AQUAVEIL_COUNTER                = 1,     -- Base amount of hits Aquaveil absorbs to prevent spell interrupts. Retail is 1.
+    ABSORB_SPELL_AMOUNT             = 8,     -- how much of a stat gets absorbed by DRK absorb spells - expected to be a multiple of 8.
+    ABSORB_SPELL_TICK               = 9,     -- duration of 1 absorb spell tick
     SNEAK_INVIS_DURATION_MULTIPLIER = 1,     -- multiplies duration of sneak, invis, deodorize to reduce player torture. 1 = retail behavior.
-    USE_OLD_CURE_FORMULA            = false, -- true/false. if true, uses older cure formula (3*MND + VIT + 3*(healing skill/5)) // cure 6 will use the newer formula
+    USE_OLD_CURE_FORMULA            = true, -- true/false. if true, uses older cure formula (3*MND + VIT + 3*(healing skill/5)) // cure 6 will use the newer formula
     USE_OLD_MAGIC_DAMAGE            = false, -- true/false. if true, uses older magic damage formulas
 
     -- CELEBRATIONS
-    EXPLORER_MOOGLE_LV              = 10, -- Enables Explorer Moogle teleports and sets required level. Zero to disable.
-    HALLOWEEN_2005                  = 0,  -- Set to 1 to Enable the 2005 version of Harvest Festival, will start on Oct. 20 and end Nov. 1.
-    HALLOWEEN_YEAR_ROUND            = 0,  -- Set to 1 to have Harvest Festival initialize outside of normal times.
-    EGG_HUNT                        =
+    EXPLORER_MOOGLE_LV              = 0,    -- Enables Explorer Moogle teleports and sets required level. Zero to disable.
+    HALLOWEEN_2005                  = 0,    -- Set to 1 to Enable the 2005 version of Harvest Festival, will start on Oct. 20 and end Nov. 1.
+    HALLOWEEN_YEAR_ROUND            = 0,    -- Set to 1 to have Harvest Festival initialize outside of normal times.
+    STARLIGHT_2021                  = 0,    -- Set to 1 to enable the 2021 version of the Starlight Celebration. Dec. 16 through Dec. 31.
+    STARLIGHT_YEAR_ROUND            = 0,    -- Set to 1 to have the Starlight Celebration initialize outside of normal times.
+    SUNBREEZE                       = 0,    -- Set to 1 to have the Sunbreeze Festival be active from Aug 1 to Aug 31.
+    SUNBREEZE_YEAR_ROUND            = 0,    -- Set to 1 to have the Sunbreeze Festival initialize outside of normal times.
+    EGGHUNT                         =       -- Egg Hunt Egg-stravanganza
     {
         START                       = { DAY = 6,  MONTH = 4 },
         FINISH                      = { DAY = 17, MONTH = 4 },
 
-        -- Default era is 2005
-        ERA_2006 = false, -- Orphic Egg
+        -- Default allows additional eras to be added each year
         ERA_2007 = false, -- Jeweled Egg and Egg Helm
-        ERA_2008 = false, -- Tier 2 nation eggs, allows trading Hard-Boiled Eggs
+        ERA_2008 = false, -- Tier 2 nation eggs
         ERA_2009 = false, -- Egg Buffet set
-        -- 2009, 2010, 2011 and 2012 are identical
-        ERA_2013 = false, -- Prinseggstarta
-        ERA_2014 = false, -- Hatchling Shield, Copse Candy, Cracker
-        ERA_2015 = false, -- Rabbit Cap, show Rabbit Cap wearing NPCs
-        ERA_2018 = false, -- Allows trading Sairui-Ran x99 and Imperial Egg
-        ERA_2019 = false, -- Allows trading Apkallu Egg
 
         -- Consolation prizes for repeating combinations where
         -- the player has already received the relevant reward
@@ -279,52 +271,48 @@ xi.settings.main =
     -- Please visit scripts/globals/events/login_campaign.lua for assigning the correct campaign dates.
     ENABLE_LOGIN_CAMPAIGN = 0,
 
-    -- Strange Happenings in Vana'Diel
-    ENABLE_STRANGE_HAPPENINGS = 0,
-
-    -- FISH RANKING CONTEST
-    -- Set to false to require manual progression of contest
-    AUTO_FISHING_CONTEST = true,
-    MAX_FAKE_ENTRIES     = 15,
+    -- Chocobo digging
+    DIG_RATE                     = 85, -- % chance to receive an item from chocbo digging during favorable weather.  Set between 0 and 100.
+    DIG_FATIGUE                  = 100,  -- Set max amount of items a player can dig every 24 hours. Set to 0 to disable.
+    DIG_ZONE_LIMIT               = 60,  -- Set max amount of items that can be dug from a specific zone every Vana'Diel Day. Set to 0 to disable.
+    DIG_GRANT_BURROW             = 0,
+    DIG_GRANT_BORE               = 0,
+    DIG_DISTANCE_REQ             = 0, -- Sets the distance squared in yalms of how far a player has to move.
+    DIG_FATIGUE_SKILL_UP         = false, -- Allows for skilling up while at fatigue.
 
     -- NYZUL
-    NYZUL_ENABLED        = false, -- true/false. Enable Nyzul Isle content and functionality.
-    RUNIC_DISK_SAVE      = true,  -- Allow anyone participating in Nyzul to save progress. Set to false so only initiator can save progress.
-    ENABLE_NYZUL_CASKETS = true,  -- Enable Treasure casket pops from NMs.
-    ENABLE_VIGIL_DROPS   = true,  -- Enable Vigil Weapon drops from NMs.
-    ACTIVATE_LAMP_TIME   = 6000,  -- Time in miliseconds for lamps to stay lit. TODO: Get retail confirmation.
-
-    -- CHOCOBO RAISING (HEAVILY-IN-DEVELOPMENT, USE AT YOUR OWN RISK)
-    -- GM command: `!chocoboraising`
-    ENABLE_CHOCOBO_RAISING              = false, -- true/false. Enable Chocobo Raising features.
-    DEBUG_CHOCOBO_RAISING               = false, -- true/false. Enable verbose debug logging for Chocobo Raising (visible by players).
-    CHOCOBO_RAISING_STAT_POS_MULTIPLIER = 1.0,   -- float. Multiplier for positive stat changes. Default 1.0.
-    CHOCOBO_RAISING_STAT_NEG_MULTIPLIER = 1.0,   -- float. Multiplier for negative stat changes. Default 1.0.
-    CHOCOBO_RAISING_GIL_MULTIPLIER      = 1.0,   -- float. Multiplier for gil recieved through chocobo actions (care plans, etc.). Default 1.0.
-    CHOCOBO_RAISING_DISABLE_RETIREMENT  = false, -- true/false.
-    CHOCOBO_RAISING_STAT_GROWTH_CAP     = 512,   -- int.
-
-    -- SYNERGY (HEAVILY-IN-DEVELOPMENT, USE AT YOUR OWN RISK)
-    ENABLE_SYNERGY = false, -- true/false. Enable Synergy features.
+    RUNIC_DISK_SAVE      = true, -- Allow anyone participating in Nyzul to save progress. Set to false so only initiator can save progress.
+    ENABLE_NYZUL_CASKETS = true, -- Enable Treasure casket pops from NMs.
+    ENABLE_VIGIL_DROPS   = true, -- Enable Vigil Weapon drops from NMs.
+    ACTIVATE_LAMP_TIME   = 6000, -- Time in miliseconds for lamps to stay lit. TODO: Get retail confirmation.
 
     -- MISC
-    RIVERNE_PORTERS              = 120,   -- Time in seconds that Unstable Displacements in Cape Riverne stay open after trading a scale.
-    LANTERNS_STAY_LIT            = 1200,  -- time in seconds that lanterns in the Den of Rancor stay lit.
-    ENABLE_COP_ZONE_CAP          = 0,     -- Enable or disable lvl cap
-    ALLOW_MULTIPLE_EXP_RINGS     = 0,     -- Set to 1 to remove ownership restrictions on the Chariot/Empress/Emperor Band trio.
-    BYPASS_EXP_RING_ONE_PER_WEEK = 0,     -- Set to 1 to bypass the limit of one ring per Conquest Tally Week.
-    NUMBER_OF_DM_EARRINGS        = 1,     -- Number of earrings players can simultaneously own from Divine Might before scripts start blocking them (Default: 1)
-    HOMEPOINT_TELEPORT           = 1,     -- Enables the homepoint teleport system
-    DIG_FATIGUE                  = 100,   -- Allowed succesful digs per day. Set to 0 to disable Dig Fatigue
-    DIG_GRANT_BURROW             = 0,     -- Set to 1 to grant burrow ability
-    DIG_GRANT_BORE               = 0,     -- Set to 1 to grant bore ability
-    ENM_COOLDOWN                 = 120,   -- Number of hours before a player can obtain same KI for ENMs (default: 5 days)
-    FORCE_SPAWN_QM_RESET_TIME    = 300,   -- Number of seconds the ??? remains hidden for after the despawning of the mob it force spawns.
+    ERA_CHOCOBO_ZONE_DISMOUNT    = true, -- If true, forces players to dismount a chocobo before entering a city or dungeon.
+    RIVERNE_PORTERS              = 120,  -- Time in seconds that Unstable Displacements in Cape Riverne stay open after trading a scale.
+    LANTERNS_STAY_LIT            = 1200, -- time in seconds that lanterns in the Den of Rancor stay lit.
+    ENABLE_COP_ZONE_CAP          = 1,    -- Enable or disable lvl cap
+    ALLOW_MULTIPLE_EXP_RINGS     = 0,    -- Set to 1 to remove ownership restrictions on the Chariot/Empress/Emperor Band trio.
+    BYPASS_EXP_RING_ONE_PER_WEEK = 0,    -- Set to 1 to bypass the limit of one ring per Conquest Tally Week.
+    NUMBER_OF_DM_EARRINGS        = 1,    -- Number of earrings players can simultaneously own from Divine Might before scripts start blocking them (Default: 1)
+    HOMEPOINT_TELEPORT           = 0,    -- Enables the homepoint teleport system
+    DIG_ABUNDANCE_BONUS          = 0,     -- Increase chance of digging up an item (450  = item digup chance +45)
     EQUIP_FROM_OTHER_CONTAINERS  = false, -- true/false. Allows equipping items from Mog Satchel, Sack, and Case. Only possible with the use of client addons.
-    REGIME_REWARD_THRESHOLD      = 15,    -- If the player is more than N levels below the minimum suggested range, do not award experience.
-    PERSIST_SEAL_TIMERS          = false, -- Persist seal (Beastmen/Kindred) recast timers across zone changes and logout.
+    ENM_COOLDOWN                 = 120,  -- Number of hours before a player can obtain same KI for ENMs (default: 5 days)
+    FORCE_SPAWN_QM_RESET_TIME    = 900,  -- Number of seconds the ??? remains hidden for after the despawning of the mob it force spawns.
+    MAP_VENDORS_ALL_MAPS         = false, -- If true, all map vendors can sell all vendorable maps
+    ENABLE_TUTORIAL              = false, -- If true, enable Tutorial NPCs (WotG): Alaune (17719618), Gulldago (17739939), Selele (17764600)
+    ENABLE_DARK_RIDER            = false, -- If true, enables Dark Rider to spawn as in era.
 
-    -- SYSTEM
-    DISABLE_INACTIVITY_WATCHDOG = false, -- true/false. If this is enabled, the watchdog which detects if the main loop isn't being ticked will no longer be able to kill the process.
-    INACTIVITY_WATCHDOG_PERIOD  = 2000,  -- Time in milliseconds which the inactivity watchdog will wait between ticks of the main loop before potentially killing the target process.
+    -- Synergy
+    ENABLE_SYNERGY = 0, -- Default to off as Synergy is not coded
+
+    -- Adventuring Fellows
+    ENABLE_ADVENTURING_FELLOWS         = true, -- Enable or disable the ability to quest and call Adventuring Fellows
+    ALLOW_ADVENTURING_FELLOW_KATANA_DW = true, -- Enable or disable dual wielding katanas for Adventuring Fellows
+
+    -- NM Persistence
+    NM_PERSISTENCE = 1, -- When set to 1, timed NM spawns will be persistent through server crashing
+
+    -- Prevents / Allows when a player tries to inject the begin synth packet before completing synth
+    PREVENT_SYNTHESIS_INJECTION = 1,
 }

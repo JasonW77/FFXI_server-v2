@@ -1,24 +1,46 @@
 -----------------------------------
--- Harvesting, Excavation, Logging, Mining Data
+-- Harvesting, Excavation, Logging, Mining
+-- https://ffxiclopedia.wikia.com/wiki/Harvesting
+-- https://ffxiclopedia.wikia.com/wiki/Excavation
+-- https://ffxiclopedia.wikia.com/wiki/Logging
+-- https://ffxiclopedia.wikia.com/wiki/Mining
+-----------------------------------
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/roe")
+require("scripts/globals/zone")
+require("scripts/missions/amk/helpers")
+require("scripts/missions/wotg/helpers")
+-----------------------------------
+
 xi = xi or {}
 xi.helm = xi.helm or {}
+
+xi.helm.type =
+{
+    HARVESTING = 1,
+    EXCAVATION = 2,
+    LOGGING    = 3,
+    MINING     = 4,
+}
 
 -----------------------------------
 -- drops are { weight, itemId }
 -- (R) for retail-verified coordinates
 -----------------------------------
 
-xi.helm.dataTable =
+xi.helm.helmInfo =
 {
-    [xi.helmType.HARVESTING] =
+    [xi.helm.type.HARVESTING] =
     {
-        id           = 'HARVESTING',
+        id           = "HARVESTING",
         animation    = xi.emote.HARVESTING,
         mod          = xi.mod.HARVESTING_RESULT,
         settingRate  = xi.settings.main.HARVESTING_RATE,
         settingBreak = xi.settings.main.HARVESTING_BREAK_CHANCE,
-        message      = 'HARVESTING_IS_POSSIBLE_HERE',
-        tool         = xi.item.SICKLE,
+        message      = "HARVESTING_IS_POSSIBLE_HERE",
+        tool         = 1020,
 
         zone =
         {
@@ -26,17 +48,17 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1880, xi.item.SPRIG_OF_FRESH_MARJORAM      },
-                    { 1060, xi.item.BAG_OF_SIMSIM                },
-                    { 1310, xi.item.CLUMP_OF_MOHBWA_GRASS        },
-                    { 1760, xi.item.PEPHREDO_HIVE_CHIP           },
-                    {  590, xi.item.EGGPLANT                     },
-                    {  960, xi.item.BAG_OF_COFFEE_CHERRIES       },
-                    {  450, xi.item.EASTERN_GINGER_ROOT          },
-                    {  860, xi.item.CLUMP_OF_IMPERIAL_TEA_LEAVES },
-                    {  470, xi.item.CLUMP_OF_RED_MOKO_GRASS      },
-                    {  430, xi.item.SPRIG_OF_FRESH_MUGWORT       },
-                    {  240, xi.item.WIJNRUIT                     },
+                    { 1880, 1522 }, -- Fresh Marjoram
+                    { 1060, 2236 }, -- Simsim
+                    { 1310, 2295 }, -- Mohbwa Grass
+                    { 1760, 2164 }, -- Pephredo Hive Chip
+                    {  590, 4388 }, -- Eggplant
+                    {  960, 2270 }, -- Coffee Cherries
+                    {  450, 2645 }, -- Eastern Ginger
+                    {  860, 2156 }, -- Imperial Tea Leaves
+                    {  470, 1845 }, -- Red Moko Grass
+                    {  430, 1524 }, -- Fresh Mugwort
+                    {  240,  951 }, -- Wijnruit
                 },
 
                 points =
@@ -66,17 +88,17 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1510, xi.item.CLUMP_OF_MOHBWA_GRASS        },
-                    { 1470, xi.item.SPRIG_OF_FRESH_MARJORAM      },
-                    { 1480, xi.item.PEPHREDO_HIVE_CHIP           },
-                    { 1170, xi.item.BAG_OF_SIMSIM                },
-                    { 1100, xi.item.CLUMP_OF_IMPERIAL_TEA_LEAVES },
-                    { 1000, xi.item.BAG_OF_COFFEE_CHERRIES       },
-                    {  510, xi.item.EGGPLANT                     },
-                    {  580, xi.item.CLUMP_OF_RED_MOKO_GRASS      },
-                    {  460, xi.item.SPRIG_OF_FRESH_MUGWORT       },
-                    {  370, xi.item.WIJNRUIT                     },
-                    {  360, xi.item.EASTERN_GINGER_ROOT          },
+                    { 1510, 2295 }, -- Mohbwa Grass
+                    { 1470, 1522 }, -- Fresh Marjoram
+                    { 1480, 2164 }, -- Pephredo Hive Chip
+                    { 1170, 2236 }, -- Simsim
+                    { 1100, 2156 }, -- Imperial Tea Leaves
+                    { 1000, 2270 }, -- Coffee Cherries
+                    {  510, 4388 }, -- Eggplant
+                    {  580, 1845 }, -- Red Moko Grass
+                    {  460, 1524 }, -- Fresh Mugwort
+                    {  370,  951 }, -- Wijnruit
+                    {  360, 2645 }, -- Eastern Ginger
                 },
 
                 points =
@@ -98,14 +120,14 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1830, xi.item.CLUMP_OF_MOKO_GRASS     },
-                    { 1850, xi.item.CLUMP_OF_RED_MOKO_GRASS },
-                    { 1250, xi.item.BAG_OF_VEGETABLE_SEEDS  },
-                    { 1560, xi.item.BURDOCK_ROOT            },
-                    { 1060, xi.item.BAG_OF_GRAIN_SEEDS      },
-                    { 1200, xi.item.BAG_OF_HERB_SEEDS       },
-                    { 1270, xi.item.LESSER_CHIGOE           },
-                    { 1160, xi.item.WINTERFLOWER            },
+                    { 1830,  833 }, -- Moko Grass
+                    { 1850, 1845 }, -- Red Moko Grass
+                    { 1250,  573 }, -- Vegetable Seeds
+                    { 1560, 5651 }, -- Burdock
+                    { 1060,  575 }, -- Grain Seeds
+                    { 1200,  572 }, -- Herb Seeds
+                    { 1270, 2155 }, -- Lesser Chigoe
+                    { 1160, 5907 }, -- Winterflower
                 },
 
                 points =
@@ -123,18 +145,18 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1630, xi.item.SPRIG_OF_FRESH_MARJORAM },
-                    { 1580, xi.item.CLUMP_OF_MOKO_GRASS     },
-                    { 1680, xi.item.BALL_OF_SARUTA_COTTON   },
-                    {  890, xi.item.BURDOCK_ROOT            },
-                    {  830, xi.item.CLUMP_OF_RED_MOKO_GRASS },
-                    {  910, xi.item.FLAX_FLOWER             },
-                    {  540, xi.item.BAG_OF_VEGETABLE_SEEDS  },
-                    {  550, xi.item.SKULL_LOCUST            },
-                    {  390, xi.item.SPRIG_OF_FRESH_MUGWORT  },
-                    {  350, xi.item.KING_LOCUST             },
-                    {  280, xi.item.BAG_OF_HERB_SEEDS       },
-                    {  370, xi.item.BAG_OF_GRAIN_SEEDS      },
+                    { 1630, 1522 }, -- Fresh Marjoram
+                    { 1580,  833 }, -- Moko Grass
+                    { 1680,  834 }, -- Saruta Cotton
+                    {  890, 5651 }, -- Burdock
+                    {  830, 1845 }, -- Red Moko Grass
+                    {  910,  835 }, -- Flax Flower
+                    {  540,  573 }, -- Vegetable Seeds
+                    {  550, 1981 }, -- Skull Locust
+                    {  390, 1524 }, -- Fresh Mugwort
+                    {  350, 1982 }, -- King Locust
+                    {  280,  572 }, -- Herb Seeds
+                    {  370,  575 }, -- Grain Seeds
                 },
 
                 points =
@@ -148,38 +170,25 @@ xi.helm.dataTable =
                 },
             },
 
-            [xi.zone.PASHHOW_MARSHLANDS] =
-            {
-                drops =
-                {
-                    { 1, xi.item.BLAZING_PEPPERS },
-                },
-
-                points =
-                {
-                    { -430.974, 25.187, 471.377 },
-                },
-            },
-
             [xi.zone.WEST_SARUTABARUTA] =
             {
                 drops =
                 {
-                    { 1680, xi.item.CLUMP_OF_MOKO_GRASS             },
-                    { 1290, xi.item.BALL_OF_SARUTA_COTTON           },
-                    { 1180, xi.item.SPRIG_OF_FRESH_MARJORAM         },
-                    { 1090, xi.item.CLUMP_OF_RED_MOKO_GRASS         },
-                    {  920, xi.item.FLAX_FLOWER                     },
-                    {  880, xi.item.SPRIG_OF_DYERS_WOAD             },
-                    {  670, xi.item.BUNCH_OF_GYSAHL_GREENS          },
-                    {  650, xi.item.CLUMP_OF_WINDURSTIAN_TEA_LEAVES },
-                    {  480, xi.item.SKULL_LOCUST                    },
-                    {  360, xi.item.WIJNRUIT                        },
-                    {  320, xi.item.BAG_OF_VEGETABLE_SEEDS          },
-                    {  210, xi.item.BAG_OF_HERB_SEEDS               },
-                    {  190, xi.item.BAG_OF_GRAIN_SEEDS              },
-                    {  160, xi.item.PIECE_OF_CRAWLER_COCOON         },
-                    {   10, xi.item.SPRIG_OF_FRESH_MUGWORT          },
+                    { 1680,  833 }, -- Moko Grass
+                    { 1290,  834 }, -- Saruta Cotton
+                    { 1180, 1522 }, -- Fresh Marjoram
+                    { 1090, 1845 }, -- Red Moko Grass
+                    {  920,  835 }, -- Flax Flower
+                    {  880, 2713 }, -- Dyer's Woad
+                    {  670, 4545 }, -- Gysahl Greens
+                    {  650,  635 }, -- Windurstian Tea Leaves
+                    {  480, 1981 }, -- Skull Locust
+                    {  360,  951 }, -- Wijnruit
+                    {  320,  573 }, -- Vegetable Seeds
+                    {  210,  572 }, -- Herb Seeds
+                    {  190,  575 }, -- Grain Seeds
+                    {  160,  839 }, -- Crawler Cocoon
+                    {   10, 1524 }, -- Fresh Mugwort
                 },
 
                 points =
@@ -197,22 +206,20 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 4000, xi.item.WOOZYSHROOM     },
-                    { 2000, xi.item.DANCESHROOM     },
-                    { 2000, xi.item.SLEEPSHROOM     },
-                    {  700, xi.item.SCREAM_FUNGUS   },
-                    {  700, xi.item.PUFFBALL        },
-                    {  300, xi.item.KING_TRUFFLE    },
-                    {  300, xi.item.MUSHROOM_LOCUST },
+                    { 4000, 4373 }, -- Woozyshroom
+                    { 2000, 4375 }, -- Danceshroom
+                    { 2000, 4374 }, -- Sleepshroom
+                    {  700, 4447 }, -- Scream Fungus
+                    {  700, 4448 }, -- Puffball
+                    {  300, 4386 }, -- King Truffle
+                    {  300, 1983 }, -- Mushroom Locust
                 },
 
                 points =
                 {
-                    { -650.923, 11.987,  -59.148 },
-                    { -250.381, 12.358, -418.463 },
-                    { -370.951, 12.426,  -99.086 },
-                    {  -60.695,  8.121,  308.915 },
-                    {  179.165,  7.985,  509.125 },
+                    { -650.923,  11.987,  -59.148 },
+                    { -250.381,  12.358, -418.463 },
+                    {  -60.695,   8.121,  308.915 },
                 },
             },
 
@@ -220,21 +227,20 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 4000, xi.item.WOOZYSHROOM     },
-                    { 2000, xi.item.DANCESHROOM     },
-                    { 2000, xi.item.SLEEPSHROOM     },
-                    {  700, xi.item.SCREAM_FUNGUS   },
-                    {  700, xi.item.CORAL_FUNGUS    },
-                    {  300, xi.item.REISHI_MUSHROOM },
-                    {  300, xi.item.MUSHROOM_LOCUST },
+                    { 4000, 4373 }, -- Woozyshroom
+                    { 2000, 4375 }, -- Danceshroom
+                    { 2000, 4374 }, -- Sleepshroom
+                    {  700, 4447 }, -- Scream Fungus
+                    {  700, 4450 }, -- Coral Fungus
+                    {  300, 4449 }, -- Reishi Mushroom
+                    {  300, 1983 }, -- Mushroom Locust
                 },
 
                 points =
                 {
-                    { -61.479,  8.475, -210.413 },
-                    { 108.884,  8.263, -579.216 },
                     { 140.242, 12.319, -108.471 },
-                    { 539.998,  7.964, -348.331 },
+                    { 108.884,  8.263, -579.216 },
+                    { 108.884,  8.263, -579.216 },
                 },
             },
 
@@ -242,21 +248,21 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1500, xi.item.CLUMP_OF_RED_MOKO_GRASS         },
-                    { 1430, xi.item.SPRIG_OF_DYERS_WOAD             },
-                    { 1430, xi.item.FLAX_FLOWER                     },
-                    { 1400, xi.item.BALL_OF_SARUTA_COTTON           },
-                    { 1210, xi.item.SPRIG_OF_FRESH_MARJORAM         },
-                    { 1030, xi.item.CLUMP_OF_MOKO_GRASS             },
-                    {  570, xi.item.CLUMP_OF_WINDURSTIAN_TEA_LEAVES },
-                    {  520, xi.item.BUNCH_OF_GYSAHL_GREENS          },
-                    {  440, xi.item.KING_LOCUST                     },
-                    {  370, xi.item.WIJNRUIT                        },
-                    {  230, xi.item.BAG_OF_GRAIN_SEEDS              },
-                    {  210, xi.item.BAG_OF_HERB_SEEDS               },
-                    {  200, xi.item.SPRIG_OF_FRESH_MUGWORT          },
-                    {  190, xi.item.PIECE_OF_CRAWLER_COCOON         },
-                    {  160, xi.item.BAG_OF_VEGETABLE_SEEDS          },
+                    { 1500, 1845 }, -- Red Moko Grass
+                    { 1430, 2713 }, -- Dyer's Woad
+                    { 1430,  835 }, -- Flax Flower
+                    { 1400,  834 }, -- Saruta Cotton
+                    { 1210, 1522 }, -- Fresh Marjoram
+                    { 1030,  833 }, -- Moko Grass
+                    {  570,  635 }, -- Windurstian Tea Leaves
+                    {  520, 4545 }, -- Gysahl Greens
+                    {  440, 1982 }, -- King Locust
+                    {  370,  951 }, -- Wijnruit
+                    {  230,  575 }, -- Grain Seeds
+                    {  210,  572 }, -- Herb Seeds
+                    {  200, 1524 }, -- Fresh Mugwort
+                    {  190,  839 }, -- Crawler Cocoon
+                    {  160,  573 }, -- Vegetable Seeds
                 },
 
                 points =
@@ -300,14 +306,14 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    {  970, xi.item.BAG_OF_HERB_SEEDS        },
-                    { 1330, xi.item.CLUMP_OF_MOKO_GRASS      },
-                    {  880, xi.item.LESSER_CHIGOE            },
-                    {  880, xi.item.BAG_OF_GRAIN_SEEDS       },
-                    { 1180, xi.item.CLUMP_OF_RED_MOKO_GRASS  },
-                    { 1000, xi.item.BURDOCK_ROOT             },
-                    {  790, xi.item.BAG_OF_VEGETABLE_SEEDS   },
-                    {  940, xi.item.BUNCH_OF_GRAUBERG_GREENS },
+                    {  970,  572 }, -- Herb Seeds
+                    { 1330,  833 }, -- Moko Grass
+                    {  880, 2155 }, -- Lesser Chigoe
+                    {  880,  575 }, -- Grain Seeds
+                    { 1180, 1845 }, -- Red Moko Grass
+                    { 1000, 5651 }, -- Burdock
+                    {  790,  573 }, -- Vegetable Seeds
+                    {  940, 5444 }, -- Grauberg Greens
                 },
 
                 points =
@@ -337,15 +343,15 @@ xi.helm.dataTable =
 
     -----------------------------------
 
-    [xi.helmType.EXCAVATION] =
+    [xi.helm.type.EXCAVATION] =
     {
-        id           = 'EXCAVATION',
+        id           = "EXCAVATION",
         animation    = xi.emote.EXCAVATION,
         mod          = nil,
         settingRate  = xi.settings.main.EXCAVATION_RATE,
         settingBreak = xi.settings.main.EXCAVATION_BREAK_CHANCE,
-        message      = 'MINING_IS_POSSIBLE_HERE',
-        tool         = xi.item.PICKAXE,
+        message      = "MINING_IS_POSSIBLE_HERE",
+        tool         = 605,
 
         zone =
         {
@@ -353,25 +359,28 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2220, xi.item.BONE_CHIP                   },
-                    { 2220, xi.item.CHICKEN_BONE                },
-                    { 1220, xi.item.BAT_FANG                    },
-                    { 1220, xi.item.LITTLE_WORM                 },
-                    {  720, xi.item.SCORPION_CLAW               },
-                    {  720, xi.item.SCORPION_SHELL              },
-                    {  420, xi.item.ANTLION_JAW                 },
-                    {  420, xi.item.BAG_OF_CACTUS_STEMS         },
-                    {  420, xi.item.HIGH_QUALITY_SCORPION_SHELL },
-                    {  420, xi.item.RED_ROCK                    },
+                    { 2220,   880 }, -- Bone Chip
+                    { 2220,   898 }, -- Chicken Bone
+                    { 1220,   891 }, -- Bat Fang
+                    { 1220, 17396 }, -- Little Worm
+                    {  720,   897 }, -- Scorpion Claw
+                    {  720,   896 }, -- Scorpion Shell
+                    {  420,  1616 }, -- Antlion Jaw
+                    {  420,  1236 }, -- Cactus Stems
+                    {  420,  1473 }, -- High Quality Scorpion Shell
+                    {  420,   769 }, -- Colored Rock
                 },
 
                 points =
                 {
                     { -559.629, -13.114,  -88.864 },
+                    { -560.463, -12.160,  -50.494 },
+                    { -539.946,  -4.582,   -9.527 },
                     { -328.481, -12.000,   68.200 },
-                    { -343.760, -12.232,   66.061 },
+                    { -351.612, -11.919,   51.848 },
                     { -375.399,  -3.264,  356.472 },
                     { -378.857,  -3.720,  342.842 },
+                    { -400.509,  -3.356,  343.399 },
                 },
             },
 
@@ -379,15 +388,15 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2690, xi.item.BONE_CHIP      },
-                    { 1830, xi.item.CHICKEN_BONE   },
-                    { 1300, xi.item.BAT_FANG       },
-                    { 1440, xi.item.GIANT_FEMUR    },
-                    { 1250, xi.item.LITTLE_WORM    },
-                    {   50, xi.item.SCORPION_CLAW  },
-                    {  290, xi.item.SCORPION_SHELL },
-                    {  240, xi.item.TURTLE_SHELL   },
-                    {  190, xi.item.SACK_OF_SILICA },
+                    { 2690,   880 }, -- Bone Chip
+                    { 1830,   898 }, -- Chicken Bone
+                    { 1300,   891 }, -- Bat Fang
+                    { 1440,   893 }, -- Giant Femur
+                    { 1250, 17396 }, -- Little Worm
+                    {   50,   897 }, -- Scorpion Claw
+                    {  290,   896 }, -- Scorpion Shell
+                    {  240,   885 }, -- Turtle Shell
+                    {  190,  1888 }, -- Silica
                 },
 
                 points =
@@ -415,17 +424,17 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2130, xi.item.CHUNK_OF_ROCK_SALT     },
-                    { 1700, xi.item.SEASHELL               },
-                    {  430, xi.item.CRAB_SHELL             },
-                    { 1490, xi.item.HANDFUL_OF_FISH_SCALES },
-                    { 2130, xi.item.LUGWORM                },
-                    { 1060, xi.item.SHELL_BUG              },
-                    {  100, xi.item.CORAL_FRAGMENT         },
-                    {  100, xi.item.BAG_OF_VEGETABLE_SEEDS },
-                    {  430, xi.item.TURTLE_SHELL           },
-                    {  100, xi.item.BAG_OF_GRAIN_SEEDS     },
-                    {  640, xi.item.HELMET_MOLE            },
+                    { 2130,   936 }, -- Rock Salt
+                    { 1700,   888 }, -- Seashell
+                    {  430,   881 }, -- Crab Shell
+                    { 1490,   864 }, -- Fish Scales
+                    { 2130, 17395 }, -- Lugworm
+                    { 1060, 17397 }, -- Shell Bug
+                    {  100,   887 }, -- Coral Fragment
+                    {  100,   573 }, -- Vegetable Seeds
+                    {  430,   885 }, -- Turtle Shell
+                    {  100,   575 }, -- Grain Seeds
+                    {  640,  1985 }, -- Helmet Mole
                 },
 
                 points =
@@ -446,15 +455,15 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2560, xi.item.BONE_CHIP      },
-                    { 2560, xi.item.BAT_FANG       },
-                    { 2330, xi.item.LITTLE_WORM    },
-                    {  930, xi.item.GIANT_FEMUR    },
-                    {  700, xi.item.SCORPION_CLAW  },
-                    {  230, xi.item.SCORPION_SHELL },
-                    {  230, xi.item.PETRIFIED_LOG  },
-                    {  100, xi.item.RED_ROCK       },
-                    {  470, xi.item.SACK_OF_SILICA },
+                    { 2560,   880 }, -- Bone Chip
+                    { 2560,   891 }, -- Bat Fang
+                    { 2330, 17396 }, -- Little Worm
+                    {  930,   893 }, -- Giant Femur
+                    {  700,   897 }, -- Scorpion Claw
+                    {  230,   896 }, -- Scorpion Shell
+                    {  230,   703 }, -- Petrified Log
+                    {  100,   769 }, -- Colored Rock
+                    {  470,  1888 }, -- Silica
                 },
 
                 points =
@@ -479,15 +488,15 @@ xi.helm.dataTable =
 
     -----------------------------------
 
-    [xi.helmType.LOGGING] =
+    [xi.helm.type.LOGGING] =
     {
-        id = 'LOGGING',
+        id = "LOGGING",
         animation    = xi.emote.LOGGING,
         mod          = xi.mod.LOGGING_RESULT,
         settingRate  = xi.settings.main.LOGGING_RATE,
         settingBreak = xi.settings.main.LOGGING_BREAK_CHANCE,
-        message      = 'LOGGING_IS_POSSIBLE_HERE',
-        tool         = xi.item.HATCHET,
+        message      = "LOGGING_IS_POSSIBLE_HERE",
+        tool         = 1021,
 
         zone =
         {
@@ -495,14 +504,14 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1750, xi.item.WALNUT_LOG    },
-                    { 1750, xi.item.WILLOW_LOG    },
-                    { 1000, xi.item.YEW_LOG       },
-                    {  750, xi.item.ARROWWOOD_LOG },
-                    {  500, xi.item.ASH_LOG       },
-                    {  500, xi.item.DRYAD_ROOT    },
-                    {  250, xi.item.ACORN         },
-                    {  100, xi.item.OAK_LOG       },
+                    { 1750,  693 }, -- Walnut Log
+                    { 1750,  695 }, -- Willow Log
+                    { 1000,  696 }, -- Yew Log
+                    {  750,  688 }, -- Arrowwood Log
+                    {  500,  698 }, -- Ash Log
+                    {  500,  923 }, -- Dryad Root
+                    {  250, 4504 }, -- Acorn
+                    {  100,  699 }, -- Oak Log
                 },
 
                 points =
@@ -517,22 +526,28 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 3330, xi.item.ARROWWOOD_LOG },
-                    { 1750, xi.item.ASH_LOG       },
-                    { 2000, xi.item.MAPLE_LOG     },
-                    { 1420, xi.item.FAERIE_APPLE  },
-                    {  830, xi.item.WALNUT_LOG    },
-                    {  170, xi.item.ACORN         },
-                    {  330, xi.item.ELM_LOG       },
-                    {  170, xi.item.OAK_LOG       },
+                    { 3330,  688 }, -- Arrowwood Log
+                    { 1750,  698 }, -- Ash Log
+                    { 2000,  691 }, -- Maple Log
+                    { 1420, 4363 }, -- Faerie Apple
+                    {  830,  693 }, -- Walnut Log
+                    {  170, 4504 }, -- Acorn
+                    {  330,  690 }, -- Elm Log
+                    {  170,  699 }, -- Oak Log
                 },
 
                 points =
                 {
-                    { -218.855, -16.142,  286.809 },
-                    { -212.218, -16.399,  316.257 },
-                    {   93.994,  -9.035,  -55.871 },
-                    {  120.026,  -8.607,   -9.430 },
+                    { -218.855, -16.142, 286.809 },
+                    {   93.994,  -9.035, -55.871 },
+                    {   82.697,  -8.610,   7.324 },
+                    {  120.026,  -8.607,  -9.430 },
+                    { -176.225, -16.288, 294.007 },
+                    { -453.739,  -7.930,  74.015 },
+                    { -408.364,  -8.010,  64.173 },
+                    { -238.046, -15.981, 257.771 },
+                    { -428.247,  -8.431,  34.783 },
+                    { -218.855, -16.142, 286.809 },
                 },
             },
 
@@ -540,21 +555,28 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2220, xi.item.ARROWWOOD_LOG },
-                    { 2220, xi.item.FAERIE_APPLE  },
-                    { 2220, xi.item.ASH_LOG       },
-                    { 2220, xi.item.MAPLE_LOG     },
-                    {  100, xi.item.WALNUT_LOG    },
-                    {  100, xi.item.ACORN         },
-                    { 1110, xi.item.ELM_LOG       },
-                    {  100, xi.item.OAK_LOG       },
+                    { 2220,  688 }, -- Arrowwood Log
+                    { 2220, 4363 }, -- Faerie Apple
+                    { 2220,  698 }, -- Ash Log
+                    { 2220,  691 }, -- Maple Log
+                    {  100,  693 }, -- Walnut Log
+                    {  100, 4504 }, -- Acorn
+                    { 1110,  690 }, -- Elm Log
+                    {  100,  699 }, -- Oak Log
                 },
 
                 points =
                 {
-                    { -323.737, -32.938,  203.954 },
-                    { -288.729, -32.055,  140.837 },
+                    {   29.643, -24.514,  361.756 },
+                    {  -29.950, -24.155,  495.225 },
+                    {  306.851,  23.677, -330.013 },
+                    {  285.760,  23.677, -328.804 },
+                    {  288.659,  23.677, -394.522 },
+                    {  -66.369, -24.960,  535.166 },
+                    {  -94.736, -24.929,  653.229 },
+                    { -170.298, -32.188,   94.226 },
                     { -260.170, -32.656,  174.636 },
+                    { -288.729, -32.055,  140.837 },
                     { -213.362, -32.315,  150.466 },
                 },
             },
@@ -563,16 +585,16 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1070, xi.item.ARROWWOOD_LOG        },
-                    { 1070, xi.item.DOGWOOD_LOG          },
-                    { 2300, xi.item.HANDFUL_OF_PINE_NUTS },
-                    { 1070, xi.item.HANDFUL_OF_ALMONDS   },
-                    {  500, xi.item.CHESTNUT_LOG         },
-                    { 2300, xi.item.DATE                 },
-                    {  500, xi.item.EBONY_LOG            },
-                    {  500, xi.item.LAUAN_LOG            },
-                    {  490, xi.item.ROSEWOOD_LOG         },
-                    {  200, xi.item.BLOODWOOD_LOG        },
+                    { 1070,  688 }, -- Arrowwood Log
+                    { 1070,  727 }, -- Dogwood Log
+                    { 2300, 2213 }, -- Pine Nuts
+                    { 1070, 2503 }, -- Almonds
+                    {  500,  694 }, -- Chestnut Log
+                    { 2300, 5566 }, -- Date
+                    {  500,  702 }, -- Ebony Log
+                    {  500,  689 }, -- Lauan Log
+                    {  490,  701 }, -- Rosewood Log
+                    {  200,  729 }, -- Bloodwood Log
                 },
 
                 points =
@@ -589,16 +611,16 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2200, xi.item.DOGWOOD_LOG          },
-                    { 1520, xi.item.HANDFUL_OF_ALMONDS   },
-                    { 1260, xi.item.ARROWWOOD_LOG        },
-                    {  470, xi.item.CHESTNUT_LOG         },
-                    {  680, xi.item.DATE                 },
-                    {  940, xi.item.LAUAN_LOG            },
-                    { 1150, xi.item.HANDFUL_OF_PINE_NUTS },
-                    {  680, xi.item.ROSEWOOD_LOG         },
-                    {  260, xi.item.BLOODWOOD_LOG        },
-                    {  310, xi.item.EBONY_LOG            },
+                    { 2200,  727 }, -- Dogwood Log
+                    { 1520, 2503 }, -- Almonds
+                    { 1260,  688 }, -- Arrowwood Log
+                    {  470,  694 }, -- Chestnut Log
+                    {  680, 5566 }, -- Date
+                    {  940,  689 }, -- Lauan Log
+                    { 1150, 2213 }, -- Pine Nuts
+                    {  680,  701 }, -- Rosewood Log
+                    {  260,  729 }, -- Bloodwood Log
+                    {  310,  702 }, -- Ebony Log
                 },
 
                 points =
@@ -615,17 +637,17 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1890, xi.item.ARROWWOOD_LOG      },
-                    { 1400, xi.item.ASH_LOG            },
-                    { 1430, xi.item.MAPLE_LOG          },
-                    { 1270, xi.item.WALNUT             },
-                    {  850, xi.item.CHESTNUT_LOG       },
-                    { 1000, xi.item.RONFAURE_CHESTNUT  },
-                    {  760, xi.item.WALNUT_LOG         },
-                    {  490, xi.item.BAG_OF_FRUIT_SEEDS },
-                    {   40, xi.item.JACARANDA_LOG      },
-                    {  400, xi.item.OAK_LOG            },
-                    {  290, xi.item.TEAK_LOG           },
+                    { 1890,  688 }, -- Arrowwood Log
+                    { 1400,  698 }, -- Ash Log
+                    { 1430,  691 }, -- Maple Log
+                    { 1270, 5661 }, -- Walnut
+                    {  850,  694 }, -- Chestnut Log
+                    { 1000,  639 }, -- Ronfaure Chestnut
+                    {  760,  693 }, -- Walnut Log
+                    {  490,  574 }, -- Fruit Seeds
+                    {   40, 2534 }, -- Jacaranda Log
+                    {  400,  699 }, -- Oak Log
+                    {  290, 2532 }, -- Teak Log
                 },
 
                 points =
@@ -643,15 +665,15 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2000, xi.item.WALNUT        },
-                    { 1540, xi.item.WALNUT_LOG    },
-                    { 1140, xi.item.ARROWWOOD_LOG },
-                    { 1090, xi.item.ASH_LOG       },
-                    {  860, xi.item.OAK_LOG       },
-                    {  860, xi.item.WILLOW_LOG    },
-                    {  510, xi.item.ACORN         },
-                    {  170, xi.item.JACARANDA_LOG },
-                    {  230, xi.item.TEAK_LOG      },
+                    { 2000, 5661 }, -- Walnut
+                    { 1540,  693 }, -- Walnut Log
+                    { 1140,  688 }, -- Arrowwood Log
+                    { 1090,  698 }, -- Ash Log
+                    {  860,  699 }, -- Oak Log
+                    {  860,  695 }, -- Willow Log
+                    {  510, 4504 }, -- Acorn
+                    {  170, 2534 }, -- Jacaranda Log
+                    {  230, 2532 }, -- Teak Log
                 },
 
                 points =
@@ -669,13 +691,13 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2910, xi.item.FLASK_OF_HOLY_WATER },
-                    { 2230, xi.item.PAIR_OF_NOPALES     },
-                    { 1650, xi.item.DRAGON_FRUIT        },
-                    { 1490, xi.item.BIRD_FEATHER        },
-                    { 1250, xi.item.BIRD_EGG            },
-                    {  170, xi.item.BAG_OF_CACTUS_STEMS },
-                    {   50, xi.item.OPTICAL_NEEDLE      },
+                    { 2910,  4154 }, -- Holy Water
+                    { 2230,  5650 }, -- Nopales
+                    { 1650,  5662 }, -- Dragon Fruit
+                    { 1490,   847 }, -- Bird Feather
+                    { 1250,  4570 }, -- Bird Egg
+                    {  170,  1236 }, -- Cactus Stems
+                    {   50, 18175 }, -- Optical Needle
                 },
 
                 points =
@@ -693,13 +715,13 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2610, xi.item.ARROWWOOD_LOG      },
-                    { 2030, xi.item.ASH_LOG            },
-                    { 2570, xi.item.MAPLE_LOG          },
-                    {  540, xi.item.CHESTNUT_LOG       },
-                    {  580, xi.item.BAG_OF_FRUIT_SEEDS },
-                    {  910, xi.item.YEW_LOG            },
-                    {  410, xi.item.RONFAURE_CHESTNUT  },
+                    { 2610, 688 }, -- Arrowwood Log
+                    { 2030, 698 }, -- Ash Log
+                    { 2570, 691 }, -- Maple Log
+                    {  540, 694 }, -- Chestnut Log
+                    {  580, 574 }, -- Fruit Seeds
+                    {  910, 696 }, -- Yew Log
+                    {  410, 639 }, -- Ronfaure Chestnut
                 },
 
                 points =
@@ -736,14 +758,14 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2040, xi.item.WALNUT_LOG    },
-                    { 1850, xi.item.WILLOW_LOG    },
-                    { 1790, xi.item.YEW_LOG       },
-                    { 1460, xi.item.ARROWWOOD_LOG },
-                    { 1430, xi.item.ASH_LOG       },
-                    {  580, xi.item.ACORN         },
-                    {  550, xi.item.DRYAD_ROOT    },
-                    {   60, xi.item.OAK_LOG       },
+                    { 2040,  693 }, -- Walnut Log
+                    { 1850,  695 }, -- Willow Log
+                    { 1790,  696 }, -- Yew Log
+                    { 1460,  688 }, -- Arrowwood Log
+                    { 1430,  698 }, -- Ash Log
+                    {  580, 4504 }, -- Acorn
+                    {  550,  923 }, -- Dryad Root
+                    {   60,  699 }, -- Oak Log
                 },
 
                 points =
@@ -781,16 +803,16 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2410, xi.item.LAUAN_LOG                },
-                    { 1980, xi.item.ARROWWOOD_LOG            },
-                    { 1550, xi.item.YAGUDO_CHERRY            },
-                    { 1030, xi.item.BUNCH_OF_BUBURIMU_GRAPES },
-                    {  780, xi.item.DRYAD_ROOT               },
-                    {  520, xi.item.BAG_OF_FRUIT_SEEDS       },
-                    {  950, xi.item.HOLLY_LOG                },
-                    {  340, xi.item.EBONY_LOG                },
-                    {  170, xi.item.MAHOGANY_LOG             },
-                    {  260, xi.item.ROSEWOOD_LOG             },
+                    { 2410,  689 }, -- Lauan Log
+                    { 1980,  688 }, -- Arrowwood Log
+                    { 1550, 4445 }, -- Yagudo Cherry
+                    { 1030, 4503 }, -- Buburimu Grapes
+                    {  780,  923 }, -- Dryad Root
+                    {  520,  574 }, -- Fruit Seeds
+                    {  950,  697 }, -- Holly Log
+                    {  340,  702 }, -- Ebony Log
+                    {  170,  700 }, -- Mahogany Log
+                    {  260,  701 }, -- Rosewood Log
                 },
 
                 points =
@@ -834,17 +856,17 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1900, xi.item.ARROWWOOD_LOG          },
-                    { 1430, xi.item.PIECE_OF_RATTAN_LUMBER },
-                    { 1190, xi.item.LAUAN_LOG              },
-                    { 1190, xi.item.REVIVAL_TREE_ROOT      },
-                    {  950, xi.item.AQUILARIA_LOG          },
-                    {  480, xi.item.BEEHIVE_CHIP           },
-                    {  480, xi.item.BAG_OF_TREE_CUTTINGS   },
-                    {  100, xi.item.DRAGON_FRUIT           },
-                    {  240, xi.item.EBONY_LOG              },
-                    {  100, xi.item.HOLLY_LOG              },
-                    {  100, xi.item.ROSEWOOD_LOG           },
+                    { 1900,  688 }, -- Arrowwood Log
+                    { 1430,  721 }, -- Rattan Lumber
+                    { 1190,  689 }, -- Lauan Log
+                    { 1190,  940 }, -- Revival Tree Root
+                    {  950,  731 }, -- Aquilaria Log
+                    {  480,  912 }, -- Beehive Chip
+                    {  480, 1237 }, -- Tree Cuttings
+                    {  100, 5662 }, -- Dragon Fruit
+                    {  240,  702 }, -- Ebony Log
+                    {  100,  697 }, -- Holly Log
+                    {  100,  701 }, -- Rosewood Log
                 },
 
                 points =
@@ -861,18 +883,18 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2220, xi.item.ARROWWOOD_LOG          },
-                    { 2220, xi.item.PIECE_OF_RATTAN_LUMBER },
-                    { 1130, xi.item.LAUAN_LOG              },
-                    {  780, xi.item.BEEHIVE_CHIP           },
-                    {  650, xi.item.DRYAD_ROOT             },
-                    {  650, xi.item.BUTTERPEAR             },
-                    {  610, xi.item.REVIVAL_TREE_ROOT      },
-                    {  610, xi.item.AQUILARIA_LOG          },
-                    {  570, xi.item.KAPOR_LOG              },
-                    {  350, xi.item.MAHOGANY_LOG           },
-                    {  170, xi.item.EBONY_LOG              },
-                    {   90, xi.item.BAG_OF_TREE_CUTTINGS   },
+                    { 2220,  688 }, -- Arrowwood Log
+                    { 2220,  721 }, -- Rattan Lumber
+                    { 1130,  689 }, -- Lauan Log
+                    {  780,  912 }, -- Beehive Chip
+                    {  650,  923 }, -- Dryad Root
+                    {  650, 5908 }, -- Butterpear
+                    {  610,  940 }, -- Revival Tree Root
+                    {  610,  731 }, -- Aquilaria Log
+                    {  570,  732 }, -- Kapor Log
+                    {  350,  700 }, -- Mahogany Log
+                    {  170,  702 }, -- Ebony Log
+                    {   90, 1237 }, -- Tree Cuttings
                 },
 
                 points =
@@ -904,12 +926,12 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2950, xi.item.ARROWWOOD_LOG },
-                    { 2230, xi.item.ASH_LOG       },
-                    { 2120, xi.item.MAPLE_LOG     },
-                    { 1000, xi.item.WILLOW_LOG    },
-                    {  620, xi.item.ELM_LOG       },
-                    {  650, xi.item.HOLLY_LOG     },
+                    { 2950, 688 }, -- Arrowwood Log
+                    { 2230, 698 }, -- Ash Log
+                    { 2120, 691 }, -- Maple Log
+                    { 1000, 695 }, -- Willow Log
+                    {  620, 690 }, -- Elm Log
+                    {  650, 697 }, -- Holly Log
                 },
 
                 points =
@@ -934,15 +956,15 @@ xi.helm.dataTable =
 
     -----------------------------------
 
-    [xi.helmType.MINING] =
+    [xi.helm.type.MINING] =
     {
-        id           = 'MINING',
+        id           = "MINING",
         animation    = xi.emote.EXCAVATION,
         mod          = xi.mod.MINING_RESULT,
         settingRate  = xi.settings.main.MINING_RATE,
         settingBreak = xi.settings.main.MINING_BREAK_CHANCE,
-        message      = 'MINING_IS_POSSIBLE_HERE',
-        tool         = xi.item.PICKAXE,
+        message      = "MINING_IS_POSSIBLE_HERE",
+        tool         = 605,
 
         zone =
         {
@@ -950,21 +972,21 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1150, xi.item.IGNEOUS_ROCK           },
-                    { 1130, xi.item.CHUNK_OF_ZINC_ORE      },
-                    { 1100, xi.item.CHUNK_OF_COPPER_ORE    },
-                    { 1080, xi.item.CHUNK_OF_TIN_ORE       },
-                    { 1050, xi.item.CHUNK_OF_SILVER_ORE    },
-                    {  970, xi.item.CHUNK_OF_IRON_ORE      },
-                    {  680, xi.item.SUIT_OF_MOBLIN_MAIL    },
-                    {  630, xi.item.MOBLIN_HELM            },
-                    {  600, xi.item.MOBLIN_MASK            },
-                    {  570, xi.item.GOBLIN_DIE             },
-                    {  570, xi.item.SUIT_OF_MOBLIN_ARMOR   },
-                    {   80, xi.item.CHUNK_OF_DARKSTEEL_ORE },
-                    {   80, xi.item.CHUNK_OF_MYTHRIL_ORE   },
-                    {   70, xi.item.CHUNK_OF_GOLD_ORE      },
-                    {   70, xi.item.CHUNK_OF_PLATINUM_ORE  },
+                    { 1150, 1654 }, -- Igneous Rock
+                    { 1130,  642 }, -- Zinc Ore
+                    { 1100,  640 }, -- Copper Ore
+                    { 1080,  641 }, -- Tin Ore
+                    { 1050,  736 }, -- Silver Ore
+                    {  970,  643 }, -- Iron Ore
+                    {  680, 1632 }, -- Moblin Mail
+                    {  630, 1625 }, -- Moblin Helm
+                    {  600, 1638 }, -- Moblin Mask
+                    {  570,  568 }, -- Goblin Die
+                    {  570, 1631 }, -- Moblin Armor
+                    {   80,  645 }, -- Darksteel Ore
+                    {   80,  644 }, -- Mythril Ore
+                    {   70,  737 }, -- Gold Ore
+                    {   70,  738 }, -- Platium Ore
                 },
 
                 points =
@@ -989,18 +1011,18 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1660, xi.item.CHUNK_OF_COPPER_ORE    },
-                    { 1100, xi.item.CHUNK_OF_TIN_ORE       },
-                    { 1450, xi.item.CHUNK_OF_ZINC_ORE      },
-                    { 1790, xi.item.IGNEOUS_ROCK           },
-                    { 1450, xi.item.CHUNK_OF_SILVER_ORE    },
-                    {  140, xi.item.CHUNK_OF_ALUMINUM_ORE  },
-                    { 1720, xi.item.CHUNK_OF_IRON_ORE      },
-                    {   70, xi.item.CHUNK_OF_DARKSTEEL_ORE },
-                    {  210, xi.item.CHUNK_OF_MYTHRIL_ORE   },
-                    {  140, xi.item.CHUNK_OF_GOLD_ORE      },
-                    {  340, xi.item.CHUNK_OF_PLATINUM_ORE  },
-                    {   70, xi.item.RED_ROCK               },
+                    { 1660,  640 }, -- Copper Ore
+                    { 1100,  641 }, -- Tin Ore
+                    { 1450,  642 }, -- Zinc Ore
+                    { 1790, 1654 }, -- Igneous Rock
+                    { 1450,  736 }, -- Silver Ore
+                    {  140,  678 }, -- Aluminum Ore
+                    { 1720,  643 }, -- Iron Ore
+                    {   70,  645 }, -- Darksteel Ore
+                    {  210,  644 }, -- Mythril Ore
+                    {  140,  737 }, -- Gold Ore
+                    {  340,  738 }, -- Platium Ore
+                    {   70,  769 }, -- Colored Rock
                 },
 
                 points =
@@ -1022,20 +1044,20 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2250, xi.item.PINCH_OF_SULFUR      },
-                    { 2990, xi.item.CHUNK_OF_IRON_ORE    },
-                    { 1590, xi.item.HANDFUL_OF_IRON_SAND },
-                    { 1540, xi.item.FLINT_STONE          },
-                    { 1340, xi.item.PINCH_OF_BOMB_ASH    },
-                    {  960, xi.item.SUIT_OF_MOBLIN_MAIL  },
-                    { 1150, xi.item.MOBLIN_HELM          },
-                    {  450, xi.item.SUIT_OF_MOBLIN_ARMOR },
-                    {  380, xi.item.TROLL_PAULDRON       },
-                    {  450, xi.item.TROLL_VAMBRACE       },
-                    {  430, xi.item.MOBLIN_MASK          },
-                    {  210, xi.item.DEMON_HORN           },
-                    {  140, xi.item.CHUNK_OF_ADAMAN_ORE  },
-                    {   30, xi.item.CHUNK_OF_KHROMA_ORE  },
+                    { 2250, 1108 }, -- Sulfur
+                    { 2990,  643 }, -- Iron Ore
+                    { 1590, 1155 }, -- Iron Sand
+                    { 1540,  768 }, -- Flint Stone
+                    { 1340,  928 }, -- Bomb Ash
+                    {  960, 1632 }, -- Moblin Mail
+                    { 1150, 1625 }, -- Moblin Helm
+                    {  450, 1631 }, -- Moblin Armor
+                    {  380, 2160 }, -- Troll Pauldron
+                    {  450, 2161 }, -- Troll Vambrace
+                    {  430, 1638 }, -- Moblin Mask
+                    {  210,  902 }, -- Demon Horn
+                    {  140,  646 }, -- Adaman Ore
+                    {   30,  685 }, -- Khroma Ore
                 },
 
                 points =
@@ -1069,20 +1091,20 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2010, xi.item.CHUNK_OF_AHT_URHGAN_BRASS },
-                    { 1000, xi.item.PINCH_OF_BOMB_ASH         },
-                    { 1720, xi.item.FLINT_STONE               },
-                    {  290, xi.item.CHUNK_OF_GOLD_ORE         },
-                    { 1440, xi.item.HANDFUL_OF_IRON_SAND      },
-                    {   50, xi.item.CHUNK_OF_LUMINIUM_ORE     },
-                    {  430, xi.item.SUIT_OF_MOBLIN_ARMOR      },
-                    {  430, xi.item.MOBLIN_HELM               },
-                    {  480, xi.item.SUIT_OF_MOBLIN_MAIL       },
-                    {  290, xi.item.MOBLIN_MASK               },
-                    {  100, xi.item.CHUNK_OF_ORICHALCUM_ORE   },
-                    { 1200, xi.item.PINCH_OF_SULFUR           },
-                    {  480, xi.item.TROLL_PAULDRON            },
-                    {  330, xi.item.TROLL_VAMBRACE            },
+                    { 2010, 2417 }, -- Aht Urhgan Brass
+                    { 1000,  928 }, -- Bomb Ash
+                    { 1720,  768 }, -- Flint Stone
+                    {  290,  737 }, -- Gold Ore
+                    { 1440, 1155 }, -- Iron Sand
+                    {   50, 2228 }, -- Luminium Ore
+                    {  430, 1631 }, -- Moblin Armor
+                    {  430, 1625 }, -- Moblin Helm
+                    {  480, 1632 }, -- Moblin Mail
+                    {  290, 1638 }, -- Moblin Mask
+                    {  100,  739 }, -- Orichalcum Ore
+                    { 1200, 1108 }, -- Pinch of Sulfur
+                    {  480, 2160 }, -- Troll Pauldron
+                    {  330, 2161 }, -- Troll Vambrace
                 },
 
                 points =
@@ -1114,18 +1136,18 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1870, xi.item.CHUNK_OF_COPPER_ORE   },
-                    { 1930, xi.item.CHUNK_OF_ZINC_ORE     },
-                    { 1500, xi.item.CHUNK_OF_TIN_ORE      },
-                    { 1340, xi.item.PEBBLE                },
-                    {  860, xi.item.CHUNK_OF_SILVER_ORE   },
-                    { 1180, xi.item.CHUNK_OF_IRON_ORE     },
-                    {  750, xi.item.CHUNK_OF_MYTHRIL_ORE  },
-                    {  210, xi.item.MOBLIN_MASK           },
-                    {  110, xi.item.MOBLIN_HELM           },
-                    {  110, xi.item.SUIT_OF_MOBLIN_MAIL   },
-                    {   50, xi.item.SUIT_OF_MOBLIN_ARMOR  },
-                    {  160, xi.item.CHUNK_OF_PLATINUM_ORE },
+                    { 1870,   640 }, -- Copper Ore
+                    { 1930,   642 }, -- Zinc Ore
+                    { 1500,   641 }, -- Tin Ore
+                    { 1340, 17296 }, -- Pebble
+                    {  860,   736 }, -- Silver Ore
+                    { 1180,   643 }, -- Iron Ore
+                    {  750,   644 }, -- Mythril Ore
+                    {  210,  1638 }, -- Moblin Mask
+                    {  110,  1625 }, -- Moblin Helm
+                    {  110,  1632 }, -- Moblin Mail
+                    {   50,  1631 }, -- Moblin Armor
+                    {  160,   738 }, -- Platium Ore
                 },
 
                 points =
@@ -1166,16 +1188,16 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1460, xi.item.CHUNK_OF_COPPER_ORE    },
-                    { 1650, xi.item.CHUNK_OF_IRON_ORE      },
-                    { 1300, xi.item.CHUNK_OF_TIN_ORE       },
-                    { 1140, xi.item.PEBBLE                 },
-                    { 1320, xi.item.CHUNK_OF_ZINC_ORE      },
-                    {  840, xi.item.FLINT_STONE            },
-                    {  360, xi.item.CHUNK_OF_SILVER_ORE    },
-                    {  170, xi.item.RED_ROCK               },
-                    {  150, xi.item.CHUNK_OF_DARKSTEEL_ORE },
-                    {  110, xi.item.CHUNK_OF_GOLD_ORE      },
+                    { 1460,   640 }, -- Copper Ore
+                    { 1650,   643 }, -- Iron Ore
+                    { 1300,   641 }, -- Tin Ore
+                    { 1140, 17296 }, -- Pebble
+                    { 1320,   642 }, -- Zinc Ore
+                    {  840,   768 }, -- Flint Stone
+                    {  360,   736 }, -- Silver Ore
+                    {  170,   769 }, -- Colored Rock
+                    {  150,   645 }, -- Darksteel Ore
+                    {  110,   737 }, -- Gold Ore
                 },
 
                 points =
@@ -1221,14 +1243,14 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1130, xi.item.CHUNK_OF_ZINC_ORE     },
-                    {  940, xi.item.CHUNK_OF_IRON_ORE     },
-                    { 1040, xi.item.PEBBLE                },
-                    {  970, xi.item.CHUNK_OF_TIN_ORE      },
-                    {  900, xi.item.CHUNK_OF_MYTHRIL_ORE  },
-                    {  900, xi.item.CHUNK_OF_SILVER_ORE   },
-                    {  800, xi.item.CHUNK_OF_COPPER_ORE   },
-                    {  100, xi.item.CHUNK_OF_PLATINUM_ORE },
+                    { 1130,   642 }, -- Zinc Ore
+                    {  940,   643 }, -- Iron Ore
+                    { 1040, 17296 }, -- Pebble
+                    {  970,   641 }, -- Tin Ore
+                    {  900,   644 }, -- Mythril Ore
+                    {  900,   736 }, -- Silver Ore
+                    {  800,   640 }, -- Copper Ore
+                    {  100,   738 }, -- Platinum Ore
                 },
 
                 points =
@@ -1261,14 +1283,14 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 2450, xi.item.CHUNK_OF_IRON_ORE      },
-                    { 1800, xi.item.PEBBLE                 },
-                    { 1850, xi.item.CHUNK_OF_COPPER_ORE    },
-                    { 1330, xi.item.CHUNK_OF_ZINC_ORE      },
-                    { 1120, xi.item.CHUNK_OF_TIN_ORE       },
-                    {  550, xi.item.SNAPPING_MOLE          },
-                    {  180, xi.item.CHUNK_OF_SILVER_ORE    },
-                    {   40, xi.item.CHUNK_OF_DARKSTEEL_ORE },
+                    { 2450,   643 }, -- Iron Ore
+                    { 1800, 17296 }, -- Pebble
+                    { 1850,   640 }, -- Copper Ore
+                    { 1330,   642 }, -- Zinc Ore
+                    { 1120,   641 }, -- Tin Ore
+                    {  550,  1984 }, -- Snapping Mole
+                    {  180,   736 }, -- Silver Ore
+                    {   40,   645 }, -- Darksteel Ore
                 },
 
                 points =
@@ -1304,15 +1326,15 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 1890, xi.item.PEBBLE                 },
-                    { 1670, xi.item.CHUNK_OF_ZINC_ORE      },
-                    { 1510, xi.item.CHUNK_OF_COPPER_ORE    },
-                    { 1470, xi.item.CHUNK_OF_TIN_ORE       },
-                    { 1450, xi.item.CHUNK_OF_IRON_ORE      },
-                    {  810, xi.item.CHUNK_OF_SILVER_ORE    },
-                    {  590, xi.item.CHUNK_OF_DARKSTEEL_ORE },
-                    {  400, xi.item.RED_ROCK               },
-                    {   80, xi.item.CHUNK_OF_GOLD_ORE      },
+                    { 1890, 17296 }, -- Pebble
+                    { 1670,   642 }, -- Zinc Ore
+                    { 1510,   640 }, -- Copper Ore
+                    { 1470,   641 }, -- Tin Ore
+                    { 1450,   643 }, -- Iron Ore
+                    {  810,   736 }, -- Silver Ore
+                    {  590,   645 }, -- Darksteel Ore
+                    {  400,   769 }, -- Colored Rock
+                    {   80,   737 }, -- Gold Ore
                 },
 
                 points =
@@ -1342,17 +1364,17 @@ xi.helm.dataTable =
             {
                 drops =
                 {
-                    { 3260, xi.item.FLINT_STONE             },
-                    { 1520, xi.item.CHUNK_OF_IRON_ORE       },
-                    {  430, xi.item.PINCH_OF_SULFUR         },
-                    {  650, xi.item.BOMB_ARM                },
-                    {  870, xi.item.PINCH_OF_BOMB_ASH       },
-                    { 1300, xi.item.HANDFUL_OF_IRON_SAND    },
-                    {  250, xi.item.CHUNK_OF_ADAMAN_ORE     },
-                    {  600, xi.item.CHUNK_OF_DARKSTEEL_ORE  },
-                    { 1520, xi.item.CHUNK_OF_ORPIMENT       },
-                    {  100, xi.item.CHUNK_OF_ORICHALCUM_ORE },
-                    {  220, xi.item.RED_ROCK                },
+                    { 2710,   768 }, -- Flint Stone
+                    { 1440,   643 }, -- Iron Ore
+                    {  510,  1108 }, -- Sulfur
+                    {  110, 17316 }, -- Bomb Arm
+                    {  680,   928 }, -- Bomb Ash
+                    {  510,  1155 }, -- Iron Sand
+                    {  170,   646 }, -- Adaman Ore
+                    {  250,   645 }, -- Darksteel Ore
+                    { 1610,  2126 }, -- Orpiment
+                    {  100,   739 }, -- Orichalcum Ore
+                    {  340,   769 }, -- Colored Rock
                 },
 
                 points =
@@ -1382,3 +1404,218 @@ xi.helm.dataTable =
         },
     },
 }
+
+-----------------------------------
+-- colored rocks array
+-----------------------------------
+
+local rocks =
+{
+    [xi.magic.element.FIRE   ] = xi.items.RED_ROCK,
+    [xi.magic.element.ICE    ] = xi.items.TRANSLUCENT_ROCK,
+    [xi.magic.element.WIND   ] = xi.items.GREEN_ROCK,
+    [xi.magic.element.EARTH  ] = xi.items.YELLOW_ROCK,
+    [xi.magic.element.THUNDER] = xi.items.PURPLE_ROCK,
+    [xi.magic.element.WATER  ] = xi.items.BLUE_ROCK,
+    [xi.magic.element.LIGHT  ] = xi.items.WHITE_ROCK,
+    [xi.magic.element.DARK   ] = xi.items.BLACK_ROCK,
+}
+
+-----------------------------------
+-- local functions
+-----------------------------------
+
+local function doesToolBreak(player, info)
+    local roll  = math.random(1, 100)
+    local mod   = info.mod
+
+    if mod then
+        roll = roll + (player:getMod(mod) / 10)
+    end
+
+    if roll <= info.settingBreak then
+        player:tradeComplete()
+        return true
+    end
+
+    return false
+end
+
+local function pickItem(player, info)
+    local zoneId = player:getZoneID()
+
+    -- found nothing
+    if math.random(1, 100) > info.settingRate then
+        return 0
+    end
+
+    -- possible drops
+    local drops = info.zone[zoneId].drops
+
+    -- sum weights
+    local sum = 0
+    for i = 1, #drops do
+        sum = sum + drops[i][1]
+    end
+
+    -- pick weighted result
+    local item = 0
+    local pick = math.random(1, sum)
+    sum = 0
+
+    for i = 1, #drops do
+        sum = sum + drops[i][1]
+        if sum >= pick then
+            item = drops[i][2]
+            break
+        end
+    end
+
+    -- if we picked a colored rock, change it to the day's element
+    if item == 769 then
+        item = rocks[VanadielDayElement()]
+    end
+
+    return item
+end
+
+local function doMove(npc, x, y, z)
+    return function(entity)
+        entity:setPos(x, y, z, 0)
+    end
+end
+
+local function movePoint(player, npc, zoneId, info)
+    local points = info.zone[zoneId].points
+    local point  = points[math.random(1, #points)]
+
+    npc:hideNPC(120)
+    npc:queue(3000, doMove(npc, unpack(point)))
+end
+
+-----------------------------------
+-- public functions
+-----------------------------------
+
+xi.helm.initZone = function(zone, helmType)
+    local zoneId = zone:getID()
+    local info   = xi.helm.helmInfo[helmType]
+    local npcs   = zones[zoneId].npc[info.id]
+
+    for _, npcId in ipairs(npcs) do
+        local npc = GetNPCByID(npcId)
+        if npc then
+            npc:setStatus(xi.status.NORMAL)
+            movePoint(nil, npc, zoneId, info)
+        end
+    end
+end
+
+xi.helm.onTrade = function(player, npc, trade, helmType, csid, func)
+    local info   = xi.helm.helmInfo[helmType]
+    local zoneId = player:getZoneID()
+    local lastTrade = player:getLocalVar("[HELM]Last_Trade")
+
+    -- HELM should remove invisible
+    player:delStatusEffect(xi.effect.INVISIBLE)
+
+    if trade:hasItemQty(info.tool, 1) and trade:getItemCount() == 1 then
+        -- start event
+        local item  = pickItem(player, info)
+        local broke = doesToolBreak(player, info) and 1 or 0
+        local full  = (player:getFreeSlotsCount() == 0) and 1 or 0
+
+        if os.time() > lastTrade + 3 then
+            if csid then
+                player:startEvent(csid, item, broke, full)
+            end
+
+            player:sendEmote(npc, info.animation, xi.emoteMode.MOTION, false)
+
+            -- WotG : The Price of Valor; Success does not award an item, but only KI.
+            if xi.wotg.helpers.helmTrade(player, helmType, broke) then
+                return
+            end
+
+            -- success! reward item and decrement number of remaining uses on the point
+            if item ~= 0 and full == 0 then
+                local qty = 1
+                if helmType == xi.helm.type.MINING then
+                    qty = xi.settings.main.MINING_YIELD_MULTIPLIER or 1
+                end
+
+                player:addItem(item, qty)
+
+                local uses = (npc:getLocalVar("uses") - 1) % 4
+                npc:setLocalVar("uses", uses)
+                if uses == 0 then
+                    movePoint(player, npc, zoneId, info)
+                end
+
+                if
+                    xi.events and
+                    xi.events.egg_hunt and
+                    xi.events.egg_hunt.enabledCheck() and
+                    xi.events.eggHunt.enabledCheck() and
+                    player:getVar("[EGGHUNT]DAILY_HELM") < vanaDay()
+                then
+                    player:timer(3000, function(playerArg)
+                        if npcUtil.giveItem(playerArg, math.random(xi.items.A_EGG, xi.items.Z_EGG)) then
+                            playerArg:setVar("[EGGHUNT]DAILY_HELM", vanaDay())
+                            return
+                        end
+                    end)
+                end
+
+                player:triggerRoeEvent(xi.roe.triggers.helmSuccess, { ["skillType"] = helmType })
+            end
+
+            -- quests and missions
+            if
+                helmType == xi.helm.type.HARVESTING and
+                player:getQuestStatus(xi.quest.log_id.AHT_URHGAN, xi.quest.id.ahtUrhgan.VANISHING_ACT) == QUEST_ACCEPTED and
+                not player:hasKeyItem(xi.ki.RAINBOW_BERRY) and
+                broke ~= 1 and
+                zoneId == xi.zone.WAJAOM_WOODLANDS
+            then
+                npcUtil.giveKeyItem(player, xi.ki.RAINBOW_BERRY)
+            end
+
+            -- AMK04
+            if xi.settings.main.ENABLE_AMK == 1 then
+                xi.amk.helpers.helmTrade(player, helmType, broke)
+            end
+
+            if type(func) == "function" then
+                func(player)
+            end
+
+            player:setLocalVar("[HELM]Last_Trade", os.time())
+        else
+            player:messageBasic(xi.msg.basic.WAIT_LONGER, 0, 0)
+        end
+    else
+        player:messageSpecial(zones[zoneId].text[info.message], info.tool)
+    end
+end
+
+xi.helm.onTrigger = function(player, helmType)
+    local zoneId = player:getZoneID()
+    local info = xi.helm.helmInfo[helmType]
+    player:messageSpecial(zones[zoneId].text[info.message], info.tool)
+end
+
+xi.helm.movePoint = function(target, zoneId, helmType)
+    local info = xi.helm.helmInfo[helmType]
+    movePoint(target, zoneId, info)
+end
+
+xi.helm.doesToolBreak = function(player, helmType)
+    local info = xi.helm.helmInfo[helmType]
+    return doesToolBreak(player, info) and 1 or 0
+end
+
+xi.helm.pickItem = function(player, helmType)
+    local info = xi.helm.helmInfo[helmType]
+    return pickItem(player, info)
+end

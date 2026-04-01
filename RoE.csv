@@ -1,0 +1,1081 @@
+objective_id,name,trigger,quest_log,quest_id,sparks,xp,flags
+1,First Step Forward +,,,,100,300,
+2,Vanquish 1 Enemy +,mobKill,,,100,500,
+3,Undertake a FoV Training Regime,,,,100,500,
+4,Heal without magic,,,,100,500,
+5,All for One,,,,100,300,
+11,Undertake a GoV Training Regime,,,,100,500,
+499,Stepping into an Ambuscade,,,,100,300,
+932,Call Forth an Alter Ego (gives Cipher: Valaineral),,,,100,300,
+933,Alter Ego: Valaineral (gives Cipher: Mihli),,,,100,300,
+934,Alter Ego: Mihli Aliapoh (gives Cipher: Tenzen),,,,100,300,
+935,Alter Ego: Tenzen (gives Cipher: Adelheid),,,,100,300,
+936,Alter Ego: Adelheid (gives Cipher: Joachim),,,,100,300,
+937,Alter Ego: Joachim,,,,100,500,
+1448,Assist Channel,,,,100,300,
+1045,Achieve Level 99 (gives Kupon A-PK109 x5),,,,200,300,retro
+1046,An Eminent Scholar (gives Kupon W-EMI),talkToRoeNpc,,,200,200,
+1047,An Eminent Scholar 2 (gives Kupon A-EMI),talkToRoeNpc,,,200,200,
+1048,An Eminent Scholar 3 (gives Kupon A-EMI),talkToRoeNpc,,,200,200,
+1049,Always Stand on 117 (gives Cipher: Koru-Moru),talkToRoeNpc,,,200,300,
+100,Speak to Carpenters' Guild Master,,,,100,500,
+101,Speak to Blacksmiths' Guild Master,,,,100,500,
+102,Speak to Goldsmiths' Guild Master,,,,100,500,
+103,Speak to Weavers' Guild Master,,,,100,500,
+104,Speak to Tanners' Guild Master,,,,100,500,
+105,Speak to Boneworkers' Guild Master,,,,100,500,
+106,Speak to Alchemists' Guild Master,,,,100,500,
+107,Speak to Culinarians' Guild Master,,,,100,500,
+108,Woodworking: Padded Box,synthSuccess,,,100,500,
+109,Smithing: Bronze Knife,synthSuccess,,,100,500,
+110,Goldsmithing: Copper Ring,synthSuccess,,,100,500,
+111,Weaving: Headgear,synthSuccess,,,100,500,
+112,Tanning: Leather Bandana,synthSuccess,,,100,500,
+113,Boneworking: Shell Powder,synthSuccess,,,100,500,
+114,Alchemy: Black Ink,synthSuccess,,,100,500,
+115,Cooking: Pebble Soup,synthSuccess,,,100,500,
+500,Mog House Exit: San d'Oria,questComplete,SANDORIA,GROWING_FLOWERS,100,300,retro
+501,Mog House Exit: Bastok,questComplete,BASTOK,A_LADYS_HEART,100,300,retro
+502,Mog House Exit: Windurst,questComplete,WINDURST,FLOWER_CHILD,100,300,retro
+503,Mog House Exit: Jeuno,questComplete,JEUNO,PRETTY_LITTLE_THINGS,100,300,retro
+504,Mog House Exit: Aht Urhgan,questComplete,AHT_URHGAN,KEEPING_NOTES,100,300,retro
+505,Obtain a Support Job,questComplete,,,100,500,retro
+506,Obtain an Alter Ego: San d'Oria,questComplete,SANDORIA,TRUST_SANDORIA,100,500,retro
+507,Obtain an Alter Ego: Bastok,questComplete,BASTOK,TRUST_BASTOK,100,500,retro
+508,Obtain an Alter Ego: Windurst,questComplete,WINDURST,TRUST_WINDURST,100,500,retro
+509,Obtain a Chocobo License,questComplete,JEUNO,CHOCOBOS_WOUNDS,100,600,retro
+510,Obtain Job: Paladin,questComplete,SANDORIA,A_SQUIRE_S_TEST,100,300,retro
+511,Obtain Job: Dark Knight,questComplete,BASTOK,BLADE_OF_DARKNESS,100,300,retro
+512,Obtain Job: Beastmaster,questComplete,JEUNO,SAVE_MY_SON,100,300,retro
+513,Obtain Job: Bard,questComplete,JEUNO,THE_OLD_MONUMENT,100,300,retro
+514,Obtain Job: Ranger,questComplete,WINDURST,THE_FANGED_ONE,100,300,retro
+515,Obtain Job: Samurai,questComplete,OUTLANDS,FORGE_YOUR_DESTINY,100,300,retro
+516,Obtain Job: Ninja,questComplete,BASTOK,AYAME_AND_KAEDE,100,300,retro
+517,Obtain Job: Dragoon,questComplete,SANDORIA,THE_HOLY_CREST,100,300,retro
+518,Obtain Job: Summoner,questComplete,WINDURST,I_CAN_HEAR_A_RAINBOW,100,300,retro
+519,Obtain Job: Blue Mage,questComplete,AHT_URHGAN,AN_EMPTY_VESSEL,100,300,retro
+520,Obtain Job: Corsair,questComplete,AHT_URHGAN,LUCK_OF_THE_DRAW,100,300,retro
+521,Obtain Job: Puppetmaster,questComplete,AHT_URHGAN,NO_STRINGS_ATTACHED,100,300,retro
+522,Obtain Job: Dancer,questComplete,JEUNO,LAKESIDE_MINUET,100,300,retro
+523,Obtain Job: Scholar,questComplete,CRYSTAL_WAR,A_LITTLE_KNOWLEDGE,100,300,retro
+524,Obtain Job: Geomancer,questComplete,ADOULIN,DANCES_WITH_LUOPANS,100,300,retro
+525,Obtain Job: Runefencer,questComplete,ADOULIN,CHILDREN_OF_THE_RUNE,100,300,retro
+629,WAR Artifact Quest I,questComplete,BASTOK,THE_DOORMAN,100,300,retro
+630,WAR Artifact Quest II,questComplete,BASTOK,THE_TALEKEEPERS_TRUTH,100,300,retro
+631,WAR Artifact Quest III,questComplete,BASTOK,THE_TALEKEEPERS_GIFT,100,300,retro
+632,MNK Artifact Quest I,questComplete,BASTOK,GHOSTS_OF_THE_PAST,100,300,retro
+633,MNK Artifact Quest II,questComplete,BASTOK,THE_FIRST_MEETING,100,300,retro
+634,MNK Artifact Quest III,questComplete,BASTOK,TRUE_STRENGTH,100,300,retro
+635,WHM Artifact Quest I,questComplete,SANDORIA,MESSENGER_FROM_BEYOND,100,300,retro
+636,WHM Artifact Quest II,questComplete,SANDORIA,PRELUDE_OF_BLACK_AND_WHITE,100,300,retro
+637,WHM Artifact Quest III,questComplete,SANDORIA,PIEUJE_S_DECISION,100,300,retro
+638,BLM Artifact Quest I,questComplete,WINDURST,THE_THREE_MAGI,100,300,retro
+639,BLM Artifact Quest II,questComplete,WINDURST,RECOLLECTIONS,100,300,retro
+640,BLM Artifact Quest III,questComplete,WINDURST,THE_ROOT_OF_THE_PROBLEM,100,300,retro
+641,RDM Artifact Quest I,questComplete,SANDORIA,THE_CRIMSON_TRIAL,100,300,retro
+642,RDM Artifact Quest II,questComplete,SANDORIA,ENVELOPED_IN_DARKNESS,100,300,retro
+643,RDM Artifact Quest III,questComplete,SANDORIA,PEACE_FOR_THE_SPIRIT,100,300,retro
+644,THF Artifact Quest I,questComplete,WINDURST,THE_TENSHODO_SHOWDOWN,100,300,retro
+645,THF Artifact Quest II,questComplete,WINDURST,AS_THICK_AS_THIEVES,100,300,retro
+646,THF Artifact Quest III,questComplete,WINDURST,HITTING_THE_MARQUISATE,100,300,retro
+647,PLD Artifact Quest I,questComplete,SANDORIA,SHARPENING_THE_SWORD,100,300,retro
+648,PLD Artifact Quest II,questComplete,SANDORIA,A_BOY_S_DREAM,100,300,retro
+649,PLD Artifact Quest III,questComplete,SANDORIA,UNDER_OATH,100,300,retro
+650,DRK Artifact Quest I,questComplete,BASTOK,DARK_LEGACY,100,300,retro
+651,DRK Artifact Quest II,questComplete,BASTOK,DARK_PUPPET,100,300,retro
+652,DRK Artifact Quest III,questComplete,BASTOK,BLADE_OF_EVIL,100,300,retro
+653,BST Artifact Quest I,questComplete,JEUNO,WINGS_OF_GOLD,100,300,retro
+654,BST Artifact Quest II,questComplete,JEUNO,SCATTERED_INTO_SHADOW,100,300,retro
+655,BST Artifact Quest III,questComplete,JEUNO,A_NEW_DAWN,100,300,retro
+656,BRD Artifact Quest I,questComplete,JEUNO,PAINFUL_MEMORY,100,300,retro
+657,BRD Artifact Quest II,questComplete,JEUNO,THE_REQUIEM,100,300,retro
+658,BRD Artifact Quest III,questComplete,JEUNO,THE_CIRCLE_OF_TIME,100,300,retro
+659,RNG Artifact Quest I,questComplete,WINDURST,SIN_HUNTING,100,300,retro
+660,RNG Artifact Quest II,questComplete,WINDURST,FIRE_AND_BRIMSTONE,100,300,retro
+661,RNG Artifact Quest III,questComplete,WINDURST,UNBRIDLED_PASSION,100,300,retro
+662,SAM Artifact Quest I,questComplete,OUTLANDS,THE_SACRED_KATANA,100,300,retro
+663,SAM Artifact Quest II,questComplete,OUTLANDS,YOMI_OKURI,100,300,retro
+664,SAM Artifact Quest III,questComplete,OUTLANDS,A_THIEF_IN_NORG,100,300,retro
+665,NIN Artifact Quest I,questComplete,OUTLANDS,TWENTY_IN_PIRATE_YEARS,100,300,retro
+666,NIN Artifact Quest II,questComplete,OUTLANDS,I_LL_TAKE_THE_BIG_BOX,100,300,retro
+667,NIN Artifact Quest III,questComplete,OUTLANDS,TRUE_WILL,100,300,retro
+668,DRG Artifact Quest I,questComplete,SANDORIA,A_CRAFTSMAN_S_WORK,100,300,retro
+669,DRG Artifact Quest II,questComplete,SANDORIA,CHASING_QUOTAS,100,300,retro
+670,DRG Artifact Quest III,questComplete,SANDORIA,KNIGHT_STALKER,100,300,retro
+671,SMN Artifact Quest I,questComplete,WINDURST,THE_PUPPET_MASTER,100,300,retro
+672,SMN Artifact Quest II,questComplete,WINDURST,CLASS_REUNION,100,300,retro
+673,SMN Artifact Quest III,questComplete,WINDURST,CARBUNCLE_DEBACLE,100,300,retro
+674,BLU Artifact Quest I,questComplete,AHT_URHGAN,BEGINNINGS,100,300,retro
+675,BLU Artifact Quest II,questComplete,AHT_URHGAN,OMENS,100,300,retro
+676,BLU Artifact Quest III,questComplete,AHT_URHGAN,TRANSFORMATIONS,100,300,retro
+677,COR Artifact Quest I,questComplete,AHT_URHGAN,EQUIPPED_FOR_ALL_OCCASIONS,100,300,retro
+678,COR Artifact Quest II,questComplete,AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS,100,300,retro
+679,COR Artifact Quest III,questComplete,AHT_URHGAN,AGAINST_ALL_ODDS,100,300,retro
+680,PUP Artifact Quest I,questComplete,AHT_URHGAN,THE_WAYWARD_AUTOMATON,100,300,retro
+681,PUP Artifact Quest II,questComplete,AHT_URHGAN,OPERATION_TEATIME,100,300,retro
+682,PUP Artifact Quest III,questComplete,AHT_URHGAN,PUPPETMASTER_BLUES,100,300,retro
+683,DNC Artifact Quest I,questComplete,JEUNO,THE_UNFINISHED_WALTZ,100,300,retro
+684,DNC Artifact Quest II,questComplete,JEUNO,THE_ROAD_TO_DIVADOM,100,300,retro
+685,DNC Artifact Quest III,questComplete,JEUNO,COMEBACK_QUEEN,100,300,retro
+686,SCH Artifact Quest I,questComplete,CRYSTAL_WAR,ON_SABBATICAL,100,300,retro
+687,SCH Artifact Quest II,questComplete,CRYSTAL_WAR,DOWNWARD_HELIX,100,300,retro
+688,SCH Artifact Quest III,questComplete,CRYSTAL_WAR,SEEING_BLOOD_RED,100,300,retro
+689,GEO Artifact Quest I,questComplete,ADOULIN,FOR_WHOM_THE_BELL_TOLLS,100,300,retro
+690,GEO Artifact Quest II,questComplete,ADOULIN,THE_BLOODLINE_OF_ZACARIAH,100,300,retro
+691,GEO Artifact Quest III,questComplete,ADOULIN,THE_COMMUNION,100,300,retro
+692,RUN Artifact Quest I,questComplete,ADOULIN,FORGING_NEW_BONDS,100,300,retro
+693,RUN Artifact Quest II,questComplete,ADOULIN,LEGACIES_LOST_AND_FOUND,100,300,retro
+694,RUN Artifact Quest III,questComplete,ADOULIN,DESTINYS_DEVICE,100,300,retro
+705,Level Cap Increase: 55 +,questComplete,JEUNO,IN_DEFIANT_CHALLENGE,100,300,retro
+706,Level Cap Increase: 60,questComplete,JEUNO,ATOP_THE_HIGHEST_MOUNTAINS,100,300,retro
+707,Level Cap Increase: 65,questComplete,JEUNO,WHENCE_BLOWS_THE_WIND,100,300,retro
+708,Level Cap Increase: 70,questComplete,JEUNO,RIDING_ON_THE_CLOUDS,100,300,retro
+709,Level Cap Increase: 75,questComplete,JEUNO,SHATTERING_STARS,100,300,retro
+710,Level Cap Increase: 80,questComplete,JEUNO,NEW_WORLDS_AWAIT,100,300,retro
+711,Level Cap Increase: 85,questComplete,JEUNO,EXPANDING_HORIZONS,100,300,retro
+712,Level Cap Increase: 90,questComplete,JEUNO,BEYOND_THE_STARS,100,300,retro
+713,Level Cap Increase: 95,questComplete,JEUNO,DORMANT_POWERS_DISLODGED,100,300,retro
+714,Level Cap Increase: 99,questComplete,JEUNO,BEYOND_INFINITY,100,300,retro
+715,Inventory Expansion 35,questComplete,JEUNO,THE_GOBBIEBAG_PART_I,100,300,retro
+716,Inventory Expansion 40,questComplete,JEUNO,THE_GOBBIEBAG_PART_II,100,300,retro
+717,Inventory Expansion 45,questComplete,JEUNO,THE_GOBBIEBAG_PART_III,100,300,retro
+718,Inventory Expansion 50,questComplete,JEUNO,THE_GOBBIEBAG_PART_IV,100,300,retro
+719,Inventory Expansion 55,questComplete,JEUNO,THE_GOBBIEBAG_PART_V,100,300,retro
+720,Inventory Expansion 60,questComplete,JEUNO,THE_GOBBIEBAG_PART_VI,100,300,retro
+721,Inventory Expansion 65,questComplete,JEUNO,THE_GOBBIEBAG_PART_VII,100,300,retro
+722,Inventory Expansion 70,questComplete,JEUNO,THE_GOBBIEBAG_PART_VIII,100,300,retro
+723,Inventory Expansion 75,questComplete,JEUNO,THE_GOBBIEBAG_PART_IX,100,300,retro
+724,Inventory Expansion 80,questComplete,JEUNO,THE_GOBBIEBAG_PART_X,100,300,retro
+939,Mog Safe Expansion: 60,questComplete,OTHER_AREAS,GIVE_A_MOOGLE_A_BREAK,100,300,retro
+940,Mog Safe Expansion: 70,questComplete,OTHER_AREAS,THE_MOOGLE_PICNIC,100,300,retro
+941,Mog Safe Expansion: 80,questComplete,OTHER_AREAS,MOOGLES_IN_THE_WILD,100,300,retro
+839,Asuran Fists,questComplete,BASTOK,THE_WALLS_OF_YOUR_MIND,100,300,retro
+840,Evisceration,questComplete,OUTLANDS,CLOAK_AND_DAGGER,100,300,retro
+841,Savage Blade,questComplete,SANDORIA,OLD_WOUNDS,100,300,retro
+842,Ground Strike,questComplete,BASTOK,INHERITANCE,100,300,retro
+843,Decimation,questComplete,JEUNO,AXE_THE_COMPETITION,100,300,retro
+844,Steel Cyclone,questComplete,BASTOK,THE_WEIGHT_OF_YOUR_LIMITS,100,300,retro
+845,Spiral Hell,questComplete,SANDORIA,SOULS_IN_SHADOW,100,300,retro
+846,Impulse Drive,questComplete,SANDORIA,METHODS_CREATE_MADNESS,100,300,retro
+847,Blade: Ku,questComplete,OUTLANDS,BUGI_SODEN,100,300,retro
+848,Tachi: Kasha,questComplete,OUTLANDS,THE_POTENTIAL_WITHIN,100,300,retro
+849,Black Halo,questComplete,WINDURST,ORASTERY_WOES,100,300,retro
+850,Retribution,questComplete,WINDURST,BLOOD_AND_GLORY,100,300,retro
+851,Empyreal Arrow,questComplete,WINDURST,FROM_SAPLINGS_GROW,100,300,retro
+852,Detonator,questComplete,BASTOK,SHOOT_FIRST_ASK_QUESTIONS_LATER,100,300,retro
+1313,San d'Oria Rank 1-1,missionComplete,,,300,500,retro
+1314,San d'Oria Rank 1-2,missionComplete,,,300,500,retro
+1315,San d'Oria Rank 1-3,missionComplete,,,300,500,retro
+1316,San d'Oria Rank 2-1,missionComplete,,,300,500,retro
+1317,San d'Oria Rank 2-2,missionComplete,,,300,500,retro
+1318,San d'Oria Rank 2-3,missionComplete,,,300,500,retro
+1319,San d'Oria Rank 3-1,missionComplete,,,300,500,retro
+1320,San d'Oria Rank 3-2,missionComplete,,,300,500,retro
+1321,San d'Oria Rank 3-3,missionComplete,,,300,500,retro
+1322,San d'Oria Rank 4,missionComplete,,,300,500,retro
+1323,San d'Oria Rank 5-1,missionComplete,,,300,500,retro
+1324,San d'Oria Rank 5-2,missionComplete,,,300,500,retro
+1325,San d'Oria Rank 6-1,missionComplete,,,300,500,retro
+1326,San d'Oria Rank 6-2,missionComplete,,,300,500,retro
+1327,San d'Oria Rank 7-1,missionComplete,,,300,500,retro
+1328,San d'Oria Rank 7-2,missionComplete,,,300,500,retro
+1329,San d'Oria Rank 8-1,missionComplete,,,300,500,retro
+1330,San d'Oria Rank 8-2,missionComplete,,,300,500,retro
+1331,San d'Oria Rank 9-1,missionComplete,,,300,500,retro
+1332,San d'Oria Rank 9-2,missionComplete,,,300,500,retro
+1333,Bastok Rank 1-1,missionComplete,,,300,500,retro
+1334,Bastok Rank 1-2,missionComplete,,,300,500,retro
+1335,Bastok Rank 1-3,missionComplete,,,300,500,retro
+1336,Bastok Rank 2-1,missionComplete,,,300,500,retro
+1337,Bastok Rank 2-2,missionComplete,,,300,500,retro
+1338,Bastok Rank 2-3,missionComplete,,,300,500,retro
+1339,Bastok Rank 3-1,missionComplete,,,300,500,retro
+1340,Bastok Rank 3-2,missionComplete,,,300,500,retro
+1341,Bastok Rank 3-3,missionComplete,,,300,500,retro
+1342,Bastok Rank 4,missionComplete,,,300,500,retro
+1343,Bastok Rank 5-1,missionComplete,,,300,500,retro
+1344,Bastok Rank 5-2,missionComplete,,,300,500,retro
+1345,Bastok Rank 6-1,missionComplete,,,300,500,retro
+1346,Bastok Rank 6-2,missionComplete,,,300,500,retro
+1347,Bastok Rank 7-1,missionComplete,,,300,500,retro
+1348,Bastok Rank 7-2,missionComplete,,,300,500,retro
+1349,Bastok Rank 8-1,missionComplete,,,300,500,retro
+1350,Bastok Rank 8-2,missionComplete,,,300,500,retro
+1351,Bastok Rank 9-1,missionComplete,,,300,500,retro
+1352,Bastok Rank 9-2,missionComplete,,,300,500,retro
+1353,Windurst Rank 1-1 +,missionComplete,,,300,500,retro
+1354,Windurst Rank 1-2 +,missionComplete,,,300,500,retro
+1355,Windurst Rank 1-3 +,missionComplete,,,300,500,retro
+1356,Windurst Rank 2-1 +,missionComplete,,,300,500,retro
+1357,Windurst Rank 2-2 +,missionComplete,,,300,500,retro
+1358,Windurst Rank 2-3 +,missionComplete,,,300,500,retro
+1359,Windurst Rank 3-1 +,missionComplete,,,300,500,retro
+1360,Windurst Rank 3-2 +,missionComplete,,,300,500,retro
+1361,Windurst Rank 3-3 +,missionComplete,,,300,500,retro
+1362,Windurst Rank 4 +,missionComplete,,,300,500,retro
+1363,Windurst Rank 5-1 +,missionComplete,,,300,500,retro
+1364,Windurst Rank 5-2 +,missionComplete,,,300,500,retro
+1365,Windurst Rank 6-1,missionComplete,,,300,500,retro
+1366,Windurst Rank 6-2,missionComplete,,,300,500,retro
+1367,Windurst Rank 7-1,missionComplete,,,300,500,retro
+1368,Windurst Rank 7-2,missionComplete,,,300,500,retro
+1369,Windurst Rank 8-1,missionComplete,,,300,500,retro
+1370,Windurst Rank 8-2,missionComplete,,,300,500,retro
+1371,Windurst Rank 9-1,missionComplete,,,300,500,retro
+1372,Windurst Rank 9-2,missionComplete,,,300,500,retro
+1373,Rhapsodies of Vana'diel 1-1 +,missionComplete,,,300,500,retro
+1374,Rhapsodies of Vana'diel 1-2 +,missionComplete,,,300,500,retro
+1375,Rhapsodies of Vana'diel 1-3 +,missionComplete,,,300,500,retro
+1416,Rhapsodies of Vana'diel 2-1,missionComplete,,,300,500,retro
+1377,Zilart Mission 1 +,missionComplete,,,300,500,retro
+1378,Zilart Mission 2 +,missionComplete,,,300,500,retro
+1379,Zilart Mission 3 +,missionComplete,,,300,500,retro
+1380,Zilart Mission 4 +,missionComplete,,,300,500,retro
+1381,Zilart Mission 5 +,missionComplete,,,300,500,retro
+1382,Zilart Mission 6 +,missionComplete,,,300,500,retro
+1383,Zilart Mission 7 +,missionComplete,,,300,500,retro
+1384,Zilart Mission 8 +,missionComplete,,,300,500,retro
+1385,Zilart Mission 9 +,missionComplete,,,300,500,retro
+1386,Zilart Mission 10 +,missionComplete,,,300,500,retro
+1387,Zilart Mission 11 +,missionComplete,,,300,500,retro
+1388,Zilart Mission 12 +,missionComplete,,,300,500,retro
+1389,Zilart Mission 13 +,missionComplete,,,300,500,retro
+1390,Zilart Mission 14 +,missionComplete,,,300,500,retro
+1391,Zilart Mission 15 +,missionComplete,,,300,500,retro
+1392,Zilart Mission 16 +,missionComplete,,,300,500,retro
+1393,Chains of Promathia Chapter 1 +,missionComplete,,,300,500,retro
+1394,Chains of Promathia Chapter 2 +,missionComplete,,,300,500,retro
+1395,Chains of Promathia Chapter 3,missionComplete,,,300,500,retro
+1396,Chains of Promathia Chapter 4,missionComplete,,,300,500,retro
+1397,Chains of Promathia Chapter 5,missionComplete,,,300,500,retro
+1398,Chains of Promathia Chapter 6,missionComplete,,,300,500,retro
+1399,Chains of Promathia Chapter 7,missionComplete,,,300,500,retro
+1400,Chains of Promathia Chapter 8,missionComplete,,,300,500,retro
+1410,Treasures of Aht Urhgan 1,missionComplete,,,300,500,retro
+1411,Treasures of Aht Urhgan 2,missionComplete,,,300,500,retro
+1412,Treasures of Aht Urhgan 3,missionComplete,,,300,500,retro
+1413,Treasures of Aht Urhgan 4,missionComplete,,,300,500,retro
+1414,Treasures of Aht Urhgan 5,missionComplete,,,300,500,retro
+1415,Treasures of Aht Urhgan 6,missionComplete,,,300,500,retro
+1402,Wings of the Goddess 1,missionComplete,,,300,500,retro
+1403,Wings of the Goddess 2,missionComplete,,,300,500,retro
+1404,Wings of the Goddess 3,missionComplete,,,300,500,retro
+1405,Wings of the Goddess 4,missionComplete,,,300,500,retro
+1406,Wings of the Goddess 5,missionComplete,,,300,500,retro
+1407,Wings of the Goddess 6,missionComplete,,,300,500,retro
+1408,Wings of the Goddess 7,missionComplete,,,300,500,retro
+1409,Wings of the Goddess 8,missionComplete,,,300,500,retro
+1426,Seekers of Adoulin Chapter 1,missionComplete,,,300,500,retro
+1427,Seekers of Adoulin Chapter 2,missionComplete,,,300,500,retro
+1428,Seekers of Adoulin Chapter 3,missionComplete,,,300,500,retro
+1429,Seekers of Adoulin Chapter 4,missionComplete,,,300,500,retro
+1430,Seekers of Adoulin Chapter 5,missionComplete,,,300,500,retro
+12,Vanquish Multiple Enemies I - 200,mobKill,,,1000,5000,repeat
+13,Vanquish Multiple Enemies II - 500,mobKill,,,2000,6000,
+14,Vanquish Multiple Enemies III - 750,mobKill,,,5000,10000,
+15,Level Sync to Vanquish I,mobKill,,,2000,6000,
+117,Level Sync to Vanquish II,mobKill,,,200,600,repeat
+16,Deal 500+ Damage,dmgDealt,,,1000,5000,repeat
+17,Deal 1000+ Damage,dmgDealt,,,1000,5000,
+18,Deal 1500+ Damage,dmgDealt,,,1000,5000,
+698,Deal 2000+ Damage,dmgDealt,,,2000,5000,
+19,Deal 10-20 Damage,dmgDealt,,,300,2500,
+20,Deal 110-120 Damage,dmgDealt,,,300,1500,
+21,Deal 310-320 Damage,dmgDealt,,,300,1500,
+22,Deal 510-520 Damage,dmgDealt,,,300,1500,
+23,Deal 1110-1120 Damage,dmgDealt,,,300,1500,
+29,Total Damage I,dmgDealt,,,1000,5000,
+30,Total Damage II,dmgDealt,,,3000,7000,
+696,Total Damage III,dmgDealt,,,3000,7000,
+31,Total Healing I,healAlly,,,1000,2500,
+32,Total Healing II,healAlly,,,3000,7000,
+699,Total Healing III,healAlly,,,3000,7000,
+33,Total Damage Taken I,dmgTaken,,,1000,1000,
+34,Total Damage Taken II,dmgTaken,,,3000,5000,
+697,Total Damage Taken III,dmgTaken,,,3000,5000,
+45,Weapon Skills 1,wSkillUse,,,500,2500,
+488,Heal for 500+ HP,healAlly,,,2000,6000,
+700,Heal for 750+ HP,healAlly,,,3000,7000,
+57,Total Successful Synthesis Attempts,synthSuccess,,,100,500,repeat
+71,Spoils - Fire Crystals,itemLooted,,,200,1000,repeat
+72,Spoils - Ice Crystals,itemLooted,,,200,1000,repeat
+73,Spoils - Wind Crystals,itemLooted,,,200,1000,repeat
+74,Spoils - Earth Crystals,itemLooted,,,200,1000,repeat
+75,Spoils - Lightning Crystals,itemLooted,,,200,1000,repeat
+76,Spoils - Water Crystals,itemLooted,,,200,1000,repeat
+77,Spoils - Light Crystals,itemLooted,,,200,1000,repeat
+78,Spoils - Dark Crystals,itemLooted,,,200,1000,repeat
+84,Spoils - Flame Geode,itemLooted,,,200,1000,repeat
+85,Spoils - Snow Geode,itemLooted,,,200,1000,repeat
+86,Spoils - Breeze Geode,itemLooted,,,200,1000,repeat
+87,Spoils - Soil Geode,itemLooted,,,200,1000,repeat
+88,Spoils - Thunder Geode,itemLooted,,,200,1000,repeat
+89,Spoils - Aqua Geode,itemLooted,,,200,1000,repeat
+90,Spoils - Light Geode,itemLooted,,,200,1000,repeat
+91,Spoils - Shadow Geode,itemLooted,,,200,1000,repeat
+92,Spoils - Ifritite,itemLooted,,,200,1000,repeat
+93,Spoils - Shivite,itemLooted,,,200,1000,repeat
+94,Spoils - Garudite,itemLooted,,,200,1000,repeat
+95,Spoils - Titanite,itemLooted,,,200,1000,repeat
+96,Spoils - Ramuite,itemLooted,,,200,1000,repeat
+97,Spoils - Leviatite,itemLooted,,,200,1000,repeat
+98,Spoils - Carbite,itemLooted,,,200,1000,repeat
+99,Spoils - Fenrite,itemLooted,,,200,1000,repeat
+120,Spoils - Bat Wing,itemLooted,,,100,300,repeat
+121,Spoils - Black Tiger Fang,itemLooted,,,100,300,repeat
+122,Spoils - Flint Stone,itemLooted,,,100,300,repeat
+123,Spoils - Rabbit Hide,itemLooted,,,100,300,repeat
+124,Spoils - Honey,itemLooted,,,100,300,repeat
+125,Spoils - Sheepskin,itemLooted,,,100,300,repeat
+126,Spoils - Lizard Skin,itemLooted,,,100,300,repeat
+127,Spoils - Beetle Shell,itemLooted,,,100,300,repeat
+128,Spoils - Zeruhn Soot,itemLooted,,,100,300,repeat
+129,Spoils - Silver Name Tag,itemLooted,,,100,300,repeat
+130,Spoils - Quadav Helm,itemLooted,,,100,300,repeat
+132,Spoils - Treant Bulb,itemLooted,,,100,300,repeat
+133,Spoils - Wild Onion,itemLooted,,,100,300,repeat
+134,Spoils - Sleepshroom,itemLooted,,,100,300,repeat
+135,Spoils - Sand Bat Fang,itemLooted,,,100,300,repeat
+136,Spoils - Zinc Ore,itemLooted,,,100,300,repeat
+137,Spoils - Giant Bird Feather,itemLooted,,,100,300,repeat
+138,Spoils - Three-leaf Mandragora Bud,itemLooted,,,100,300,repeat
+139,Spoils - Four-leaf Mandragora Bud,itemLooted,,,100,300,repeat
+140,Spoils - Cornette,itemLooted,,,100,300,repeat
+141,Spoils - Yuhtunga Sulfur,itemLooted,,,100,300,repeat
+142,Spoils - Snobby Letter,itemLooted,,,100,300,repeat
+143,Spoils - Yagudo Bead Necklace,itemLooted,,,100,300,repeat
+144,Spoils - Woozyshroom,itemLooted,,,100,300,repeat
+145,Spoils - Beehive Chip,itemLooted,,,100,300,repeat
+146,Spoils - Remi Shell,itemLooted,,,100,300,repeat
+147,Spoils - Twinstone Earring,itemLooted,,,100,300,repeat
+215,Conflict: West Ronfaure,mobKill,,,10,500,repeat
+216,Subjugation: Jaggedy-Eared Jack,mobKill,,,250,500,
+217,Conflict: East Ronfaure,mobKill,,,10,500,repeat
+218,Subjugation: Swamfisk,mobKill,,,250,500,
+219,Conflict: Ghelsba Outpost,mobKill,,,10,500,repeat
+220,Subjugation: Thousandarm Deshglesh,mobKill,,,250,550,
+221,Conflict: Fort Ghelsba,mobKill,,,10,500,repeat
+222,Subjugation: Hundredscar Hajwaj,mobKill,,,500,1000,
+223,Conflict: Yughott Grotto,mobKill,,,10,500,repeat
+224,Subjugation: Ashmaker Gotblut,mobKill,,,250,500,
+225,Conflict: King Ranperre's Tomb,mobKill,,,10,100,repeat
+226,Subjugation: Barbastelle,mobKill,,,250,500,
+227,Conflict: Bostaunieux Oubliette,mobKill,,,15,100,repeat
+228,Subjugation: Bloodsucker,mobKill,,,500,1000,
+229,Conflict: Valkurm Dunes,mobKill,,,11,550,repeat
+230,Subjugation: Valkurm Emperor,mobKill,,,250,550,
+231,Conflict: Konschtat Highlands,mobKill,,,11,550,repeat
+232,Subjugation: Bendigeit Vran,mobKill,,,250,600,
+233,Conflict: Gusgen Mines,mobKill,,,11,100,repeat
+234,Subjugation: Juggler Hecatomb,mobKill,,,250,600,
+235,Conflict: La Theine Plateau,mobKill,,,11,550,repeat
+236,Subjugation: Bloodtear Baldurf,mobKill,,,500,1000,
+237,Conflict: Ordelle's Caves,mobKill,,,12,100,repeat
+238,Subjugation: Morbolger,mobKill,,,500,1000,
+239,Conflict: Jugner Forest,mobKill,,,12,600,repeat
+240,Subjugation: King Arthro,mobKill,,,500,1000,
+241,Conflict: Batallia Downs,mobKill,,,13,650,repeat
+242,Subjugation: Lumber Jack,mobKill,,,500,1000,
+243,Conflict: Eldieme Necropolis,mobKill,,,14,100,repeat
+244,Subjugation: Cwn Cyrff,mobKill,,,250,800,
+245,Conflict: Davoi,mobKill,,,13,650,repeat
+246,Subjugation: Hawkeyed Dnatbat,mobKill,,,250,600,
+247,Conflict: N. Gustaberg,mobKill,,,10,500,repeat
+248,Subjugation: Maighdean Uaine,mobKill,,,250,500,
+249,Conflict: S. Gustaberg,mobKill,,,10,500,repeat
+250,Subjugation: Carnero,mobKill,,,250,500,
+251,Conflict: Zeruhn Mines,mobKill,,,10,100,repeat
+252,Conflict: Palborough Mines,mobKill,,,10,500,repeat
+253,Subjugation: Zi-Ghi Bone-eater,mobKill,,,250,500,
+254,Conflict: Dangruf Wadi,mobKill,,,10,100,repeat
+255,Subjugation: Teporingo,mobKill,,,250,500,
+256,Conflict: Pashhow Marshlands,mobKill,,,12,600,repeat
+257,Subjugation: Ni'Zho Bladebender,mobKill,,,250,700,
+258,Conflict: Rolanberry Fields,mobKill,,,12,600,repeat
+259,Subjugation: Simurgh,mobKill,,,250,1000,
+260,Conflict: Crawler's Nest,mobKill,,,14,100,repeat
+261,Subjugation: Demonic Tiphia,mobKill,,,250,800,
+262,Conflict: Beadeaux,mobKill,,,13,650,repeat
+263,Subjugation: Zo'Khu Blackcloud,mobKill,,,250,700,
+264,Conflict: West Sarutabaruta,mobKill,,,10,500,repeat
+265,Subjugation: Nunyenunc,mobKill,,,250,500,
+266,Conflict: East Sarutabaruta,mobKill,,,10,500,repeat
+267,Subjugation: Spiny Spipi,mobKill,,,250,500,
+268,Conflict: Giddeus,mobKill,,,10,500,repeat
+269,Subjugation: Hoo Mjuu the Torrent,mobKill,,,250,500,
+270,Conflict: Toraimarai Canal,mobKill,,,15,100,repeat
+271,Subjugation: Oni Carcass,mobKill,,,250,800,
+272,Conflict: Inner Horutoto Ruins,mobKill,,,10,100,repeat
+273,Subjugation: Maltha,mobKill,,,250,500,
+274,Conflict: Outer Horutoto Ruins,mobKill,,,10,100,repeat
+275,Subjugation: Bomb King,mobKill,,,250,500,
+276,Conflict: Buburimu Peninsula,mobKill,,,12,600,repeat
+277,Subjugation: Helldiver,mobKill,,,250,600,
+278,Conflict: Tahrongi Canyon,mobKill,,,11,550,repeat
+279,Subjugation: Serpopard Ishtar,mobKill,,,250,600,
+280,Conflict: Maze of Shakhrami,mobKill,,,12,100,repeat
+281,Subjugation: Argus,mobKill,,,500,1000,
+282,Conflict: Meriphataud Mountains,mobKill,,,12,600,repeat
+283,Subjugation: Daggerclaw Dracos,mobKill,,,250,600,
+284,Conflict: Sauromugue Champaign,mobKill,,,13,650,repeat
+285,Subjugation: Roc,mobKill,,,500,1000,
+286,Conflict: Garlaige Citadel,mobKill,,,14,100,repeat
+287,Subjugation: Serket,mobKill,,,500,1000,
+288,Conflict: Castle Oztroja,mobKill,,,13,650,repeat
+289,Subjugation: Lii Jixa the Somnolist,mobKill,,,250,800,
+290,Conflict: Beaucedine Glacier,mobKill,,,14,700,repeat
+291,Subjugation: Nue,mobKill,,,250,700,
+292,Conflict: Ranguemont Pass,mobKill,,,11,100,repeat
+293,Subjugation: Gloom Eye,mobKill,,,250,700,
+294,Conflict: Fei'Yin,mobKill,,,14,100,repeat
+295,Subjugation: Goliath,mobKill,,,250,800,
+296,Conflict: Xarcabard,mobKill,,,14,700,repeat
+297,Subjugation: Biast,mobKill,,,500,1000,
+298,Conflict: Castle Zvahl Baileys,mobKill,,,15,750,repeat
+299,Subjugation: Duke Haborym,mobKill,,,500,1000,
+300,Conflict: Castle Zvahl Keep,mobKill,,,15,750,repeat
+301,Subjugation: Baron Vapula,mobKill,,,250,800,
+302,Conflict: Qufim Island,mobKill,,,13,650,repeat
+303,Subjugation: Dosetsu Tree,mobKill,,,500,1000,
+304,Conflict: Lower Delkfutt's Tower,mobKill,,,13,100,repeat
+305,Subjugation: Epialtes,mobKill,,,250,700,
+306,Conflict: Middle Delkfutt's Tower,mobKill,,,13,100,repeat
+307,Subjugation: Ogygos,mobKill,,,250,700,
+308,Conflict: Upper Delkfutt's Tower,mobKill,,,14,100,repeat
+309,Subjugation: Enkelados,mobKill,,,250,800,
+380,Conflict: Behemoth's Dominion,mobKill,,,14,100,repeat
+310,Conflict: Rala Waterways I,mobKill,,,100,500,repeat
+311,Conflict: Rala Waterways II,mobKill,,,100,500,repeat
+312,Conflict: Rala Waterways III,mobKill,,,100,500,repeat
+313,Conflict: Ceizak Battlegrounds I,mobKill,,,100,500,repeat
+314,Conflict: Ceizak Battlegrounds II,mobKill,,,100,500,repeat
+315,Conflict: Ceizak Battlegrounds III,mobKill,,,100,500,repeat
+316,Conflict: Yahse Hunting Grounds I,mobKill,,,100,500,repeat
+317,Conflict: Yahse Hunting Grounds II,mobKill,,,100,500,repeat
+318,Conflict: Yahse Hunting Grounds III,mobKill,,,100,500,repeat
+319,Conflict: Foret de Hennitiel I,mobKill,,,110,500,repeat
+320,Conflict: Foret de Hennitiel II,mobKill,,,110,500,repeat
+321,Conflict: Foret de Hennitiel III,mobKill,,,110,500,repeat
+322,Conflict: Morimar Basalt Fields I,mobKill,,,110,500,repeat
+323,Conflict: Morimar Basalt Fields II,mobKill,,,110,500,repeat
+324,Conflict: Morimar Basalt Fields III,mobKill,,,110,500,repeat
+325,Conflict: Yorcia Weald I,mobKill,,,120,500,repeat
+326,Conflict: Yorcia Weald II,mobKill,,,120,500,repeat
+327,Conflict: Yorcia Weald III,mobKill,,,120,500,repeat
+328,Conflict: Marjami Ravine I,mobKill,,,120,500,repeat
+329,Conflict: Marjami Ravine II,mobKill,,,120,500,repeat
+330,Conflict: Marjami Ravine III,mobKill,,,120,500,repeat
+331,Conflict: Kamihr Drifts I,mobKill,,,130,500,repeat
+332,Conflict: Kamihr Drifts II,mobKill,,,130,500,repeat
+333,Conflict: Kamihr Drifts III,mobKill,,,130,500,repeat
+334,Conflict: Sih Gates I,mobKill,,,160,500,repeat
+335,Conflict: Sih Gates II,mobKill,,,160,500,repeat
+336,Conflict: Sih Gates III,mobKill,,,160,500,repeat
+337,Conflict: Moh Gates I,mobKill,,,160,500,repeat
+338,Conflict: Moh Gates II,mobKill,,,160,500,repeat
+339,Conflict: Moh Gates III,mobKill,,,160,500,repeat
+340,Conflict: Cirdas Caverns I,mobKill,,,160,500,repeat
+341,Conflict: Cirdas Caverns II,mobKill,,,160,500,repeat
+342,Conflict: Cirdas Caverns III,mobKill,,,160,500,repeat
+343,Conflict: Dho Gates I,mobKill,,,160,500,repeat
+344,Conflict: Dho Gates II,mobKill,,,160,500,repeat
+345,Conflict: Dho Gates III,mobKill,,,160,500,repeat
+346,Conflict: Woh Gates I,mobKill,,,160,500,repeat
+347,Conflict: Woh Gates II,mobKill,,,160,500,repeat
+348,Conflict: Woh Gates III,mobKill,,,160,500,repeat
+494,Conflict: Outer Ra'Kaznar I,mobKill,,,170,500,repeat
+495,Conflict: Outer Ra'Kaznar II,mobKill,,,170,500,repeat
+496,Conflict: Outer Ra'Kaznar III,mobKill,,,170,500,repeat
+762,Conflict: Ra'Kaznar Inner Court I,mobKill,,,180,600,repeat
+763,Conflict: Ra'Kaznar Inner Court II,mobKill,,,180,600,repeat
+764,Conflict: Ra'Kaznar Inner Court III,mobKill,,,180,600,repeat
+390,Conflict: Sanctuary of Zi'Tah,mobKill,,,12,600,repeat
+392,Conflict: Ro'Maeve,mobKill,,,16,800,repeat
+394,Conflict: Boyahda Tree,mobKill,,,16,100,repeat
+396,Conflict: Dragon's Aery,mobKill,,,17,850,repeat
+398,Conflict: Eastern Altepa Desert,mobKill,,,13,650,repeat
+400,Conflict: Western Altepa Desert,mobKill,,,14,700,repeat
+402,Conflict: Quicksand Caves,mobKill,,,15,100,repeat
+404,Conflict: Gustav Tunnel,mobKill,,,16,100,repeat
+406,Conflict: Kuftal Tunnel,mobKill,,,14,100,repeat
+408,Conflict: Cape Teriggan,mobKill,,,16,800,repeat
+410,Conflict: Valley of Sorrows,mobKill,,,16,800,repeat
+412,Conflict: Yuhtunga Jungle,mobKill,,,13,650,repeat
+414,Conflict: Sea Serpent Grotto,mobKill,,,13,100,repeat
+416,Conflict: Yhoator Jungle,mobKill,,,13,650,repeat
+418,Conflict: Temple of Uggalepih,mobKill,,,15,100,repeat
+420,Conflict: Den of Rancor,mobKill,,,16,100,repeat
+422,Conflict: Ifrit's Cauldron,mobKill,,,16,100,repeat
+424,Conflict: Ru'Aun Gardens,mobKill,,,70,850,repeat
+426,Conflict: Ve'Lugannon Palace,mobKill,,,70,100,repeat
+428,Conflict: Shrine of Ru'Avitau,mobKill,,,70,100,repeat
+430,Conflict: Labyrinth of Onzozo,mobKill,,,14,700,repeat
+432,Conflict: Korroloka Tunnel,mobKill,,,12,600,repeat
+434,Conflict: Oldton Movalpolos,mobKill,,,13,650,repeat
+436,Conflict: Newton Movalpolos,mobKill,,,16,800,repeat
+438,Conflict: Lufaise Meadows,mobKill,,,13,650,repeat
+440,Conflict: Misareaux Coast,mobKill,,,13,650,repeat
+442,Conflict: Phomiuna Aqueducts,mobKill,,,13,650,repeat
+444,Conflict: Riverne - Site #A01,mobKill,,,13,650,repeat
+446,Conflict: Riverne - Site #B01,mobKill,,,14,700,repeat
+448,Conflict: Sacrarium,mobKill,,,14,700,repeat
+450,Conflict: Promyvion - Holla,mobKill,,,12,600,repeat
+452,Conflict: Promyvion - Dem,mobKill,,,12,600,repeat
+454,Conflict: Promyvion - Mea,mobKill,,,12,600,repeat
+456,Conflict: Promyvion - Vahzl,mobKill,,,14,700,repeat
+458,Conflict: Al'Taieu,mobKill,,,70,850,repeat
+460,Conflict: Grand Palace of Hu'Xzoi,mobKill,,,70,850,repeat
+462,Conflict: Garden of Ru'Hmet,mobKill,,,80,900,repeat
+464,Conflict: Carpenters' Landing,mobKill,,,11,550,repeat
+468,Conflict: Bibiki Bay,mobKill,,,13,650,repeat
+472,Conflict: Attohwa Chasm,mobKill,,,13,650,repeat
+474,Conflict: Pso'Xja,mobKill,,,14,700,repeat
+476,Conflict: Uleguerand Range,mobKill,,,16,800,repeat
+533,Conflict: Bhaflau Thickets,mobKill,,,60,800,repeat
+535,Conflict: Mamook,mobKill,,,70,850,repeat
+537,Conflict: Wajaom Woodlands,mobKill,,,60,800,repeat
+539,Conflict: Aydeewa Subterrane,mobKill,,,60,800,repeat
+541,Conflict: Halvung,mobKill,,,70,850,repeat
+543,Conflict: Mount Zhayolm,mobKill,,,70,850,repeat
+545,Conflict: Caedarva Mire,mobKill,,,60,800,repeat
+547,Conflict: Arrapago Reef,mobKill,,,70,850,repeat
+549,Conflict: Alza. Undersea Ruins,mobKill,,,70,850,repeat
+553,Conflict: East Ronfaure [S],mobKill,,,11,550,repeat
+555,Conflict: Jugner Forest [S],mobKill,,,14,700,repeat
+557,Conflict: Batallia Downs [S],mobKill,,,12,600,repeat
+559,Conflict: La Vaule [S],mobKill,,,70,850,repeat
+561,Conflict: Eldieme Necropolis [S],mobKill,,,16,800,repeat
+563,Conflict: North Gustaberg [S],mobKill,,,11,550,repeat
+565,Conflict: Grauberg [S],mobKill,,,13,650,repeat
+567,Conflict: Vunkerl Inlet [S],mobKill,,,13,650,repeat
+569,Conflict: Pashhow Marshlands [S],mobKill,,,16,800,repeat
+571,Conflict: Rolanberry Fields [S],mobKill,,,13,650,repeat
+573,Conflict: Beadeaux [S],mobKill,,,70,850,repeat
+575,Conflict: Crawlers' Nest [S],mobKill,,,16,800,repeat
+577,Conflict: West Sarutabaruta [S],mobKill,,,11,550,repeat
+579,Conflict: Fort Karugo-Narugo [S],mobKill,,,12,600,repeat
+581,Conflict: Meriph. Mountains [S],mobKill,,,13,650,repeat
+583,Conflict: Sauro. Champaign [S],mobKill,,,13,650,repeat
+585,Conflict: Castle Oztroja [S],mobKill,,,70,850,repeat
+587,Conflict: Garlaige Citadel [S],mobKill,,,16,800,repeat
+589,Conflict: Beaucedine Glacier [S],mobKill,,,70,850,repeat
+591,Conflict: Xarcabard [S],mobKill,,,80,900,repeat
+593,Conflict: Castle Zvahl Baileys [S],mobKill,,,80,900,repeat
+595,Conflict: Castle Zvahl Keep [S],mobKill,,,80,900,repeat
+613,Conflict: Abyssea - La Theine,mobKill,,,80,900,repeat
+614,Conflict: Abyssea - Konschtat,mobKill,,,80,900,repeat
+615,Conflict: Abyssea - Tahrongi,mobKill,,,80,900,repeat
+616,Conflict: Abyssea - Attohwa,mobKill,,,80,900,repeat
+617,Conflict: Abyssea - Misareaux,mobKill,,,80,900,repeat
+618,Conflict: Abyssea - Vunkerl,mobKill,,,80,900,repeat
+619,Conflict: Abyssea - Altepa,mobKill,,,80,900,repeat
+620,Conflict: Abyssea - Uleguerand,mobKill,,,80,900,repeat
+621,Conflict: Abyssea - Grauberg,mobKill,,,80,900,repeat
+885,Conflict: Escha - Zi'Tah I,mobKill,,,300,900,repeat
+886,Conflict: Escha - Zi'Tah II,mobKill,,,300,900,repeat
+887,Conflict: Escha - Zi'Tah III,mobKill,,,300,900,repeat
+888,Conflict: Escha - Zi'Tah IV,mobKill,,,300,900,repeat
+889,Conflict: Escha - Zi'Tah V,mobKill,,,300,900,repeat
+901,Conflict: Escha - Zi'Tah VI,mobKill,,,300,900,repeat
+902,Conflict: Escha - Zi'Tah VII,mobKill,,,300,900,repeat
+903,Conflict: Escha - Ru'Aun I,mobKill,,,300,900,repeat
+904,Conflict: Escha - Ru'Aun II,mobKill,,,300,900,repeat
+905,Conflict: Escha - Ru'Aun III,mobKill,,,300,900,repeat
+906,Conflict: Escha - Ru'Aun IV,mobKill,,,300,900,repeat
+907,Conflict: Escha - Ru'Aun V,mobKill,,,300,900,repeat
+908,Conflict: Escha - Ru'Aun VI,mobKill,,,300,900,repeat
+909,Conflict: Escha - Ru'Aun VII,mobKill,,,300,900,repeat
+910,Conflict: Escha - Ru'Aun VIII,mobKill,,,300,900,repeat
+911,Conflict: Escha - Ru'Aun IX,mobKill,,,300,900,repeat
+912,Conflict: Escha - Ru'Aun X,mobKill,,,300,900,repeat
+943,Conflict: Reisenjima I,mobKill,,,300,900,repeat
+944,Conflict: Reisenjima II,mobKill,,,300,900,repeat
+945,Conflict: Reisenjima III,mobKill,,,300,900,repeat
+946,Conflict: Reisenjima IV,mobKill,,,300,900,repeat
+947,Conflict: Reisenjima V,mobKill,,,300,900,repeat
+948,Conflict: Reisenjima VI,mobKill,,,300,900,repeat
+949,Conflict: Reisenjima VII,mobKill,,,300,900,repeat
+950,Conflict: Reisenjima VIII,mobKill,,,300,900,repeat
+951,Conflict: Reisenjima IX,mobKill,,,300,900,repeat
+952,Conflict: Reisenjima X,mobKill,,,300,900,repeat
+953,Conflict: Reisenjima XI,mobKill,,,300,900,repeat
+61,Total Successful Harvesting Attempts,,,,2000,6000,
+118,Total Successful Harvesting Attempts,,,,200,600,
+180,Harvesting: East Ronfaure,helmSuccess,,,100,500,repeat
+181,Harvesting: Ghelsba Outpost,helmSuccess,,,100,500,repeat
+182,Harvesting: Gusgen Mines,helmSuccess,,,100,500,repeat
+183,Harvesting: Jugner Forest,helmSuccess,,,100,500,repeat
+184,Harvesting: Zeruhn Mines,helmSuccess,,,100,500,repeat
+185,Harvesting: Palborough Mines,helmSuccess,,,100,500,repeat
+186,Harvesting: West Sarutabaruta,helmSuccess,,,100,500,repeat
+187,Harvesting: Giddeus,helmSuccess,,,100,500,repeat
+188,Harvesting: Buburimu Peninsula,helmSuccess,,,100,500,repeat
+189,Harvesting: Tahrongi Canyon,helmSuccess,,,100,500,repeat
+190,Harvesting: Maze of Shakhrami,helmSuccess,,,100,500,repeat
+389,Harvesting: Yughott Grotto,helmSuccess,,,100,500,repeat
+478,Harvesting: Yuhtunga Jungle,helmSuccess,,,100,500,repeat
+479,Harvesting: Yhoator Jungle,helmSuccess,,,100,500,repeat
+480,Harvesting: Ifrit's Cauldron,helmSuccess,,,100,500,repeat
+485,Harvesting: Korroloka Tunnel,helmSuccess,,,100,500,repeat
+481,Harvesting: Oldton Movalpolos,helmSuccess,,,100,500,repeat
+482,Harvesting: Newton Movalpolos,helmSuccess,,,100,500,repeat
+483,Harvesting: Lufaise Meadows,helmSuccess,,,100,500,repeat
+484,Harvesting: Misareaux Coast,helmSuccess,,,100,500,repeat
+486,Harvesting: Carpenters' Landing,helmSuccess,,,100,500,repeat
+487,Harvesting: Attohwa Chasm,helmSuccess,,,100,500,repeat
+599,Harvesting: Bhaflau Thickets,helmSuccess,,,100,500,repeat
+600,Harvesting: Mamook,helmSuccess,,,100,500,repeat
+601,Harvesting: Wajaom Woodlands,helmSuccess,,,100,500,repeat
+602,Harvesting: Halvung,helmSuccess,,,100,500,repeat
+603,Harvesting: Mount Zhayolm,helmSuccess,,,100,500,repeat
+604,Harvesting: Caedarva Mire,helmSuccess,,,100,500,repeat
+606,Harvesting: East Ronfaure [S],helmSuccess,,,100,500,repeat
+607,Harvesting: Jugner Forest [S],helmSuccess,,,100,500,repeat
+608,Harvesting: North Gustaberg [S],helmSuccess,,,100,500,repeat
+609,Harvesting: Grauberg [S],helmSuccess,,,100,500,repeat
+610,Harvesting: West Sarutabaruta [S],helmSuccess,,,100,500,repeat
+611,Harvesting: Fort Karugo-Narugo [S],helmSuccess,,,100,500,repeat
+63,Total Suc. Chocobo Digs,chocoboDigSuccess,,,100,500,repeat
+727,Subjugation: Kirin,mobKill,,,1000,5000,repeat
+728,Subjugation: Genbu,mobKill,,,300,1500,repeat
+729,Subjugation: Suzaku,mobKill,,,300,1500,repeat
+730,Subjugation: Seiryu,mobKill,,,300,1500,repeat
+731,Subjugation: Byakko,mobKill,,,300,1500,repeat
+768,Subjugation: Jailer of Justice,mobKill,,,300,1500,repeat
+769,Subjugation: Jailer of Hope,mobKill,,,300,1500,repeat
+770,Subjugation: Jailer of Prudence is handled in mob script,,,,300,1500,repeat
+771,Subjugation: Jailer of Love,mobKill,,,1000,5000,repeat
+812,Subjugation: Battleclad Chariot,mobKill,,,500,2500,repeat
+813,Subjugation: Armored Chariot,mobKill,,,500,2500,repeat
+814,Subjugation: Long-Bowed Chariot,mobKill,,,500,2500,repeat
+815,Subjugation: Long-Armed Chariot,mobKill,,,500,2500,repeat
+732,Subjugation: Overlord's Tombstone,mobKill,,,300,1500,repeat
+733,Subjugation: Bladeburner Rokgevok,mobKill,,,300,1500,repeat
+734,Subjugation: Steelshank Kratzvatz,mobKill,,,300,1500,repeat
+735,Subjugation: Bloodfist Voshgrosh,mobKill,,,300,1500,repeat
+736,Subjugation: Spellspear Djokvukk,mobKill,,,300,1500,repeat
+737,Subjugation: Gu'Dha Effigy,mobKill,,,300,1500,repeat
+738,Subjugation: Zo'Pha Forgesoul,mobKill,,,300,1500,repeat
+739,Subjugation: Ra'Gho Darkfount,mobKill,,,300,1500,repeat
+740,Subjugation: Va'Zhe Pummelsong,mobKill,,,300,1500,repeat
+741,Subjugation: Bu'Bho Truesteel,mobKill,,,300,1500,repeat
+742,Subjugation: Tzee Xicu Idol,mobKill,,,300,1500,repeat
+743,Subjugation: Xuu Bhoqa the Enigma,mobKill,,,300,1500,repeat
+744,Subjugation: Fuu Tzapo the Blessed,mobKill,,,300,1500,repeat
+745,Subjugation: Naa Yixo the Stillrage,mobKill,,,300,1500,repeat
+746,Subjugation: Tee Zaska the Ceaseless,mobKill,,,300,1500,repeat
+747,Subjugation: Goblin Golem,mobKill,,,300,1500,repeat
+748,Subjugation: Quicktrix Hexhands,mobKill,,,300,1500,repeat
+749,Subjugation: Feralox Honeylips,mobKill,,,300,1500,repeat
+750,Subjugation: Scourquix Scaleskin,mobKill,,,300,1500,repeat
+751,Subjugation: Wilywox Tenderpalm,mobKill,,,300,1500,repeat
+752,Subjugation: Angra Mainyu,mobKill,,,300,1500,repeat
+753,Subjugation: Taquede,mobKill,,,300,1500,repeat
+754,Subjugation: Pignonpausard,mobKill,,,300,1500,repeat
+755,Subjugation: Hitaume,mobKill,,,300,1500,repeat
+756,Subjugation: Cavanneche,mobKill,,,300,1500,repeat
+757,Subjugation: Dynamis Lord,mobKill,,,300,1500,repeat
+758,Subjugation: Duke Haures,mobKill,,,300,1500,repeat
+759,Subjugation: Marquis Caim,mobKill,,,300,1500,repeat
+760,Subjugation: Baron Avnas,mobKill,,,300,1500,repeat
+761,Subjugation: Count Haagenti,mobKill,,,300,1500,repeat
+772,Spoils - Ivory Chip,itemLooted,,,300,1500,repeat
+773,Spoils - Scarlet Chip,itemLooted,,,300,1500,repeat
+774,Spoils - Emerald Chip,itemLooted,,,300,1500,repeat
+775,Spoils - Orchid Chip,itemLooted,,,300,1500,repeat
+776,Spoils - Cerulean Chip,itemLooted,,,300,1500,repeat
+777,Spoils - Silver Chip,itemLooted,,,300,1500,repeat
+778,Spoils - Smoky Chip,itemLooted,,,300,1500,repeat
+779,Spoils - Magenta Chip,itemLooted,,,300,1500,repeat
+780,Spoils - Charcoal Chip,itemLooted,,,300,1500,repeat
+781,Spoils - Smalt Chip,itemLooted,,,300,1500,repeat
+782,Subjugation: Proto-Ultima,mobKill,,,1000,5000,repeat
+783,Subjugation: Proto-Omega,mobKill,,,1000,5000,repeat
+785,Subjugation: Vulpangue,mobKill,,,300,1500,repeat
+786,Subjugation: Chamrosh,mobKill,,,300,1500,repeat
+787,Subjugation: Cheese Hoarder Gigiroon,mobKill,,,300,1500,repeat
+788,Subjugation: Brass Borer,mobKill,,,300,1500,repeat
+789,Subjugation: Claret,mobKill,,,300,1500,repeat
+790,Subjugation: Ob,mobKill,,,300,1500,repeat
+791,Subjugation: Velionis,mobKill,,,300,1500,repeat
+792,Subjugation Lil' Apkallu,mobKill,,,300,1500,repeat
+793,Subjugation: Chigre,mobKill,,,300,1500,repeat
+794,Subjugation: Iriz Ima,mobKill,,,300,1500,repeat
+795,Subjugation: Lividroot Amooshah,mobKill,,,300,1500,repeat
+796,Subjugation: Iriri Samariri,mobKill,,,300,1500,repeat
+797,Subjugation: Anantaboga,mobKill,,,300,1500,repeat
+798,Subjugation: Reacton,mobKill,,,300,1500,repeat
+799,Subjugation: Dextrose,mobKill,,,300,1500,repeat
+800,Subjugation: Wulgaru,mobKill,,,300,1500,repeat
+801,Subjugation: Zareehkl the Jubilant,mobKill,,,300,1500,repeat
+802,Subjugation: Verdelet,mobKill,,,300,1500,repeat
+803,Subjugation: Armed Gears,mobKill,,,300,1500,repeat
+804,Subjugation: Gotoh Zha the Redolent,mobKill,,,300,1500,repeat
+805,Subjugation: Dea,mobKill,,,300,1500,repeat
+806,Subjugation: Nosferatu,mobKill,,,300,1500,repeat
+807,Subjugation: Khromasoul Bhurborlor,mobKill,,,300,1500,repeat
+808,Subjugation: Achamoth,mobKill,,,300,1500,repeat
+809,Subjugation: Mahjlaef the Paintorn,mobKill,,,300,1500,repeat
+810,Subjugation: Experimental Lamia,mobKill,,,300,1500,repeat
+811,Subjugation: Nuhn,mobKill,,,300,1500,repeat
+1200,Level 30 Warrior +,levelUp,,,100,500,retro
+1201,Level 50 Warrior,levelUp,,,200,500,retro
+1202,Level 75 Warrior,levelUp,,,300,500,retro
+1203,Level 99 Warrior,levelUp,,,400,500,retro
+1204,Level 30 Monk,levelUp,,,100,500,retro
+1205,Level 50 Monk,levelUp,,,200,500,retro
+1206,Level 75 Monk,levelUp,,,300,500,retro
+1207,Level 99 Monk,levelUp,,,400,500,retro
+1208,Level 30 White Mage,levelUp,,,100,500,retro
+1209,Level 50 White Mage,levelUp,,,200,500,retro
+1210,Level 75 White Mage,levelUp,,,300,500,retro
+1211,Level 99 White Mage,levelUp,,,400,500,retro
+1212,Level 30 Black Mage,levelUp,,,100,500,retro
+1213,Level 50 Black Mage,levelUp,,,200,500,retro
+1214,Level 75 Black Mage,levelUp,,,300,500,retro
+1215,Level 99 Black Mage,levelUp,,,400,500,retro
+1216,Level 30 Red Mage,levelUp,,,100,500,retro
+1217,Level 50 Red Mage,levelUp,,,200,500,retro
+1218,Level 75 Red Mage,levelUp,,,300,500,retro
+1219,Level 99 Red Mage,levelUp,,,400,500,retro
+1220,Level 30 Thief,levelUp,,,100,500,retro
+1221,Level 50 Thief,levelUp,,,200,500,retro
+1222,Level 75 Thief,levelUp,,,300,500,retro
+1223,Level 99 Thief,levelUp,,,400,500,retro
+1224,Level 30 Paladin,levelUp,,,100,500,retro
+1225,Level 50 Paladin,levelUp,,,200,500,retro
+1226,Level 75 Paladin,levelUp,,,300,500,retro
+1227,Level 99 Paladin,levelUp,,,400,500,retro
+1228,Level 30 Dark Knight,levelUp,,,100,500,retro
+1229,Level 50 Dark Knight,levelUp,,,200,500,retro
+1230,Level 75 Dark Knight,levelUp,,,300,500,retro
+1231,Level 99 Dark Knight,levelUp,,,400,500,retro
+1232,Level 30 Beastmaster,levelUp,,,100,500,retro
+1233,Level 50 Beastmaster,levelUp,,,200,500,retro
+1234,Level 75 Beastmaster,levelUp,,,300,500,retro
+1235,Level 99 Beastmaster,levelUp,,,400,500,retro
+1236,Level 30 Bard,levelUp,,,100,500,retro
+1237,Level 50 Bard,levelUp,,,200,500,retro
+1238,Level 75 Bard,levelUp,,,300,500,retro
+1239,Level 99 Bard,levelUp,,,400,500,retro
+1240,Level 30 Ranger,levelUp,,,100,500,retro
+1241,Level 50 Ranger,levelUp,,,200,500,retro
+1242,Level 75 Ranger,levelUp,,,300,500,retro
+1243,Level 99 Ranger,levelUp,,,400,500,retro
+1244,Level 30 Samurai,levelUp,,,100,500,retro
+1245,Level 50 Samurai,levelUp,,,200,500,retro
+1246,Level 75 Samurai,levelUp,,,300,500,retro
+1247,Level 99 Samurai,levelUp,,,300,500,retro
+1248,Level 30 Ninja,levelUp,,,100,500,retro
+1249,Level 50 Ninja,levelUp,,,200,500,retro
+1250,Level 75 Ninja,levelUp,,,300,500,retro
+1251,Level 99 Ninja,levelUp,,,400,500,retro
+1252,Level 30 Dragoon,levelUp,,,100,500,retro
+1253,Level 50 Dragoon,levelUp,,,200,500,retro
+1254,Level 75 Dragoon,levelUp,,,300,500,retro
+1255,Level 99 Dragoon,levelUp,,,400,500,retro
+1256,Level 30 Summoner,levelUp,,,100,500,retro
+1257,Level 50 Summoner,levelUp,,,200,500,retro
+1258,Level 75 Summoner,levelUp,,,300,500,retro
+1259,Level 99 Summoner,levelUp,,,400,500,retro
+1260,Level 30 Blue Mage,levelUp,,,100,500,retro
+1261,Level 50 Blue Mage,levelUp,,,200,500,retro
+1262,Level 75 Blue Mage,levelUp,,,300,500,retro
+1263,Level 99 Blue Mage,levelUp,,,400,500,retro
+1264,Level 30 Corsair,levelUp,,,100,500,retro
+1265,Level 50 Corsair,levelUp,,,200,500,retro
+1266,Level 75 Corsair,levelUp,,,300,500,retro
+1267,Level 99 Corsair,levelUp,,,400,500,retro
+1268,Level 30 Puppetmaster,levelUp,,,100,500,retro
+1269,Level 50 Puppetmaster,levelUp,,,200,500,retro
+1270,Level 75 Puppetmaster,levelUp,,,300,500,retro
+1271,Level 99 Puppetmaster,levelUp,,,400,500,retro
+1272,Level 30 Dancer,levelUp,,,100,500,retro
+1273,Level 50 Dancer,levelUp,,,200,500,retro
+1274,Level 75 Dancer,levelUp,,,300,500,retro
+1275,Level 99 Dancer,levelUp,,,400,500,retro
+1276,Level 30 Scholar,levelUp,,,100,500,retro
+1277,Level 50 Scholar,levelUp,,,200,500,retro
+1278,Level 75 Scholar,levelUp,,,300,500,retro
+1279,Level 99 Scholar,levelUp,,,400,500,retro
+1280,Level 30 Geomancer,levelUp,,,100,500,retro
+1281,Level 50 Geomancer,levelUp,,,200,500,retro
+1282,Level 75 Geomancer,levelUp,,,300,500,retro
+1283,Level 99 Geomancer,levelUp,,,400,500,retro
+1284,Level 30 Runefencer,levelUp,,,100,500,retro
+1285,Level 50 Runefencer,levelUp,,,200,500,retro
+1286,Level 75 Runefencer,levelUp,,,300,500,retro
+1287,Level 99 Runefencer,levelUp,,,400,500,retro
+3000,Unity Communique A (UC),unityChat,,,100,500,unity
+3002,Vanquish Multiple Enemies A (UC),mobKill,,,100,500,unity
+3003,Vanquish Aquans A (UC),mobKill,,,100,500,unity
+3004,Vanquish Amorphs with Physical Damage A (UC),mobKill,,,100,500,unity
+3005,Vanquish Beasts with Magic A (UC),mobKill,,,100,500,unity
+3006,Total Successful Woodworking Syntheses A (UC),synthSuccess,,,100,500,unity
+3007,Total Successful Leatherworking Syntheses A (UC),synthSuccess,,,100,500,unity
+3008,Total Suc. Mining Attempts A (UC),helmSuccess,,,100,500,unity
+3009,Unity Communique B (UC),unityChat,,,100,500,unity
+3010,Chocobo Digging B (UC),chocoboDigSuccess,,,100,500,unity
+3011,Vanquish Multiple Enemies B (UC),mobKill,,,100,500,unity
+3012,Vanquish Arcana B (UC),mobKill,,,100,500,unity
+3013,Vanquish Undead with Physical Damage B (UC),mobKill,,,100,500,unity
+3014,Vanquish Plantoids with Magic B (UC),mobKill,,,100,500,unity
+3015,Total Successful Blacksmithing Syntheses B (UC),synthSuccess,,,100,500,unity
+3017,Total Suc. Logging Attempts B (UC),helmSuccess,,,100,500,unity
+3018,Unity Communique C (UC),unityChat,,,100,500,unity
+3020,Vanquish Multiple Enemies C (UC),mobKill,,,100,500,unity
+3021,Vanquish Vermin C (UC),mobKill,,,100,500,unity
+3022,Vanquish Birds with Physical Damage C (UC),mobKill,,,100,500,unity
+3023,Vanquish Lizards with Magic C (UC),mobKill,,,100,500,unity
+3024,Total Successful Goldsmithing Syntheses C (UC),synthSuccess,,,100,500,unity
+3026,Total Suc. Harvesting Attempts C (UC),helmSuccess,,,100,500,unity
+3027,Unity Communique D (UC),unityChat,,,100,500,unity
+3029,Vanquish Multiple Enemies D (UC),mobKill,,,100,500,unity
+3030,Vanquish Beasts D (UC),mobKill,,,100,500,unity
+3031,Vanquish Aquans with Physical Damage D (UC),mobKill,,,100,500,unity
+3032,Vanquish Amorphs with Magic D (UC),mobKill,,,100,500,unity
+3033,Total Successful Cloth Syntheses D (UC),synthSuccess,,,100,500,unity
+3034,Total Successful Bone Syntheses D (UC),synthSuccess,,,100,500,unity
+3035,Total Suc. Mining Attempts D (UC),helmSuccess,,,100,500,unity
+3036,Unity Communique E (UC),unityChat,,,100,500,unity
+3038,Vanquish Multiple Enemies E (UC),mobKill,,,100,500,unity
+3039,Vanquish Plantoids E (UC),mobKill,,,100,500,unity
+3040,Vanquish Arcana with Physical Damage E (UC),mobKill,,,100,500,unity
+3041,Vanquish Undead with Magic E (UC),mobKill,,,100,500,unity
+3042,Total Successful Cooking Syntheses E (UC),synthSuccess,,,100,500,unity
+3044,Total Suc. Logging Attempts E (UC),helmSuccess,,,100,500,unity
+3045,Unity Communique F (UC),unityChat,,,100,500,unity
+3046,Level Sync to Vanquish Enemies F (UC),mobKill,,,100,500,unity
+3047,Vanquish Multiple Enemies F (UC),mobKill,,,100,500,unity
+3048,Vanquish Lizards F (UC),mobKill,,,100,500,unity
+3049,Vanquish Vermin with Physical Damage F (UC),mobKill,,,100,500,unity
+3050,Vanquish Birds with Magic F (UC),mobKill,,,100,500,unity
+3051,Total Successful Alchemy Syntheses F (UC),synthSuccess,,,100,500,unity
+3053,Total Suc. Harvesting Attempts F (UC),helmSuccess,,,100,500,unity
+3488,Club Weapon Skills (UC),wSkillUse,,,100,500,unity
+3489,Conflict: Rala Waterways (UC),mobKill,,,100,500,unity
+3490,Vanquish Rabbits (UC),mobKill,,,100,500,unity
+3491,Subjugation: Rambukk (UC),mobKill,,,100,500,unity
+3492,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3493,Spoils - Bat Fangs (UC),itemLooted,,,100,500,unity
+3494,Conflict: La Theine Plateau (UC),mobKill,,,100,500,unity
+3495,Vanquish Bats (UC),mobKill,,,100,500,unity
+3496,Subjugation: Tumbling Truffle (UC),mobKill,,,100,500,unity
+3498,Staff Weapon Skills (UC),wSkillUse,,,100,500,unity
+3499,Conflict: Eldieme Necropolis (UC),mobKill,,,100,500,unity
+3500,Vanquish Treants (UC),mobKill,,,100,500,unity
+3501,Subjugation: Duke Decapod (UC),mobKill,,,100,500,unity
+3502,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3503,Spoils - Bomb Ash (UC),itemLooted,,,100,500,unity
+3504,Conflict: Davoi (UC),mobKill,,,100,500,unity
+3505,Vanquish Bombs (UC),mobKill,,,100,500,unity
+3506,Subjugation: Poisonhand Gnadgad (UC),mobKill,,,100,500,unity
+3507,Magic Bursts (UC),magicBurst,,,100,500,unity
+3508,Great Katana Weapon Skills (UC),wSkillUse,,,100,500,unity
+3509,Conflict: North Gustaberg (UC),mobKill,,,100,500,unity
+3510,Vanquish Worms (UC),mobKill,,,100,500,unity
+3511,Subjugation: Stinging Sophie (UC),mobKill,,,100,500,unity
+3512,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3513,Spoils - Cockatrice Meat (UC),itemLooted,,,100,500,unity
+3514,Conflict: Yahse Hunting Grounds (UC),mobKill,,,100,500,unity
+3515,Vanquish Cockatrices (UC),mobKill,,,100,500,unity
+3516,Subjugation: Tococo (UC),mobKill,,,100,500,unity
+3518,Archery Weapon Skills (UC),wSkillUse,,,100,500,unity
+3519,Conflict: Crawlers' Nest (UC),mobKill,,,100,500,unity
+3520,Vanquish Lizards (UC),mobKill,,,100,500,unity
+3521,Subjugation: Aqrabuamelu (UC),mobKill,,,100,500,unity
+3522,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3523,Spoils - Land Crab Meat (UC),itemLooted,,,100,500,unity
+3524,Conflict: Beadeaux (UC),mobKill,,,100,500,unity
+3525,Vanquish Crabs (UC),mobKill,,,100,500,unity
+3526,Subjugation: Ge'Dha Evileye (UC),mobKill,,,100,500,unity
+3527,Magic Bursts (UC),magicBurst,,,100,500,unity
+3528,Axe Weapon Skills (UC),wSkillUse,,,100,500,unity
+3529,Conflict: South Gustaberg (UC),mobKill,,,100,500,unity
+3530,Vanquish Sea Monks (UC),mobKill,,,100,500,unity
+3531,Subjugation: Leaping Lizzy (UC),mobKill,,,100,500,unity
+3532,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3533,Spoils - Sleepshroom (UC),itemLooted,,,100,500,unity
+3534,Conflict: Pashhow Marshlands (UC),mobKill,,,100,500,unity
+3535,Vanquish Funguars (UC),mobKill,,,100,500,unity
+3536,Subjugation: Bloodpool Vorax (UC),mobKill,,,100,500,unity
+3538,Great Axe Weapon Skills (UC),wSkillUse,,,100,500,unity
+3539,Conflict: Ceizak Battlegrounds (UC),mobKill,,,100,500,unity
+3540,Vanquish Flies (UC),mobKill,,,100,500,unity
+3541,Subjugation: Be'Hya Hundredwall (UC),mobKill,,,100,500,unity
+3542,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3543,Spoils - Raptor Skin (UC),itemLooted,,,100,500,unity
+3544,Conflict: Beaucedine Glacier (UC),mobKill,,,100,500,unity
+3545,Vanquish Raptors (UC),mobKill,,,100,500,unity
+3546,Subjugation: Gargantua (UC),mobKill,,,100,500,unity
+3547,Magic Bursts (UC),magicBurst,,,100,500,unity
+3548,Club Weapon Skills (UC),wSkillUse,,,100,500,unity
+3549,Conflict: West Sarutabaruta (UC),mobKill,,,100,500,unity
+3550,Vanquish Bees (UC),mobKill,,,100,500,unity
+3551,Subjugation: Tom Tit Tat (UC),mobKill,,,100,500,unity
+3552,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3553,Spoils - Silk Thread (UC),itemLooted,,,100,500,unity
+3554,Conflict: Buburimu Peninsula (UC),mobKill,,,100,500,unity
+3555,Vanquish Crawlers (UC),mobKill,,,100,500,unity
+3556,Subjugation: Buburimboo (UC),mobKill,,,100,500,unity
+3558,Staff Weapon Skills (UC),wSkillUse,,,100,500,unity
+3559,Conflict: Castle Oztroja (UC),mobKill,,,100,500,unity
+3560,Vanquish Ghosts (UC),mobKill,,,100,500,unity
+3561,Subjugation: Mee Deggi the Punisher (UC),mobKill,,,100,500,unity
+3562,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3563,Spoils - Saruta Cotton (UC),itemLooted,,,100,500,unity
+3564,Conflict: Foret de Hennetiel (UC),mobKill,,,100,500,unity
+3565,Vanquish Mandragoras (UC),mobKill,,,100,500,unity
+3566,Subjugation: Juu Duzu the Whirlwind (UC),mobKill,,,100,500,unity
+3567,Magic Bursts (UC),magicBurst,,,100,500,unity
+3568,Hand-to-Hand Weapon Skills (UC),wSkillUse,,,100,500,unity
+3569,Conflict: Yorcia Weald (UC),mobKill,,,100,500,unity
+3570,Vanquish Leeches (UC),mobKill,,,100,500,unity
+3571,Subjugation: Canal Moocher (UC),mobKill,,,100,500,unity
+3572,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3573,Spoils - Spider Web (UC),itemLooted,,,100,500,unity
+3574,Conflict: Rolanberry Fields (UC),mobKill,,,100,500,unity
+3575,Vanquish Spiders (UC),mobKill,,,100,500,unity
+3576,Subjugation: Eldritch Edge (UC),mobKill,,,100,500,unity
+3578,Great Sword Weapon Skills (UC),wSkillUse,,,100,500,unity
+3579,Conflict: Meriphataud Mountains (UC),mobKill,,,100,500,unity
+3580,Vanquish Wyverns (UC),mobKill,,,100,500,unity
+3581,Subjugation: Patripatan (UC),mobKill,,,100,500,unity
+3582,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3583,Spoils - Hecteyes Eye (UC),itemLooted,,,100,500,unity
+3584,Conflict: Sauromugue Champaign (UC),mobKill,,,100,500,unity
+3585,Vanquish Hecteyes (UC),mobKill,,,100,500,unity
+3586,Subjugation: Bashe (UC),mobKill,,,100,500,unity
+3587,Magic Bursts (UC),magicBurst,,,100,500,unity
+3588,Dagger Weapon Skills (UC),wSkillUse,,,100,500,unity
+3589,Conflict: Sanctuary of Zi'Tah (UC),mobKill,,,100,500,unity
+3590,Vanquish Hounds (UC),mobKill,,,100,500,unity
+3591,Subjugation: Bastet (UC),mobKill,,,100,500,unity
+3592,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3593,Spoils - Doll Shard (UC),itemLooted,,,100,500,unity
+3594,Conflict: Morimar Basalt Fields (UC),mobKill,,,100,500,unity
+3595,Vanquish Dolls (UC),mobKill,,,100,500,unity
+3596,Subjugation: Nocuous Weapon (UC),mobKill,,,100,500,unity
+3598,Marksmanship Weapon Skills (UC),wSkillUse,,,100,500,unity
+3599,Conflict: Boyahda Tree (UC),mobKill,,,100,500,unity
+3600,Vanquish Slimes (UC),mobKill,,,100,500,unity
+3601,Subjugation: Aquarius (UC),mobKill,,,100,500,unity
+3602,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3603,Spoils - Bird Egg (UC),itemLooted,,,100,500,unity
+3604,Conflict: Western Altepa Desert (UC),mobKill,,,100,500,unity
+3605,Vanquish Crow-Type Birds (UC),mobKill,,,100,500,unity
+3606,Subjugation: Cactuar Cantautor (UC),mobKill,,,100,500,unity
+3607,Magic Bursts (UC),magicBurst,,,100,500,unity
+3608,Dagger Weapon Skills (UC),wSkillUse,,,100,500,unity
+3609,Conflict: Yuhtunga Jungle (UC),mobKill,,,100,500,unity
+3610,Vanquish Sheep (UC),mobKill,,,100,500,unity
+3611,Subjugation: Mischievous Micholas (UC),mobKill,,,100,500,unity
+3612,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3613,Spoils - Scorpion Claw (UC),itemLooted,,,100,500,unity
+3614,Conflict: East Sarutabaruta (UC),mobKill,,,100,500,unity
+3615,Vanquish Scorpions (UC),mobKill,,,100,500,unity
+3616,Subjugation: Sharp-Eared Ropipi (UC),mobKill,,,100,500,unity
+3618,Archery Weapon Skills (UC),wSkillUse,,,100,500,unity
+3619,Conflict: Marjami Ravine (UC),mobKill,,,100,500,unity
+3620,Vanquish Opo-Opos (UC),mobKill,,,100,500,unity
+3621,Subjugation: Ah Puch (UC),mobKill,,,100,500,unity
+3622,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3623,Spoils - Black Tiger Fang (UC),itemLooted,,,100,500,unity
+3624,Conflict: Sea Serpent Grotto (UC),mobKill,,,100,500,unity
+3625,Vanquish Tigers (UC),mobKill,,,100,500,unity
+3626,Subjugation: Fyuu the Seabellow (UC),mobKill,,,100,500,unity
+3627,Magic Bursts (UC),magicBurst,,,100,500,unity
+3628,Club Weapon Skills (UC),wSkillUse,,,100,500,unity
+3629,Conflict: Bhaflau Thickets (UC),mobKill,,,100,500,unity
+3630,Vanquish Evil Weapons (UC),mobKill,,,100,500,unity
+3631,Subjugation: Emergent Elm (UC),mobKill,,,100,500,unity
+3632,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3633,Spoils - Puk Wing (UC),itemLooted,,,100,500,unity
+3634,Conflict: West Ronfaure (UC),mobKill,,,100,500,unity
+3635,Vanquish Puks (UC),mobKill,,,100,500,unity
+3636,Subjugation: Fungus Beetle (UC),mobKill,,,100,500,unity
+3638,Staff Weapon Skills (UC),wSkillUse,,,100,500,unity
+3639,Conflict: Wajaom Woodlands (UC),mobKill,,,100,500,unity
+3640,Vanquish Elementals (UC),mobKill,,,100,500,unity
+3641,Subjugation: Jaded Jody (UC),mobKill,,,100,500,unity
+3642,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3643,Spoils - Dhalmel Meat (UC),itemLooted,,,100,500,unity
+3644,Conflict: Kamihr Drifts (UC),mobKill,,,100,500,unity
+3645,Vanquish Dhalmel (UC),mobKill,,,100,500,unity
+3646,Subjugation: Trembler Tabitha (UC),mobKill,,,100,500,unity
+3647,Magic Bursts (UC),magicBurst,,,100,500,unity
+3648,Polearm Weapon Skills (UC),wSkillUse,,,100,500,unity
+3649,Conflict: Cirdas Caverns (UC),mobKill,,,100,500,unity
+3650,Vanquish Pugils (UC),mobKill,,,100,500,unity
+3651,Subjugation: Hovering Hotpot (UC),mobKill,,,100,500,unity
+3652,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3653,Spoils - Beetle Shell (UC),itemLooted,,,100,500,unity
+3654,Conflict: East Ronfaure (UC),mobKill,,,100,500,unity
+3655,Vanquish Beetles (UC),mobKill,,,100,500,unity
+3656,Subjugation: Bigmouth Billy (UC),mobKill,,,100,500,unity
+3658,Sword Weapon Skills (UC),wSkillUse,,,100,500,unity
+3659,Conflict: Xarcabard (UC),mobKill,,,100,500,unity
+3660,Vanquish Goobbues (UC),mobKill,,,100,500,unity
+3661,Subjugation: Barbaric Weapon (UC),mobKill,,,100,500,unity
+3662,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3663,Spoils - Bone Chip (UC),itemLooted,,,100,500,unity
+3664,Conflict: Woh Gates (UC),mobKill,,,100,500,unity
+3665,Vanquish Skeletons (UC),mobKill,,,100,500,unity
+3666,Subjugation: Hyakume (UC),mobKill,,,100,500,unity
+3667,Magic Bursts (UC),magicBurst,,,100,500,unity
+3668,Club Weapon Skills (UC),wSkillUse,,,100,500,unity
+3669,Conflict: Giddeus (UC),mobKill,,,100,500,unity
+3670,Vanquish Efts (UC),mobKill,,,100,500,unity
+3671,Subjugation: Herbage Hunter (UC),mobKill,,,100,500,unity
+3672,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3673,Spoils - Rotten Meat (UC),itemLooted,,,100,500,unity
+3674,Conflict: Moh Gates (UC),mobKill,,,100,500,unity
+3675,Vanquish Antica (UC),mobKill,,,100,500,unity
+3676,Subjugation: Antican Praefectus (UC),mobKill,,,100,500,unity
+3678,Staff Weapon Skills (UC),wSkillUse,,,100,500,unity
+3679,Conflict: Toraimarai Canal (UC),mobKill,,,100,500,unity
+3680,Vanquish Coeurls (UC),mobKill,,,100,500,unity
+3681,Subjugation: Ose (UC),mobKill,,,100,500,unity
+3682,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3683,Spoils - Dullahan Armor (UC),itemLooted,,,100,500,unity
+3684,Conflict: Outer Ra'Kaznar (UC),mobKill,,,100,500,unity
+3685,Vanquish Dullahan (UC),mobKill,,,100,500,unity
+3686,Subjugation: Capricious Cassie (UC),mobKill,,,100,500,unity
+3687,Magic Bursts (UC),magicBurst,,,100,500,unity
+3688,Club Weapon Skills (UC),wSkillUse,,,100,500,unity
+3689,Conflict: Sih Gates (UC),mobKill,,,100,500,unity
+3691,Subjugation: Intulo (UC),mobKill,,,100,500,unity
+3692,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3693,Spoils - Demon Horn (UC),itemLooted,,,100,500,unity
+3694,Conflict: Konschtat Highlands (UC),mobKill,,,100,500,unity
+3695,Vanquish Demons (UC),mobKill,,,100,500,unity
+3696,Subjugation: Marquis Naberius (UC),mobKill,,,100,500,unity
+3698,Staff Weapon Skills (UC),wSkillUse,,,100,500,unity
+3699,Conflict: Dho Gates (UC),mobKill,,,100,500,unity
+3700,Vanquish Velkk (UC),mobKill,,,100,500,unity
+3701,Subjugation: Dune Widow (UC),mobKill,,,100,500,unity
+3702,Heal Unity Allies (UC),healUnityAlly,,,100,500,unity
+3703,Spoils - Twitherym Wing (UC),itemLooted,,,100,500,unity
+3704,Conflict: Qufim Island (UC),mobKill,,,100,500,unity
+3705,Vanquish Twitherym (UC),mobKill,,,100,500,unity
+3706,Subjugation: Atkorkamuy (UC),mobKill,,,100,500,unity
+3707,Magic Bursts (UC),magicBurst,,,100,500,unity
+3367,"Signet, brb (W)",,,,50,1115,weekly
+4082,Vanquish Multiple Enemies (D),mobKill,,,100,500,daily
+4083,Buff Allies (D),buffAlly,,,300,1500,daily
+4084,Heal for 500+ HP (D),healAlly,,,300,1500,daily
+4008,Vanquish Aquans,mobKill,,,300,1500,timed|repeat
+4009,Vanquish Beasts,mobKill,,,300,1500,timed|repeat
+4010,Vanquish Plantoids,mobKill,,,300,1500,timed|repeat
+4011,Vanquish Lizards,mobKill,,,300,1500,timed|repeat
+4012,Vanquish Vermin,mobKill,,,300,1500,timed|repeat
+4013,Gain Experience,expGain,,,300,1500,timed|repeat
+4014,Spoils (Seals),itemLooted,,,300,1500,timed|repeat
+4015,Vanquish Birds,mobKill,,,300,1500,timed|repeat
+4016,Vanquish Amorphs,mobKill,,,300,1500,timed|repeat
+4017,Vanquish Undead,mobKill,,,300,1500,timed|repeat
+4018,Vanquish Arcana,mobKill,,,300,1500,timed|repeat
+4019,Crack Treasure Caskets (Triggered from caskets.lua),,,,300,1500,timed|repeat
+4020,Physical Damage Kills,mobKill,,,300,1500,timed|repeat
+4021,Magic Damage Kills,mobKill,,,300,1500,timed|repeat
+4085,10 RoE Objectives Complete (All for One requirement),,,,0,0,hidden

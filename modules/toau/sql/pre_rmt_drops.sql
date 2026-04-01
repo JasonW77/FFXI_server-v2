@@ -27,7 +27,7 @@ DELIMITER ;
 -- mob name: as found in mob_groups.sql
 -- old/new item name: as found in item_basic.sql
 
-CALL replace_drop('FeiYin', 'Western_Shadow', 'retaliators', 'cross-counters');
+CALL replace_drop('FeiYin', 'Western_Shadow', 'retaliators', 'cross_counters');
 CALL replace_drop('FeiYin', 'Eastern_Shadow', 'valis_bow', 'eurytos_bow');
 CALL replace_drop('South_Gustaberg', 'Leaping_Lizzy', 'bounding_boots', 'leaping_boots');
 CALL replace_drop('Castle_Oztroja', 'Mee_Deggi_the_Punisher', 'ochimusha_kote', 'ochiudos_kote');
