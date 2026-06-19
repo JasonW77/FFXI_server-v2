@@ -159,11 +159,14 @@ xi.settings.main =
     EXCAVATION_BREAK_CHANCE = 33, -- % chance for the pickaxe to break during excavation.  Set between 0 and 100.
     LOGGING_BREAK_CHANCE    = 33, -- % chance for the hatchet to break during logging.  Set between 0 and 100.
     MINING_BREAK_CHANCE     = 33, -- % chance for the pickaxe to break during mining.  Set between 0 and 100.
-    HARVESTING_RATE         = 50, -- % chance to recieve an item from haresting.  Set between 0 and 100.
-    EXCAVATION_RATE         = 50, -- % chance to recieve an item from excavation.  Set between 0 and 100.
-    LOGGING_RATE            = 50, -- % chance to recieve an item from logging.  Set between 0 and 100.
-    MINING_RATE             = 50, -- % chance to recieve an item from mining.  Set between 0 and 100.
+    HARVESTING_RATE         = 90, -- % chance to recieve an item from haresting.  Set between 0 and 100.
+    EXCAVATION_RATE         = 90, -- % chance to recieve an item from excavation.  Set between 0 and 100.
+    LOGGING_RATE            = 90, -- % chance to recieve an item from logging.  Set between 0 and 100.
+    MINING_RATE             = 90, -- % chance to recieve an item from mining.  Set between 0 and 100.
     MINING_YIELD_MULTIPLIER = 5, -- Number of items granted per successful mining result.
+    HARVESTING_YIELD_MULTIPLIER = 5,
+    LOGGING_YIELD_MULTIPLIER = 5,
+    EXCAVATION_YIELD_MULTIPLIER = 5,
     HEALING_TP_CHANGE       = -100, -- Change in TP for each healing tick. Default is -100
 
     -- SE implemented coffer/chest illusion time in order to prevent coffer farming. No-one in the same area can open a chest or coffer for loot (gil, gems & items)

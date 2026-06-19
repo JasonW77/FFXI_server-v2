@@ -2,15 +2,22 @@
 -- Area: Mount Zhayolm
 --  NPC: Mining Point
 -----------------------------------
----@type TNpcEntity
+require("scripts/globals/helm")
+-----------------------------------
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
-    xi.helm.onTrade(player, npc, trade, xi.helmType.MINING, 153)
+    xi.helm.onTrade(player, npc, trade, xi.helm.type.MINING, 153)
 end
 
 entity.onTrigger = function(player, npc)
-    xi.helm.onTrigger(player, xi.helmType.MINING)
+    xi.helm.onTrigger(player, npc, xi.helm.type.MINING, 153)
+end
+
+entity.onEventUpdate = function(player, csid, option)
+end
+
+entity.onEventFinish = function(player, csid, option)
 end
 
 return entity

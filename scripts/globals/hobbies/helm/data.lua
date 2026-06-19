@@ -1511,7 +1511,7 @@ xi.helm.initZone = function(zone, helmType)
     end
 end
 
-xi.helm.onTrade = function(player, npc, trade, helmType, csid, func)
+local function doGather(player, npc, helmType, csid, func)
     local info   = xi.helm.helmInfo[helmType]
     local zoneId = player:getZoneID()
     local lastTrade = player:getLocalVar("[HELM]Last_Trade")
@@ -1519,90 +1519,113 @@ xi.helm.onTrade = function(player, npc, trade, helmType, csid, func)
     -- HELM should remove invisible
     player:delStatusEffect(xi.effect.INVISIBLE)
 
-    if trade:hasItemQty(info.tool, 1) and trade:getItemCount() == 1 then
-        -- start event
-        local item  = pickItem(player, info)
-        local broke = doesToolBreak(player, info) and 1 or 0
-        local full  = (player:getFreeSlotsCount() == 0) and 1 or 0
+    -- start event
+    local item  = pickItem(player, info)
+    local broke = doesToolBreak(player, info) and 1 or 0
+    local full  = (player:getFreeSlotsCount() == 0) and 1 or 0
 
-        if os.time() > lastTrade + 3 then
-            if csid then
-                player:startEvent(csid, item, broke, full)
-            end
-
-            player:sendEmote(npc, info.animation, xi.emoteMode.MOTION, false)
-
-            -- WotG : The Price of Valor; Success does not award an item, but only KI.
-            if xi.wotg.helpers.helmTrade(player, helmType, broke) then
-                return
-            end
-
-            -- success! reward item and decrement number of remaining uses on the point
-            if item ~= 0 and full == 0 then
-                local qty = 1
-                if helmType == xi.helm.type.MINING then
-                    qty = xi.settings.main.MINING_YIELD_MULTIPLIER or 1
-                end
-
-                player:addItem(item, qty)
-
-                local uses = (npc:getLocalVar("uses") - 1) % 4
-                npc:setLocalVar("uses", uses)
-                if uses == 0 then
-                    movePoint(player, npc, zoneId, info)
-                end
-
-                if
-                    xi.events and
-                    xi.events.egg_hunt and
-                    xi.events.egg_hunt.enabledCheck() and
-                    xi.events.eggHunt.enabledCheck() and
-                    player:getVar("[EGGHUNT]DAILY_HELM") < vanaDay()
-                then
-                    player:timer(3000, function(playerArg)
-                        if npcUtil.giveItem(playerArg, math.random(xi.items.A_EGG, xi.items.Z_EGG)) then
-                            playerArg:setVar("[EGGHUNT]DAILY_HELM", vanaDay())
-                            return
-                        end
-                    end)
-                end
-
-                player:triggerRoeEvent(xi.roe.triggers.helmSuccess, { ["skillType"] = helmType })
-            end
-
-            -- quests and missions
-            if
-                helmType == xi.helm.type.HARVESTING and
-                player:getQuestStatus(xi.quest.log_id.AHT_URHGAN, xi.quest.id.ahtUrhgan.VANISHING_ACT) == QUEST_ACCEPTED and
-                not player:hasKeyItem(xi.ki.RAINBOW_BERRY) and
-                broke ~= 1 and
-                zoneId == xi.zone.WAJAOM_WOODLANDS
-            then
-                npcUtil.giveKeyItem(player, xi.ki.RAINBOW_BERRY)
-            end
-
-            -- AMK04
-            if xi.settings.main.ENABLE_AMK == 1 then
-                xi.amk.helpers.helmTrade(player, helmType, broke)
-            end
-
-            if type(func) == "function" then
-                func(player)
-            end
-
-            player:setLocalVar("[HELM]Last_Trade", os.time())
-        else
-            player:messageBasic(xi.msg.basic.WAIT_LONGER, 0, 0)
+    if os.time() > lastTrade + 3 then
+        -- If it broke, remove the item since there's no actual trade object for onTrigger
+        if broke == 1 then
+            player:removeItem(info.tool, 1)
         end
+
+        if csid then
+            player:startEvent(csid, item, broke, full)
+        end
+
+        player:sendEmote(npc, info.animation, xi.emoteMode.MOTION, false)
+
+        -- WotG : The Price of Valor; Success does not award an item, but only KI.
+        if xi.wotg.helpers.helmTrade(player, helmType, broke) then
+            return
+        end
+
+        -- success! reward item and decrement number of remaining uses on the point
+        if item ~= 0 and full == 0 then
+            local qty = 1
+            if helmType == xi.helm.type.MINING then
+                qty = xi.settings.main.MINING_YIELD_MULTIPLIER or 1
+            elseif helmType == xi.helm.type.HARVESTING then
+                qty = xi.settings.main.HARVESTING_YIELD_MULTIPLIER or 1
+            elseif helmType == xi.helm.type.LOGGING then
+                qty = xi.settings.main.LOGGING_YIELD_MULTIPLIER or 1
+            elseif helmType == xi.helm.type.EXCAVATION then
+                qty = xi.settings.main.EXCAVATION_YIELD_MULTIPLIER or 1
+            end
+
+            player:addItem(item, qty)
+
+            local uses = (npc:getLocalVar("uses") - 1) % 4
+            npc:setLocalVar("uses", uses)
+            if uses == 0 then
+                movePoint(player, npc, zoneId, info)
+            end
+
+            if
+                xi.events and
+                xi.events.egg_hunt and
+                xi.events.egg_hunt.enabledCheck() and
+                xi.events.eggHunt.enabledCheck() and
+                player:getVar("[EGGHUNT]DAILY_HELM") < vanaDay()
+            then
+                player:timer(3000, function(playerArg)
+                    if npcUtil.giveItem(playerArg, math.random(xi.items.A_EGG, xi.items.Z_EGG)) then
+                        playerArg:setVar("[EGGHUNT]DAILY_HELM", vanaDay())
+                        return
+                    end
+                end)
+            end
+
+            player:triggerRoeEvent(xi.roe.triggers.helmSuccess, { ["skillType"] = helmType })
+        end
+
+        -- quests and missions
+        if
+            helmType == xi.helm.type.HARVESTING and
+            player:getQuestStatus(xi.quest.log_id.AHT_URHGAN, xi.quest.id.ahtUrhgan.VANISHING_ACT) == QUEST_ACCEPTED and
+            not player:hasKeyItem(xi.ki.RAINBOW_BERRY) and
+            broke ~= 1 and
+            zoneId == xi.zone.WAJAOM_WOODLANDS
+        then
+            npcUtil.giveKeyItem(player, xi.ki.RAINBOW_BERRY)
+        end
+
+        -- AMK04
+        if xi.settings.main.ENABLE_AMK == 1 then
+            xi.amk.helpers.helmTrade(player, helmType, broke)
+        end
+
+        if type(func) == "function" then
+            func(player)
+        end
+
+        player:setLocalVar("[HELM]Last_Trade", os.time())
+    else
+        player:messageBasic(xi.msg.basic.WAIT_LONGER, 0, 0)
+    end
+end
+
+xi.helm.onTrade = function(player, npc, trade, helmType, csid, func)
+    local info   = xi.helm.helmInfo[helmType]
+    local zoneId = player:getZoneID()
+
+    if trade:hasItemQty(info.tool, 1) and trade:getItemCount() == 1 then
+        doGather(player, npc, helmType, csid, func)
     else
         player:messageSpecial(zones[zoneId].text[info.message], info.tool)
     end
 end
 
-xi.helm.onTrigger = function(player, helmType)
+xi.helm.onTrigger = function(player, npc, helmType, csid)
     local zoneId = player:getZoneID()
     local info = xi.helm.helmInfo[helmType]
-    player:messageSpecial(zones[zoneId].text[info.message], info.tool)
+
+    if player:hasItem(info.tool) then
+        doGather(player, npc, helmType, csid, nil)
+    else
+        player:messageSpecial(zones[zoneId].text[info.message], info.tool)
+    end
 end
 
 xi.helm.movePoint = function(target, zoneId, helmType)

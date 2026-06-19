@@ -2,15 +2,22 @@
 -- Area: Jugner Forest [S]
 --  NPC: Logging Point
 -----------------------------------
----@type TNpcEntity
+require("scripts/globals/helm")
+-----------------------------------
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
-    xi.helm.onTrade(player, npc, trade, xi.helmType.LOGGING, 901)
+    xi.helm.onTrade(player, npc, trade, xi.helm.type.LOGGING, 901)
 end
 
 entity.onTrigger = function(player, npc)
-    xi.helm.onTrigger(player, xi.helmType.LOGGING)
+    xi.helm.onTrigger(player, npc, xi.helm.type.LOGGING, 901)
+end
+
+entity.onEventUpdate = function(player, csid, option)
+end
+
+entity.onEventFinish = function(player, csid, option)
 end
 
 return entity
