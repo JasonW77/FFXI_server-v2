@@ -187,7 +187,18 @@ xi.helm.onTrade = function(player, npc, trade, helmType, csid, func)
 
         -- success! reward item and decrement number of remaining uses on the point
         if itemID ~= 0 then
-            player:addItem(itemID)
+            local multiplier = 1
+            if helmType == xi.helmType.HARVESTING then
+                multiplier = xi.settings.main.HARVESTING_YIELD_MULTIPLIER or 1
+            elseif helmType == xi.helmType.EXCAVATION then
+                multiplier = xi.settings.main.EXCAVATION_YIELD_MULTIPLIER or 1
+            elseif helmType == xi.helmType.LOGGING then
+                multiplier = xi.settings.main.LOGGING_YIELD_MULTIPLIER or 1
+            elseif helmType == xi.helmType.MINING then
+                multiplier = xi.settings.main.MINING_YIELD_MULTIPLIER or 1
+            end
+
+            player:addItem(itemID, multiplier)
 
             local uses = (npc:getLocalVar('uses') - 1) % 4
             npc:setLocalVar('uses', uses)

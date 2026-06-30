@@ -187,6 +187,10 @@ xi.settings.main =
     EXCAVATION_RATE         = 50, -- % chance to recieve an item from excavation.  Set between 0 and 100.
     LOGGING_RATE            = 50, -- % chance to recieve an item from logging.  Set between 0 and 100.
     MINING_RATE             = 50, -- % chance to recieve an item from mining.  Set between 0 and 100.
+    HARVESTING_YIELD_MULTIPLIER = 6, -- Multiplier for the number of items gained on a successful harvesting attempt.
+    EXCAVATION_YIELD_MULTIPLIER = 6, -- Multiplier for the number of items gained on a successful excavation attempt.
+    LOGGING_YIELD_MULTIPLIER    = 6, -- Multiplier for the number of items gained on a successful logging attempt.
+    MINING_YIELD_MULTIPLIER     = 6, -- Multiplier for the number of items gained on a successful mining attempt.
 
     HEALING_TP_CHANGE       = -100, -- Change in TP for each healing tick. Default is -100
 
