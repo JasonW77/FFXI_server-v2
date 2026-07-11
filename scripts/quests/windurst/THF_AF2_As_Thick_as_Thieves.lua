@@ -13,7 +13,7 @@
 -- qm3 (Saltvix)  : !pos -367.367 2.999 229.020 191
 -- qm4 (Grasswix) : !pos -375.379 -2.221 445.034 191
 -- qm5 (Eggblix)  : !pos -462.436 2.456 -141.171 191
--- qm2 (???)      : !pos -232.924 99.107 442.990 106
+-- qm3 (???)      : !pos -232.924 99.107 442.990 106
 -----------------------------------
 local dangrufID        = zones[xi.zone.DANGRUF_WADI]
 local northGustabergID = zones[xi.zone.NORTH_GUSTABERG]
@@ -265,7 +265,7 @@ quest.sections =
                 end,
             },
 
-            ['qm2'] =
+            ['qm3'] =
             {
                 onTrigger = function(player, npc)
                     local questProgress = quest:getVar(player, 'Prog')
