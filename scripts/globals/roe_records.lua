@@ -5261,8 +5261,15 @@ xi.roe.records =
     { -- Total Successful Harvesting Attempts
         trigger = xi.roeTrigger.HELM_SUCCESS,
         goal = 300,
-        reqs = { skillType = xi.helmType.HARVESTING },
         reward = { sparks = 2000, exp = 6000, accolades = 200 },
+    },
+
+    [118] =
+    { -- Total Suc. Harvesting Attempts II
+        trigger = xi.roeTrigger.HELM_SUCCESS,
+        goal = 30,
+        flags = set { 'repeat' },
+        reward = { sparks = 200, exp = 600, accolades = 20 },
     },
 
     -----------------------------------
