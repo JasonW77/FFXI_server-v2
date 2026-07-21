@@ -5254,6 +5254,18 @@ xi.roe.records =
     },
 
     -----------------------------------
+    -- Harvesting (General)
+    -----------------------------------
+
+    [61] =
+    { -- Total Successful Harvesting Attempts
+        trigger = xi.roeTrigger.HELM_SUCCESS,
+        goal = 300,
+        reqs = { skillType = xi.helmType.HARVESTING },
+        reward = { sparks = 2000, exp = 6000, accolades = 200 },
+    },
+
+    -----------------------------------
     -- Harvesting - Original Areas
     -----------------------------------
 
