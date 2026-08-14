@@ -1,0 +1,28 @@
+-- Samurai Trait Adjustments - Generated 2025-05-19 11:55:17
+
+REPLACE INTO `traits` (`traitid`, `name`, `job`, `level`, `rank`, `modifier`, `value`, `content_tag`, `meritid`) VALUES
+(9, 'auto regen', 12, 31, 1, 370, 1, NULL, 0),
+(14, 'store tp', 12, 10, 1, 73, 10, NULL, 0),
+(14, 'store tp', 12, 30, 2, 73, 15, NULL, 0),
+(14, 'store tp', 12, 50, 3, 73, 20, NULL, 0),
+(14, 'store tp', 12, 70, 4, 73, 25, NULL, 0),
+(14, 'store tp', 12, 90, 5, 73, 30, 'ABYSSEA', 0),
+(42, 'demon killer', 12, 40, 1, 234, 10, NULL, 0),
+(42, 'demon killer', 12, 86, 2, 234, 15, 'ABYSSEA', 0),
+(51, 'resist blind', 12, 5, 1, 243, 10, NULL, 0),
+(51, 'resist blind', 12, 25, 2, 243, 15, NULL, 0),
+(51, 'resist blind', 12, 45, 3, 243, 20, NULL, 0),
+(51, 'resist blind', 12, 65, 4, 243, 25, NULL, 0),
+(51, 'resist blind', 12, 81, 5, 243, 30, 'ABYSSEA', 0),
+(70, 'zanshin', 12, 20, 1, 306, 15, 'COP', 0),
+(70, 'zanshin', 12, 35, 2, 306, 25, 'COP', 0),
+(70, 'zanshin', 12, 50, 3, 306, 35, 'COP', 0),
+(70, 'zanshin', 12, 75, 4, 306, 45, 'COP', 0),
+(70, 'zanshin', 12, 95, 5, 306, 50, 'ABYSSEA', 0),
+(85, 'ikishoten', 12, 75, 1, 0, 0, 'TOAU', 2756),
+(86, 'overwhelm', 12, 75, 1, 0, 0, 'TOAU', 2758),
+(106, 'skillchain bonus', 12, 78, 1, 174, 10, 'ABYSSEA', 0),
+(106, 'skillchain bonus', 12, 88, 2, 174, 15, 'ABYSSEA', 0),
+(106, 'skillchain bonus', 12, 98, 3, 174, 20, 'ABYSSEA', 0),
+(129, 'damage limit+', 12, 40, 1, 1080, 10, NULL, 0),
+(129, 'damage limit+', 12, 80, 2, 1080, 20, NULL, 0);
