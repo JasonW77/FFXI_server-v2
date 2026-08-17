@@ -155,9 +155,13 @@ local function applyRoll(caster, target, inAbility, action, total, isDoubleup, c
     end
 
     -- Apply Additional Phantom Roll+ Buff
+    -- Trusts/NPCs have no player gear; skip getMaxGearMod to avoid Non-PC warnings (e.g. Qultada).
     local phantomBase = corsairRollMods[abilityId][2] -- Base increment buff
-    local phantomMult = caster:getMaxGearMod(xi.mod.PHANTOM_ROLL)
-    effectpower       = effectpower + (phantomBase * phantomMult)
+    local phantomMult = 0
+    if caster:getObjType() == xi.objType.PC then
+        phantomMult = caster:getMaxGearMod(xi.mod.PHANTOM_ROLL)
+    end
+    effectpower = effectpower + (phantomBase * phantomMult)
 
     -- Effect Power varies depending on COR level (Main vs Sub)
     local actorLevel  = utils.getActiveJobLevel(caster, xi.job.COR)
