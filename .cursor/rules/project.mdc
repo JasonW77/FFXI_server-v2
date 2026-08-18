@@ -5,24 +5,30 @@ alwaysApply: true
 
 # AirSkyBoat
 
-Open-source FFXI server emulator (LandSandBoat fork) with era-accuracy modules under `modules/era/`.
+FFXI server emulator (LandSandBoat fork). Era accuracy: `modules/era/`. Live-server QoL: `modules/custom/`.
+
+If you are an AI agent, read `documentation/ai_agents/README.md` first. Style: [LSB Development Guide](https://github.com/LandSandBoat/server/wiki/Development-Guide). Workflow: [CONTRIBUTING.md](https://github.com/LandSandBoat/server/blob/base/CONTRIBUTING.md).
 
 ## Do
 
-- Copy nearby scripts for syntax, enums, and formatting.
+- Copy nearby scripts for syntax, enums, and formatting. Ask when retail behavior is unclear.
 - Prefer Interaction Framework for new quest/mission NPC logic.
-- Cite sources in code comments (wiki, captures, SE posts, existing scripts).
-- Ask when retail behavior is unclear. Do not invent FFXI mechanics.
+- Cite sources in code comments or commit messages (wiki, captures, SE posts, patch dates). PR text is not enough.
+- Put live-server QoL in `modules/custom/` and enable it in local `modules/init.txt`.
+- Prefer small, focused changes. Ask before large rewrites or IF migrations.
 
 ## Do not
 
-- Guess retail timing, event IDs, drops, or job math.
-- Convert old NPC scripts to Interaction Framework without captures/wikis.
+- Invent FFXI mechanics, timings, event IDs, drops, or job math.
+- Use DarkStar (`dsp.*`), Windower, or unrelated Lua addon patterns. Match this tree.
+- Put non-retail QoL in `scripts/` or `modules/era/`.
+- Convert old NPC scripts to IF without captures and wiki triangulation.
 - Edit `settings/*.lua` except `settings/default/` (local settings are gitignored).
-- Touch `ext/` unless the task is explicitly a vendor/dependency change.
-- Commit secrets, `config.yaml` passwords, or live DB dumps.
-- Deploy, pull, or restart the live map process unless the user asked. Use the personal `ssh-live` skill for that.
+- Touch `ext/` unless the task is a vendor/dependency change.
+- Commit secrets, `tools/config.yaml`, `sql/backups/`, `modules/init.txt`, or live DB dumps.
+- Publish exploit details in issues/PRs/chat; flag them privately.
+- Deploy, pull, or restart the live map process unless asked. Use the personal `ssh-live` skill.
 
 ## Verify
 
-Remind the user to check changes in the game client, retail captures, event dumps, and wikis. See `documentation/ai_agents/README.md`.
+Mark unverified or 1-to-1 conversion work in comments. Remind the user to check the game client, retail captures, `../FFXI-EventsDump`, BG-Wiki, and FFXIclopedia.

@@ -10,6 +10,6 @@ Mirror `scripts/` under `modules/era/lua/`. Guard with `xi.module.isContentEnabl
 
 Tags: COP, TOAU, WOTG, ABYSSEA, SOA, ROV, TVR.
 
-Pattern: `require('modules/module_utils')`, `Module:new(...)`, `m:addOverride('xi.path.to.fn', function(...) super() ... end)`.
+Pattern: `require('modules/module_utils')`, `Module:new(...)`, `m:addOverride('xi.path.to.fn', function(...) super() ... end)`. Call `super()` only when wrapping; a full replace is OK when the era formula differs.
 
-Cite the patch/date being reverted. See `modules/README.md`.
+Document the patch/date being reverted and a source in the file header (wiki, capture, SE post). See `modules/README.md` and a sibling such as `modules/era/lua/globals/combat/tp.lua`.

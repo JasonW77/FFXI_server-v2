@@ -15,4 +15,6 @@ Map:
 - `CMessageSpecialPacket` 0x02A → `quest:messageSpecial(id)`
 - `CMessageNamePacket` 0x027 `MesNum` → dialogue IDs
 
-Event dump repo if present: `../FFXI-EventsDump/dumps/<Zone_Name>`.
+Event dumps: `../FFXI-EventsDump/dumps/<Zone_Name>`. If that repo is missing, fetch zone dumps from [sruon/FFXI-EventsDump](https://github.com/sruon/FFXI-EventsDump).
+
+Optional folders (`PathLog`, `ShopStock`, `KITrack`, `ActionView`) only when the task needs them. Do not invent event IDs.

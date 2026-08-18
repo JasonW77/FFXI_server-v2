@@ -1,0 +1,30 @@
+---
+description: Server QoL and non-retail changes go in modules/custom, not core or era
+alwaysApply: true
+---
+
+# Custom modules
+
+Live-server QoL belongs in `modules/custom/`. Enable each file in local `modules/init.txt` (gitignored; do not commit).
+
+## Do
+
+- One concern per file: `lua/`, `sql/`, `commands/`, or `cpp/`.
+- Name `Module:new(...)` to match the filename (snake_case). Prefix `custom_` only if the name could collide with core/era.
+- Override the LSB path with `addOverride`. Call `super()` when wrapping. Do not copy whole scripts.
+- Label the file as non-retail QoL at the top.
+
+## Do not
+
+- Edit `scripts/`, `src/`, `sql/`, or `modules/era/` for server flavor.
+- Put QoL in `modules/era/` (era is retail reverts only, with content tags).
+- Put missing retail features here; those go in core `scripts/` (upstream PR).
+
+```lua
+require('modules/module_utils')
+local m = Module:new('homepoint_heal')
+m:addOverride('xi.homepoint.onTrigger', function(player, csid, index)
+    super(player, csid, index)
+end)
+return m
+```

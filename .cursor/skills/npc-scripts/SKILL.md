@@ -18,8 +18,8 @@ Header:
 ```
 
 - Zone folder name + ID from `scripts/enum/zone.lua`.
-- Display name and coords from `sql/npc_list.sql`.
-- Keep existing Notes.
+- Display name is the **second** name in `sql/npc_list.sql` (what players see). Coords from `pos_x/y/z`.
+- Keep an existing Notes block. Do not strip it.
 
 Minimal stub when all quest logic is in IF:
 

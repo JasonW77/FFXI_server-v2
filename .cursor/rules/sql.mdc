@@ -1,13 +1,16 @@
 ---
-description: SQL data file conventions
+description: SQL conventions from the LSB Development Guide
 globs: "**/*.sql"
 alwaysApply: false
 ---
 
 # SQL
 
-- Edit the existing table file in `sql/` (or a module SQL under `modules/`). Do not add ad-hoc migration scripts unless asked.
-- Match nearby `INSERT` column order and quoting.
+Follow [LSB Development Guide — SQL](https://github.com/LandSandBoat/server/wiki/Development-Guide). Edit the existing table file in `sql/` (or module SQL under `modules/`). UTF-8 / utf8mb4.
+
+- Keep `INSERT INTO` uppercase. Backtick identifiers. Do not quote numeric fields. Do not break an `INSERT` mid-statement.
+- Match nearby column order. Spaces in names become `_`; hyphens allowed. Skill/spell/ability names are lowercase.
+- Comment additions that are not self-describing (`-- (Colossal Calamari) seashell`). Comment out placeholder rows; never ship fake item modifiers.
 - NPC display names and `pos_x/y/z` live in `sql/npc_list.sql`.
-- After SQL changes, the DB must be reimported or updated with `tools/dbtool.py`.
-- Do not rewrite entire dump files for one-row edits.
+- Schema changes need a `tools/migrations/` script if asked. After data edits, update with `tools/dbtool.py`.
+- Do not rewrite entire dumps for one-row edits. Do not commit `sql/backups/` or `tools/config.yaml`.

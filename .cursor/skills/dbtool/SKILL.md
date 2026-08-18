@@ -5,7 +5,7 @@ description: Run LandSandBoat database backup, update, and migration via tools/d
 
 # dbtool
 
-From `tools/`, Python 3 + `tools/requirements.txt`. Connects using `settings/network.lua`.
+From `tools/`, Python 3 + `tools/requirements.txt`. Connects using `settings/network.lua`. See `tools/README.md`.
 
 ```
 python dbtool.py              # interactive
@@ -16,4 +16,6 @@ python dbtool.py update full
 python dbtool.py migrate
 ```
 
-Do not run destructive DB commands unless the user asked. Do not commit `sql/backups/` or local settings.
+After SQL edits, tell the user the DB must be updated. Do not run `update`, restore, or other destructive commands unless they asked.
+
+Do not commit `sql/backups/` or `tools/config.yaml`. Character-data migrations live in `tools/migrations/` and are applied by dbtool.

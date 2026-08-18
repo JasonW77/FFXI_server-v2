@@ -1,13 +1,27 @@
 ---
-description: C++ conventions for map/login/search/world
+description: C++ conventions from the LSB Development Guide
 globs: "**/*.{cpp,h,hpp}"
 alwaysApply: false
 ---
 
 # C++
 
-- C++20, Allman braces, 4-space indent, LF, UTF-8 BOM on `*.{cpp,h}` (`.clang-format`, `.editorconfig`).
-- Format with the repo clang-format (clang-format-20). Do not hand-reflow.
-- Bind new Lua APIs next to existing helpers in `src/map/lua/`.
-- Prefer existing types in `src/common/` over new utilities.
-- Do not change `ext/` third-party code unless asked.
+Follow [LSB Development Guide — C++](https://github.com/LandSandBoat/server/wiki/Development-Guide). C++20, WebKit + Allman, 4 spaces, LF, UTF-8 BOM on `*.{cpp,h}`. Format with `python tools/run_clang_format.py` (clang-format-20). Do not hand-reflow. `ColumnLimit` is 0.
+
+- `UpperCamelCase` namespaced functions/classes. `UPPER_SNAKE_CASE` enums. `lowerCamelCase` everything else.
+- Prefer STL. Be `const`. Be careful with `auto`. Exceptions only when data is at risk or the case must never happen.
+- Pointers left-aligned (`CBigType*`). Braces on every `if`/`else`. `static_cast`, not C-style. `dynamic_cast` for downcasts.
+- Bind new Lua APIs next to existing helpers in `src/map/lua/`. Prefer types in `src/common/`.
+- Wrap lambdas in `// clang-format off` / `on`. Do not change `ext/`, `.clang-format`, or `.clang-tidy` unless asked.
+
+```cpp
+// Correct
+if (auto PChar = dynamic_cast<CCharEntity*>(baseEntity))
+{
+    PChar->DoSomething();
+}
+
+// Wrong
+if (x == 5) { foo(); }
+uint32 param = (uint32)input;
+```

@@ -5,7 +5,7 @@ description: Add or change AirSkyBoat era-accuracy overrides under modules/era. 
 
 # Era module
 
-Read `modules/README.md` and copy a sibling file under `modules/era/lua/`.
+Read `modules/README.md` and copy a sibling file under `modules/era/lua/`. Header must name the patch/date and a source (see `modules/era/lua/globals/combat/tp.lua`).
 
 ```lua
 require('modules/module_utils')
@@ -22,7 +22,8 @@ end)
 return m
 ```
 
+- Mirror the `scripts/` path under `modules/era/lua/`.
 - Override the LSB path; do not fork a full copy of the script unless required.
-- Call `super()` when the era change is a wrap, not a full replace.
-- Name modules `era_<area>_<thing>`.
-- Document the retail date/patch being reverted at the top.
+- Call `super()` when wrapping. Full replace is OK when the era formula differs.
+- Match sibling naming in that folder (`era_job_utils_<job>` next to job utils; content-tag prefixes like `soa_tp_gain` exist).
+- Tags: COP, TOAU, WOTG, ABYSSEA, SOA, ROV, TVR.

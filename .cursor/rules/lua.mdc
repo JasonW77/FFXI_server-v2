@@ -1,14 +1,32 @@
 ---
-description: Lua script conventions for LSB/AirSkyBoat
+description: Lua conventions from the LSB Development Guide
 globs: "**/*.lua"
 alwaysApply: false
 ---
 
 # Lua
 
-- 4-space indent, single quotes, LF, no semicolons (see `.editorconfig`).
-- Use `xi.*` enums (`xi.zone`, `xi.item`, `xi.ki`, `xi.questStatus`). Do not hardcode IDs when an enum exists.
-- NPC/mob scripts: `---@type TNpcEntity` / `TMobEntity`, `local entity = {}`, `return entity`.
-- Enums in `scripts/enum/` attach to `xi` and must not be `require`d.
-- Match surrounding file style. Do not reformat unrelated Lua.
-- Keep existing header notes. Add `!pos` on NPC headers when touching the file.
+Follow [LSB Development Guide — Lua](https://github.com/LandSandBoat/server/wiki/Development-Guide). 4-space indent, single quotes, LF, max 200 cols (`.editorconfig`).
+
+- `camelCase` locals/functions. `xi.*` enums: `xi.zone`, `xi.item` (not `xi.items`), `xi.ki`, `xi.questStatus` (not bare `QUEST_AVAILABLE`).
+- Enums in `scripts/enum/` attach to `xi`. Do not `require` them.
+- Prefer `local`. Cached names must still convey meaning. Use `scripts/globals/npc_util.lua` helpers.
+- Allman multi-line tables, trailing comma. No semicolons. No extra `if` parens. No one-line `if`/`function`.
+- Long conditions: `and`/`or` at end of line, `then` on its own line. `not` before, `and`/`or` after.
+- NPC/mob: `---@type TNpcEntity` / `TMobEntity`, `local entity = {}`, `return entity`.
+- Keep header notes. Add `!pos` when touching an NPC file. Match surrounding style; do not reformat unrelated Lua.
+
+```lua
+-- Correct
+if
+    condition1 and
+    condition2 or
+    not condition3
+then
+    trigger()
+end
+
+-- Wrong: extra parens, operators leading, one-liner
+if (condition1)
+    and condition2 then trigger() end
+```

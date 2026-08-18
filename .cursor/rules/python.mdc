@@ -1,0 +1,15 @@
+---
+description: Python conventions for LSB tools
+globs: "tools/**/*.py"
+alwaysApply: false
+---
+
+# Python (tools/)
+
+Follow [LSB Development Guide — Python](https://github.com/LandSandBoat/server/wiki/Development-Guide). Python 3, `lower_snake_case`. Format with Black; lint with Pylint (`tools/requirements.txt`).
+
+- Run tools from `tools/`. DB settings come from `settings/network.lua`.
+- `dbtool.py`: backup / update / migrate. Do not run destructive DB commands unless asked.
+- Character-data migrations live in `tools/migrations/`.
+- Do not commit `tools/config.yaml` or `sql/backups/`.
+- Do not edit `dev.docker-compose.yml`; copy to `docker-compose.yml` if local Docker changes are needed.
