@@ -1,6 +1,7 @@
 -----------------------------------
 -- Kupofried's EXP Aura
 -- EXP_BONUS: +20% static value
+-- CAPACITY_BONUS: +20% static value
 -- Stacks with other forms of dedication
 -----------------------------------
 ---@type TEffect
@@ -8,6 +9,7 @@ local effectObject = {}
 
 effectObject.onEffectGain = function(target, effect)
     effect:addMod(xi.mod.EXP_BONUS, effect:getPower())
+    effect:addMod(xi.mod.CAPACITY_BONUS, effect:getPower())
 end
 
 effectObject.onEffectTick = function(target, effect)

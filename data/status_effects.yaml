@@ -5662,6 +5662,7 @@ status_effects:
     flags:
       - death
       - no_cancel
+      - hide_timer
 
   # ACC Aura, Accuracy+24, Ranged accuracy+24, and DEX+5 at lvl 99, stacks with player Indi/Geo PRECISION.
   trust_aura_acc:

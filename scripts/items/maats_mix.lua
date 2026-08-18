@@ -1,0 +1,17 @@
+-----------------------------------
+-- ID: 6598
+-- Item: Maat's Mix
+-- Grants 10 Job Points to the current job
+-----------------------------------
+---@type TItem
+local itemObject = {}
+
+itemObject.onItemCheck = function(target, item, caster)
+    return xi.itemUtils.jobPointItemOnItemCheck(target)
+end
+
+itemObject.onItemUse = function(target)
+    xi.itemUtils.jobPointItemOnItemUse(target, 10)
+end
+
+return itemObject
