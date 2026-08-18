@@ -42,6 +42,7 @@ custom/lua/new_player_linkshell.lua
 custom/lua/homepoint_heal.lua
 custom/lua/city_rest_quickening.lua
 custom/lua/land_kings.lua
+custom/lua/helm_yield_multiplier.lua
 #custom/sql/starter_zone_fast_repops.sql
 #custom/sql/mob_spawn_points.sql
 #custom/sql/faster_repop_times.sql

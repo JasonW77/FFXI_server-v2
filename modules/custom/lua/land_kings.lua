@@ -1,5 +1,5 @@
 -----------------------------------
--- Land Kings
+-- Non-retail QoL: Land Kings
 -- Timed NQ (1-4 hours), no idle despawn, HQ lottery of NQ kills.
 -- 25% HQ after each NQ kill, 100% after 4 NQ kills in a row.
 -- Pop items and ??? trades are disabled.

@@ -7,7 +7,7 @@
 -----------------------------------
 require('modules/module_utils')
 -----------------------------------
-local m = Module:new('custom_city_rest_quickening')
+local m = Module:new('city_rest_quickening')
 
 local sprintPower    = 5
 local sprintDuration = 3600 -- seconds; setDuration uses milliseconds
