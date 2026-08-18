@@ -26,7 +26,12 @@ Minimal stub when all quest logic is in IF:
 ```lua
 ---@type TNpcEntity
 local entity = {}
-entity.onTrigger = function(player, npc) end
-entity.onTrade = function(player, npc, trade) end
+
+entity.onTrigger = function(player, npc)
+end
+
+entity.onTrade = function(player, npc, trade)
+end
+
 return entity
 ```

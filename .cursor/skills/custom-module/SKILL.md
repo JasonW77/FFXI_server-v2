@@ -7,11 +7,13 @@ description: Add or change live-server QoL under modules/custom. Use when the ch
 
 Read `modules/README.md` and a sibling under `modules/custom/` (Lua example: `homepoint_heal.lua`). LSB module overview: https://landsandboat-server.mintlify.app/modules/overview
 
-Do not edit `scripts/`, `src/`, `sql/`, or `modules/era/` for this kind of change. Era modules are retail reverts only.
+Do not edit `scripts/`, `src/`, repo-root `sql/`, or `modules/era/` for this kind of change. Custom SQL belongs in `modules/custom/sql/`. Era modules are retail reverts only.
 
 ```lua
-require('modules/module_utils')
 -----------------------------------
+-- Non-retail QoL: Home Points restore HP/MP (single-player style).
+-----------------------------------
+require('modules/module_utils')
 local m = Module:new('homepoint_heal')
 
 m:addOverride('xi.homepoint.onTrigger', function(player, csid, index)

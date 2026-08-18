@@ -12,4 +12,3 @@ Follow [LSB Development Guide — Python](https://github.com/LandSandBoat/server
 - `dbtool.py`: backup / update / migrate. Do not run destructive DB commands unless asked.
 - Character-data migrations live in `tools/migrations/`.
 - Do not commit `tools/config.yaml` or `sql/backups/`.
-- Do not edit `dev.docker-compose.yml`; copy to `docker-compose.yml` if local Docker changes are needed.

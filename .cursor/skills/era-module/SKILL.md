@@ -8,6 +8,10 @@ description: Add or change AirSkyBoat era-accuracy overrides under modules/era. 
 Read `modules/README.md` and copy a sibling file under `modules/era/lua/`. Header must name the patch/date and a source (see `modules/era/lua/globals/combat/tp.lua`).
 
 ```lua
+-----------------------------------
+-- Module: Monk Job Adjustments
+-- Revert Focus to flat +20 ACC (pre-RoV). See BG-Wiki Focus.
+-----------------------------------
 require('modules/module_utils')
 local moduleName = 'era_job_utils_monk'
 
@@ -19,6 +23,7 @@ local m = Module:new(moduleName)
 m:addOverride('xi.job_utils.monk.useFocus', function(player, target, ability)
     -- era behavior
 end)
+
 return m
 ```
 

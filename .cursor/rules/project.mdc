@@ -24,7 +24,7 @@ If you are an AI agent, read `documentation/ai_agents/README.md` first. Style: [
 - Put non-retail QoL in `scripts/` or `modules/era/`.
 - Convert old NPC scripts to IF without captures and wiki triangulation.
 - Edit `settings/*.lua` except `settings/default/` (local settings are gitignored).
-- Touch `ext/` unless the task is a vendor/dependency change.
+- Touch `ext/` or `dev.docker-compose.yml` unless asked (copy Compose changes to `docker-compose.yml`).
 - Commit secrets, `tools/config.yaml`, `sql/backups/`, `modules/init.txt`, or live DB dumps.
 - Publish exploit details in issues/PRs/chat; flag them privately.
 - Deploy, pull, or restart the live map process unless asked. Use the personal `ssh-live` skill.

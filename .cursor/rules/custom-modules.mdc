@@ -16,15 +16,20 @@ Live-server QoL belongs in `modules/custom/`. Enable each file in local `modules
 
 ## Do not
 
-- Edit `scripts/`, `src/`, `sql/`, or `modules/era/` for server flavor.
+- Edit `scripts/`, `src/`, repo-root `sql/`, or `modules/era/` for server flavor. Custom SQL belongs in `modules/custom/sql/`.
 - Put QoL in `modules/era/` (era is retail reverts only, with content tags).
 - Put missing retail features here; those go in core `scripts/` (upstream PR).
 
 ```lua
+-----------------------------------
+-- Non-retail QoL: Home Points restore HP/MP (single-player style).
+-----------------------------------
 require('modules/module_utils')
 local m = Module:new('homepoint_heal')
+
 m:addOverride('xi.homepoint.onTrigger', function(player, csid, index)
     super(player, csid, index)
 end)
+
 return m
 ```
