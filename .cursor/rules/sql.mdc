@@ -1,0 +1,13 @@
+---
+description: SQL data file conventions
+globs: "**/*.sql"
+alwaysApply: false
+---
+
+# SQL
+
+- Edit the existing table file in `sql/` (or a module SQL under `modules/`). Do not add ad-hoc migration scripts unless asked.
+- Match nearby `INSERT` column order and quoting.
+- NPC display names and `pos_x/y/z` live in `sql/npc_list.sql`.
+- After SQL changes, the DB must be reimported or updated with `tools/dbtool.py`.
+- Do not rewrite entire dump files for one-row edits.

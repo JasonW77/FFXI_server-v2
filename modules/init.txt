@@ -40,10 +40,12 @@ custom/commands/
 #custom/lua/test_npcs_in_gm_home.lua
 custom/lua/new_player_linkshell.lua
 custom/lua/homepoint_heal.lua
+custom/lua/land_kings.lua
 #custom/sql/starter_zone_fast_repops.sql
 #custom/sql/mob_spawn_points.sql
 #custom/sql/faster_repop_times.sql
 custom/sql/server_ip_adjustment.sql
+custom/sql/land_kings_remove_pop_items.sql
 custom/sql/1_warrior_trait_adjustments.sql
 custom/sql/2_monk_trait_adjustments.sql
 custom/sql/3_white_mage_trait_adjustments.sql

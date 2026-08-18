@@ -1,0 +1,13 @@
+---
+description: C++ conventions for map/login/search/world
+globs: "**/*.{cpp,h,hpp}"
+alwaysApply: false
+---
+
+# C++
+
+- C++20, Allman braces, 4-space indent, LF, UTF-8 BOM on `*.{cpp,h}` (`.clang-format`, `.editorconfig`).
+- Format with the repo clang-format (clang-format-20). Do not hand-reflow.
+- Bind new Lua APIs next to existing helpers in `src/map/lua/`.
+- Prefer existing types in `src/common/` over new utilities.
+- Do not change `ext/` third-party code unless asked.

@@ -1,0 +1,15 @@
+---
+description: Era-accuracy Lua modules
+globs: "modules/era/**/*.lua"
+alwaysApply: false
+---
+
+# Era modules
+
+Mirror `scripts/` under `modules/era/lua/`. Guard with `xi.module.isContentEnabled(tag)` and return `{ name = moduleName }` when the later expansion is enabled.
+
+Tags: COP, TOAU, WOTG, ABYSSEA, SOA, ROV, TVR.
+
+Pattern: `require('modules/module_utils')`, `Module:new(...)`, `m:addOverride('xi.path.to.fn', function(...) super() ... end)`.
+
+Cite the patch/date being reverted. See `modules/README.md`.

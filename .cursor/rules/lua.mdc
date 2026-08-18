@@ -1,0 +1,14 @@
+---
+description: Lua script conventions for LSB/AirSkyBoat
+globs: "**/*.lua"
+alwaysApply: false
+---
+
+# Lua
+
+- 4-space indent, single quotes, LF, no semicolons (see `.editorconfig`).
+- Use `xi.*` enums (`xi.zone`, `xi.item`, `xi.ki`, `xi.questStatus`). Do not hardcode IDs when an enum exists.
+- NPC/mob scripts: `---@type TNpcEntity` / `TMobEntity`, `local entity = {}`, `return entity`.
+- Enums in `scripts/enum/` attach to `xi` and must not be `require`d.
+- Match surrounding file style. Do not reformat unrelated Lua.
+- Keep existing header notes. Add `!pos` on NPC headers when touching the file.
