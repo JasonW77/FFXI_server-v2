@@ -16,10 +16,13 @@ If you are an AI agent, read `documentation/ai_agents/README.md` first. Style: [
 - Cite sources in code comments or commit messages (wiki, captures, SE posts, patch dates). PR text is not enough.
 - Put live-server QoL in `modules/custom/` and enable it in local `modules/init.txt`.
 - Prefer small, focused changes. Ask before large rewrites or IF migrations.
+- Before an LSB PR, diff against current `upstream/base`, not `LIVE`. Search GitHub for an existing core fix first.
 
 ## Do not
 
-- Invent FFXI mechanics, timings, event IDs, drops, or job math.
+- Invent FFXI mechanics, timings, event IDs, drops, job math, message IDs, or item animations.
+- Rely on wiki alone for message IDs, animation IDs, or fail-path packets. Leave those unverified / TODO until a retail packet exists.
+- Add `Co-authored-by: Cursor` (or other agent trailers) on commits destined for LandSandBoat.
 - Use DarkStar (`dsp.*`), Windower, or unrelated Lua addon patterns. Match this tree.
 - Put non-retail QoL in `scripts/` or `modules/era/`.
 - Convert old NPC scripts to IF without captures and wiki triangulation.

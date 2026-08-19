@@ -11,6 +11,7 @@ Follow [LSB Development Guide — Lua](https://github.com/LandSandBoat/server/wi
 - `camelCase` locals/functions. `xi.*` enums: `xi.zone`, `xi.item` (not `xi.items`), `xi.ki`, `xi.questStatus` (not bare `QUEST_AVAILABLE`).
 - Enums in `scripts/enum/` attach to `xi`. Do not `require` them.
 - Prefer `local`. Cached names must still convey meaning. Use `scripts/globals/npc_util.lua` helpers.
+- File-private constants stay `local` (`local jobPointsMax = 500`). Do not attach one-off values to `xi.itemUtils` / `xi.*` unless other scripts need them.
 - Allman multi-line tables, trailing comma. No semicolons. No extra `if` parens. No one-line `if`/`function`.
 - Long conditions: `and`/`or` at end of line, `then` on its own line. `not` before, `and`/`or` after.
 - NPC/mob: `---@type TNpcEntity` / `TMobEntity`, `local entity = {}`, `return entity`.
