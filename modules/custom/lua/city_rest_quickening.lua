@@ -1,9 +1,10 @@
 -----------------------------------
 -- Custom QoL: rest in a city grants Sprint movement speed.
 -- Inspired by Super Kupower Swift Shoes. Not retail.
--- Full HP in a city after a heal tick: Sprint +5 for 60 minutes
+-- /heal at full HP in a city: Sprint +5 for 60 minutes
 -- (same additive speed as Sprinter's Shoes). Stripped when leaving town.
 -- Uses Sprint, not Quickening, so shoes and jig are left alone.
+-- Shows the Quickening icon; effect 161 has no client graphic.
 -----------------------------------
 require('modules/module_utils')
 -----------------------------------
@@ -21,30 +22,13 @@ local isInCity = function(player)
     return bit.band(zone:getTypeMask(), xi.zoneType.CITY) ~= 0
 end
 
-m:addOverride('xi.effects.sprint.onEffectGain', function(target, effect)
-    super(target, effect)
-    target:addMod(xi.mod.MOVE_SPEED_QUICKENING, effect:getPower())
-end)
-
-m:addOverride('xi.effects.sprint.onEffectLose', function(target, effect)
-    target:delMod(xi.mod.MOVE_SPEED_QUICKENING, effect:getPower())
-    super(target, effect)
-end)
-
-m:addOverride('xi.effects.healing.onEffectTick', function(target, effect)
-    super(target, effect)
-
+local tryGrantTownSprint = function(target)
     if
         not target:isPC() or
-        not target:hasStatusEffect(xi.effect.HEALING) or
         not isInCity(target) or
         target:getHPP() < 100 or
         target:hasStatusEffect(xi.effect.DISEASE)
     then
-        return
-    end
-
-    if effect:getTickCount() <= 1 then
         return
     end
 
@@ -55,8 +39,36 @@ m:addOverride('xi.effects.healing.onEffectTick', function(target, effect)
         return
     end
 
-    target:addStatusEffect(xi.effect.SPRINT, { power = sprintPower, duration = sprintDuration, origin = target })
-    target:messageBasic(xi.msg.basic.GAINS_EFFECT_OF_STATUS, xi.effect.SPRINT)
+    if target:addStatusEffect(xi.effect.SPRINT, {
+        power    = sprintPower,
+        duration = sprintDuration,
+        origin   = target,
+        icon     = xi.effect.QUICKENING,
+    })
+    then
+        target:messageBasic(xi.msg.basic.GAINS_EFFECT_OF_STATUS, xi.effect.QUICKENING)
+    end
+end
+
+-- effect:addMod before SetOwner so C++ applies and removes the speed (same pattern as era composure).
+m:addOverride('xi.effects.sprint.onEffectGain', function(target, effect)
+    super(target, effect)
+    effect:addMod(xi.mod.MOVE_SPEED_QUICKENING, effect:getPower())
+end)
+
+m:addOverride('xi.effects.healing.onEffectGain', function(target, effect)
+    super(target, effect)
+    tryGrantTownSprint(target)
+end)
+
+m:addOverride('xi.effects.healing.onEffectTick', function(target, effect)
+    super(target, effect)
+
+    if not target:hasStatusEffect(xi.effect.HEALING) then
+        return
+    end
+
+    tryGrantTownSprint(target)
 end)
 
 m:addOverride('xi.player.onGameIn', function(player, firstLogin, zoning)
