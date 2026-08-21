@@ -5324,9 +5324,10 @@ void DistributeCapacityPoints(CCharEntity* PChar, CMobEntity* PMob)
     //       Ra'Kaznar, Escha, and Reisenjima reduce party penalty for capacity points earned.
     ZONEID zone     = PChar->loc.zone->GetID();
     uint8  mobLevel = PMob->GetMLevel();
+    const auto capacityChainWindow = std::chrono::seconds(settings::get<uint32>("map.CAPACITY_CHAIN_WINDOW"));
 
     PChar->ForAlliance(
-        [&PMob, &zone, &mobLevel](CBattleEntity* PPartyMember)
+        [&PMob, &zone, &mobLevel, capacityChainWindow](CBattleEntity* PPartyMember)
         {
             CCharEntity* PMember = dynamic_cast<CCharEntity*>(PPartyMember);
 
@@ -5367,13 +5368,13 @@ void DistributeCapacityPoints(CCharEntity* PChar, CMobEntity* PMob)
                 else
                 {
                     // TODO: Capacity Chain Timer is reduced after Chain 30
-                    PMember->capacityChain.chainTime   = timer::now() + 30s;
+                    PMember->capacityChain.chainTime   = timer::now() + capacityChainWindow;
                     PMember->capacityChain.chainNumber = 1;
                 }
 
                 if (chainActive)
                 {
-                    PMember->capacityChain.chainTime = timer::now() + 30s;
+                    PMember->capacityChain.chainTime = timer::now() + capacityChainWindow;
                 }
 
                 capacityPoints = AddCapacityBonus(PMember, capacityPoints);

@@ -78,6 +78,10 @@ xi.settings.map =
     -- Capacity Point Settings
     CAPACITY_RATE = 1.0,
 
+    -- Seconds allowed to continue a Capacity Point chain after a qualifying kill.
+    -- Retail floor is ~30s; increase for QoL (e.g. 120 = 2 minutes).
+    CAPACITY_CHAIN_WINDOW = 30,
+
     -- For old fame calculation use .25
     FAME_MULTIPLIER = 1.00,
 
