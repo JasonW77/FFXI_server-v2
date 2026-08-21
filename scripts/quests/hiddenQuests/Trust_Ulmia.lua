@@ -28,10 +28,10 @@ quest.sections =
             return xi.settings.main.ENABLE_TRUST_QUESTS == 1 and
                 xi.trust.hasPermit(player) and
                 not player:hasSpell(xi.magic.spell.ULMIA) and
-                -- On Dawn, but past "the boss"
-                (player:getCurrentMission(xi.mission.log_id.COP) > xi.mission.id.cop.DAWN and
-                xi.mission.getVar(player, xi.mission.log_id.COP, xi.mission.id.cop.DAWN, 'Status') >= 2)
-                -- TODO: Additional conditions
+                -- Complete Dawn. Status is cleared on mission complete, so do not require Mission[6][840]Status.
+                -- SE: https://forum.square-enix.com/ffxi/threads/38761-About-the-Trust-Initiative
+                -- TODO: Block while Storms of Fate is in progress (Misareaux CS through Bahamut BF)
+                player:hasCompletedMission(xi.mission.log_id.COP, xi.mission.id.cop.DAWN)
         end,
 
         [xi.zone.MISAREAUX_COAST] =

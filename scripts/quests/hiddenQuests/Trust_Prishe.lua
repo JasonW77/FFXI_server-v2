@@ -51,9 +51,9 @@ quest.sections =
             return xi.settings.main.ENABLE_TRUST_QUESTS == 1 and
                 xi.trust.hasPermit(player) and
                 not player:hasSpell(xi.magic.spell.PRISHE) and
-                (player:getCurrentMission(xi.mission.log_id.COP) > xi.mission.id.cop.DAWN and
-                xi.mission.getVar(player, xi.mission.log_id.COP, xi.mission.id.cop.DAWN, 'Status') >= 5)
-                -- TODO: Additional conditions
+                -- Complete Dawn. Status is cleared on mission complete, so do not require Mission[6][840]Status.
+                -- SE: https://forum.square-enix.com/ffxi/threads/38761-About-the-Trust-Initiative
+                player:hasCompletedMission(xi.mission.log_id.COP, xi.mission.id.cop.DAWN)
         end,
 
         [xi.zone.TAVNAZIAN_SAFEHOLD] =
