@@ -19,6 +19,7 @@ Live-server QoL belongs in `modules/custom/`. Enable each file in local `modules
 - Edit `scripts/`, `src/`, repo-root `sql/`, or `modules/era/` for server flavor. Custom SQL belongs in `modules/custom/sql/`.
 - Put QoL in `modules/era/` (era is retail reverts only, with content tags).
 - Put missing retail features here; those go in core `scripts/` (upstream PR).
+- Leave HELM yield multipliers, city rest sprint, land-king QoL, and similar live flavor in core after a cleanup pass — move them here instead.
 
 ```lua
 -----------------------------------

@@ -31,3 +31,4 @@ return m
 - Document that it is non-retail QoL at the top.
 - Add the path to local `modules/init.txt` (gitignored; do not commit).
 - Missing retail features belong in core `scripts/`, not here.
+- Live flavor that landed in core by mistake (HELM yields, etc.) should be moved here, not left in `scripts/`.

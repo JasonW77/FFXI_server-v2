@@ -9,6 +9,12 @@ FFXI server emulator (LandSandBoat fork). Era accuracy: `modules/era/`. Live-ser
 
 If you are an AI agent, read `documentation/ai_agents/README.md` first. Style: [LSB Development Guide](https://github.com/LandSandBoat/server/wiki/Development-Guide). Workflow: [CONTRIBUTING.md](https://github.com/LandSandBoat/server/blob/base/CONTRIBUTING.md).
 
+## Remotes
+
+- `origin` → live fork (`LIVE` / FFXI_server-v2). Do not open LSB PRs from here.
+- `upstream` → `LandSandBoat/server` (`base`).
+- `lsb-fork` → `JasonW77/lsb-server` for upstream PR branches.
+
 ## Do
 
 - Copy nearby scripts for syntax, enums, and formatting. Ask when retail behavior is unclear.
@@ -17,14 +23,16 @@ If you are an AI agent, read `documentation/ai_agents/README.md` first. Style: [
 - Put live-server QoL in `modules/custom/` and enable it in local `modules/init.txt`.
 - Prefer small, focused changes. Ask before large rewrites or IF migrations.
 - Before an LSB PR, diff against current `upstream/base`, not `LIVE`. Search GitHub for an existing core fix first.
+- Keep LSB commit **subject ≤ 72 characters** (CI Sanity Checks fails otherwise).
 
 ## Do not
 
 - Invent FFXI mechanics, timings, event IDs, drops, job math, message IDs, or item animations.
 - Rely on wiki alone for message IDs, animation IDs, or fail-path packets. Leave those unverified / TODO until a retail packet exists.
-- Add `Co-authored-by: Cursor` (or other agent trailers) on commits destined for LandSandBoat.
+- **Never** add `Co-authored-by: Cursor` (or other agent trailers). Cursor may inject it on commit; strip before push. LSB reviewers reject these.
 - Use DarkStar (`dsp.*`), Windower, or unrelated Lua addon patterns. Match this tree.
-- Put non-retail QoL in `scripts/` or `modules/era/`.
+- Put non-retail QoL in `scripts/` or `modules/era/` (example: HELM yield multipliers belong in `modules/custom/`).
+- Treat `scripts/zones/**/IDs.lua` numeric shifts as “drive-by formatting.” On this live client they may be intentional DAT/message offsets (boxes/item text). Ask before reverting.
 - Convert old NPC scripts to IF without captures and wiki triangulation.
 - Edit `settings/*.lua` except `settings/default/` (local settings are gitignored).
 - Touch `ext/` or `dev.docker-compose.yml` unless asked (copy Compose changes to `docker-compose.yml`).

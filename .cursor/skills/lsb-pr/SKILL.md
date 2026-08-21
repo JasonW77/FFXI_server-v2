@@ -18,19 +18,36 @@ Read `documentation/ai_agents/README.md` and the PR template checkboxes. Leave r
 
 ## Commits
 
-Do not include `Co-authored-by: Cursor` (or other agent trailers). LSB reviewers reject them.
+Hard rules:
 
-Cursor's `git commit` wrapper re-adds that trailer. After committing, check `git log -1 --format=%B`. If it is present, strip it with `git filter-branch -f --msg-filter "sed '/Co-authored-by: Cursor/d'" HEAD~1..HEAD` (set `FILTER_BRANCH_SQUELCH_WARNING=1`). Do not `--no-verify`.
+- **Subject ≤ 72 characters** (Sanity Checks fails longer titles).
+- **Never** include `Co-authored-by: Cursor` (or other agent trailers). Reviewers reject them.
+
+Cursor's `git commit` wrapper often re-adds that trailer. After every commit:
+
+```
+git log -1 --format=%B
+git log -1 --format=%s   # confirm length ≤ 72
+```
+
+If the trailer is present, strip it before push. On Windows (path spaces break `sed`), use the skill script:
+
+```
+FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch -f --msg-filter "python .cursor/skills/lsb-pr/scripts/strip_cursor_trailer.py" HEAD~1..HEAD
+```
+
+Run from the PR worktree; adjust the python path if the worktree is outside this repo. Do not `--no-verify`.
 
 Push with `--force-with-lease` only to the unmerged PR branch on `lsb-fork`. Never force-push `LIVE`.
 
 ## Review replies
 
 - Fix: make the smallest change, reply on the thread, do not resolve it.
-- Capture ask: say we do not have it; leave the guessed value or `0` plus a TODO. Do not copy a nearby potion/food animation.
+- Capture ask: say we do not have a retail client if true; leave the guessed value or `0` plus a TODO. Do not copy a nearby potion/food animation.
+- When a reviewer posts capture dumps, **apply them on the same PR** (parse → patch → push → comment with IDs). Do not wait for them to fill in values.
 - File-private constants stay `local`. Do not hang them on `xi.itemUtils`.
 - If they closed in favor of another PR, stop. Do not keep pushing the superseded branch.
 
 ## Captures
 
-Item use: packetviewer action `0x028` (animation), `0x029`/`0x02A` (unable-to-use message), caplog for the printed text. See the `retail-captures` skill.
+Item use: packetviewer `0x028` (animation + success message), `0x029`/`0x02A` (unable-to-use), caplog for printed text. Silent refuse may be `onItemCheck` `-1` (`RefuseSilently`) when there is no fail `0x029`. See the `retail-captures` skill.
