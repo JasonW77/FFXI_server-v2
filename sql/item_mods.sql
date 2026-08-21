@@ -44451,6 +44451,9 @@ INSERT INTO `item_mods` VALUES (21354,25,6);  -- ACC: 6
 INSERT INTO `item_mods` VALUES (21354,26,11); -- RACC: 11
 INSERT INTO `item_mods` VALUES (21354,165,2); -- CRITHITRATE: 2
 
+-- Hachiya Shuriken
+INSERT INTO `item_mods` VALUES (21355,26,5); -- RACC: 5
+
 -- Plumose Sachet
 INSERT INTO `item_mods` VALUES (21358,2,15);  -- HP: 15
 INSERT INTO `item_mods` VALUES (21358,27,-2); -- ENMITY: -2
