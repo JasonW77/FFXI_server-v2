@@ -66,9 +66,9 @@ local sayAsOrwen = function(player, message)
     player:printToPlayer(message, xi.msg.channel.NS_SAY, 'Orwen')
 end
 
-local tryStartTeleport = function(player, teleportPower, teleportDuration, gilCost, needsAllegiance)
+local tryStartTeleport = function(player, npc, teleportPower, teleportDuration, gilCost, needsAllegiance)
     if player:hasStatusEffect(xi.effect.TELEPORT) then
-        sayAsOrwen(player, 'Hold still — I\'m already casting!')
+        sayAsOrwen(player, 'Hold still -- I\'m already casting!')
         return
     end
 
@@ -87,7 +87,9 @@ local tryStartTeleport = function(player, teleportPower, teleportDuration, gilCo
         return
     end
 
-    sayAsOrwen(player, 'Right then — stand still...')
+    sayAsOrwen(player, 'Right then -- stand still...')
+    -- Warp / Warp II VFX (spell anim 261); do not castSpell -- that would Warp home.
+    npc:independentAnimation(player, 261, 0)
     player:addStatusEffect(xi.effect.TELEPORT, {
         power    = teleportPower,
         duration = teleportDuration,
@@ -96,11 +98,11 @@ local tryStartTeleport = function(player, teleportPower, teleportDuration, gilCo
     })
 end
 
-local makeDestOption = function(label, teleportPower, teleportDuration, gilCost, needsAllegiance)
+local makeDestOption = function(label, npc, teleportPower, teleportDuration, gilCost, needsAllegiance)
     return {
         string.format('%s (%d)', label, gilCost),
         function(playerArg)
-            tryStartTeleport(playerArg, teleportPower, teleportDuration, gilCost, needsAllegiance)
+            tryStartTeleport(playerArg, npc, teleportPower, teleportDuration, gilCost, needsAllegiance)
         end,
     }
 end
@@ -114,65 +116,65 @@ local makeBackOption = function()
     }
 end
 
-local buildBasicOptions = function()
+local buildBasicOptions = function(npc)
     return {
-        makeDestOption('Warp', xi.teleport.id.WARP, duration.warp, cost.basic, false),
-        makeDestOption('Holla', xi.teleport.id.HOLLA, duration.crag, cost.basic, false),
-        makeDestOption('Dem', xi.teleport.id.DEM, duration.crag, cost.basic, false),
-        makeDestOption('Mea', xi.teleport.id.MEA, duration.crag, cost.basic, false),
-        makeDestOption('Vahzl', xi.teleport.id.VAHZL, duration.crag, cost.basic, false),
-        makeDestOption('Yhoat', xi.teleport.id.YHOAT, duration.crag, cost.basic, false),
-        makeDestOption('Altep', xi.teleport.id.ALTEP, duration.crag, cost.basic, false),
+        makeDestOption('Warp', npc, xi.teleport.id.WARP, duration.warp, cost.basic, false),
+        makeDestOption('Holla', npc, xi.teleport.id.HOLLA, duration.crag, cost.basic, false),
+        makeDestOption('Dem', npc, xi.teleport.id.DEM, duration.crag, cost.basic, false),
+        makeDestOption('Mea', npc, xi.teleport.id.MEA, duration.crag, cost.basic, false),
+        makeDestOption('Vahzl', npc, xi.teleport.id.VAHZL, duration.crag, cost.basic, false),
+        makeDestOption('Yhoat', npc, xi.teleport.id.YHOAT, duration.crag, cost.basic, false),
+        makeDestOption('Altep', npc, xi.teleport.id.ALTEP, duration.crag, cost.basic, false),
         makeBackOption(),
     }
 end
 
-local buildWotgOptions = function()
+local buildWotgOptions = function(npc)
     return {
-        makeDestOption('Recall-Jugner', xi.teleport.id.JUGNER, duration.crag, cost.wotg, false),
-        makeDestOption('Recall-Pashh', xi.teleport.id.PASHH, duration.crag, cost.wotg, false),
-        makeDestOption('Recall-Meriph', xi.teleport.id.MERIPH, duration.crag, cost.wotg, false),
-        makeDestOption('Retrace', xi.teleport.id.RETRACE, duration.warp, cost.wotg, true),
+        makeDestOption('Recall-Jugner', npc, xi.teleport.id.JUGNER, duration.crag, cost.wotg, false),
+        makeDestOption('Recall-Pashh', npc, xi.teleport.id.PASHH, duration.crag, cost.wotg, false),
+        makeDestOption('Recall-Meriph', npc, xi.teleport.id.MERIPH, duration.crag, cost.wotg, false),
+        makeDestOption('Retrace', npc, xi.teleport.id.RETRACE, duration.warp, cost.wotg, true),
         makeBackOption(),
     }
 end
 
-local buildDynamisOptions = function()
+local buildDynamisOptions = function(npc)
     return {
-        makeDestOption('Xarcabard', customId.DYNAMIS_XARCABARD, duration.custom, cost.dynamis, false),
-        makeDestOption('Beaucedine', customId.DYNAMIS_BEAUCEDINE, duration.custom, cost.dynamis, false),
-        makeDestOption('Qufim', customId.DYNAMIS_QUFIM, duration.custom, cost.dynamis, false),
-        makeDestOption('Valkurm', customId.DYNAMIS_VALKURM, duration.custom, cost.dynamis, false),
-        makeDestOption('Buburimu', customId.DYNAMIS_BUBURIMU, duration.custom, cost.dynamis, false),
+        makeDestOption('Xarcabard', npc, customId.DYNAMIS_XARCABARD, duration.custom, cost.dynamis, false),
+        makeDestOption('Beaucedine', npc, customId.DYNAMIS_BEAUCEDINE, duration.custom, cost.dynamis, false),
+        makeDestOption('Qufim', npc, customId.DYNAMIS_QUFIM, duration.custom, cost.dynamis, false),
+        makeDestOption('Valkurm', npc, customId.DYNAMIS_VALKURM, duration.custom, cost.dynamis, false),
+        makeDestOption('Buburimu', npc, customId.DYNAMIS_BUBURIMU, duration.custom, cost.dynamis, false),
         makeBackOption(),
     }
 end
 
-local buildHighOptions = function()
+local buildHighOptions = function(npc)
     local options = {
-        makeDestOption('Hall of the Gods', customId.HALL_OF_THE_GODS, duration.custom, cost.high, false),
+        makeDestOption('Hall of the Gods', npc, customId.HALL_OF_THE_GODS, duration.custom, cost.high, false),
     }
 
     if xi.settings.main.ENABLE_TOAU == 1 then
-        options[#options + 1] = makeDestOption('Azouph SP', xi.teleport.id.AZOUPH_SP, duration.crag, cost.high, false)
-        options[#options + 1] = makeDestOption('Mamool SP', xi.teleport.id.MAMOOL_SP, duration.crag, cost.high, false)
-        options[#options + 1] = makeDestOption('Halvung SP', xi.teleport.id.HALVUNG_SP, duration.crag, cost.high, false)
-        options[#options + 1] = makeDestOption('Dvucca SP', xi.teleport.id.DVUCCA_SP, duration.crag, cost.high, false)
-        options[#options + 1] = makeDestOption('Ilrusi SP', xi.teleport.id.ILRUSI_SP, duration.crag, cost.high, false)
-        options[#options + 1] = makeDestOption('Nyzul SP', xi.teleport.id.NYZUL_SP, duration.crag, cost.high, false)
+        options[#options + 1] = makeDestOption('Azouph SP', npc, xi.teleport.id.AZOUPH_SP, duration.crag, cost.high, false)
+        options[#options + 1] = makeDestOption('Mamool SP', npc, xi.teleport.id.MAMOOL_SP, duration.crag, cost.high, false)
+        options[#options + 1] = makeDestOption('Halvung SP', npc, xi.teleport.id.HALVUNG_SP, duration.crag, cost.high, false)
+        options[#options + 1] = makeDestOption('Dvucca SP', npc, xi.teleport.id.DVUCCA_SP, duration.crag, cost.high, false)
+        options[#options + 1] = makeDestOption('Ilrusi SP', npc, xi.teleport.id.ILRUSI_SP, duration.crag, cost.high, false)
+        options[#options + 1] = makeDestOption('Nyzul SP', npc, xi.teleport.id.NYZUL_SP, duration.crag, cost.high, false)
     end
 
     options[#options + 1] = makeBackOption()
     return options
 end
 
-local buildRootOptions = function()
+local buildRootOptions = function(npc)
     local options =
     {
         {
             'Basic (1,000 gil)',
             function(playerArg)
-                basicMenu.options = buildBasicOptions()
+                basicMenu.options = buildBasicOptions(npc)
                 delaySendMenu(playerArg, basicMenu)
             end,
         },
@@ -183,7 +185,7 @@ local buildRootOptions = function()
         {
             'WotG (2,500 gil)',
             function(playerArg)
-                wotgMenu.options = buildWotgOptions()
+                wotgMenu.options = buildWotgOptions(npc)
                 delaySendMenu(playerArg, wotgMenu)
             end,
         }
@@ -193,7 +195,7 @@ local buildRootOptions = function()
     {
         'Dynamis (3,000 gil)',
         function(playerArg)
-            dynamisMenu.options = buildDynamisOptions()
+            dynamisMenu.options = buildDynamisOptions(npc)
             delaySendMenu(playerArg, dynamisMenu)
         end,
     }
@@ -202,7 +204,7 @@ local buildRootOptions = function()
     {
         'Advanced (5,000 gil)',
         function(playerArg)
-            highMenu.options = buildHighOptions()
+            highMenu.options = buildHighOptions(npc)
             delaySendMenu(playerArg, highMenu)
         end,
     }
@@ -210,8 +212,8 @@ local buildRootOptions = function()
     return options
 end
 
-local openRootMenu = function(player)
-    rootMenu.options = buildRootOptions()
+local openRootMenu = function(player, npc)
+    rootMenu.options = buildRootOptions(npc)
     delaySendMenu(player, rootMenu)
 end
 
@@ -226,8 +228,8 @@ local spawnOrwen = function(zone, x, y, z, rotation)
         rotation = rotation,
         widescan = 1,
         onTrigger = function(player, npc)
-            sayAsOrwen(player, 'Need a warp? I\'m working on my relic weapon upgrades — only 9,756 more Jadeshells to go!')
-            openRootMenu(player)
+            sayAsOrwen(player, 'Need a warp? I\'m working on my relic weapon upgrades -- only 9,756 more Jadeshells to go!')
+            openRootMenu(player, npc)
         end,
     })
 end
@@ -257,7 +259,7 @@ end)
 -- Near Explorer Moogle hubs (nudge after client check).
 m:addOverride('xi.zones.Northern_San_dOria.Zone.onInitialize', function(zone)
     super(zone)
-    spawnOrwen(zone, 120.000, -0.200, -5.000, 128)
+    spawnOrwen(zone, 125.8195, -0.1990, 3.2586, 63)
 end)
 
 m:addOverride('xi.zones.Bastok_Mines.Zone.onInitialize', function(zone)
