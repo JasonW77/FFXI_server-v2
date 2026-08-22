@@ -40,6 +40,7 @@ custom/commands/
 #custom/lua/test_npcs_in_gm_home.lua
 custom/lua/new_player_linkshell.lua
 custom/lua/homepoint_heal.lua
+custom/lua/teleport_mage.lua
 custom/lua/city_rest_quickening.lua
 custom/lua/land_kings.lua
 custom/lua/helm_yield_multiplier.lua
