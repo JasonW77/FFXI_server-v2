@@ -5744,6 +5744,11 @@ xi.roe.records =
     -- Content (Dynamis 1)
     -----------------------------------
 
+    [1087] =
+    { -- Entering Dynamis - San d'Oria
+        reward = { sparks = 300, exp = 1500, accolades = 30 },
+    },
+
     [732] =
     { -- Subjugation: Overlord's Tombstone
         trigger = xi.roeTrigger.DEFEAT_MOB,
@@ -5781,6 +5786,11 @@ xi.roe.records =
         trigger = xi.roeTrigger.DEFEAT_MOB,
         reqs = { mobID = set { 17535211 } },
         flags = set { 'repeat' },
+        reward = { sparks = 300, exp = 1500, accolades = 30 },
+    },
+
+    [1088] =
+    { -- Entering Dynamis - Bastok
         reward = { sparks = 300, exp = 1500, accolades = 30 },
     },
 
@@ -5824,6 +5834,11 @@ xi.roe.records =
         reward = { sparks = 300, exp = 1500, accolades = 30 },
     },
 
+    [1089] =
+    { -- Entering Dynamis - Windurst
+        reward = { sparks = 300, exp = 1500, accolades = 30 },
+    },
+
     [742] =
     { -- Subjugation: Tzee Xicu Idol
         trigger = xi.roeTrigger.DEFEAT_MOB,
@@ -5861,6 +5876,11 @@ xi.roe.records =
         trigger = xi.roeTrigger.DEFEAT_MOB,
         reqs = { mobID = set { 17543468 } },
         flags = set { 'repeat' },
+        reward = { sparks = 300, exp = 1500, accolades = 30 },
+    },
+
+    [1090] =
+    { -- Entering Dynamis - Jeuno
         reward = { sparks = 300, exp = 1500, accolades = 30 },
     },
 
@@ -5908,6 +5928,11 @@ xi.roe.records =
     -- Content (Dynamis 2)
     -----------------------------------
 
+    [1091] =
+    { -- Entering Dynamis - Beaucedine
+        reward = { sparks = 300, exp = 1500, accolades = 30 },
+    },
+
     [752] =
     { -- Subjugation: Angra Mainyu
         trigger = xi.roeTrigger.DEFEAT_MOB,
@@ -5945,6 +5970,11 @@ xi.roe.records =
         trigger = xi.roeTrigger.DEFEAT_MOB,
         reqs = { mobID = set { 17326097 } },
         flags = set { 'repeat' },
+        reward = { sparks = 300, exp = 1500, accolades = 30 },
+    },
+
+    [1092] =
+    { -- Entering Dynamis - Xarcabard
         reward = { sparks = 300, exp = 1500, accolades = 30 },
     },
 

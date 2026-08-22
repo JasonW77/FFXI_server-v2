@@ -8,8 +8,8 @@ require('scripts/globals/teleports')
 -----------------------------------
 local m = Module:new('teleport_mage')
 
--- Hume male in dark wizard robes (tweak after in-game check).
-local mageLook = '0x01000C0200105820583058405850006000700000'
+-- Hume look + Wizard's AF (BLM artifact) + Dark Staff.
+local mageLook = '0x01000C0200104620463046404650446100700000'
 
 local cost =
 {
@@ -78,12 +78,12 @@ local tryStartTeleport = function(player, teleportPower, teleportDuration, gilCo
     end
 
     if player:getGil() < gilCost then
-        sayAsOrwen(player, string.format('That\'ll be %d gil. I\'m saving for a proper staff, you know.', gilCost))
+        sayAsOrwen(player, string.format('That\'ll be %d gil. Relic upgrades aren\'t cheap, you know.', gilCost))
         return
     end
 
     if not player:delGil(gilCost) then
-        sayAsOrwen(player, string.format('That\'ll be %d gil. I\'m saving for a proper staff, you know.', gilCost))
+        sayAsOrwen(player, string.format('That\'ll be %d gil. Relic upgrades aren\'t cheap, you know.', gilCost))
         return
     end
 
@@ -226,7 +226,7 @@ local spawnOrwen = function(zone, x, y, z, rotation)
         rotation = rotation,
         widescan = 1,
         onTrigger = function(player, npc)
-            sayAsOrwen(player, 'Need a warp? Every gil goes toward HQ elemental staves...')
+            sayAsOrwen(player, 'Need a warp? I\'m working on my relic weapon upgrades — only 9,756 more Jadeshells to go!')
             openRootMenu(player)
         end,
     })

@@ -4,9 +4,21 @@
 require('scripts/globals/battlefield')
 require('scripts/globals/missions')
 require('scripts/globals/npc_util')
+require('scripts/globals/roe')
 -----------------------------------
 xi = xi or {}
 xi.dynamis = xi.dynamis or {}
+
+-- Entering Dynamis RoE (Content Dynamis 1/2)
+local enterRoeByZone =
+{
+    [xi.zone.DYNAMIS_SAN_DORIA]  = 1087,
+    [xi.zone.DYNAMIS_BASTOK]     = 1088,
+    [xi.zone.DYNAMIS_WINDURST]   = 1089,
+    [xi.zone.DYNAMIS_JEUNO]      = 1090,
+    [xi.zone.DYNAMIS_BEAUCEDINE] = 1091,
+    [xi.zone.DYNAMIS_XARCABARD]  = 1092,
+}
 
 local entryInfo =
 {
@@ -459,7 +471,10 @@ xi.dynamis.zoneOnZoneIn = function(player, prevZone)
 
     local cs = -1
 
-    if player:getCharVar('Dynamis_Entry') == 1 or player:getGMLevel() > 0 then
+    -- Fresh trail-markings entry only (not GM re-zoneIn every time)
+    local isFreshEntry = player:getCharVar('Dynamis_Entry') == 1
+
+    if isFreshEntry or player:getGMLevel() > 0 then
         if player:getCharVar('Dynamis_subjob') == 1 then
             player:addStatusEffect(xi.effect.SJ_RESTRICTION, { origin = player })
         end
@@ -468,6 +483,13 @@ xi.dynamis.zoneOnZoneIn = function(player, prevZone)
         player:timer(5500, function(playerArg)
             playerArg:messageSpecial(ID.text.DYNAMIS_TIME_BEGIN, 60, xi.ki.PRISMATIC_HOURGLASS)
         end)
+
+        if isFreshEntry then
+            local enterRecord = enterRoeByZone[zoneId]
+            if enterRecord then
+                xi.roe.onRecordTrigger(player, enterRecord)
+            end
+        end
 
         player:setCharVar('Dynamis_Entry', 0)
         player:setCharVar('Dynamis_subjob', 0)
