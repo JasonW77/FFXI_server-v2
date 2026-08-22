@@ -228,6 +228,7 @@ local spawnOrwen = function(zone, x, y, z, rotation)
         rotation = rotation,
         widescan = 1,
         onTrigger = function(player, npc)
+            npc:sendEmote(player, xi.emote.BOW, xi.emoteMode.MOTION, false)
             sayAsOrwen(player, 'Need a warp? I\'m working on my relic weapon upgrades -- only 9,756 more Jadeshells to go!')
             openRootMenu(player, npc)
         end,
