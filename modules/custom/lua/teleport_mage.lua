@@ -264,12 +264,12 @@ end)
 
 m:addOverride('xi.zones.Bastok_Mines.Zone.onInitialize', function(zone)
     super(zone)
-    spawnOrwen(zone, 85.000, 0.000, -60.000, 64)
+    spawnOrwen(zone, 77.8869, 0.0000, -64.0217, 42)
 end)
 
 m:addOverride('xi.zones.Port_Windurst.Zone.onInitialize', function(zone)
     super(zone)
-    spawnOrwen(zone, 187.000, -12.000, 214.000, 0)
+    spawnOrwen(zone, 179.9023, -12.0000, 220.1712, 237)
 end)
 
 m:addOverride('xi.zones.RuLude_Gardens.Zone.onInitialize', function(zone)
