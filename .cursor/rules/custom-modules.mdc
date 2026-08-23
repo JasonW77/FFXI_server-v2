@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Custom modules
 
-Live-server QoL belongs in `modules/custom/`. Enable each file in local `modules/init.txt` (gitignored; do not commit).
+Live-server QoL belongs in `modules/custom/`. Enable each file in local `modules/init.txt` (`custom/lua/foo.lua`). Local-only — never commit `init.txt` to a PR.
 
 ## Do
 
@@ -13,6 +13,7 @@ Live-server QoL belongs in `modules/custom/`. Enable each file in local `modules
 - Name `Module:new(...)` to match the filename (snake_case). Prefix `custom_` only if the name could collide with core/era.
 - Override the LSB path with `addOverride`. Call `super()` when wrapping. Do not copy whole scripts.
 - Label the file as non-retail QoL at the top.
+- Module-only settings in `settings/map.lua` or `settings/main.lua` must note the required `init.txt` entry in a comment.
 
 ## Do not
 

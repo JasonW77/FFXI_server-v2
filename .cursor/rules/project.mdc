@@ -20,7 +20,7 @@ If you are an AI agent, read `documentation/ai_agents/README.md` first. Style: [
 - Copy nearby scripts for syntax, enums, and formatting. Ask when retail behavior is unclear.
 - Prefer Interaction Framework for new quest/mission NPC logic.
 - Cite sources in code comments or commit messages (wiki, captures, SE posts, patch dates). PR text is not enough.
-- Put live-server QoL in `modules/custom/` and enable it in local `modules/init.txt`.
+- Put live-server QoL in `modules/custom/` and enable it in local `modules/init.txt` (local-only; never in PRs).
 - Prefer small, focused changes. Ask before large rewrites or IF migrations.
 - Before an LSB PR, diff against current `upstream/base`, not `LIVE`. Search GitHub for an existing core fix first.
 - Keep LSB commit **subject ≤ 72 characters** (CI Sanity Checks fails otherwise).
@@ -36,7 +36,7 @@ If you are an AI agent, read `documentation/ai_agents/README.md` first. Style: [
 - Convert old NPC scripts to IF without captures and wiki triangulation.
 - Edit `settings/*.lua` except `settings/default/` (local settings are gitignored).
 - Touch `ext/` or `dev.docker-compose.yml` unless asked (copy Compose changes to `docker-compose.yml`).
-- Commit secrets, `tools/config.yaml`, `sql/backups/`, `modules/init.txt`, or live DB dumps.
+- Commit secrets, `tools/config.yaml`, `sql/backups/`, `modules/init.txt`, or live DB dumps. `init.txt` is per-environment (local + live box); never commit it to a PR. Edit live `init.txt` only when the user asks (`ssh-live` skill).
 - Publish exploit details in issues/PRs/chat; flag them privately.
 - Deploy, pull, or restart the live map process unless asked. Use the personal `ssh-live` skill.
 
