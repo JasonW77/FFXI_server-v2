@@ -24,6 +24,7 @@ If you are an AI agent, read `documentation/ai_agents/README.md` first. Style: [
 - Prefer small, focused changes. Ask before large rewrites or IF migrations.
 - Before an LSB PR, diff against current `upstream/base`, not `LIVE`. Search GitHub for an existing core fix first.
 - Keep LSB commit **subject ≤ 72 characters** (CI Sanity Checks fails otherwise).
+- Fishing is **C++ + SQL** (`src/map/utils/fishingutils.cpp`, `sql/fishing_*.sql`); disabled by default (`FISHING_ENABLE`). Not a Lua or `modules/custom/` feature.
 
 ## Do not
 
