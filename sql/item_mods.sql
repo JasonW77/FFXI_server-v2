@@ -58475,6 +58475,14 @@ INSERT INTO `item_mods` VALUES (23859,1,1); -- DEF: 1
 -- Apathy Sabatons
 INSERT INTO `item_mods` VALUES (23860,1,1); -- DEF: 1
 
+-- Prishe's Boots
+INSERT INTO `item_mods` VALUES (23894,1,1); -- DEF: 1
+
+-- Prishe's Boots +1
+INSERT INTO `item_mods` VALUES (24271,1,2);   -- DEF: 2
+INSERT INTO `item_mods` VALUES (24271,384,300); -- HASTE_GEAR: 300
+INSERT INTO `item_mods` VALUES (24271,73,5);  -- STORETP: 5
+
 -- Republic Platinum Medal
 INSERT INTO `item_mods` VALUES (25415,8,10);  -- STR: 10
 INSERT INTO `item_mods` VALUES (25415,23,30); -- ATT: 30

@@ -11,6 +11,9 @@ Follow [LSB Development Guide — SQL](https://github.com/LandSandBoat/server/wi
 - Keep `INSERT INTO` uppercase. Backtick identifiers. Do not quote numeric fields (`42,0` not `'42','0'`). Do not break an `INSERT` mid-statement.
 - Match nearby column order. Spaces in names become `_`; hyphens allowed. Skill/spell/ability names are lowercase.
 - Comment additions that are not self-describing (`-- (Colossal Calamari) seashell`). Comment out placeholder rows; never ship fake item modifiers.
+- Invisible equipment: check `item_equipment.MId` first (`0` = bare/invisible look). `-- TODO: … verify model` / `MId=0` means unfinished.
+- Item DAT has name/flags/stats text, not LSB `MId`. Do not invent look IDs; use XI Tinkerer or the `item-equipment` skill (FTABLE / multi-race mesh check).
+- Finishing a stub: equipment row + `item_mods` (if any) + `item_usable` / `scripts/items/` / `xi.item` when enchanted; then `dbtool` + map reload.
 - NPC display names and `pos_x/y/z` live in `sql/npc_list.sql`.
 - Schema changes need a `tools/migrations/` script if asked. After data edits, update with `tools/dbtool.py`.
 - Do not rewrite entire dumps for one-row edits. Do not commit `sql/backups/` or `tools/config.yaml`.

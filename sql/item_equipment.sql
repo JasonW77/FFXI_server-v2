@@ -12181,7 +12181,7 @@ INSERT INTO `item_equipment` VALUES (23872,'hebenus_boxers',1,0,4194303,0,0,0,12
 INSERT INTO `item_equipment` VALUES (23873,'hebenus_top',1,0,4194303,0,0,0,32,0,0,0);                      -- TODO: Not implemented, verify model
 INSERT INTO `item_equipment` VALUES (23874,'hebenus_shorts',1,0,4194303,0,0,0,128,0,0,0);                  -- TODO: Not implemented, verify model
 INSERT INTO `item_equipment` VALUES (23893,'dhalmel_trousers',1,0,4194303,0,0,0,128,0,0,0);                -- TODO: Not implemented, verify model
-INSERT INTO `item_equipment` VALUES (23894,'prishes_boots',1,0,4194303,0,0,0,256,0,0,0);                   -- TODO: Not implemented, verify model
+INSERT INTO `item_equipment` VALUES (23894,'prishes_boots',1,0,4194303,499,0,0,256,0,0,0);
 INSERT INTO `item_equipment` VALUES (23895,'pummelers_mask_+4',99,119,1,0,0,0,16,0,0,0);                   -- TODO: Not implemented, verify model
 INSERT INTO `item_equipment` VALUES (23896,'anchorites_crown_+4',99,119,2,0,0,0,16,0,0,0);                 -- TODO: Not implemented, verify model
 INSERT INTO `item_equipment` VALUES (23897,'theophany_cap_+4',99,119,4,0,0,0,16,0,0,0);                    -- TODO: Not implemented, verify model
@@ -12558,7 +12558,7 @@ INSERT INTO `item_equipment` VALUES (24267,'rage_leggings',99,0,0,0,0,0,256,0,0,
 INSERT INTO `item_equipment` VALUES (24268,'hatred_leggings',99,0,0,0,0,0,256,0,0,4);                      -- TODO: Not implemented, verify model
 INSERT INTO `item_equipment` VALUES (24269,'wrath_leggings',99,0,0,0,0,0,256,0,0,5);                       -- TODO: Not implemented, verify model
 INSERT INTO `item_equipment` VALUES (24270,'null_masque',99,119,4194303,0,0,0,16,0,0,0);                   -- TODO: Not implemented, verify model
-INSERT INTO `item_equipment` VALUES (24271,'prishes_boots_+1',1,0,4194303,0,0,0,256,0,0,0);                -- TODO: Not implemented, verify model
+INSERT INTO `item_equipment` VALUES (24271,'prishes_boots_+1',1,0,4194303,499,0,0,256,0,0,0);
 INSERT INTO `item_equipment` VALUES (24272,'suzaku_cap',1,0,4194303,0,0,0,16,0,0,0);                       -- TODO: Not implemented, verify model
 INSERT INTO `item_equipment` VALUES (24273,'sobu_houou_kabuto',1,0,4194303,0,0,0,16,0,0,0);                -- TODO: Not implemented, verify model
 INSERT INTO `item_equipment` VALUES (24274,'amin_turban',99,119,4194303,0,0,0,16,0,0,0);                   -- TODO: Not implemented, verify model
