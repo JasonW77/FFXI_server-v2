@@ -18,6 +18,8 @@ python dbtool.py migrate
 
 After SQL edits, tell the user the DB must be updated. Do not run `update`, restore, or other destructive commands unless they asked.
 
-After `item_equipment` / `item_mods` / `item_usable` imports, a running map still serves the old item cache — restart `xi_map` (or ask via `ssh-live`) before client verification.
+Express `update` can report “up to date” and skip re-importing changed SQL. After item edits, verify with `SELECT` on the target DB. If the row is still stale, use a targeted `UPDATE` or `update full`.
+
+After `item_equipment` / `item_mods` / `item_usable` changes, restart the map on **the same host as that DB** (`xi_map` / `ssh-live`) before client checks — a running map keeps the old item cache.
 
 Do not commit `sql/backups/` or `tools/config.yaml`. Character-data migrations live in `tools/migrations/` and are applied by dbtool.

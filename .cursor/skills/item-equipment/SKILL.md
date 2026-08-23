@@ -39,6 +39,8 @@ Copy nearby INSERT / script style. Clear verify-model TODOs only after MId is so
 
 ## Apply & verify
 
-1. `python dbtool.py update` from `tools/` (only if the user asked to update the DB).
-2. Restart map so item tables reload (see `dbtool` skill / `ssh-live`).
-3. In client: equip → visible look; check mods; use enchantment if any.
+1. Know **which DB** the user is testing (local vs live `/home/jason/server`). Fix that DB, not only the other.
+2. `python dbtool.py update` from `tools/` (only if the user asked). Express update can report “up to date” and skip dirty SQL — confirm with `SELECT itemId, MId FROM item_equipment WHERE itemId IN (…)`. **SQL file ≠ loaded table.**
+3. If SELECT still shows the old `MId`, run a targeted `UPDATE` or `dbtool.py update full`.
+4. Restart **that** host’s map so item tables reload (`dbtool` / `ssh-live`). Equipped gear with `char_look.feet = 0` means the loaded `MId` is still 0.
+5. In client: unequip/re-equip or zone → visible look; check mods; use enchantment if any.
