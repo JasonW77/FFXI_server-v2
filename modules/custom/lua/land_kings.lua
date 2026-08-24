@@ -1,19 +1,53 @@
 -----------------------------------
--- Non-retail QoL: Land Kings
--- Timed NQ (1-4 hours), no idle despawn, HQ lottery of NQ kills.
--- 25% HQ after each NQ kill, 100% after 4 NQ kills in a row.
--- Pop items and ??? trades are disabled.
+-- Non-retail QoL: Land Kings + Ground HNMs
+--
+-- Land Kings: timed NQ, no idle despawn, HQ lottery of NQ kills.
+--   25% HQ after each NQ kill, 100% after 4 NQ kills in a row.
+--   Pop items and ??? trades are disabled.
+--
+-- Ground HNMs: tiered respawn windows, ToD persisted across map restart.
+--   Tier 1: 1-2h  | Tier 2: 2-4h  | Tier 3: 4-8h  | Tier 4: 8-16h
+-- King Vinegarroon weather gating is unchanged.
+-- Guivre unclaimed 3-5h despawn is disabled.
+-- Vrtra Charm 2hr is disabled (pet summons kept).
 -----------------------------------
 require('modules/module_utils')
 -----------------------------------
-local dragonsAeryID   = zones[xi.zone.DRAGONS_AERY]
-local valleySorrowsID = zones[xi.zone.VALLEY_OF_SORROWS]
-local behemothDomID   = zones[xi.zone.BEHEMOTHS_DOMINION]
+local dragonsAeryID     = zones[xi.zone.DRAGONS_AERY]
+local valleySorrowsID   = zones[xi.zone.VALLEY_OF_SORROWS]
+local behemothDomID     = zones[xi.zone.BEHEMOTHS_DOMINION]
+local rolanberryID      = zones[xi.zone.ROLANBERRY_FIELDS]
+local sauromugueID      = zones[xi.zone.SAUROMUGUE_CHAMPAIGN]
+local westernAltepaID   = zones[xi.zone.WESTERN_ALTEPA_DESERT]
+local kuftalID          = zones[xi.zone.KUFTAL_TUNNEL]
+local garlaigeID        = zones[xi.zone.GARLAIGE_CITADEL]
+local ifritsID          = zones[xi.zone.IFRITS_CAULDRON]
+local attohwaID         = zones[xi.zone.ATTOHWA_CHASM]
+local uleguerandID      = zones[xi.zone.ULEGUERAND_RANGE]
+local ranperreID        = zones[xi.zone.KING_RANPERRES_TOMB]
+local zhayolmID         = zones[xi.zone.MOUNT_ZHAYOLM]
+local caedarvaID        = zones[xi.zone.CAEDARVA_MIRE]
+
+-- Wajaom Woodlands has no Hydra entry in IDs.lua.
+local hydraMobId = 16986355
 
 local m = Module:new('land_kings')
 
 local hqChancePercent = 25
 local nqKillsForGuaranteedHq = 4
+
+local tiers =
+{
+    [1] = { min = 1 * 3600, max = 2 * 3600 },  -- 1-2 hours
+    [2] = { min = 2 * 3600, max = 4 * 3600 },  -- 2-4 hours
+    [3] = { min = 4 * 3600, max = 8 * 3600 },  -- 4-8 hours
+    [4] = { min = 8 * 3600, max = 16 * 3600 }, -- 8-16 hours
+}
+
+local function randomTierDelay(tier)
+    local window = tiers[tier]
+    return math.random(window.min, window.max)
+end
 
 -- Spawn points from era_HNM_system (pre-2011 Land King windows).
 local dragonSpawnPoints =
@@ -178,10 +212,6 @@ local behemothSpawnPoints =
     { x = -271.910, y = -19.543, z =  63.326 },
 }
 
-local function randomPopDelay()
-    return math.random(3600, 14400) -- 1-4 hours
-end
-
 local function hideQm(npcId)
     local npc = GetNPCByID(npcId)
     if npc then
@@ -193,8 +223,11 @@ local function wasKilled(optParams)
     return optParams and (optParams.isKiller or optParams.noKiller)
 end
 
+-----------------------------------
+-- Land Kings (NQ/HQ pairs)
+-----------------------------------
 local function scheduleSpawn(king, popHq)
-    local delay  = randomPopDelay()
+    local delay  = randomTierDelay(king.tier)
     local nextId = popHq and king.hqId or king.nqId
 
     SetServerVariable(king.popTimeVar, GetSystemTime() + delay)
@@ -207,12 +240,12 @@ local function scheduleSpawn(king, popHq)
     GetMobByID(nextId):setRespawnTime(delay)
 end
 
-local function restoreOrSpawn(king)
-    local popTime    = GetServerVariable(king.popTimeVar)
+local function restoreOrSpawnKing(king)
+    local popTime     = GetServerVariable(king.popTimeVar)
     local currentTime = GetSystemTime()
 
     if popTime == 0 then
-        popTime = currentTime + randomPopDelay()
+        popTime = currentTime + randomTierDelay(king.tier)
         SetServerVariable(king.popTimeVar, popTime)
         SetServerVariable(king.hqNextVar, 0)
         SetServerVariable(king.countVar, 0)
@@ -250,7 +283,7 @@ end
 local function registerKing(king)
     m:addOverride(king.zoneInitPath, function(zone)
         super(zone)
-        restoreOrSpawn(king)
+        restoreOrSpawnKing(king)
     end)
 
     m:addOverride(king.nqInitPath, function(mob)
@@ -299,8 +332,100 @@ local function registerKing(king)
     end)
 end
 
+-----------------------------------
+-- Timed Ground HNMs (single mob)
+-----------------------------------
+local function restoreOrSpawnTimed(nm)
+    local mob = GetMobByID(nm.mobId)
+    if not mob then
+        return
+    end
+
+    local popTime     = GetServerVariable(nm.popTimeVar)
+    local currentTime = GetSystemTime()
+
+    if popTime == 0 then
+        popTime = currentTime + randomTierDelay(nm.tier)
+        SetServerVariable(nm.popTimeVar, popTime)
+    end
+
+    xi.mob.updateNMSpawnPoint(mob)
+
+    if popTime <= currentTime then
+        if nm.weatherGated then
+            -- Ready when weather allows (KV); do not force spawn.
+            mob:setRespawnTime(0)
+        else
+            SpawnMob(nm.mobId)
+        end
+    else
+        mob:setRespawnTime(popTime - currentTime)
+    end
+end
+
+local function registerTimed(nm)
+    m:addOverride(nm.zoneInitPath, function(zone)
+        super(zone)
+        restoreOrSpawnTimed(nm)
+    end)
+
+    m:addOverride(nm.despawnPath, function(mob)
+        super(mob)
+
+        local delay = randomTierDelay(nm.tier)
+        SetServerVariable(nm.popTimeVar, GetSystemTime() + delay)
+        xi.mob.updateNMSpawnPoint(mob)
+        mob:setRespawnTime(delay)
+    end)
+
+    if nm.initPath then
+        m:addOverride(nm.initPath, function(mob)
+            super(mob)
+            -- Zone restore owns the window; avoid stock long timers on load.
+            local popTime = GetServerVariable(nm.popTimeVar)
+            if popTime > GetSystemTime() then
+                mob:setRespawnTime(popTime - GetSystemTime())
+            end
+        end)
+    end
+
+    if nm.disableUnclaimedDespawn then
+        m:addOverride(nm.spawnPath, function(mob)
+            super(mob)
+            -- Stock sets a 3-5h unclaimed despawn timer; keep Guivre up.
+            mob:setLocalVar('despawnTime', GetSystemTime() + (86400 * 365))
+        end)
+
+        m:addOverride(nm.roamPath, function(mob)
+            -- Stock onMobRoam only despawns when unclaimed; skip that.
+        end)
+    end
+
+    if nm.removeCharm then
+        -- Push Charm 2hr window forward so stock onMobFight never uses ability 710.
+        -- Pet summons and draw-in still run via super().
+        m:addOverride(nm.fightPath, function(mob, target)
+            local twohourTime  = mob:getLocalVar('twohourTime')
+            local fifteenBlock = mob:getBattleTime() / 15
+
+            if twohourTime == 0 then
+                mob:setLocalVar('twohourTime', math.random(4, 6))
+            elseif fifteenBlock > twohourTime then
+                mob:setLocalVar('twohourTime', fifteenBlock + math.random(4, 6))
+            end
+
+            super(mob, target)
+        end)
+    end
+end
+
+-----------------------------------
+-- Land Kings
+-- Tier 2: Adamantoise | Tier 3: Fafnir | Tier 4: Behemoth
+-----------------------------------
 registerKing(
 {
+    tier         = 3,
     nqId         = dragonsAeryID.mob.FAFNIR,
     hqId         = dragonsAeryID.mob.NIDHOGG,
     qmId         = dragonsAeryID.npc.FAFNIR_QM,
@@ -320,6 +445,7 @@ registerKing(
 
 registerKing(
 {
+    tier         = 2,
     nqId         = valleySorrowsID.mob.ADAMANTOISE,
     hqId         = valleySorrowsID.mob.ASPIDOCHELONE,
     qmId         = valleySorrowsID.npc.ADAMANTOISE_QM,
@@ -339,6 +465,7 @@ registerKing(
 
 registerKing(
 {
+    tier         = 4,
     nqId         = behemothDomID.mob.BEHEMOTH,
     hqId         = behemothDomID.mob.KING_BEHEMOTH,
     qmId         = behemothDomID.npc.BEHEMOTH_QM,
@@ -354,6 +481,142 @@ registerKing(
     nqDespawnPath = 'xi.zones.Behemoths_Dominion.mobs.Behemoth.onMobDespawn',
     hqDespawnPath = 'xi.zones.Behemoths_Dominion.mobs.King_Behemoth.onMobDespawn',
     qmTradePath   = 'xi.zones.Behemoths_Dominion.npcs.qm2.onTrade',
+})
+
+-----------------------------------
+-- Tier 1 (1-2h): Simurgh, Roc, KV, Guivre
+-----------------------------------
+registerTimed(
+{
+    tier         = 1,
+    mobId        = rolanberryID.mob.SIMURGH,
+    popTimeVar   = '[HNM]Simurgh',
+    zoneInitPath = 'xi.zones.Rolanberry_Fields.Zone.onInitialize',
+    despawnPath  = 'xi.zones.Rolanberry_Fields.mobs.Simurgh.onMobDespawn',
+    initPath     = 'xi.zones.Rolanberry_Fields.mobs.Simurgh.onMobInitialize',
+})
+
+registerTimed(
+{
+    tier         = 1,
+    mobId        = sauromugueID.mob.ROC,
+    popTimeVar   = '[HNM]Roc',
+    zoneInitPath = 'xi.zones.Sauromugue_Champaign.Zone.onInitialize',
+    despawnPath  = 'xi.zones.Sauromugue_Champaign.mobs.Roc.onMobDespawn',
+    initPath     = 'xi.zones.Sauromugue_Champaign.mobs.Roc.onMobInitialize',
+})
+
+registerTimed(
+{
+    tier         = 1,
+    mobId        = westernAltepaID.mob.KING_VINEGARROON,
+    popTimeVar   = '[HNM]KingVinegarroon',
+    weatherGated = true,
+    zoneInitPath = 'xi.zones.Western_Altepa_Desert.Zone.onInitialize',
+    despawnPath  = 'xi.zones.Western_Altepa_Desert.mobs.King_Vinegarroon.onMobDespawn',
+    initPath     = 'xi.zones.Western_Altepa_Desert.mobs.King_Vinegarroon.onMobInitialize',
+})
+
+registerTimed(
+{
+    tier                    = 1,
+    mobId                   = kuftalID.mob.GUIVRE,
+    popTimeVar              = '[HNM]Guivre',
+    zoneInitPath            = 'xi.zones.Kuftal_Tunnel.Zone.onInitialize',
+    despawnPath             = 'xi.zones.Kuftal_Tunnel.mobs.Guivre.onMobDespawn',
+    initPath                = 'xi.zones.Kuftal_Tunnel.mobs.Guivre.onMobInitialize',
+    spawnPath               = 'xi.zones.Kuftal_Tunnel.mobs.Guivre.onMobSpawn',
+    roamPath                = 'xi.zones.Kuftal_Tunnel.mobs.Guivre.onMobRoam',
+    disableUnclaimedDespawn = true,
+})
+
+-----------------------------------
+-- Tier 2 (2-4h): Serket, Ash Dragon, Hydra
+-----------------------------------
+registerTimed(
+{
+    tier         = 2,
+    mobId        = garlaigeID.mob.SERKET,
+    popTimeVar   = '[HNM]Serket',
+    zoneInitPath = 'xi.zones.Garlaige_Citadel.Zone.onInitialize',
+    despawnPath  = 'xi.zones.Garlaige_Citadel.mobs.Serket.onMobDespawn',
+    initPath     = 'xi.zones.Garlaige_Citadel.mobs.Serket.onMobInitialize',
+})
+
+registerTimed(
+{
+    tier         = 2,
+    mobId        = ifritsID.mob.ASH_DRAGON,
+    popTimeVar   = '[HNM]AshDragon',
+    zoneInitPath = 'xi.zones.Ifrits_Cauldron.Zone.onInitialize',
+    despawnPath  = 'xi.zones.Ifrits_Cauldron.mobs.Ash_Dragon.onMobDespawn',
+    initPath     = 'xi.zones.Ifrits_Cauldron.mobs.Ash_Dragon.onMobInitialize',
+})
+
+registerTimed(
+{
+    tier         = 2,
+    mobId        = hydraMobId,
+    popTimeVar   = '[HNM]Hydra',
+    zoneInitPath = 'xi.zones.Wajaom_Woodlands.Zone.onInitialize',
+    despawnPath  = 'xi.zones.Wajaom_Woodlands.mobs.Hydra.onMobDespawn',
+})
+
+-----------------------------------
+-- Tier 3 (4-8h): Cerberus, Khimaira
+-----------------------------------
+registerTimed(
+{
+    tier         = 3,
+    mobId        = zhayolmID.mob.CERBERUS,
+    popTimeVar   = '[HNM]Cerberus',
+    zoneInitPath = 'xi.zones.Mount_Zhayolm.Zone.onInitialize',
+    despawnPath  = 'xi.zones.Mount_Zhayolm.mobs.Cerberus.onMobDespawn',
+})
+
+registerTimed(
+{
+    tier         = 3,
+    mobId        = caedarvaID.mob.KHIMAIRA,
+    popTimeVar   = '[HNM]Khimaira',
+    zoneInitPath = 'xi.zones.Caedarva_Mire.Zone.onInitialize',
+    despawnPath  = 'xi.zones.Caedarva_Mire.mobs.Khimaira.onMobDespawn',
+    initPath     = 'xi.zones.Caedarva_Mire.mobs.Khimaira.onMobInitialize',
+})
+
+-----------------------------------
+-- Tier 4 (8-16h): Tiamat, Jormungand, Vrtra
+-----------------------------------
+registerTimed(
+{
+    tier         = 4,
+    mobId        = attohwaID.mob.TIAMAT,
+    popTimeVar   = '[HNM]Tiamat',
+    zoneInitPath = 'xi.zones.Attohwa_Chasm.Zone.onInitialize',
+    despawnPath  = 'xi.zones.Attohwa_Chasm.mobs.Tiamat.onMobDespawn',
+    initPath     = 'xi.zones.Attohwa_Chasm.mobs.Tiamat.onMobInitialize',
+})
+
+registerTimed(
+{
+    tier         = 4,
+    mobId        = uleguerandID.mob.JORMUNGAND,
+    popTimeVar   = '[HNM]Jormungand',
+    zoneInitPath = 'xi.zones.Uleguerand_Range.Zone.onInitialize',
+    despawnPath  = 'xi.zones.Uleguerand_Range.mobs.Jormungand.onMobDespawn',
+    initPath     = 'xi.zones.Uleguerand_Range.mobs.Jormungand.onMobInitialize',
+})
+
+registerTimed(
+{
+    tier         = 4,
+    mobId        = ranperreID.mob.VRTRA,
+    popTimeVar   = '[HNM]Vrtra',
+    zoneInitPath = 'xi.zones.King_Ranperres_Tomb.Zone.onInitialize',
+    despawnPath  = 'xi.zones.King_Ranperres_Tomb.mobs.Vrtra.onMobDespawn',
+    initPath     = 'xi.zones.King_Ranperres_Tomb.mobs.Vrtra.onMobInitialize',
+    fightPath    = 'xi.zones.King_Ranperres_Tomb.mobs.Vrtra.onMobFight',
+    removeCharm  = true,
 })
 
 return m
