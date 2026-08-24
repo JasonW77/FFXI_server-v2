@@ -10,10 +10,13 @@ Live-server QoL belongs in `modules/custom/`. Enable each file in local `modules
 ## Do
 
 - One concern per file: `lua/`, `sql/`, `commands/`, or `cpp/`.
+- Prefer extending an existing related `modules/custom` module over a parallel file for the same concern (e.g. HNM/NM timers → `land_kings.lua`).
 - Name `Module:new(...)` to match the filename (snake_case). Prefix `custom_` only if the name could collide with core/era.
 - Override the LSB path with `addOverride`. Call `super()` when wrapping. Do not copy whole scripts.
 - Label the file as non-retail QoL at the top.
 - Module-only settings in `settings/map.lua` or `settings/main.lua` must note the required `init.txt` entry in a comment.
+- NM/HNM spawn QoL (windows, ToD persist, no idle/unclaimed despawn) belongs in custom Lua overrides; reference `land_kings.lua`.
+- City rest / town sprint speed QoL belongs in custom Lua overrides; reference `city_rest_quickening.lua`.
 
 ## Do not
 
@@ -21,6 +24,7 @@ Live-server QoL belongs in `modules/custom/`. Enable each file in local `modules
 - Put QoL in `modules/era/` (era is retail reverts only, with content tags).
 - Put missing retail features here; those go in core `scripts/` (upstream PR).
 - Leave HELM yield multipliers, city rest sprint, land-king QoL, and similar live flavor in core after a cleanup pass — move them here instead.
+- Put shortened HNM/NM respawn windows into core `scripts/zones/**/mobs` (e.g. Simurgh/Roc 1–2h in core); use the custom module instead.
 
 ```lua
 -----------------------------------

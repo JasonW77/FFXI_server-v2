@@ -1,6 +1,10 @@
 ---
 name: custom-module
-description: Add or change live-server QoL under modules/custom. Use when the change is non-retail, this server only, or the user asks for a custom module, init.txt enable, or not to touch era/core.
+description: >-
+  Add or change live-server QoL under modules/custom. Use when the change is
+  non-retail, this server only, or the user asks for a custom module, init.txt
+  enable, or not to touch era/core. Also use for HNM/NM timers, ToD persist,
+  idle/unclaimed despawn, or land-king style spawn systems.
 ---
 
 # Custom module
@@ -26,6 +30,7 @@ return m
 
 - `Module:new(...)` matches the filename (snake_case). Prefix `custom_` only if the name could collide with core/era.
 - One concern per file: `lua/`, `sql/`, `commands/`, or `cpp/`.
+- Prefer extending an existing related module over a second file for the same concern. Do not rename only for clarity if `init.txt` already loads the file.
 - Override the LSB path; do not fork a full copy of the script unless required.
 - Call `super()` when wrapping (especially when multiplier/toggle is 1 or disabled).
 - Document that it is non-retail QoL at the top.
@@ -56,3 +61,40 @@ Prefer `super()` when disabled; duplicate globals logic only when the wrapper mu
 
 - **Guild Points (GP) turn-ins** have a daily max: C++ `addGuildPoints`, charvar `[GUILD]daily_points`, SQL `guild_item_points.max_points`. QoL belongs in `modules/custom/lua/`, not SQL or core C++.
 - **Craft skill** has no daily cap — only rank caps and `CRAFT_SPECIALIZATION_POINTS` (tune in `settings/map.lua`). Do not treat “crafting daily limit” as a separate system.
+
+## Status-effect QoL
+
+Reference: `modules/custom/lua/city_rest_quickening.lua` (town rest → Sprint speed).
+
+- Extend that file for related town-sprint / rest-buff QoL; do not add a parallel module.
+- Before changing buffs: read fixed `power` / duration and the **first-apply vs existing-effect** branches. Do not assume tiers exist.
+- “Upgrade” message/animation only when power or tier actually increases. Refresh-only paths (`resetStartTime` / `setDuration`) need their own notify if the user wants feedback on renew.
+- `addStatusEffect` success is not the same as refresh; refresh often sends no client message unless you add one.
+- Shared effect IDs (e.g. `SPRINT`) can collide with shoes or other sources — call that out before changing grant/refresh logic.
+
+## NM / HNM spawn QoL
+
+Reference implementation: `modules/custom/lua/land_kings.lua`.
+
+Before a new file, inventory siblings:
+
+- `land_kings.lua` — live timed Land Kings + ground HNMs (preferred home for timer/ToD QoL)
+- `custom_HNM_system.lua` — alternate Land King mix (often disabled)
+- `persist_nm_time_of_deaths.lua` — generic ToD persist sample
+- `claim_shield.lua` — claim delay list (separate concern)
+- `modules/abyssea/lua/era_HNM_system.lua` — era Land Kings (disabled; do not stack with live `land_kings`)
+
+**Do**
+
+- Prefer extending the related module over a parallel file. Keep the filename if `init.txt` already lists it.
+- Timers via Lua `setRespawnTime` + server vars; apply **after** `super()` on despawn / zone init so stock windows are replaced. Not core `scripts/` and not `mob_groups` SQL for this QoL.
+- Weather-gated NMs (e.g. King Vinegarroon): leave zone weather + roam weather-despawn alone. On restore, mark ready (`setRespawnTime(0)`); do not `SpawnMob`.
+- Idle / unclaimed despawn: `IDLE_DESPAWN = 0`, or clear Guivre-style `despawnTime` / empty roam override that only despawns.
+- Multi-NM work: list candidates with **current** timers and special flags (weather, charm, HQ lottery, missing `IDs.lua` entry) for user pick before coding.
+- If a mob has no `IDs.lua` entry, use `sql/mob_spawn_points.sql` id with a comment (example: Wajaom Hydra).
+
+**Do not**
+
+- Stack `land_kings` with `custom_HNM_system` / `era_HNM_system`.
+- Put shortened HNM/NM respawn windows into core `scripts/zones/**/mobs` (Simurgh/Roc 1–2h in core is the anti-pattern; move into the module when touching).
+- Copy whole mob fight scripts; wrap spawn/despawn (and narrow fight hooks only when needed, e.g. skip Charm).
