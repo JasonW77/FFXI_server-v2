@@ -17,7 +17,10 @@
 -- - Spawning a Zone Boss in Dynamis.
 --
 -- Other Notes
--- - Any summoned pets and trusts (excluding pet wyverns) are dismissed when placed under this status effect.
+-- - Pets and Trusts need the same confrontation power as the NM to engage
+--   (copied on effect gain; also copied when a Trust is summoned mid-fight).
+-- - Older retail notes say some confrontations dismiss pets/Trusts (excl. wyverns);
+--   Wanted Battles allow Trusts, so we keep and tag them instead of dismissing.
 -- - Often, but not always, accompanied by a Level Restriction.
 -----------------------------------
 require('scripts/globals/npc_util')
