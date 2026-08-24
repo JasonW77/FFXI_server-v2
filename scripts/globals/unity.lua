@@ -114,6 +114,10 @@ local function getChangeUnityCost(player, selection)
 end
 
 xi.unity.onTrade = function(player, npc, trade, eventid)
+    -- Retail: trade NQ Wanted gear + upgrade mats, then return next game day for HQ.
+    -- Enhancement is not implemented yet (Wanted MVP deferred Concord NQ→HQ).
+    -- TODO: implement enhance recipe table + 1 Vanadiel-day pickup.
+    player:printToPlayer('Equipment enhancement is not available yet.', xi.msg.channel.SYSTEM_3)
 end
 
 xi.unity.onTrigger = function(player, npc)
@@ -157,13 +161,26 @@ xi.unity.onEventUpdate = function(player, csid, option, npc)
 
         -- Item Selected, enter amount/confirm
         elseif category == 3 then
-            player:updateEvent(unityOptions[4][selection][2], unityOptions[4][selection][3], 0, 0, 0, 0, 0, player:getUnityLeader())
+            local itemOption = unityOptions[4] and unityOptions[4][selection]
+            if not itemOption then
+                -- Client may send enhance / other menu indices we do not support yet.
+                player:updateEvent(utils.MAX_UINT32)
+                return
+            end
+
+            player:updateEvent(itemOption[2], itemOption[3], 0, 0, 0, 0, 0, player:getUnityLeader())
 
         -- Attempt to grant the Item selected
         elseif category == 4 then
+            local itemOption = unityOptions[4] and unityOptions[4][selection]
+            if not itemOption then
+                player:updateEvent(utils.MAX_UINT32)
+                return
+            end
+
             local qty    = bit.rshift(option, 13)
-            local itemId = unityOptions[category][selection][1]
-            local cost   = unityOptions[category][selection][4] * qty
+            local itemId = itemOption[1]
+            local cost   = itemOption[4] * qty
 
             -- Fail-safe.
             if

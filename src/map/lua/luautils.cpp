@@ -832,6 +832,15 @@ void CacheLuaObjectFromFile(const std::string& filename, bool overwriteCurrentEn
     // Strip "scripts" and everything before it
     parts.erase(parts.begin(), scriptsIt + 1);
 
+    // Enum scripts (xi.item, etc.) are loaded once at startup via safe_script_file.
+    // Hot-reloading them reassigns huge global tables while the map is live and has
+    // caused native crashes; require a map restart to apply enum changes.
+    if (!parts.empty() && parts[0] == "enum")
+    {
+        ShowInfo("[FileWatcher] SKIP enum hot-reload (restart map to apply): %s", filename);
+        return;
+    }
+
     // Handle Globals
     if (!parts.empty() && parts[0] == "globals" && path.extension() == ".lua")
     {

@@ -6,6 +6,10 @@
 ---@type TNpcEntity
 local entity = {}
 
+entity.onTrade = function(player, npc, trade)
+    xi.unity.onTrade(player, npc, trade)
+end
+
 entity.onTrigger = function(player, npc)
     xi.unity.onTrigger(player, npc)
 end
