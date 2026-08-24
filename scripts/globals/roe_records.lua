@@ -5765,6 +5765,76 @@ xi.roe.records =
         reward = { sparks = 500, exp = 2500 },
     },
 
+    [819] =
+    { -- Subjugation: Prickly Pitriv (UC)
+        -- Sources: BG-Wiki Prickly Pitriv / Unity Concord Wanted; RoE ID from client.
+        -- Coffer is granted to confrontation participants on win (not RoE item reward).
+        trigger = xi.roeTrigger.DEFEAT_MOB,
+        reqs = { mobID = set { 17252988, 17252989, 17252990 } },
+        flags = set { 'repeat' },
+        reward = { sparks = 500, exp = 2500 },
+    },
+
+    [820] =
+    { -- Subjugation: Ironhorn Baldurno (UC)
+        -- Sources: BG-Wiki Ironhorn Baldurno / Unity Concord Wanted; RoE ID from client.
+        -- TODO: verify sparks/exp vs retail Wanted (lv99) reward table.
+        trigger = xi.roeTrigger.DEFEAT_MOB,
+        reqs = { mobID = set { 17195570, 17195571, 17195572 } },
+        flags = set { 'repeat' },
+        reward = { sparks = 750, exp = 4000 },
+    },
+
+    [823] =
+    { -- Subjugation: Serpopard Ninlil (UC)
+        -- Sources: BG-Wiki Serpopard Ninlil / Unity Concord Wanted; RoE ID from client.
+        -- TODO: verify sparks/exp vs retail Wanted (lv99) reward table.
+        trigger = xi.roeTrigger.DEFEAT_MOB,
+        reqs = { mobID = set { 17256995, 17256996, 17256997 } },
+        flags = set { 'repeat' },
+        reward = { sparks = 750, exp = 4000 },
+    },
+
+    [824] =
+    { -- Subjugation: Abyssdiver (UC)
+        -- Sources: BG-Wiki Abyssdiver / Unity Concord Wanted; RoE ID from client.
+        -- TODO: verify sparks/exp/capacity vs retail Wanted (lv119) reward table.
+        trigger = xi.roeTrigger.DEFEAT_MOB,
+        reqs = { mobID = set { 17261050, 17261051, 17261052 } },
+        flags = set { 'repeat' },
+        reward = { sparks = 1000, exp = 5000 },
+    },
+
+    [825] =
+    { -- Subjugation: Intuila (UC)
+        -- Sources: BG-Wiki Intuila / Unity Concord Wanted; RoE ID from client.
+        -- TODO: verify sparks/exp/capacity vs retail Wanted (lv119) reward table.
+        trigger = xi.roeTrigger.DEFEAT_MOB,
+        reqs = { mobID = set { 16793965, 16793966, 16793967 } },
+        flags = set { 'repeat' },
+        reward = { sparks = 1000, exp = 5000 },
+    },
+
+    [827] =
+    { -- Subjugation: Orcfeltrap (UC)
+        -- Sources: BG-Wiki Orcfeltrap / Unity Concord Wanted; RoE ID from client.
+        -- TODO: verify sparks/exp/capacity vs retail Wanted (lv119) reward table.
+        trigger = xi.roeTrigger.DEFEAT_MOB,
+        reqs = { mobID = set { 16785724, 16785725, 16785726 } },
+        flags = set { 'repeat' },
+        reward = { sparks = 1000, exp = 5000 },
+    },
+
+    [835] =
+    { -- Subjugation: Jester Malatrix (UC)
+        -- Sources: BG-Wiki Jester Malatrix / Unity Concord Wanted; RoE ID from client.
+        -- TODO: verify sparks/exp/capacity vs retail Wanted (lv119) reward table.
+        trigger = xi.roeTrigger.DEFEAT_MOB,
+        reqs = { mobID = set { 17293663, 17293664, 17293665 } },
+        flags = set { 'repeat' },
+        reward = { sparks = 1000, exp = 5000 },
+    },
+
     -----------------------------------
     -- Content (Dynamis 1)
     -----------------------------------

@@ -71,6 +71,7 @@ zones[xi.zone.LA_THEINE_PLATEAU] =
         BLOODTEAR         = GetFirstID('Bloodtear_Baldurf'),
         BATTERING_RAM     = GetTableOfIDs('Battering_Ram'),
         NIHNIKNOOVI       = GetFirstID('Nihniknoovi'),
+        IRONHORN_BALDURNO = GetTableOfIDs('Ironhorn_Baldurno'),
 
         VOIDWALKER =
         {
@@ -106,8 +107,9 @@ zones[xi.zone.LA_THEINE_PLATEAU] =
 
     npc =
     {
-        FALLEN_EGG  = GetFirstID('FallenEgg'),
-        RAINBOW     = GetFirstID('_2u0'),
+        FALLEN_EGG        = GetFirstID('FallenEgg'),
+        RAINBOW           = GetFirstID('_2u0'),
+        ETHEREAL_JUNCTION = GetTableOfIDs('Ethereal_Junction'),
     },
 }
 

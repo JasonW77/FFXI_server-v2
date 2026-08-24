@@ -7,6 +7,7 @@ zones[xi.zone.EAST_SARUTABARUTA] =
 {
     text =
     {
+        NOTHING_HAPPENS               = 141,  -- Nothing happens...
         ITEM_CANNOT_BE_OBTAINED       = 6387, -- You cannot obtain the <item>. Come back after sorting your inventory.
         ITEM_OBTAINED                 = 6395, -- Obtained: <item>.
         GIL_OBTAINED                  = 6396, -- Obtained <number> gil.
@@ -43,9 +44,11 @@ zones[xi.zone.EAST_SARUTABARUTA] =
         SHARP_EARED_ROPIPI = GetFirstID('Sharp-Eared_Ropipi'),
         SPINY_SPIPI        = GetFirstID('Spiny_Spipi'),
         DUKE_DECAPOD       = GetFirstID('Duke_Decapod'),
+        PRICKLY_PITRIV     = GetTableOfIDs('Prickly_Pitriv'),
     },
     npc =
     {
+        ETHEREAL_JUNCTION = GetTableOfIDs('Ethereal_Junction'),
     },
 }
 

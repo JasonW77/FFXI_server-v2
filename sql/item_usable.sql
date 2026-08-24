@@ -2168,15 +2168,15 @@ INSERT INTO `item_usable` VALUES (6310,'gashing_bolt_quiver',1,1,0,0,0,0,0,0);  
 INSERT INTO `item_usable` VALUES (6311,'decimating_bullet_pouch',1,1,0,0,0,0,0,0);   -- TODO: Not implemented
 INSERT INTO `item_usable` VALUES (6312,'hugemaw_harolds_coffer',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6313,'bounding_belindas_coffer',1,1,0,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (6314,'prickly_pitrivs_coffer',1,1,0,0,0,0,0,0);    -- TODO: Not implemented
-INSERT INTO `item_usable` VALUES (6315,'ironhorn_baldurnos_coffer',1,1,0,0,0,0,0,0); -- TODO: Not implemented
-INSERT INTO `item_usable` VALUES (6316,'sleepy_mabels_coffer',1,1,0,0,0,0,0,0);      -- TODO: Not implemented
-INSERT INTO `item_usable` VALUES (6317,'valkurm_imperators_coffer',1,1,0,0,0,0,0,0); -- TODO: Not implemented
-INSERT INTO `item_usable` VALUES (6318,'serpopard_ninlils_coffer',1,1,0,0,0,0,0,0);  -- TODO: Not implemented
-INSERT INTO `item_usable` VALUES (6319,'abyssdivers_coffer',1,1,0,0,0,0,0,0);        -- TODO: Not implemented
-INSERT INTO `item_usable` VALUES (6320,'intuilas_coffer',1,1,0,0,0,0,0,0);           -- TODO: Not implemented
+INSERT INTO `item_usable` VALUES (6314,'prickly_pitrivs_coffer',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6315,'ironhorn_baldurnos_coffer',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6316,'sleepy_mabels_coffer',1,1,0,0,0,0,0,0);      -- TODO: Not implemented (deferred Wanted)
+INSERT INTO `item_usable` VALUES (6317,'valkurm_imperators_coffer',1,1,0,0,0,0,0,0); -- TODO: Not implemented (deferred Wanted)
+INSERT INTO `item_usable` VALUES (6318,'serpopard_ninlils_coffer',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6319,'abyssdivers_coffer',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6320,'intuilas_coffer',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6321,'emperor_arthros_coffer',1,1,0,0,0,0,0,0);    -- TODO: Not implemented
-INSERT INTO `item_usable` VALUES (6322,'orcfeltraps_coffer',1,1,0,0,0,0,0,0);        -- TODO: Not implemented
+INSERT INTO `item_usable` VALUES (6322,'orcfeltraps_coffer',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6323,'lumber_jills_coffer',1,1,0,0,0,0,0,0);       -- TODO: Not implemented
 INSERT INTO `item_usable` VALUES (6324,'joyous_greens_coffer',1,1,0,0,0,0,0,0);      -- TODO: Not implemented
 INSERT INTO `item_usable` VALUES (6325,'strixs_coffer',1,1,0,0,0,0,0,0);             -- TODO: Not implemented
@@ -2184,7 +2184,7 @@ INSERT INTO `item_usable` VALUES (6326,'warblade_beaks_coffer',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6327,'arkes_coffer',1,1,0,0,0,0,0,0);              -- TODO: Not implemented
 INSERT INTO `item_usable` VALUES (6328,'largantuas_coffer',1,1,0,0,0,0,0,0);         -- TODO: Not implemented
 INSERT INTO `item_usable` VALUES (6329,'beists_coffer',1,1,0,0,0,0,0,0);             -- TODO: Not implemented
-INSERT INTO `item_usable` VALUES (6330,'jester_malatrixs_coffer',1,1,0,0,0,0,0,0);   -- TODO: Not implemented
+INSERT INTO `item_usable` VALUES (6330,'jester_malatrixs_coffer',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6331,'cactrot_velozs_coffer',1,1,0,0,0,0,0,0);      -- TODO: Not implemented
 INSERT INTO `item_usable` VALUES (6332,'woodland_menders_coffer',1,1,0,0,0,0,0,0);   -- TODO: Not implemented
 INSERT INTO `item_usable` VALUES (6333,'translucent_salpa',1,1,0,0,0,0,0,0);         -- TODO: Not implemented

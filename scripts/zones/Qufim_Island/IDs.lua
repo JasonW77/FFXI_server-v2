@@ -7,6 +7,7 @@ zones[xi.zone.QUFIM_ISLAND] =
 {
     text =
     {
+        NOTHING_HAPPENS                = 141,   -- Nothing happens...
         ITEM_CANNOT_BE_OBTAINED        = 6387,  -- You cannot obtain the <item>. Come back after sorting your inventory.
         ITEM_OBTAINED                  = 6395,  -- Obtained: <item>.
         GIL_OBTAINED                   = 6396,  -- Obtained <number> gil.
@@ -49,6 +50,7 @@ zones[xi.zone.QUFIM_ISLAND] =
     mob =
     {
         DOSETSU_TREE      = GetFirstID('Dosetsu_Tree'),
+        JESTER_MALATRIX   = GetTableOfIDs('Jester_Malatrix'),
         KRAKEN_NM         = GetTableOfIDs('Kraken')[3],
         OPHIOTAURUS       = GetFirstID('Ophiotaurus'),
         SLIPPERY_SUCKER   = GetFirstID('Slippery_Sucker'),
@@ -56,7 +58,8 @@ zones[xi.zone.QUFIM_ISLAND] =
     },
     npc =
     {
-        OVERSEER_BASE = GetFirstID('Pitoire_RK'),
+        OVERSEER_BASE     = GetFirstID('Pitoire_RK'),
+        ETHEREAL_JUNCTION = GetTableOfIDs('Ethereal_Junction'),
     },
 }
 

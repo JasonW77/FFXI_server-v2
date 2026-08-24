@@ -18,6 +18,8 @@ xi.unityNM = xi.unityNM or {}
 
 -- Junction NPC ID -> Wanted entry
 -- Content level is the RoE recommended level shown in UNITY_WANTED_BATTLE_INTERACT.
+-- Deferred (bad SQL / missing RoE): Sleepy Mabel 821, Valkurm Imperator 822,
+-- Sybaritic Samantha 854, Immanibugard (RoE ID unconfirmed; likely 826).
 local nmData =
 {
     -- Hugemaw Harold (Wanted I) -- RoE 817 -- East Ronfaure
@@ -29,6 +31,41 @@ local nmData =
     [17216189] = { roeId = 818, cost = 200, contentLevel = 75, mobId = 17216127, coffer = xi.item.BOUNDING_BELINDAS_COFFER },
     [17216190] = { roeId = 818, cost = 200, contentLevel = 75, mobId = 17216128, coffer = xi.item.BOUNDING_BELINDAS_COFFER },
     [17216191] = { roeId = 818, cost = 200, contentLevel = 75, mobId = 17216129, coffer = xi.item.BOUNDING_BELINDAS_COFFER },
+
+    -- Prickly Pitriv (Wanted I) -- RoE 819 -- East Sarutabaruta
+    [17253078] = { roeId = 819, cost = 200, contentLevel = 75, mobId = 17252988, coffer = xi.item.PRICKLY_PITRIVS_COFFER },
+    [17253079] = { roeId = 819, cost = 200, contentLevel = 75, mobId = 17252989, coffer = xi.item.PRICKLY_PITRIVS_COFFER },
+    [17253080] = { roeId = 819, cost = 200, contentLevel = 75, mobId = 17252990, coffer = xi.item.PRICKLY_PITRIVS_COFFER },
+
+    -- Ironhorn Baldurno (Wanted) -- RoE 820 -- La Theine Plateau
+    [17195685] = { roeId = 820, cost = 400, contentLevel = 99, mobId = 17195570, coffer = xi.item.IRONHORN_BALDURNOS_COFFER },
+    [17195686] = { roeId = 820, cost = 400, contentLevel = 99, mobId = 17195571, coffer = xi.item.IRONHORN_BALDURNOS_COFFER },
+    [17195687] = { roeId = 820, cost = 400, contentLevel = 99, mobId = 17195572, coffer = xi.item.IRONHORN_BALDURNOS_COFFER },
+
+    -- Serpopard Ninlil (Wanted) -- RoE 823 -- Tahrongi Canyon
+    [17257083] = { roeId = 823, cost = 400, contentLevel = 99, mobId = 17256995, coffer = xi.item.SERPOPARD_NINLILS_COFFER },
+    [17257084] = { roeId = 823, cost = 400, contentLevel = 99, mobId = 17256996, coffer = xi.item.SERPOPARD_NINLILS_COFFER },
+    [17257085] = { roeId = 823, cost = 400, contentLevel = 99, mobId = 17256997, coffer = xi.item.SERPOPARD_NINLILS_COFFER },
+
+    -- Abyssdiver (Wanted) -- RoE 824 -- Buburimu Peninsula
+    [17261206] = { roeId = 824, cost = 1500, contentLevel = 119, mobId = 17261050, coffer = xi.item.ABYSSDIVERS_COFFER },
+    [17261207] = { roeId = 824, cost = 1500, contentLevel = 119, mobId = 17261051, coffer = xi.item.ABYSSDIVERS_COFFER },
+    [17261208] = { roeId = 824, cost = 1500, contentLevel = 119, mobId = 17261052, coffer = xi.item.ABYSSDIVERS_COFFER },
+
+    -- Intuila (Wanted) -- RoE 825 -- Bibiki Bay
+    [16794044] = { roeId = 825, cost = 1500, contentLevel = 119, mobId = 16793965, coffer = xi.item.INTUILAS_COFFER },
+    [16794045] = { roeId = 825, cost = 1500, contentLevel = 119, mobId = 16793966, coffer = xi.item.INTUILAS_COFFER },
+    [16794046] = { roeId = 825, cost = 1500, contentLevel = 119, mobId = 16793967, coffer = xi.item.INTUILAS_COFFER },
+
+    -- Orcfeltrap (Wanted) -- RoE 827 -- Carpenters' Landing
+    [16785786] = { roeId = 827, cost = 1500, contentLevel = 119, mobId = 16785724, coffer = xi.item.ORCFELTRAPS_COFFER },
+    [16785787] = { roeId = 827, cost = 1500, contentLevel = 119, mobId = 16785725, coffer = xi.item.ORCFELTRAPS_COFFER },
+    [16785788] = { roeId = 827, cost = 1500, contentLevel = 119, mobId = 16785726, coffer = xi.item.ORCFELTRAPS_COFFER },
+
+    -- Jester Malatrix (Wanted) -- RoE 835 -- Qufim Island
+    [17293791] = { roeId = 835, cost = 1500, contentLevel = 119, mobId = 17293663, coffer = xi.item.JESTER_MALATRIXS_COFFER },
+    [17293792] = { roeId = 835, cost = 1500, contentLevel = 119, mobId = 17293664, coffer = xi.item.JESTER_MALATRIXS_COFFER },
+    [17293793] = { roeId = 835, cost = 1500, contentLevel = 119, mobId = 17293665, coffer = xi.item.JESTER_MALATRIXS_COFFER },
 }
 
 local CONFIRM_WINDOW = 30 -- seconds between prompt and confirm (MVP stand-in for yes/no menu)

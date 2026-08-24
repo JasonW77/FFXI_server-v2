@@ -7,6 +7,7 @@ zones[xi.zone.BIBIKI_BAY] =
 {
     text =
     {
+        NOTHING_HAPPENS               = 141,  -- Nothing happens...
         ITEM_CANNOT_BE_OBTAINED       = 6387, -- You cannot obtain the <item>. Come back after sorting your inventory.
         ITEM_OBTAINED                 = 6395, -- Obtained: <item>.
         GIL_OBTAINED                  = 6396, -- Obtained <number> gil.
@@ -52,12 +53,14 @@ zones[xi.zone.BIBIKI_BAY] =
     mob =
     {
         INTULO     = GetFirstID('Intulo'),
+        INTUILA    = GetTableOfIDs('Intuila'),
         PEERIFOOL  = GetFirstID('Peerifool'),
         SERRA      = GetFirstID('Serra'),
         SPLACKNUCK = GetFirstID('Splacknuck'),
     },
     npc =
     {
+        ETHEREAL_JUNCTION = GetTableOfIDs('Ethereal_Junction'),
     },
 }
 

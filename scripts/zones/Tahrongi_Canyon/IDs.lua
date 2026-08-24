@@ -67,6 +67,7 @@ zones[xi.zone.TAHRONGI_CANYON] =
         HERBAGE_HUNTER   = GetFirstID('Herbage_Hunter'),
         HABROK           = GetFirstID('Habrok'),
         YARA_MA_YHA_WHO  = GetFirstID('Yara_Ma_Yha_Who'),
+        SERPOPARD_NINLIL = GetTableOfIDs('Serpopard_Ninlil'),
 
         VOIDWALKER =
         {
@@ -102,8 +103,9 @@ zones[xi.zone.TAHRONGI_CANYON] =
 
     npc =
     {
-        SIGNPOST_OFFSET = GetFirstID('Signpost'),
-        EXCAVATION      = GetTableOfIDs('Excavation_Point'),
+        SIGNPOST_OFFSET   = GetFirstID('Signpost'),
+        EXCAVATION        = GetTableOfIDs('Excavation_Point'),
+        ETHEREAL_JUNCTION = GetTableOfIDs('Ethereal_Junction'),
     },
 }
 

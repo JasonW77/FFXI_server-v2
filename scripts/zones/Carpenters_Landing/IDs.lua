@@ -7,6 +7,7 @@ zones[xi.zone.CARPENTERS_LANDING] =
 {
     text =
     {
+        NOTHING_HAPPENS               = 141,  -- Nothing happens...
         ITEM_CANNOT_BE_OBTAINED       = 6387, -- You cannot obtain the <item>. Come back after sorting your inventory.
         FULL_INVENTORY_AFTER_TRADE    = 6391, -- You cannot obtain the <item>. Try trading again after sorting your inventory.
         ITEM_OBTAINED                 = 6395, -- Obtained: <item>.
@@ -50,6 +51,7 @@ zones[xi.zone.CARPENTERS_LANDING] =
         HERCULES_BEETLE       = GetFirstID('Hercules_Beetle'),
         MYCOPHILE             = GetFirstID('Mycophile'),
         ORCTRAP               = GetFirstID('Orctrap'),
+        ORCFELTRAP            = GetTableOfIDs('Orcfeltrap'),
         OVERGROWN_IVY         = GetFirstID('Overgrown_Ivy'),
         PARA                  = GetFirstID('Para'),
         TEMPEST_TIGON         = GetFirstID('Tempest_Tigon'),
@@ -58,6 +60,7 @@ zones[xi.zone.CARPENTERS_LANDING] =
     {
         HERCULES_BEETLE_TREES = GetTableOfIDs('qm_hercules_beetle'),
         LOGGING               = GetTableOfIDs('Logging_Point'),
+        ETHEREAL_JUNCTION     = GetTableOfIDs('Ethereal_Junction'),
     },
 }
 

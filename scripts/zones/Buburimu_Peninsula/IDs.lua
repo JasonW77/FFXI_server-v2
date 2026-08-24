@@ -64,6 +64,7 @@ zones[xi.zone.BUBURIMU_PENINSULA] =
         BACKOO     = GetFirstID('Backoo'),
         BUBURIMBOO = GetFirstID('Buburimboo'),
         HELLDIVER  = GetFirstID('Helldiver'),
+        ABYSSDIVER = GetTableOfIDs('Abyssdiver'),
     },
     npc =
     {
@@ -74,6 +75,7 @@ zones[xi.zone.BUBURIMU_PENINSULA] =
         OVERSEER_BASE      = GetFirstID('Bonbavour_RK'),
         SHIMMERING_POINT   = GetFirstID('Shimmering_Point'),
         SIGNPOST_OFFSET    = GetFirstID('Signpost'),
+        ETHEREAL_JUNCTION  = GetTableOfIDs('Ethereal_Junction'),
     },
 }
 
