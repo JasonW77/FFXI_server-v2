@@ -14,7 +14,7 @@ Follow [LSB Development Guide — SQL](https://github.com/LandSandBoat/server/wi
 - Invisible equipment: check `item_equipment.MId` first (`0` = bare/invisible look). `-- TODO: … verify model` / `MId=0` means unfinished.
 - Item DAT has name/flags/stats text, not LSB `MId`. Do not invent look IDs; use XI Tinkerer or the `item-equipment` skill (FTABLE / multi-race mesh check).
 - Finishing a stub: equipment row + `item_mods` (if any) + `item_usable` / `scripts/items/` / `xi.item` when enchanted; then `dbtool` + map reload.
-- NPC display names and `pos_x/y/z` live in `sql/npc_list.sql`.
+- NPC names and `pos_x/y/z` live in `sql/npc_list.sql`: `name` = internal / Lua file; `polutils_name` = client label (`packetName`). Empty or unused display name + DAT miss → generic **NPC** nameplate (see `npc-scripts` skill).
 - Leveled NMs/content: set `mob_spawn_points` `minLevel`/`maxLevel` to the known level (e.g. Wanted I → `75,75`). Do not leave `0,0` when a recommended level exists — formula HP collapses.
 - `mob_groups.HP = 0` → HP from level/job formula. Use an explicit HP only when sourced or marked `-- TODO` vs retail.
 - Schema changes need a `tools/migrations/` script if asked. After data edits, update with `tools/dbtool.py`.

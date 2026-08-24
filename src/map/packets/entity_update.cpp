@@ -357,10 +357,12 @@ void CEntityUpdatePacket::updateWith(CBaseEntity* PEntity, ENTITYUPDATE type, ui
                 ref<uint8>(0x2B) = PEntity->namevis;
             }
 
-            // TODO: Unify name logic
+            // Prefer polutils_name (packetName) when set so the client shows the
+            // display name (e.g. "Survival Guide") instead of the internal name
+            // ("Survival_Guide"), which falls back to the generic "NPC" label.
             if (updatemask & UPDATE_NAME)
             {
-                auto name = PNpc->getName();
+                auto name = !PNpc->packetName.empty() ? PNpc->packetName : PNpc->getName();
                 if (PNpc->look.size == MODEL_ELEVATOR || PNpc->look.size == MODEL_SHIP)
                 {
                     name = getTransportNPCName(PNpc);
