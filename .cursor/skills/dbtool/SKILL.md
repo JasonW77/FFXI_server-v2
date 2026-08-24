@@ -19,7 +19,13 @@ python dbtool.py migrate
 
 After SQL edits, tell the user the DB must be updated. Do not run `update`, restore, or other destructive commands unless they asked.
 
+Before committing mega-dumps (`mob_spawn_points.sql`, etc.): `git diff --stat` must not show mass deletions, and the file must end with a complete `INSERT … );`. See `sql.mdc`. A truncated dump fails import with syntax near `VAL`.
+
 Express `update` diffs since `db_ver` and **skips unchanged SQL files**. It can report “up to date” while static tables (e.g. fishing) are stale. After item edits, verify with `SELECT` on the target DB. If rows are still stale, use a targeted import of the specific `sql/*.sql` files or `update full`.
+
+Express update can import several files then **fail mid-run** — earlier files may already be applied. Fix the bad SQL and re-run; do not assume `mob_spawn_points` updated if that file errored.
+
+**Live host:** use the `ssh-live` skill. Venv may lack `pip` / GitPython (`No module named 'git'`) — bootstrap per that skill, then retry `dbtool.py update`. Do not skip the DB update solely because git was missing.
 
 After `item_equipment` / `item_mods` / `item_usable` changes, restart the map on **the same host as that DB** (`xi_map` / `ssh-live`) before client checks — a running map keeps the old item cache.
 

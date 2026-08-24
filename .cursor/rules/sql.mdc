@@ -18,4 +18,5 @@ Follow [LSB Development Guide — SQL](https://github.com/LandSandBoat/server/wi
 - Leveled NMs/content: set `mob_spawn_points` `minLevel`/`maxLevel` to the known level (e.g. Wanted I → `75,75`). Do not leave `0,0` when a recommended level exists — formula HP collapses.
 - `mob_groups.HP = 0` → HP from level/job formula. Use an explicit HP only when sourced or marked `-- TODO` vs retail.
 - Schema changes need a `tools/migrations/` script if asked. After data edits, update with `tools/dbtool.py`.
-- Do not rewrite entire dumps for one-row edits. Do not commit `sql/backups/` or `tools/config.yaml`.
+- Do not rewrite entire dumps for one-row edits. Prefer surgical search-replace of known rows. Do not commit `sql/backups/` or `tools/config.yaml`.
+- After editing mega-dumps (`mob_spawn_points.sql`, `npc_list.sql`, etc.): check `git diff --stat`. Tens of thousands of deletions usually means truncation — stop, restore from git, re-apply row edits. Confirm EOF is a complete `INSERT … );` (not mid-`VALUES` / mid-`VAL`).
