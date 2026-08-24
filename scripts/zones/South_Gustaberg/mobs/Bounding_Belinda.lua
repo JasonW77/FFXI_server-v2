@@ -5,6 +5,7 @@
 --
 -- Notes:
 --   UNM version of Leaping Lizzy.
+--   Spawn level 75 / group HP 20000 in SQL (Wanted I one-party placeholder; verify vs retail).
 --   Light / Darkness skillchains cause a 10s stagger with no chat message (BG-Wiki).
 --   Timing/message-less behavior marked TODO until verified in client.
 -----------------------------------

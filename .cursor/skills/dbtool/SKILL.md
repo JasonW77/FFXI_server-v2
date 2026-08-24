@@ -23,6 +23,15 @@ Express `update` diffs since `db_ver` and **skips unchanged SQL files**. It can 
 
 After `item_equipment` / `item_mods` / `item_usable` changes, restart the map on **the same host as that DB** (`xi_map` / `ssh-live`) before client checks — a running map keeps the old item cache.
 
+After `mob_groups` / `mob_spawn_points` (and similar static mob SQL), update the DB **and** restart the map on that host. Spawn level and group HP are loaded at map/zone bring-up.
+
+Optional verify for an NM (replace IDs):
+
+```sql
+SELECT mobid, minLevel, maxLevel FROM mob_spawn_points WHERE mobid IN (...);
+SELECT groupid, zoneid, name, HP, MP FROM mob_groups WHERE name = '...';
+```
+
 Do not commit `sql/backups/` or `tools/config.yaml`. Character-data migrations live in `tools/migrations/` and are applied by dbtool.
 
 ## Agent shell gotchas

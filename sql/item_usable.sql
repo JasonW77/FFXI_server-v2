@@ -2166,7 +2166,7 @@ INSERT INTO `item_usable` VALUES (6308,'hachiya_shuriken_pouch',1,1,0,0,0,0,0,0)
 INSERT INTO `item_usable` VALUES (6309,'suppa_shuriken_pouch',1,1,0,0,0,0,0,0);      -- TODO: Not implemented
 INSERT INTO `item_usable` VALUES (6310,'gashing_bolt_quiver',1,1,0,0,0,0,0,0);       -- TODO: Not implemented
 INSERT INTO `item_usable` VALUES (6311,'decimating_bullet_pouch',1,1,0,0,0,0,0,0);   -- TODO: Not implemented
-INSERT INTO `item_usable` VALUES (6312,'hugemaw_harolds_coffer',1,1,0,0,0,0,0,0);    -- TODO: Not implemented
+INSERT INTO `item_usable` VALUES (6312,'hugemaw_harolds_coffer',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6313,'bounding_belindas_coffer',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6314,'prickly_pitrivs_coffer',1,1,0,0,0,0,0,0);    -- TODO: Not implemented
 INSERT INTO `item_usable` VALUES (6315,'ironhorn_baldurnos_coffer',1,1,0,0,0,0,0,0); -- TODO: Not implemented

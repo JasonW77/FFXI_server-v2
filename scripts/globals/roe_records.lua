@@ -5744,6 +5744,16 @@ xi.roe.records =
     -- Content (Unity Wanted)
     -----------------------------------
 
+    [817] =
+    { -- Subjugation: Hugemaw Harold (UC)
+        -- Sources: BG-Wiki Hugemaw Harold / Unity Concord Wanted; RoE ID from client.
+        -- Coffer is granted to confrontation participants on win (not RoE item reward).
+        trigger = xi.roeTrigger.DEFEAT_MOB,
+        reqs = { mobID = set { 17191471, 17191472, 17191473 } },
+        flags = set { 'repeat' },
+        reward = { sparks = 500, exp = 2500 },
+    },
+
     [818] =
     { -- Subjugation: Bounding Belinda (UC)
         -- Sources: BG-Wiki Bounding Belinda / Unity Concord Wanted; RoE ID from client.

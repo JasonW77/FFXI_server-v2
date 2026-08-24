@@ -20,6 +20,11 @@ xi.unityNM = xi.unityNM or {}
 -- Content level is the RoE recommended level shown in UNITY_WANTED_BATTLE_INTERACT.
 local nmData =
 {
+    -- Hugemaw Harold (Wanted I) -- RoE 817 -- East Ronfaure
+    [17191542] = { roeId = 817, cost = 200, contentLevel = 75, mobId = 17191471, coffer = xi.item.HUGEMAW_HAROLDS_COFFER },
+    [17191543] = { roeId = 817, cost = 200, contentLevel = 75, mobId = 17191472, coffer = xi.item.HUGEMAW_HAROLDS_COFFER },
+    [17191544] = { roeId = 817, cost = 200, contentLevel = 75, mobId = 17191473, coffer = xi.item.HUGEMAW_HAROLDS_COFFER },
+
     -- Bounding Belinda (Wanted I) -- RoE 818 -- South Gustaberg
     [17216189] = { roeId = 818, cost = 200, contentLevel = 75, mobId = 17216127, coffer = xi.item.BOUNDING_BELINDAS_COFFER },
     [17216190] = { roeId = 818, cost = 200, contentLevel = 75, mobId = 17216128, coffer = xi.item.BOUNDING_BELINDAS_COFFER },

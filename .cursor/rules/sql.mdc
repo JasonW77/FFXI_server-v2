@@ -15,5 +15,7 @@ Follow [LSB Development Guide — SQL](https://github.com/LandSandBoat/server/wi
 - Item DAT has name/flags/stats text, not LSB `MId`. Do not invent look IDs; use XI Tinkerer or the `item-equipment` skill (FTABLE / multi-race mesh check).
 - Finishing a stub: equipment row + `item_mods` (if any) + `item_usable` / `scripts/items/` / `xi.item` when enchanted; then `dbtool` + map reload.
 - NPC display names and `pos_x/y/z` live in `sql/npc_list.sql`.
+- Leveled NMs/content: set `mob_spawn_points` `minLevel`/`maxLevel` to the known level (e.g. Wanted I → `75,75`). Do not leave `0,0` when a recommended level exists — formula HP collapses.
+- `mob_groups.HP = 0` → HP from level/job formula. Use an explicit HP only when sourced or marked `-- TODO` vs retail.
 - Schema changes need a `tools/migrations/` script if asked. After data edits, update with `tools/dbtool.py`.
 - Do not rewrite entire dumps for one-row edits. Do not commit `sql/backups/` or `tools/config.yaml`.

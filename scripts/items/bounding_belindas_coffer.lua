@@ -29,6 +29,9 @@ itemObject.onItemUse = function(target)
     if result == 0 then
         -- TODO: verify gil amount range from Belinda's Coffer vs retail
         npcUtil.giveCurrency(target, 'gil', math.random(2000, 6000))
+    elseif result == xi.item.BOUNDING_BELINDAS_HIDE then
+        -- BG-Wiki: chance to obtain 1~3 hide from Belinda's Coffer
+        npcUtil.giveItem(target, { { result, math.random(1, 3) } })
     else
         npcUtil.giveItem(target, { { result, 1 } })
     end

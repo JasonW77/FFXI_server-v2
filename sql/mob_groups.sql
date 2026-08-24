@@ -8213,7 +8213,7 @@ INSERT INTO `mob_groups` VALUES (52,0,107,'Astral_Box',0,128,0,0,0,0,NULL);
 INSERT INTO `mob_groups` VALUES (53,0,107,'Slime',0,128,0,0,0,0,NULL);
 INSERT INTO `mob_groups` VALUES (54,0,107,'She-Slime',0,128,0,0,0,0,NULL);
 INSERT INTO `mob_groups` VALUES (55,0,107,'Metal_Slime',0,128,0,0,0,0,NULL);
-INSERT INTO `mob_groups` VALUES (56,6830,107,'Bounding_Belinda',0,128,0,0,0,0,NULL);
+INSERT INTO `mob_groups` VALUES (56,6830,107,'Bounding_Belinda',0,128,0,20000,0,0,NULL); -- TODO: Wanted I HP unverified vs retail; lvl75 one-party placeholder (was 0 + spawn lvl 0)
 
 -- ------------------------------------------------------------
 -- Konschtat_Highlands (Zone 108)
