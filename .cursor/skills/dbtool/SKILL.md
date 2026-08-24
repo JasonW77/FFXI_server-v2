@@ -23,6 +23,8 @@ Express `update` diffs since `db_ver` and **skips unchanged SQL files**. It can 
 
 After `item_equipment` / `item_mods` / `item_usable` changes, restart the map on **the same host as that DB** (`xi_map` / `ssh-live`) before client checks — a running map keeps the old item cache.
 
+After `scripts/enum/item.lua` (or other `scripts/enum/*`) edits: **map restart required**. Enum Lua is not SQL and FileWatcher does not hot-reload enums safely (skipped / unsafe); a running map keeps the old `xi.item` table until restart.
+
 After `mob_groups` / `mob_spawn_points` (and similar static mob SQL), update the DB **and** restart the map on that host. Spawn level and group HP are loaded at map/zone bring-up.
 
 Optional verify for an NM (replace IDs):
