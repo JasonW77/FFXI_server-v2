@@ -5741,6 +5741,21 @@ xi.roe.records =
     },
 
     -----------------------------------
+    -- Content (Unity Wanted)
+    -----------------------------------
+
+    [818] =
+    { -- Subjugation: Bounding Belinda (UC)
+        -- Sources: BG-Wiki Bounding Belinda / Unity Concord Wanted; RoE ID from client.
+        -- Coffer is granted to confrontation participants on win (not RoE item reward),
+        -- so repeats always receive a coffer.
+        trigger = xi.roeTrigger.DEFEAT_MOB,
+        reqs = { mobID = set { 17216127, 17216128, 17216129 } },
+        flags = set { 'repeat' },
+        reward = { sparks = 500, exp = 2500 },
+    },
+
+    -----------------------------------
     -- Content (Dynamis 1)
     -----------------------------------
 

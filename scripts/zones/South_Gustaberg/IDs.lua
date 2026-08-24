@@ -43,12 +43,14 @@ zones[xi.zone.SOUTH_GUSTABERG] =
     },
     mob =
     {
-        CARNERO       = GetTableOfIDs('Carnero'),
-        LEAPING_LIZZY = GetTableOfIDs('Leaping_Lizzy'),
-        BUBBLY_BERNIE = GetFirstID('Bubbly_Bernie'),
+        CARNERO          = GetTableOfIDs('Carnero'),
+        LEAPING_LIZZY    = GetTableOfIDs('Leaping_Lizzy'),
+        BUBBLY_BERNIE    = GetFirstID('Bubbly_Bernie'),
+        BOUNDING_BELINDA = GetTableOfIDs('Bounding_Belinda'),
     },
     npc =
     {
+        ETHEREAL_JUNCTION = GetTableOfIDs('Ethereal_Junction'),
     },
 }
 
