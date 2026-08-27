@@ -21,6 +21,14 @@ Header:
 - In `sql/npc_list.sql`: `name` = internal / Lua file (`Survival_Guide`); `polutils_name` = client label (`Survival Guide`, loaded as `packetName`). Coords from `pos_x/y/z`.
 - Keep an existing Notes block. Do not strip it.
 
+## DefaultActions ≠ finished system
+
+`['Npc'] = { event = N }` only starts a client cutscene. It is **not** trades, JP spend, augments, or upgrade logic.
+
+Finished retail NPC systems need a zone `npcs/*.lua` and/or IF + `onTrade` / `onEventUpdate` (or a documented global). Peers that are still stubs: Oboro `365`, Monisette `384`.
+
+For “how finished is this NPC/system?” load `feature-status-audit`.
+
 ## Nameplate shows "NPC"
 
 1. Confirm the `npc_list` row: `polutils_name` set, look/model correct, not a placeholder (`NPC[…]`, empty name).

@@ -20,5 +20,5 @@ Copy structure from a nearby completed quest (e.g. `scripts/quests/jeuno/Chocobo
 - `progressEvent` for progression; `event` for flavor; `npcUtil.tradeHasExactly` for trades.
 - `quest:getVar` / `setVar`, not raw `getCharVar`, for framework vars.
 - After migrating, strip quest if/else from the NPC file. Keep patrol/Trust/unrelated logic.
-- One-line defaults go in `scripts/zones/<Zone>/DefaultActions.lua`.
+- One-line defaults go in `scripts/zones/<Zone>/DefaultActions.lua`. Those entries are often temporary dialogue stubs, not proof the retail system (trades, updates, rewards) is done — see `npc-scripts` / `feature-status-audit`.
 - Mark partial conversions in `scripts/globals/quests.lua` with a TODO.

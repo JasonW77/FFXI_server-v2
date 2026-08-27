@@ -37,6 +37,8 @@ Never invent a model ID.
 
 Copy nearby INSERT / script style. Clear verify-model TODOs only after MId is sourced.
 
+Base `item_*` / mods ≠ a create/upgrade NPC path. For “is Oboro / reforge / etc. finished?” use `feature-status-audit`.
+
 ## Apply & verify
 
 1. Know **which DB** the user is testing (local vs live `/home/jason/server`). Fix that DB, not only the other.
