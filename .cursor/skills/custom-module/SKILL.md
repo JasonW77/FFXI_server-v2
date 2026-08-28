@@ -4,7 +4,8 @@ description: >-
   Add or change live-server QoL under modules/custom. Use when the change is
   non-retail, this server only, or the user asks for a custom module, init.txt
   enable, or not to touch era/core. Also use for HNM/NM timers, ToD persist,
-  idle/unclaimed despawn, or land-king style spawn systems.
+  idle/unclaimed despawn, land-king style spawn systems, or mission-gated
+  inventory/wardrobe storage.
 ---
 
 # Custom module
@@ -30,11 +31,11 @@ return m
 
 - `Module:new(...)` matches the filename (snake_case). Prefix `custom_` only if the name could collide with core/era.
 - One concern per file: `lua/`, `sql/`, `commands/`, or `cpp/`.
-- Prefer extending an existing related module over a second file for the same concern. Do not rename only for clarity if `init.txt` already loads the file.
+- Prefer extending an existing related module over a second file for the same concern. Do not rename only for clarity if `init.txt` already loads the file. If the user names a **new** module file or the existing one is an unused stub, **create the new file**; leave the stub unless asked to remove it.
 - Override the LSB path; do not fork a full copy of the script unless required.
 - Call `super()` when wrapping (especially when multiplier/toggle is 1 or disabled).
 - Document that it is non-retail QoL at the top.
-- Enable in local `modules/init.txt` — entry format: `custom/lua/foo.lua` (not `modules/custom/...`). `init.txt` is local-only; never commit it to a PR.
+- Enable in `modules/init.txt` — entry format: `custom/lua/foo.lua` (not `modules/custom/...`). OK on `LIVE` branch; never in LandSandBoat upstream PRs.
 - Missing retail features belong in core `scripts/`, not here.
 - Live flavor that landed in core by mistake (HELM yields, etc.) should be moved here, not left in `scripts/`.
 
@@ -56,6 +57,29 @@ Do not edit `settings/default/` for live flavor. Default to `1` or retail in mod
 When retail limits are enforced in C++, wrap the Lua layer instead (`scripts/globals/...`) — validate in C++, apply QoL in Lua. Reference: `modules/custom/lua/guild_daily_gp_multiplier.lua` (scales GP daily cap via bonus currency + `daily_points` consumption scaler).
 
 Prefer `super()` when disabled; duplicate globals logic only when the wrapper must change behavior (e.g. scaled UI values).
+
+## Mission-gated container storage
+
+Reference: `modules/custom/lua/awesomes_mission_wardrobe_unlocks.lua`.
+
+Use when gating **Mog Wardrobes** (or similar containers) behind mission progress on Live. Satchel is out of scope on Live (disabled by default).
+
+**Do**
+
+- Hook **`npcUtil.completeMission`** for IF / `mission:complete()` paths.
+- Hook **`xi.player.onGameIn`** to **backfill** unlocks from `hasCompletedMission` (covers **`player:completeMission`** in zone scripts, e.g. ACP).
+- **Charvar dedup** per `(logId, missionId)` so login backfill does not double-grant.
+- **Char create:** strip wardrobes with `changeContainerSize(wardrobe, -80)` after `super()` (new chars only).
+- **Nation lines:** one mission log → one wardrobe (Sandy/Bastok/Windy each own a bag). Do not map all three nations to the same container.
+- **One arc, one wardrobe** for expansions; addons (ACP/AMK/ASA) may share one wardrobe with split milestones.
+
+**Do not**
+
+- Enable **two modules** that override the same global (e.g. `mission_wardrobe_unlocks.lua` + `awesomes_mission_wardrobe_unlocks.lua`).
+- Assume `changeContainerSize` sets absolute size — it is **additive** (`AddBuff`), clamped **0–80** per container.
+- Strip existing characters’ wardrobes on login without a migration plan (items can become inaccessible).
+
+**Deploy notes:** new `init.txt` entries need **map restart**. Existing chars: backfill on login; veterans already at 80/80 keep DB size until policy says otherwise.
 
 ## GP daily cap vs craft skill
 
