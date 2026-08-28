@@ -53,6 +53,7 @@ custom/cpp/gobbie_box_level_cap.cpp
 #custom/sql/mob_spawn_points.sql
 #custom/sql/faster_repop_times.sql
 custom/sql/homepoints_live.sql
+custom/sql/tutorial_npc_namevis.sql
 custom/sql/server_ip_adjustment.sql
 custom/sql/land_kings_remove_pop_items.sql
 custom/sql/1_warrior_trait_adjustments.sql
