@@ -20,7 +20,7 @@ DELETE FROM chars WHERE charid != @keep_charid;
 
 -- Orphan accounts
 DELETE FROM accounts_sessions WHERE accid != @keep_accid;
-DELETE FROM accounts_parties WHERE accid != @keep_accid;
+DELETE FROM accounts_parties WHERE charid != @keep_charid;
 DELETE FROM accounts WHERE id != @keep_accid;
 
 -- Auction house reset
