@@ -41,6 +41,8 @@ custom/commands/
 custom/lua/new_player_linkshell.lua
 custom/lua/homepoint_heal.lua
 custom/lua/tutorial_live_roe_bypass.lua
+custom/lua/tutorial_npc_namevis.lua
+custom/cpp/tutorial_npc_namevis.cpp
 custom/lua/teleport_mage.lua
 custom/lua/city_rest_quickening.lua
 custom/lua/land_kings.lua
