@@ -42,9 +42,15 @@ def main() -> int:
         print(f"Keeping charid={row.charid} accid={row.accid} ({row.charname}, gm={row.gmlevel})")
 
         script = sql_path.read_text()
-        for statement in script.split(";"):
+        # Drop full-line comments; keep statements that may follow inline comment blocks.
+        lines = [
+            line
+            for line in script.splitlines()
+            if line.strip() and not line.strip().startswith("--")
+        ]
+        for statement in "\n".join(lines).split(";"):
             stmt = statement.strip()
-            if not stmt or stmt.startswith("--"):
+            if not stmt:
                 continue
             if stmt.upper().startswith("SELECT IF("):
                 result = conn.execute(text(stmt)).fetchone()
