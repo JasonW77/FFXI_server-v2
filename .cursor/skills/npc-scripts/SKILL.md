@@ -1,6 +1,10 @@
 ---
 name: npc-scripts
-description: Format NPC zone scripts, headers, positions, and stubs. Use when editing scripts/zones/**/npcs, IDs.lua, DefaultActions.lua, or when an NPC nameplate shows NPC instead of its display name.
+description: >-
+  Format NPC zone scripts, headers, positions, and stubs. Use when editing
+  scripts/zones/**/npcs, IDs.lua, DefaultActions.lua, when an NPC nameplate
+  shows NPC instead of its display name, or when a ??? / QM trade or examine
+  silently does nothing at a known retail position.
 ---
 
 # NPC scripts
@@ -28,6 +32,15 @@ Header:
 Finished retail NPC systems need a zone `npcs/*.lua` and/or IF + `onTrade` / `onEventUpdate` (or a documented global). Peers that are still stubs: Oboro `365`, Monisette `384`.
 
 For “how finished is this NPC/system?” load `feature-status-audit`.
+
+## Silent ??? / trade after npc_list dump
+
+IF keys, `DefaultActions`, and `npcs/<name>.lua` bind by SQL **`name`**, not the client `???` label or a stale `!pos` comment.
+
+1. Match wiki / header coords to the `npc_list` row in that zone (`pos_x/y/z`).
+2. Confirm scripts use that row’s `name` (`qm`, `qm2`, …). Silent no-op = wrong name (handler never runs). A scripted “nothing happens” message means the handler ran.
+3. Client `npc_list` dumps can reassign `qm` / `qm2` across entity IDs while positions stay. Prefer **retarget Lua + DefaultActions** to current dump names. Do **not** rename dump rows to match old scripts.
+4. Update quest/mission IF and zone `DefaultActions` together so the wrong `???` does not keep flavor text. Same key in another zone may still be correct — fix only the mismatched zone.
 
 ## Nameplate shows "NPC"
 

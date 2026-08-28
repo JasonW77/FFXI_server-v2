@@ -34,6 +34,7 @@ If you are an AI agent, read `documentation/ai_agents/README.md` first. Style: [
 - Use DarkStar (`dsp.*`), Windower, or unrelated Lua addon patterns. Match this tree.
 - Put non-retail QoL in `scripts/` or `modules/era/` (example: HELM yield multipliers belong in `modules/custom/`).
 - Treat `scripts/zones/**/IDs.lua` numeric shifts as “drive-by formatting.” On this live client they may be intentional DAT/message offsets (boxes/item text). Ask before reverting.
+- Rename `npc_list` internal names to match stale scripts after a client dump. Retarget IF / `DefaultActions` / `npcs` to the dump names instead (`npc-scripts` skill).
 - Convert old NPC scripts to IF without captures and wiki triangulation.
 - Edit `settings/*.lua` except `settings/default/` (local settings are gitignored).
 - Touch `ext/` or `dev.docker-compose.yml` unless asked (copy Compose changes to `docker-compose.yml`).

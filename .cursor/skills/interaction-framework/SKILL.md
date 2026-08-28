@@ -22,3 +22,6 @@ Copy structure from a nearby completed quest (e.g. `scripts/quests/jeuno/Chocobo
 - After migrating, strip quest if/else from the NPC file. Keep patrol/Trust/unrelated logic.
 - One-line defaults go in `scripts/zones/<Zone>/DefaultActions.lua`. Those entries are often temporary dialogue stubs, not proof the retail system (trades, updates, rewards) is done — see `npc-scripts` / `feature-status-audit`.
 - Mark partial conversions in `scripts/globals/quests.lua` with a TODO.
+- When adding or debugging a trade/examine: for each zone entry, verify `['npcKey']` matches that zone’s `npc_list` **name** at the header `!pos` (not a comment or another zone’s same key). See `npc-scripts` (silent ??? after dumps).
+- Prefer retargeting IF + `DefaultActions` to current SQL names after a client dump; do not rename `npc_list` to match stale script keys.
+- Silent client no-op ≠ intentional “nothing happens” `messageSpecial` from the handler.
