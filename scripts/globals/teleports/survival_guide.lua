@@ -39,29 +39,24 @@ end
 -----------------------------------
 -- Public functions
 -----------------------------------
-xi.survivalGuide.onTrigger = function(player)
+
+-- Returns event params for CS 8500, or nil if the guide was just registered (first visit).
+xi.survivalGuide.getTriggerEvent = function(player)
     local tableIndex = survival.zoneIdToGuideIdMap[player:getZoneID()]
     local guide      = survival.survivalGuides[tableIndex]
 
-    -- Early return: No info.
     if not guide then
-        return
+        return nil
     end
 
-    -- If this survival guide hasn't been registered yet (saved to database) do that now.
-    local foundRegisteredGuide = checkForRegisteredSurvivalGuide(player, guide)
-    if not foundRegisteredGuide then
-        return
+    if not checkForRegisteredSurvivalGuide(player, guide) then
+        return nil
     end
 
     local param = bit.bor(tableIndex, bit.lshift(player:getCurrency('valor_point'), 16))
 
-    -- Get the teleport menu option.
-    -- Menu options can be organized by Region or Content.
-    -- Default (0) is region.
     local teleportMenu = player:getTeleportMenu(xi.teleport.type.SURVIVAL)
 
-    -- When all mog tablets are found, survival guides are free.
     local allMogTabletsFound = false -- TODO: Implement mog tablets and fetch if they are all found here.
     if allMogTabletsFound then
         param = bit.bor(param, 0x0400)
@@ -71,31 +66,26 @@ xi.survivalGuide.onTrigger = function(player)
         param = bit.bor(param, 0x0800)
     end
 
-    -- Tutorial quest special option.
     if player:getCharVar('TutorialBypass') == 2 then
         param = bit.bor(param, 0x1000)
     end
 
-    -- "Rhapsody in White" key item reduces teleport fee by 80%
     if player:hasKeyItem(xi.ki.RHAPSODY_IN_WHITE) then
         param = bit.bor(param, 0x2000)
     end
 
-    -- Params 4, 5, 6 and 7
     local g1, g2, g3, g4 = unpack(player:getTeleportTable(xi.teleport.type.SURVIVAL))
-
-    -- Param 8
     local expansions = 3 + 4 * xi.settings.main.ENABLE_COP + 8 * xi.settings.main.ENABLE_TOAU + 16 * xi.settings.main.ENABLE_WOTG + 2048 * xi.settings.main.ENABLE_SOA
 
-    -- param 1 = Does nothing.
-    -- param 2 = current area, player amount of tabs, fee reducer(s) and menu layout (region/content).
-    -- param 3 = gil
-    -- param 4 = zones unlocked (group 1), set to -1 to enable all zones in the group.
-    -- param 5 = Zones unlocked (group 2), set to -1 to enable all zones in the group.
-    -- param 6 = Zones unlocked (group 3), set to -1 to enable all zones in the group.
-    -- param 7 = zones unlocked (Zehrun mines and Eastern Adoulin), set to -1 to enable all zones in the group.
-    -- param 8 = expansions available.
-    player:startEvent(8500, 0, param, player:getGil(), g1, g2, g3, g4, expansions)
+    return { 8500, 0, param, player:getGil(), g1, g2, g3, g4, expansions }
+end
+
+xi.survivalGuide.onTrigger = function(player)
+    local eventParams = xi.survivalGuide.getTriggerEvent(player)
+
+    if eventParams then
+        player:startEvent(unpack(eventParams))
+    end
 end
 
 xi.survivalGuide.onEventUpdate = function(player, csid, option, npc)

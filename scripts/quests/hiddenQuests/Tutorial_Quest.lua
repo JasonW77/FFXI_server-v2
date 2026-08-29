@@ -13,6 +13,19 @@ local function hasLearntWeaponskill(player)
     return false
 end
 
+local function survivalGuideProgress(player, bypassBefore, bypassAfter)
+    if player:getCharVar('TutorialBypass') ~= bypassBefore then
+        return
+    end
+
+    player:setCharVar('TutorialBypass', bypassAfter)
+
+    local eventParams = xi.survivalGuide.getTriggerEvent(player)
+    if eventParams then
+        return quest:progressEvent(unpack(eventParams))
+    end
+end
+
 quest.sections =
 {
     -- Step 0 -> Introduction.
@@ -782,10 +795,7 @@ quest.sections =
             ['Survival_Guide'] =
             {
                 onTrigger = function(player, npc)
-                    if player:getCharVar('TutorialBypass') == 0 then
-                        player:setCharVar('TutorialBypass', 1)
-                        return xi.survivalGuide.onTrigger(player)
-                    end
+                    return survivalGuideProgress(player, 0, 1)
                 end,
             },
         },
@@ -795,10 +805,7 @@ quest.sections =
             ['Survival_Guide'] =
             {
                 onTrigger = function(player, npc)
-                    if player:getCharVar('TutorialBypass') == 1 then
-                        player:setCharVar('TutorialBypass', 2)
-                        return xi.survivalGuide.onTrigger(player)
-                    end
+                    return survivalGuideProgress(player, 1, 2)
                 end,
             },
         },
@@ -808,10 +815,7 @@ quest.sections =
             ['Survival_Guide'] =
             {
                 onTrigger = function(player, npc)
-                    if player:getCharVar('TutorialBypass') == 0 then
-                        player:setCharVar('TutorialBypass', 1)
-                        return xi.survivalGuide.onTrigger(player)
-                    end
+                    return survivalGuideProgress(player, 0, 1)
                 end,
             },
         },
@@ -821,10 +825,7 @@ quest.sections =
             ['Survival_Guide'] =
             {
                 onTrigger = function(player, npc)
-                    if player:getCharVar('TutorialBypass') == 0 then
-                        player:setCharVar('TutorialBypass', 1)
-                        return xi.survivalGuide.onTrigger(player)
-                    end
+                    return survivalGuideProgress(player, 0, 1)
                 end,
             },
         },
@@ -858,10 +859,7 @@ quest.sections =
             ['Survival_Guide'] =
             {
                 onTrigger = function(player, npc)
-                    if player:getCharVar('TutorialBypass') == 1 then
-                        player:setCharVar('TutorialBypass', 2)
-                        return xi.survivalGuide.onTrigger(player)
-                    end
+                    return survivalGuideProgress(player, 1, 2)
                 end,
             },
         },
@@ -871,10 +869,7 @@ quest.sections =
             ['Survival_Guide'] =
             {
                 onTrigger = function(player, npc)
-                    if player:getCharVar('TutorialBypass') == 1 then
-                        player:setCharVar('TutorialBypass', 2)
-                        return xi.survivalGuide.onTrigger(player)
-                    end
+                    return survivalGuideProgress(player, 1, 2)
                 end,
             },
         },
