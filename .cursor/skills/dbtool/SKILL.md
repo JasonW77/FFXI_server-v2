@@ -47,6 +47,11 @@ Do not commit `sql/backups/` or `tools/config.yaml`. Character-data migrations l
 - **PowerShell:** chain commands with `;`, not `&&`.
 - **Windows:** `mysql` may not be in PATH — use `python dbtool.py` from `tools/` (with deps from `requirements.txt`), not raw `mysql`.
 
+## Custom module SQL (`modules/custom/sql/`)
+
+- NPC updates use column **`npcid`**, not `id` (`UPDATE npc_list SET ... WHERE npcid IN (...)`).
+- Enable each file in `modules/init.txt` (`custom/sql/foo.sql`). If `dbtool.py update` reports up to date but new SQL did not apply, run `update full` or import the file directly.
+
 ## Fishing static SQL
 
 Fishing has **no** `tools/migrations/` scripts; schema and data live in `sql/fishing_*.sql`. Runtime logic is C++ (`src/map/utils/fishingutils.cpp`), not Lua.

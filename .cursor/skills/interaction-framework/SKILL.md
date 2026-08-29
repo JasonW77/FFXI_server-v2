@@ -25,3 +25,12 @@ Copy structure from a nearby completed quest (e.g. `scripts/quests/jeuno/Chocobo
 - When adding or debugging a trade/examine: for each zone entry, verify `['npcKey']` matches that zone’s `npc_list` **name** at the header `!pos` (not a comment or another zone’s same key). See `npc-scripts` (silent ??? after dumps).
 - Prefer retargeting IF + `DefaultActions` to current SQL names after a client dump; do not rename `npc_list` to match stale script keys.
 - Silent client no-op ≠ intentional “nothing happens” `messageSpecial` from the handler.
+
+## HiddenQuest progress vars
+
+HiddenQuest stores progress as char vars `HQuest[<Name>]Prog` (Container prefix `HQuest[<name>]`).
+
+- Inside the quest file: `quest:getVar(player, 'Prog')` / `quest:setVar(player, 'Prog', n)`.
+- From custom live modules (no quest object): `player:getVar('HQuest[Tutorial]Prog')` — e.g. Tutorial complete at **`Prog == 12`**.
+
+Live-only gating on HiddenQuest completion (markers, bypasses, QoL) belongs in `modules/custom/`, not edits to core `scripts/quests/hiddenQuests/`.

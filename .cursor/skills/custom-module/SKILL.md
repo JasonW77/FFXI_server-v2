@@ -30,7 +30,7 @@ return m
 ```
 
 - `Module:new(...)` matches the filename (snake_case). Prefix `custom_` only if the name could collide with core/era.
-- One concern per file: `lua/`, `sql/`, `commands/`, or `cpp/`.
+- One concern per feature; artifacts may be `lua/`, `sql/`, `commands/`, and/or `cpp/` (same basename when paired, e.g. `tutorial_npc_namevis`).
 - Prefer extending an existing related module over a second file for the same concern. Do not rename only for clarity if `init.txt` already loads the file. If the user names a **new** module file or the existing one is an unused stub, **create the new file**; leave the stub unless asked to remove it.
 - Override the LSB path; do not fork a full copy of the script unless required.
 - Call `super()` when wrapping (especially when multiplier/toggle is 1 or disabled).
@@ -57,6 +57,26 @@ Do not edit `settings/default/` for live flavor. Default to `1` or retail in mod
 When retail limits are enforced in C++, wrap the Lua layer instead (`scripts/globals/...`) — validate in C++, apply QoL in Lua. Reference: `modules/custom/lua/guild_daily_gp_multiplier.lua` (scales GP daily cap via bonus currency + `daily_points` consumption scaler).
 
 Prefer `super()` when disabled; duplicate globals logic only when the wrapper must change behavior (e.g. scaled UI values).
+
+When Lua lacks a core binding, ship a **paired** `custom/cpp/*.cpp` module that registers helpers on `xi.custom` in `OnInit()` (pattern: `ah_announcement.cpp`, `tutorial_npc_namevis.cpp`). List the `.cpp` in `modules/init.txt` — **rebuild `xi_map`**; restart alone is not enough.
+
+## Per-player NPC quest markers (`namevis`)
+
+Blue dot on the nameplate (A.M.A.N. Liaison style) = `npc_list.namevis = 1` (`VIS_ICON` in `src/map/entities/baseentity.h`). Not in-name `string.char` icons.
+
+`namevis` is **global per NPC** (loaded from SQL at spawn). Core has **no** `setNamevis()` Lua binding.
+
+**Per-player hide/show** (only that client sees a different icon):
+
+1. Custom `cpp` registers `xi.custom.sendNpcNamevisToPlayer(player, npcId, namevis)` — temporarily set `PEntity->namevis`, `PChar->updateEntityPacket(..., ENTITY_UPDATE, UPDATE_HP)`, restore `namevis`.
+2. Lua hooks: `xi.player.onGameIn` when `zoning` (zone-in) and `InteractionGlobal.onEventFinish` (immediate post-CS without rezone).
+3. SQL can set default `namevis = 1` for incomplete players; completed players get a per-player packet with `namevis = 0`.
+
+Reference: `modules/custom/lua/tutorial_npc_namevis.lua` + `modules/custom/cpp/tutorial_npc_namevis.cpp` + `modules/custom/sql/tutorial_npc_namevis.sql`.
+
+**C++ pitfall:** do not name a local `sol::table xi` — collides with `namespace xi`; use `xiTable`.
+
+Generic per-player entity updates (e.g. `setLook` then send): `scripts/globals/ancestry_moogle.lua`.
 
 ## Mission-gated container storage
 

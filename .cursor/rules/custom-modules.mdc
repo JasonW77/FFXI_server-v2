@@ -5,11 +5,11 @@ alwaysApply: true
 
 # Custom modules
 
-Live-server QoL belongs in `modules/custom/`. Enable each file in local `modules/init.txt` (`custom/lua/foo.lua`). Local-only — never commit `init.txt` to a PR.
+Live-server QoL belongs in `modules/custom/`. Enable each file in `modules/init.txt` (`custom/lua/foo.lua`). OK to commit `init.txt` on **`LIVE`** for deploy; never include `init.txt` in LandSandBoat upstream PRs.
 
 ## Do
 
-- One concern per file: `lua/`, `sql/`, `commands/`, or `cpp/`.
+- One concern per feature; artifacts may be `lua/`, `sql/`, `commands/`, and/or `cpp/` with the **same basename** when Lua lacks a core binding (reference: `tutorial_npc_namevis.lua` + `.cpp` + `.sql`).
 - Prefer extending an existing related `modules/custom` module over a parallel file for the same concern (e.g. HNM/NM timers → `land_kings.lua`).
 - Name `Module:new(...)` to match the filename (snake_case). Prefix `custom_` only if the name could collide with core/era.
 - Override the LSB path with `addOverride`. Call `super()` when wrapping. Do not copy whole scripts.

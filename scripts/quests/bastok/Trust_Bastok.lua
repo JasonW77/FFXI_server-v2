@@ -208,16 +208,24 @@ quest.sections =
             ['Naji'] =
             {
                 onTrigger = function(player, npc)
-                    local rank3 = player:getRank(player:getNation()) >= 3 and 1 or 0
                     local bastokFirstTrust = quest:getVar(player, 'Prog')
 
                     if
                         player:getQuestStatus(xi.questLog.SANDORIA, xi.quest.id.sandoria.TRUST_SANDORIA) == xi.questStatus.QUEST_COMPLETED or
                         player:getQuestStatus(xi.questLog.WINDURST, xi.quest.id.windurst.TRUST_WINDURST) == xi.questStatus.QUEST_COMPLETED
                     then
-                        return quest:progressEvent(984, 0, 0, 0, trustMemoryNaji(player), 0, 0, 0, rank3)
+                        player:addSpell(xi.magic.spell.NAJI, { silentLog = true })
+                        player:messageSpecial(metalworksID.text.YOU_LEARNED_TRUST, 0, xi.magic.spell.NAJI)
+                        player:delKeyItem(xi.ki.BLUE_INSTITUTE_CARD)
+                        player:messageSpecial(metalworksID.text.KEYITEM_LOST, xi.ki.BLUE_INSTITUTE_CARD)
+                        if quest:complete(player) then
+                            return
+                        end
                     elseif bastokFirstTrust == 0 then
-                        return quest:progressEvent(980, 0, 0, 0, trustMemoryNaji(player), 0, 0, 0, rank3)
+                        player:addSpell(xi.magic.spell.NAJI, { silentLog = true })
+                        player:messageSpecial(metalworksID.text.YOU_LEARNED_TRUST, 0, xi.magic.spell.NAJI)
+                        quest:setVar(player, 'Prog', 1)
+                        return quest:progressEvent(981):oncePerZone()
                     elseif bastokFirstTrust == 1 then
                         return quest:progressEvent(981):oncePerZone()
                     elseif bastokFirstTrust == 2 then
@@ -228,27 +236,12 @@ quest.sections =
 
             onEventFinish =
             {
-                [980] = function(player, csid, option, npc)
-                    player:addSpell(xi.magic.spell.NAJI, { silentLog = true })
-                    player:messageSpecial(metalworksID.text.YOU_LEARNED_TRUST, 0, xi.magic.spell.NAJI)
-                    quest:setVar(player, 'Prog', 1)
-                end,
-
                 [982] = function(player, csid, option, npc)
                     if quest:complete(player) then
                         player:addTitle(xi.title.THE_TRUSTWORTHY)
                         player:delKeyItem(xi.ki.BLUE_INSTITUTE_CARD)
                         player:messageSpecial(metalworksID.text.KEYITEM_LOST, xi.ki.BLUE_INSTITUTE_CARD)
                         player:messageSpecial(metalworksID.text.CALL_MULTIPLE_ALTER_EGO)
-                    end
-                end,
-
-                [984] = function(player, csid, option, npc)
-                    if quest:complete(player) then
-                        player:addSpell(xi.magic.spell.NAJI, { silentLog = true })
-                        player:messageSpecial(metalworksID.text.YOU_LEARNED_TRUST, 0, xi.magic.spell.NAJI)
-                        player:delKeyItem(xi.ki.BLUE_INSTITUTE_CARD)
-                        player:messageSpecial(metalworksID.text.KEYITEM_LOST, xi.ki.BLUE_INSTITUTE_CARD)
                     end
                 end,
             },

@@ -20,7 +20,7 @@ If you are an AI agent, read `documentation/ai_agents/README.md` first. Style: [
 - **75 cap**, **no Abyssea**. Live story QoL through **Nations → RoZ → CoP → ToAU → WoTG → ACP/AMK/ASA**.
 - Out of scope for live flavor unless asked: **RoV, SoA, TVR, Abyssea**.
 - **Mog Satchel** is intentionally disabled on Live (`char_storage.satchel` default 0, no OTP). Do not re-enable unless asked. Wardrobe/inventory QoL is separate (`custom-module` skill).
-- `modules/init.txt` may be **committed on `LIVE`** for deploy. **Never** include `init.txt` in LandSandBoat upstream PRs (`lsb-fork`). Edit live `init.txt` only when the user asks (`ssh-live` skill).
+- `modules/init.txt` may be **committed on `LIVE`** for deploy (pull on live usually enables new module lines). **Never** include `init.txt` in LandSandBoat upstream PRs (`lsb-fork`). Edit live `init.txt` by hand only when pull is blocked by local drift or the user asks (`ssh-live` skill).
 
 ## Do
 
@@ -37,7 +37,7 @@ If you are an AI agent, read `documentation/ai_agents/README.md` first. Style: [
 
 - Invent FFXI mechanics, timings, event IDs, drops, job math, message IDs, or item animations.
 - Rely on wiki alone for message IDs, animation IDs, or fail-path packets. Leave those unverified / TODO until a retail packet exists.
-- **Never** add `Co-authored-by: Cursor` (or other agent trailers). Cursor may inject it on commit; strip before push. LSB reviewers reject these.
+- **Never** add `Co-authored-by: Cursor` (or other agent trailers). Cursor may inject it on commit; strip before push (e.g. `.cursor/skills/lsb-pr/scripts/strip_cursor_trailer.py` piped into `git commit -F -`, or amend and verify `git log -1 --format=%B`). LSB reviewers reject these; strip on `LIVE` pushes too.
 - Use DarkStar (`dsp.*`), Windower, or unrelated Lua addon patterns. Match this tree.
 - Put non-retail QoL in `scripts/` or `modules/era/` (example: HELM yield multipliers belong in `modules/custom/`).
 - Treat `scripts/zones/**/IDs.lua` numeric shifts as “drive-by formatting.” On this live client they may be intentional DAT/message offsets (boxes/item text). Ask before reverting.
