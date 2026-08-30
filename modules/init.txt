@@ -44,6 +44,7 @@ custom/lua/tutorial_live_roe_bypass.lua
 custom/lua/tutorial_npc_namevis.lua
 custom/cpp/tutorial_npc_namevis.cpp
 custom/lua/teleport_mage.lua
+custom/lua/hog_shop_npc.lua
 custom/lua/city_rest_quickening.lua
 custom/lua/land_kings.lua
 custom/lua/helm_yield_multiplier.lua
