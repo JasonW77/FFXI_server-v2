@@ -168,9 +168,17 @@ bool CTrustEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
         return true;
     }
 
-    if (targetFlags & TARGET_PLAYER_PARTY && PInitiator->allegiance == allegiance && PMaster)
+    if ((targetFlags & TARGET_PLAYER_PARTY) && PInitiator->allegiance == allegiance && PMaster && PInitiator != this)
     {
-        return PInitiator->PParty == PMaster->PParty;
+        if (PInitiator == PMaster)
+        {
+            return true;
+        }
+
+        if (PInitiator->PParty && PMaster->PParty && PInitiator->PParty == PMaster->PParty)
+        {
+            return true;
+        }
     }
 
     return CMobEntity::ValidTarget(PInitiator, targetFlags);

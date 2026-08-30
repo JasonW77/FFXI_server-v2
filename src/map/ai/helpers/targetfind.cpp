@@ -34,6 +34,36 @@
 #include "status_effect_container.h"
 #include "utils/zoneutils.h"
 
+namespace
+{
+
+bool isPartyAllyTrustOrPet(const CBattleEntity* initiator, const CBattleEntity* target, uint16 targetFlags)
+{
+    if ((targetFlags & TARGET_PLAYER_PARTY) == 0)
+    {
+        return false;
+    }
+
+    if (target->objtype != TYPE_TRUST && target->objtype != TYPE_PET)
+    {
+        return false;
+    }
+
+    if (initiator->allegiance != target->allegiance || target->PMaster == nullptr)
+    {
+        return false;
+    }
+
+    if (target->PMaster == initiator)
+    {
+        return true;
+    }
+
+    return initiator->PParty != nullptr && target->PMaster->PParty != nullptr && initiator->PParty == target->PMaster->PParty;
+}
+
+} // namespace
+
 CTargetFind::CTargetFind(CBattleEntity* PBattleEntity)
 : isPlayer(false)
 , m_radius(0.0f)
@@ -501,7 +531,9 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
 
     if (m_PBattleEntity->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect() ||
         m_PBattleEntity->PBattlefield != PTarget->PBattlefield || m_PBattleEntity->PInstance != PTarget->PInstance ||
-        ((m_findFlags & FINDFLAGS_IGNORE_BATTLEID) == FINDFLAGS_NONE && m_PBattleEntity->getBattleID() != PTarget->getBattleID()))
+        ((m_findFlags & FINDFLAGS_IGNORE_BATTLEID) == FINDFLAGS_NONE &&
+         m_PBattleEntity->getBattleID() != PTarget->getBattleID() &&
+         !isPartyAllyTrustOrPet(m_PBattleEntity, PTarget, m_targetFlags)))
     {
         return false;
     }
@@ -703,7 +735,8 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint16 validTa
 
     bool ignoreBattleId  = (validTargetFlags & TARGET_IGNORE_BATTLEID) == TARGET_IGNORE_BATTLEID;
     bool hasSameBattleId = m_PBattleEntity->getBattleID() == PTarget->getBattleID();
-    if ((ignoreBattleId || hasSameBattleId) && PTarget->ValidTarget(m_PBattleEntity, validTargetFlags))
+    bool isPartyAlly     = isPartyAllyTrustOrPet(m_PBattleEntity, PTarget, validTargetFlags);
+    if ((ignoreBattleId || hasSameBattleId || isPartyAlly) && PTarget->ValidTarget(m_PBattleEntity, validTargetFlags))
     {
         return PTarget;
     }

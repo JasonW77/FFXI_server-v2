@@ -1379,6 +1379,10 @@ void CCharEntity::OnEngage(CAttackState& state)
     TracyZoneScoped;
 
     CBattleEntity::OnEngage(state);
+    for (auto* PTrust : PTrusts)
+    {
+        PTrust->setBattleID(getBattleID());
+    }
     PLatentEffectContainer->CheckLatentsTargetChange();
     this->m_charHistory.battlesFought++;
 }
