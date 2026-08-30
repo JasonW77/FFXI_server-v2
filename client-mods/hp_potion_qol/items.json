@@ -1,0 +1,33 @@
+{
+  "description": "HP potion IDs patched by hp_potion_qol (server SQL + client DAT overlay).",
+  "usable_dat_file_id": 74,
+  "usable_dat_file_id_hex": "0x004A",
+  "patch": {
+    "stack_size": 12,
+    "valid_targets": 3
+  },
+  "reference_items": {
+    "antidote": { "id": 4148, "note": "Retail stack 12 reference" },
+    "eye_drops": { "id": 4150, "note": "Retail valid_targets 3 (Self + Party) reference" }
+  },
+  "items": [
+    { "id": 4112, "name": "potion" },
+    { "id": 4113, "name": "potion_+1" },
+    { "id": 4114, "name": "potion_+2" },
+    { "id": 4115, "name": "potion_+3" },
+    { "id": 4116, "name": "hi-potion" },
+    { "id": 4117, "name": "hi-potion_+1" },
+    { "id": 4118, "name": "hi-potion_+2" },
+    { "id": 4119, "name": "hi-potion_+3" },
+    { "id": 4120, "name": "x-potion" },
+    { "id": 4121, "name": "x-potion_+1" },
+    { "id": 4122, "name": "x-potion_+2" },
+    { "id": 4123, "name": "x-potion_+3" },
+    { "id": 4124, "name": "max-potion" },
+    { "id": 4125, "name": "max-potion_+1" },
+    { "id": 4126, "name": "max-potion_+2" },
+    { "id": 4127, "name": "max-potion_+3" },
+    { "id": 5254, "name": "hyper_potion" },
+    { "id": 5716, "name": "soothing_potion" }
+  ]
+}

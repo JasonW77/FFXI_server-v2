@@ -1,0 +1,3 @@
+# Ignore generated overlay binaries — build with build/patch_usable_dat.py
+ROM/**/*.DAT
+**/build_report.json

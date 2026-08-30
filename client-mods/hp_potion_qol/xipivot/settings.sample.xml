@@ -1,0 +1,7 @@
+<?xml version="1.1" ?>
+<!-- Windower: merge into addons/XIPivot/data/settings.xml -->
+<settings>
+    <global>
+        <overlays>hp_potion_qol</overlays>
+    </global>
+</settings>

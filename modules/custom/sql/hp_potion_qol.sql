@@ -1,6 +1,7 @@
 ------------------------------------
 -- Non-retail QoL: HP potions — party/trust targeting and larger stacks.
 -- Requires custom/sql/hp_potion_qol.sql in modules/init.txt.
+-- Requires matching client DAT overlay — see client-mods/hp_potion_qol/README.md.
 ------------------------------------
 
 -- TARGET_SELF (1) + TARGET_PLAYER_PARTY (2) = 3
