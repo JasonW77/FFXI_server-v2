@@ -2,6 +2,7 @@
 <!-- Windower: merge into addons/XIPivot/data/settings.xml -->
 <settings>
     <global>
+        <cache_enabled>false</cache_enabled>
         <overlays>hp_potion_qol</overlays>
     </global>
 </settings>

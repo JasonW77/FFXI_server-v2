@@ -45,17 +45,34 @@ If you received a release zip, extract so `hp_potion_qol/ROM/...` sits under `DA
 
 **Ashita** — add `hp_potion_qol` to `config/XIPivot.xml` (see `xipivot/XIPivot.sample.xml`), or use `/pivot` and enable the mod before zoning.
 
-**Windower** — add `hp_potion_qol` to `addons/XIPivot/data/settings.xml` (see `xipivot/settings.sample.xml`):
+**Windower4** (`C:\Program Files (x86)\Windower4`):
+
+1. XIPivot must autoload **before** login — `settings.xml` should list `<addon>XIPivot</addon>` before `plugin_manager`.
+2. Overlay list lives in `addons/XIPivot/data/settings.xml` (tracked in Windower4 git):
 
 ```xml
 <overlays>hp_potion_qol</overlays>
 ```
 
-Order matters: first listed overlay wins for each file. Place `hp_potion_qol` before conflicting packs if needed.
+3. Re-install overlay + settings:
 
-### 4. Log in
+```powershell
+cd e:\AirSkyBoat\AirSkyBoat\client-mods\hp_potion_qol\install
+.\apply_client_fix.ps1 -UseXIPivot
+```
 
-Enable the overlay **before** login or relog after enabling. Existing single potions in inventory stay separate until merged or re-acquired.
+4. **Restart Windower completely** (not `//lua reload` only). Item DAT is read at startup.
+
+**Verify in-game (Windower):**
+
+```text
+//pivot s
+//pivot q ROM/118/107.DAT
+```
+
+Expect `enabled: true`, overlay `hp_potion_qol`, and redirect for `ROM/118/107.DAT` — not “no redirect, original file”.
+
+If overlays are empty after an update, `data/settings.xml` was missing; restore from `addons/XIPivot/data/settings.xml` in the Windower4 repo or re-run the install script above.
 
 ## Build overlay (maintainers / local)
 
@@ -116,12 +133,18 @@ After SQL import, restart `xi_map` so the item cache reloads.
 
 | Issue | Check |
 |-------|--------|
-| No stack icon | XIPivot loaded? Overlay enabled? `/iteminfo 4116` stack still 1? Rebuild overlay for your client version. |
-| No party cursor | `valid_targets` still 1 in `/iteminfo` — overlay not active or wrong ROM path. |
+| Overlay stopped after Windower update | Ensure `addons/XIPivot/data/settings.xml` has `hp_potion_qol`; run `apply_client_fix.ps1 -UseXIPivot`; full Windower restart + relog |
+| `//pivot s` shows empty overlays | Same as above — XIPivot defaults to empty overlays without `data/settings.xml` |
+| `//pivot q ROM/118/107.DAT` = no redirect | Overlay not registered; check `failed to register overlay` on load |
+| No stack icon | XIPivot loaded before login? `/iteminfo 4116` stack still 1? Rebuild overlay for your client version. |
+| No party cursor | `valid_targets` still 1 in item info — overlay not active or wrong ROM path. |
 | Works on self only | Server `validTargets` in DB; run `hp_potion_qol.sql` and restart map. |
+| Trust `<t>` fails | Server C++ fix requires **rebuilt** `xi_map` (not overlay-only). |
 | Wrong ROM path | Run build script on **your** client; FTABLE path varies by patch (e.g. `ROM/118/107.DAT`). |
 
 ## Related
 
 - Server SQL: `modules/custom/sql/hp_potion_qol.sql`
 - Item manifest: `items.json`
+- Verification checklist: `VERIFY.md`
+- Windower4 deploy files: `windower4/`
