@@ -4,8 +4,9 @@ description: >-
   Add or change live-server QoL under modules/custom. Use when the change is
   non-retail, this server only, or the user asks for a custom module, init.txt
   enable, or not to touch era/core. Also use for HNM/NM timers, ToD persist,
-  idle/unclaimed despawn, land-king style spawn systems, or mission-gated
-  inventory/wardrobe storage.
+  idle/unclaimed despawn, land-king style spawn systems, mission-gated
+  inventory/wardrobe storage, or Live-missing city NPCs gated by SOA
+  content_tag (Home Points, Artisan Moogles, Ephemeral/crystal-storage Moogles).
 ---
 
 # Custom module
@@ -38,6 +39,22 @@ return m
 - Enable in `modules/init.txt` — entry format: `custom/lua/foo.lua` (not `modules/custom/...`). OK on `LIVE` branch; never in LandSandBoat upstream PRs.
 - Missing retail features belong in core `scripts/`, not here.
 - Live flavor that landed in core by mistake (HELM yields, etc.) should be moved here, not left in `scripts/`.
+
+## SOA content_tag: missing city NPCs on Live
+
+Live runs `ENABLE_SOA = 0` + `RESTRICT_CONTENT = 1`. `zoneutils` skips NPCs with `content_tag = 'SOA'`, so city QoL NPCs can be “missing” even when Lua/scripts exist.
+
+**Do**
+
+- Extend `modules/custom/sql/homepoints_live.sql`: `UPDATE npc_list SET content_tag = NULL WHERE npcid IN (...)`.
+- Keep Adoulin / Leafallia / Ra'Kaznar / Mog Garden / zero-coord placeholders hidden.
+- Prefer extending that file over a parallel SQL module for the same concern (already in `init.txt`).
+
+**Do not**
+
+- Flip `ENABLE_SOA` (or loosen `RESTRICT_CONTENT`) just to unhide city QoL — that pulls Adoulin content Live excludes.
+
+Reference rows already retagged there: live-relevant Home Points, Artisan Moogles (Mog Sack), Ephemeral Moogles (guild crystal storage). After SQL: import on the target DB (`dbtool` / `ssh-live`), verify `content_tag`, restart `xi_map`.
 
 ## Settings
 

@@ -21,7 +21,9 @@ After SQL edits, tell the user the DB must be updated. Do not run `update`, rest
 
 Before committing mega-dumps (`mob_spawn_points.sql`, etc.): `git diff --stat` must not show mass deletions, and the file must end with a complete `INSERT … );`. See `sql.mdc`. A truncated dump fails import with syntax near `VAL`.
 
-Express `update` diffs since `db_ver` and **skips unchanged SQL files**. It can report “up to date” while static tables (e.g. fishing) are stale. After item edits, verify with `SELECT` on the target DB. If rows are still stale, use a targeted import of the specific `sql/*.sql` files or `update full`.
+Express `update` diffs since `db_ver` under **`sql/`** (and migrations). Module SQL from `modules/init.txt` is appended only when an import run actually starts. If express finds no `sql/`/migration diffs, it prints **Database is up to date** and **returns without importing anything** — including `modules/custom/sql/*`.
+
+It can also report “up to date” while static tables (e.g. fishing) are stale. After item or custom-SQL edits, verify with `SELECT` on the target DB. If rows are still stale, targeted-import the specific file(s) or `update full`.
 
 Express update can import several files then **fail mid-run** — earlier files may already be applied. Fix the bad SQL and re-run; do not assume `mob_spawn_points` updated if that file errored.
 
@@ -50,7 +52,9 @@ Do not commit `sql/backups/` or `tools/config.yaml`. Character-data migrations l
 ## Custom module SQL (`modules/custom/sql/`)
 
 - NPC updates use column **`npcid`**, not `id` (`UPDATE npc_list SET ... WHERE npcid IN (...)`).
-- Enable each file in `modules/init.txt` (`custom/sql/foo.sql`). If `dbtool.py update` reports up to date but new SQL did not apply, run `update full` or import the file directly.
+- Enable each file in `modules/init.txt` (`custom/sql/foo.sql`).
+- **Custom-SQL-only deploys:** do not trust express `update` “up to date.” Import the changed file directly (dbtool `import_file` from `tools/`, or `SOURCE`) — on live use the `ssh-live` skill recipe.
+- After import, verify with `SELECT` (e.g. `content_tag` / row values). `npc_list` changes need a map restart on that host before NPCs appear.
 
 ## Fishing static SQL
 
