@@ -5,15 +5,16 @@ description: >-
   non-retail, this server only, or the user asks for a custom module, init.txt
   enable, or not to touch era/core. Also use for HNM/NM timers, ToD persist,
   idle/unclaimed despawn, land-king style spawn systems, mission-gated
-  inventory/wardrobe storage, or Live-missing city NPCs gated by SOA
-  content_tag (Home Points, Artisan Moogles, Ephemeral/crystal-storage Moogles).
+  inventory/wardrobe storage, custom shop stock / xi.item vendor lists, or
+  Live-missing city NPCs gated by SOA content_tag (Home Points, Artisan
+  Moogles, Ephemeral/crystal-storage Moogles).
 ---
 
 # Custom module
 
 Read `modules/README.md` and a sibling under `modules/custom/` (Lua example: `homepoint_heal.lua`). LSB module overview: https://landsandboat-server.mintlify.app/modules/overview
 
-Do not edit `scripts/`, `src/`, repo-root `sql/`, or `modules/era/` for this kind of change. Custom SQL belongs in `modules/custom/sql/`. Era modules are retail reverts only.
+Do not edit `scripts/`, `src/`, repo-root `sql/`, or `modules/era/` for this kind of change. Exception: add missing `xi.item` constants in `scripts/enum/item.lua` when custom shop stock needs them (see Shop / `xi.item` stock). Custom SQL belongs in `modules/custom/sql/`. Era modules are retail reverts only.
 
 ```lua
 -----------------------------------
@@ -39,6 +40,14 @@ return m
 - Enable in `modules/init.txt` — entry format: `custom/lua/foo.lua` (not `modules/custom/...`). OK on `LIVE` branch; never in LandSandBoat upstream PRs.
 - Missing retail features belong in core `scripts/`, not here.
 - Live flavor that landed in core by mistake (HELM yields, etc.) should be moved here, not left in `scripts/`.
+
+## Shop / `xi.item` stock
+
+When adding `{ xi.item.NAME, price }` to a custom vendor (`xi.shop.general`, etc.):
+
+1. Grep `scripts/enum/item.lua` for `NAME` — **SQL `item_basic` / `item_equipment` ≠ enum**. Missing constant → `nil` stock at runtime.
+2. If missing: add the constant in **ID order** from the SQL name (`midrass_helm_+1` → `MIDRASS_HELM_P1`). Prefer enum gap-fill over raw numeric IDs in custom stock. See `item-equipment` skill for `_+N` → `_PN` naming.
+3. Enum edits are not FileWatcher-safe — live deploy needs **push + pull + `xi_map` restart** (`ssh-live`).
 
 ## SOA content_tag: missing city NPCs on Live
 

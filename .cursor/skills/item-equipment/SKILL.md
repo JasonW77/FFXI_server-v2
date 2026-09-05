@@ -3,7 +3,8 @@ name: item-equipment
 description: >-
   Diagnose and finish FFXI equipment SQL (look MId, mods, usable scripts).
   Use when gear is invisible, item_equipment has MId 0 or verify-model TODO,
-  stub armor/weapons need mods, or enchanted gear needs item_usable / scripts/items.
+  stub armor/weapons need mods, enchanted gear needs item_usable / scripts/items,
+  or when adding/verifying xi.item enum names from SQL (shop stock, scripts).
 ---
 
 # Item equipment
@@ -36,6 +37,15 @@ Never invent a model ID.
 | Enchant | `sql/item_usable.sql` + `scripts/items/<name>.lua` (+ `xi.item` enum if missing) |
 
 Copy nearby INSERT / script style. Clear verify-model TODOs only after MId is sourced.
+
+### `xi.item` enum from SQL
+
+Source of truth: `item_basic` / `item_equipment` name + item ID (not invented spellings).
+
+- UPPER_SNAKE from the SQL name: `craftmasters_ring` → `CRAFTMASTERS_RING`.
+- `_+1` / `_+2` → `_P1` / `_P2` (not `_1`). Example: `midrass_helm_+1` → `MIDRASS_HELM_P1`.
+- Insert in numeric ID order; watch for skipped IDs between neighbors in `scripts/enum/item.lua`.
+- Selling/equipping for a wiki effect: confirm `item_mods` exists (gear can sell/equip with no mods and do nothing).
 
 Base `item_*` / mods ≠ a create/upgrade NPC path. For “is Oboro / reforge / etc. finished?” use `feature-status-audit`.
 
