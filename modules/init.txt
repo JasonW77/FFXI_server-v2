@@ -59,6 +59,7 @@ custom/sql/hp_potion_qol.sql
 custom/sql/homepoints_live.sql
 custom/sql/guild_craft_kits_live.sql
 custom/sql/tutorial_npc_namevis.sql
+custom/sql/sandy_guard_uniforms.sql
 custom/sql/server_ip_adjustment.sql
 custom/sql/land_kings_remove_pop_items.sql
 custom/sql/1_warrior_trait_adjustments.sql
