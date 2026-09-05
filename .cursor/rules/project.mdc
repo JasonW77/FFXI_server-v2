@@ -37,9 +37,9 @@ If you are an AI agent, read `documentation/ai_agents/README.md` first. Style: [
 
 - Invent FFXI mechanics, timings, event IDs, drops, job math, message IDs, or item animations.
 - Rely on wiki alone for message IDs, animation IDs, or fail-path packets. Leave those unverified / TODO until a retail packet exists.
-- **Never** add `Co-authored-by: Cursor` (or other agent trailers). Cursor may inject it on commit; strip before push. Feed the current message into the filter, then amend — do **not** run the script alone into `-F -` (that replaces the message with junk):
+- **Never** add `Co-authored-by: Cursor` (or other agent trailers). Prefer **disabling** Cursor Attribution so it is not injected: Cursor Settings → Git & PRs (or Agent) → Attribution off, and `~/.cursor/cli-config.json` with `attribution.attributeCommitsToAgent` / `attributePRsToAgent` false (`update-cursor-settings` skill). If a trailer still appears, strip before push. Feed the current message into the filter, then amend — do **not** run the script alone into `-F -` (that replaces the message with junk):
   `git log -1 --format=%B | python .cursor/skills/lsb-pr/scripts/strip_cursor_trailer.py | git commit --amend -F -`
-  then verify `git log -1 --format=%B`. On PR worktrees, `lsb-pr` skill `filter-branch` recipe is fine. Strip on `LIVE` pushes too.
+  then **verify** `git log -1 --format=%B` has no `Co-authored-by: Cursor` (amend can re-inject). On PR worktrees, `lsb-pr` skill `filter-branch` recipe is fine. Strip on `LIVE` pushes too.
 - Use DarkStar (`dsp.*`), Windower, or unrelated Lua addon patterns. Match this tree.
 - Put non-retail QoL in `scripts/` or `modules/era/` (example: HELM yield multipliers belong in `modules/custom/`).
 - Treat `scripts/zones/**/IDs.lua` numeric shifts as “drive-by formatting.” On this live client they may be intentional DAT/message offsets (boxes/item text). Ask before reverting.

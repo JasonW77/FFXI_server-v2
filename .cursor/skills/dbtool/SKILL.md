@@ -54,7 +54,7 @@ Do not commit `sql/backups/` or `tools/config.yaml`. Character-data migrations l
 - NPC updates use column **`npcid`**, not `id` (`UPDATE npc_list SET ... WHERE npcid IN (...)`).
 - Enable each file in `modules/init.txt` (`custom/sql/foo.sql`).
 - **Custom-SQL-only deploys:** do not trust express `update` “up to date.” Import the changed file directly (dbtool `import_file` from `tools/`, or `SOURCE`) — on live use the `ssh-live` skill recipe.
-- After import, verify with `SELECT` (e.g. `content_tag` / row values). `npc_list` changes need a map restart on that host before NPCs appear. `synth_recipes` content_tag (or row) changes also need a map restart — recipes are loaded into memory at startup.
+- After import, verify with `SELECT` (e.g. `content_tag` / row values / `mob_groups.respawntime`). `npc_list` changes need a map restart on that host before NPCs appear. `synth_recipes` content_tag (or row) changes also need a map restart — recipes are loaded into memory at startup. **`mob_groups` / `respawntime`** changes also need a map restart.
 
 ## Fishing static SQL
 

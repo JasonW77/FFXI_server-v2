@@ -174,6 +174,13 @@ Before a new file, inventory siblings:
 - `claim_shield.lua` — claim delay list (separate concern)
 - `modules/abyssea/lua/era_HNM_system.lua` — era Land Kings (disabled; do not stack with live `land_kings`)
 
+**Trash / EXP fast repops** (different concern — `mob_groups.respawntime`, not HNM Lua):
+
+- `modules/custom/sql/faster_repop_times.sql` — level ~1–30 EXP zones → 60s
+- `modules/custom/sql/starter_zone_fast_repops.sql` — starter zones + **Zeruhn Mines (172)** (Zeruhn is only here; keep both if Zeruhn matters)
+- Overlap between the two files is redundant (same `60`), not conflicting
+- `#custom/sql/mob_spawn_points.sql` — full Horizon spawn-point table rebuild; leave commented unless intentional
+
 **Do**
 
 - Prefer extending the related module over a parallel file. Keep the filename if `init.txt` already lists it.
@@ -182,9 +189,11 @@ Before a new file, inventory siblings:
 - Idle / unclaimed despawn: `IDLE_DESPAWN = 0`, or clear Guivre-style `despawnTime` / empty roam override that only despawns.
 - Multi-NM work: list candidates with **current** timers and special flags (weather, charm, HQ lottery, missing `IDs.lua` entry) for user pick before coding.
 - If a mob has no `IDs.lua` entry, use `sql/mob_spawn_points.sql` id with a comment (example: Wajaom Hydra).
+- Before editing repop SQL names/zoneids, verify against `sql/mob_groups.sql` (e.g. `Ornery_Sheep` not `Onery_Sheep`).
 
 **Do not**
 
 - Stack `land_kings` with `custom_HNM_system` / `era_HNM_system`.
 - Put shortened HNM/NM respawn windows into core `scripts/zones/**/mobs` (Simurgh/Roc 1–2h in core is the anti-pattern; move into the module when touching).
+- Put HNM/Land King windows into `faster_repop` / `starter_zone` SQL — those are trash EXP only.
 - Copy whole mob fight scripts; wrap spawn/despawn (and narrow fight hooks only when needed, e.g. skip Charm).
