@@ -10,6 +10,32 @@
 --   Intercity/posted/Chateau: blue 13, bare head, unarmed
 -- Weapons deferred until a Mid is proven on the target race (avoid player-item Mid guesses).
 
+-- Change this chunk:
+
+-- 00600070 → 05601C70
+
+-- So:
+
+-- 00 → 05 (sword Mid 5)
+-- 60 stays
+-- 00 → 1C (shield 28)
+-- 70 stays
+-- Full look:
+
+-- 0x0100030400100D200D300D400D5005601C700000
+
+-- Same chunk — main/sub only.
+
+-- Sword+shield → spear (Mid 4, no shield):
+
+-- 05601C70 → 04600070
+
+-- Example:
+
+-- 0x0100030400100D200D300D400D50046000700000
+
+-- (04 = Mid 4, 00 = no shield.)
+
 -- Field R.K. overseers + East/West Ronfaure soldiers
 
 UPDATE npc_list SET look = 0x010001030C100C200C300C400C50006000700000 WHERE npcid = 16875866; -- Jemmoquel_RK
