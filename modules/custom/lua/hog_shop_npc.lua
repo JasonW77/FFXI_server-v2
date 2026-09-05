@@ -38,6 +38,10 @@ local stock =
     { xi.item.SANJAKU_TENUGUI,       131 },   -- TODO: price — Monomi tool
     { xi.item.CURTANA,             50000 },  -- TODO: price
     { xi.item.CHUNK_OF_DIORITE,    10000 },  -- TODO: price
+    { xi.item.MIDRAS_HELM_1,    100000 },  -- TODO: price
+    { xi.item.CRAFTMASTERS_RING,    100000 },  -- TODO: price
+    { xi.item.CRAFTKEEPERS_RING,    100000 },  -- TODO: price
+    { xi.item.ARTIFICERS_RING,    100000 },  -- TODO: price
 }
 
 local spawnSkyShop = function(zone)
