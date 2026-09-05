@@ -57,6 +57,7 @@ custom/cpp/gobbie_box_level_cap.cpp
 #custom/sql/faster_repop_times.sql
 custom/sql/hp_potion_qol.sql
 custom/sql/homepoints_live.sql
+custom/sql/guild_craft_kits_live.sql
 custom/sql/tutorial_npc_namevis.sql
 custom/sql/server_ip_adjustment.sql
 custom/sql/land_kings_remove_pop_items.sql
