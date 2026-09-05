@@ -7,7 +7,8 @@ description: >-
   idle/unclaimed despawn, land-king style spawn systems, mission-gated
   inventory/wardrobe storage, custom shop stock / xi.item vendor lists, or
   Live-missing city NPCs gated by SOA content_tag (Home Points, Artisan
-  Moogles, Ephemeral/crystal-storage Moogles).
+  Moogles, Ephemeral/crystal-storage Moogles), or buyable items that fail
+  synth because synth_recipes.content_tag is SOA/ROV (guild crafting kits).
 ---
 
 # Custom module
@@ -49,9 +50,16 @@ When adding `{ xi.item.NAME, price }` to a custom vendor (`xi.shop.general`, etc
 2. If missing: add the constant in **ID order** from the SQL name (`midrass_helm_+1` → `MIDRASS_HELM_P1`). Prefer enum gap-fill over raw numeric IDs in custom stock. See `item-equipment` skill for `_+N` → `_PN` naming.
 3. Enum edits are not FileWatcher-safe — live deploy needs **push + pull + `xi_map` restart** (`ssh-live`).
 
-## SOA content_tag: missing city NPCs on Live
+## SOA content_tag on Live
 
-Live runs `ENABLE_SOA = 0` + `RESTRICT_CONTENT = 1`. `zoneutils` skips NPCs with `content_tag = 'SOA'`, so city QoL NPCs can be “missing” even when Lua/scripts exist.
+Live runs `ENABLE_SOA = 0` + `RESTRICT_CONTENT = 1`. That gates more than NPCs:
+
+| Surface | Effect when tag is SOA/ROV |
+|---|---|
+| `npc_list.content_tag` | `zoneutils` skips spawn — city QoL NPCs “missing” |
+| `synth_recipes.content_tag` | `synthutils` `IsContentEnabled` → CancelBadRecipe — item may still be **buyable** |
+
+### Missing city NPCs
 
 **Do**
 
@@ -59,11 +67,23 @@ Live runs `ENABLE_SOA = 0` + `RESTRICT_CONTENT = 1`. `zoneutils` skips NPCs with
 - Keep Adoulin / Leafallia / Ra'Kaznar / Mog Garden / zero-coord placeholders hidden.
 - Prefer extending that file over a parallel SQL module for the same concern (already in `init.txt`).
 
+Reference rows already retagged there: live-relevant Home Points, Artisan Moogles (Mog Sack), Ephemeral Moogles (guild crystal storage).
+
+### Guild crafting kits (buy OK, synth fails)
+
+Shop stock is `xi.shop.generalGuildStock` in `scripts/globals/shop.lua` (kits `_5`…`_50`, no content check). Matching recipes in `sql/synth_recipes.sql` are tagged `'SOA'` (55+ kits `'ROV'`, not in guild stock).
+
+**Do**
+
+- Clear tags only for Live-useful kit recipes via `modules/custom/sql/guild_craft_kits_live.sql` (single-ingredient kit rows). Prefer unblocking synth over removing kits from shops.
+- Leave unrelated Adoulin/RoV synth (Urunday, Midrium, etc.) tagged.
+
 **Do not**
 
-- Flip `ENABLE_SOA` (or loosen `RESTRICT_CONTENT`) just to unhide city QoL — that pulls Adoulin content Live excludes.
+- Flip `ENABLE_SOA` / `ENABLE_ROV` (or loosen `RESTRICT_CONTENT`) to unhide city QoL **or** unlock craft kits — that pulls expansion content Live excludes.
+- Edit core `sql/synth_recipes.sql` or strip kits from `shop.lua` for this Live flavor.
 
-Reference rows already retagged there: live-relevant Home Points, Artisan Moogles (Mog Sack), Ephemeral Moogles (guild crystal storage). After SQL: import on the target DB (`dbtool` / `ssh-live`), verify `content_tag`, restart `xi_map`.
+After any of the above SQL: targeted import on the target DB (`dbtool` / `ssh-live`), verify `content_tag`, restart `xi_map` (synth recipes and NPC spawn sets load at startup).
 
 ## Settings
 
