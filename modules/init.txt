@@ -52,9 +52,9 @@ custom/lua/guild_daily_gp_multiplier.lua
 custom/lua/magian_ws_kill_reduce.lua
 custom/lua/awesomes_mission_wardrobe_unlocks.lua
 custom/cpp/gobbie_box_level_cap.cpp
-#custom/sql/starter_zone_fast_repops.sql
+custom/sql/starter_zone_fast_repops.sql
 #custom/sql/mob_spawn_points.sql
-#custom/sql/faster_repop_times.sql
+custom/sql/faster_repop_times.sql
 custom/sql/hp_potion_qol.sql
 custom/sql/homepoints_live.sql
 custom/sql/guild_craft_kits_live.sql

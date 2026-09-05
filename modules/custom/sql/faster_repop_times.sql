@@ -76,26 +76,25 @@ UPDATE mob_groups SET respawntime='60' WHERE name='Forest_Tiger' AND zoneid='104
 UPDATE mob_groups SET respawntime='60' WHERE name='Huge_Hornet' AND zoneid='106';
 UPDATE mob_groups SET respawntime='60' WHERE name='Tunnel_Worm' AND zoneid='106';
 UPDATE mob_groups SET respawntime='60' WHERE name='River_Crab' AND zoneid='106';
-UPDATE mob_groups SET respawntime='60' WHERE name='River_Crab' AND zoneid='106';
 UPDATE mob_groups SET respawntime='60' WHERE name='Rock_Lizard' AND zoneid='106';
 UPDATE mob_groups SET respawntime='60' WHERE name='Stone_Eater' AND zoneid='106';
 UPDATE mob_groups SET respawntime='60' WHERE name='Vulture' AND zoneid='106';
 UPDATE mob_groups SET respawntime='60' WHERE name='Walking_Sapling' AND zoneid='106';
 UPDATE mob_groups SET respawntime='60' WHERE name='Maneating_Hornet' AND zoneid='106';
-UPDATE mob_groups SET respawntime='60' WHERE name='Onery_Sheep' AND zoneid='106';
+UPDATE mob_groups SET respawntime='60' WHERE name='Ornery_Sheep' AND zoneid='106';
 
 -- ------------------------------------------------------------
 -- South Gustaberg (Zone 107)
 -- ------------------------------------------------------------
 UPDATE mob_groups SET respawntime='60' WHERE name='Huge_Hornet' AND zoneid='107';
 UPDATE mob_groups SET respawntime='60' WHERE name='Tunnel_Worm' AND zoneid='107';
-UPDATE mob_groups SET respawntime='60' WHERE name='Land_Crab' AND zoneid='106';
+UPDATE mob_groups SET respawntime='60' WHERE name='Land_Crab' AND zoneid='107';
 UPDATE mob_groups SET respawntime='60' WHERE name='Rock_Lizard' AND zoneid='107';
 UPDATE mob_groups SET respawntime='60' WHERE name='Stone_Eater' AND zoneid='107';
 UPDATE mob_groups SET respawntime='60' WHERE name='Vulture' AND zoneid='107';
 UPDATE mob_groups SET respawntime='60' WHERE name='Walking_Sapling' AND zoneid='107';
 UPDATE mob_groups SET respawntime='60' WHERE name='Maneating_Hornet' AND zoneid='107';
-UPDATE mob_groups SET respawntime='60' WHERE name='Onery_Sheep' AND zoneid='107';
+UPDATE mob_groups SET respawntime='60' WHERE name='Ornery_Sheep' AND zoneid='107';
 
 
 -- ------------------------------------------------------------
@@ -167,7 +166,7 @@ UPDATE mob_groups SET respawntime='60' WHERE name='Zu' AND zoneid='118';
 UPDATE mob_groups SET respawntime='60' WHERE name='Bull_Dhalmel' AND zoneid='118';
 UPDATE mob_groups SET respawntime='60' WHERE name='Snipper' AND zoneid='118';
 UPDATE mob_groups SET respawntime='60' WHERE name='Shoal_Pugil' AND zoneid='118';
-UPDATE mob_groups SET respawntime='60' WHERE name='Carnivorous_Crawler' AND zoneid='117';
+UPDATE mob_groups SET respawntime='60' WHERE name='Carnivorous_Crawler' AND zoneid='118';
 
 
 -- ------------------------------------------------------------
