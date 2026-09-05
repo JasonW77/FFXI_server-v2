@@ -1,6 +1,7 @@
--- Non-retail QoL: Restore live-relevant Home Points and Artisan Moogles hidden by SOA content gating.
+-- Non-retail QoL: Restore live-relevant Home Points, Artisan Moogles, and Ephemeral Moogles
+-- (crystal storage) hidden by SOA content gating.
 -- Live uses ENABLE_SOA=0 + RESTRICT_CONTENT=1; SOA-tagged NPCs never spawn.
--- Adoulin expansion, Leafallia, and Ra'Kaznar Home Points intentionally remain hidden.
+-- Adoulin expansion, Leafallia, Ra'Kaznar Home Points, and Mog Garden intentionally remain hidden.
 
 -- Retag live-relevant SOA Home Points (skip placeholder 0,0,0 coords and Adoulin-era zones).
 UPDATE npc_list
@@ -29,4 +30,18 @@ WHERE npcid IN (
     17739947, -- Bastok Markets
     17764601, -- Windurst Woods
     17772833  -- Ru'Lude Gardens
+);
+
+-- Ephemeral Moogles (guild crystal storage; May 2016 QoL, not Adoulin story).
+UPDATE npc_list
+SET content_tag = NULL
+WHERE npcid IN (
+    17720012, -- Southern San d'Oria (Leather)
+    17723848, -- Northern San d'Oria (Wood)
+    17723849, -- Northern San d'Oria (Smith)
+    17740209, -- Bastok Markets (Gold)
+    17736061, -- Bastok Mines (Alchemy)
+    17752574, -- Windurst Waters (Cook)
+    17764824, -- Windurst Woods (Bone)
+    17764825  -- Windurst Woods (Cloth)
 );
