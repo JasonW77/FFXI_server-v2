@@ -10,32 +10,6 @@
 --   Intercity/posted/Chateau: blue 13, bare head, unarmed
 -- Weapons deferred until a Mid is proven on the target race (avoid player-item Mid guesses).
 
--- Change this chunk:
-
--- 00600070 → 05601C70
-
--- So:
-
--- 00 → 05 (sword Mid 5)
--- 60 stays
--- 00 → 1C (shield 28)
--- 70 stays
--- Full look:
-
--- 0x0100030400100D200D300D400D5005601C700000
-
--- Same chunk — main/sub only.
-
--- Sword+shield → spear (Mid 4, no shield):
-
--- 05601C70 → 04600070
-
--- Example:
-
--- 0x0100030400100D200D300D400D50046000700000
-
--- (04 = Mid 4, 00 = no shield.)
-
 -- Field R.K. overseers + East/West Ronfaure soldiers
 
 UPDATE npc_list SET look = 0x010001030C100C200C300C400C50006000700000 WHERE npcid = 16875866; -- Jemmoquel_RK
@@ -90,29 +64,33 @@ UPDATE npc_list SET look = 0x010005030C100C200C300C400C50006000700000 WHERE npci
 
 -- Temple Knights (city gates + embassies): blue 13 armor + retail Mid
 -- Gate watch partners: blue 13 + helm, unarmed
--- 0x 01 00  0A  03  00 10  0D 20  0D 30  0D 40  0D 50  00 60  00 70  00 00
---    |size| face race |head| |body| |hand| |legs| |feet| |main| |sub | |rng|
-UPDATE npc_list SET look = 0x010003030D100D200D300D400D50046000700000 WHERE npcid = 17719397; -- Aravoge_TK (Mid 4)
-UPDATE npc_list SET look = 0x010005030D100D200D300D400D50046000700000 WHERE npcid = 17719398; -- Arpevion_TK (Mid 4)
-UPDATE npc_list SET look = 0x010002030D100D200D300D400D50046000700000 WHERE npcid = 17723471; -- Achantere_TK (Mid 0)
-UPDATE npc_list SET look = 0x010007030D100D200D300D400D50D26000700000 WHERE npcid = 17748064; -- Glarociquet_TK (Mid 210)
-UPDATE npc_list SET look = 0x010004030D100D200D300D400D504B6000700000 WHERE npcid = 17764561; -- Panoquieur_TK (Mid 75)
+-- 0x 01 00   0A   03    00 10    0D 20    0D 30    0D 40    0D 50    00 60    00 70   00 00
+--   |size | face race | head | | body | | hand | | legs | | feet | | main | |  sub | | rng |
+-- Shield 27 & 28
+-- Spear 202 TK
+-- Spear 212 RK D4
+
+UPDATE npc_list SET look = 0x010003030D100D200D300D400D50CA6000700000 WHERE npcid = 17719397; -- Aravoge_TK (Mid 4)
+UPDATE npc_list SET look = 0x010005030D100D200D300D400D50CA6000700000 WHERE npcid = 17719398; -- Arpevion_TK (Mid 4)
+UPDATE npc_list SET look = 0x010002030D100D200D300D400D50CA6000700000 WHERE npcid = 17723471; -- Achantere_TK (Mid 0)
+UPDATE npc_list SET look = 0x01000E030D100D200D300D400D50CA6000700000 WHERE npcid = 17723470; -- Rodaillece
+UPDATE npc_list SET look = 0x010007030D100D200D300D400D50CA6000700000 WHERE npcid = 17748064; -- Glarociquet_TK (Mid 210)
+UPDATE npc_list SET look = 0x010004030D100D200D300D400D50CA6000700000 WHERE npcid = 17764561; -- Panoquieur_TK (Mid 75)
 UPDATE npc_list SET look = 0x010008030D100D200D300D400D50006000700000 WHERE npcid = 17719298; -- Aubejart
 UPDATE npc_list SET look = 0x010000030D100D200D300D400D50006000700000 WHERE npcid = 17719299; -- Ephauge
-UPDATE npc_list SET look = 0x01000C030D100D200D300D400D50006000700000 WHERE npcid = 17719395; -- Malecharisant
+UPDATE npc_list SET look = 0x01000C030D100D200D300D400D50CA6000700000 WHERE npcid = 17719395; -- Malecharisant
 UPDATE npc_list SET look = 0x01000E030D100D200D300D400D50006000700000 WHERE npcid = 17719396; -- Anxaberoute
 UPDATE npc_list SET look = 0x010007030D100D200D300D400D50006000700000 WHERE npcid = 17723397; -- Guilerme
 UPDATE npc_list SET look = 0x010008030D100D200D300D400D50006000700000 WHERE npcid = 17723398; -- Bacherume
 UPDATE npc_list SET look = 0x010008040D100D200D300D400D50046000700000 WHERE npcid = 17723399; -- Phaviane
 UPDATE npc_list SET look = 0x01000B040D100D200D300D400D50046000700000 WHERE npcid = 17723400; -- Sochiene
-UPDATE npc_list SET look = 0x01000E030D100D200D300D400D50006000700000 WHERE npcid = 17723470; -- Rodaillece
 UPDATE npc_list SET look = 0x010004030D100D200D300D400D50006000700000 WHERE npcid = 17723499; -- Beriphaule
 UPDATE npc_list SET look = 0x01000F030D100D200D300D400D50006000700000 WHERE npcid = 17727542; -- Coribalgeant
 
 -- Mission gatehouse (Endracion / Ambrotien / Grilau): Hauberk, unarmed
 
-UPDATE npc_list SET look = 0x010002030010DD20DD30DD40DD5005601C700000 WHERE npcid = 17719393; -- Endracion
-UPDATE npc_list SET look = 0x010007030010DD20DD30DD40DD5005601C700000 WHERE npcid = 17719394; -- Ambrotien
+UPDATE npc_list SET look = 0x010002030010DD20DD30DD40DD50006000700000 WHERE npcid = 17719393; -- Endracion
+UPDATE npc_list SET look = 0x010007030010DD20DD30DD40DD50006000700000 WHERE npcid = 17719394; -- Ambrotien
 UPDATE npc_list SET look = 0x010002040010DD20DD30DD40DD5005601C700000 WHERE npcid = 17719515; -- Grilau
 UPDATE npc_list SET look = 0x010002040010DD20DD30DD40DD5005601C700000 WHERE npcid = 17723426; -- Grilau
 
