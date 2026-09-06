@@ -20,6 +20,7 @@ Live-server QoL belongs in `modules/custom/`. Enable each file in `modules/init.
 - City rest / town sprint speed QoL belongs in custom Lua overrides; reference `city_rest_quickening.lua`.
 - Live-relevant city NPCs hidden by `content_tag = 'SOA'` (Home Points, Artisan/Ephemeral Moogles): clear the tag in `modules/custom/sql/homepoints_live.sql`, not by enabling SoA.
 - Live-useful synth gated by `synth_recipes.content_tag` (e.g. guild craft kits buyable but CancelBadRecipe): clear tags in `modules/custom/sql/` (see `guild_craft_kits_live.sql`), not by enabling SoA or removing shop stock.
+- RoV-gated trust QoL (Rhapsody slots, Cipher Moogle, alliance trusts): extend `modules/custom/lua/rov_trust_live.lua` — do not flip `ENABLE_ROV` (`custom-module` skill).
 
 ## Do not
 

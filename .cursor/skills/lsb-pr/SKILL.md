@@ -30,7 +30,18 @@ git log -1 --format=%B
 git log -1 --format=%s   # confirm length ≤ 72
 ```
 
-If the trailer is present, strip it before push. On Windows (path spaces break `sed`), use the skill script:
+If the trailer is present, strip it before push.
+
+**PowerShell (LIVE or local amend):** write stripped text to a file, then amend from that file (piping into `amend -F -` often re-injects the trailer):
+
+```powershell
+git log -1 --format=%B | python .cursor/skills/lsb-pr/scripts/strip_cursor_trailer.py |
+  Out-File -FilePath .git/COMMIT_EDITMSG_STRIP.txt -Encoding ascii
+git commit --amend -F .git/COMMIT_EDITMSG_STRIP.txt
+git log -1 --format=%B   # must show no Co-authored-by: Cursor
+```
+
+**PR worktrees:** `filter-branch` (path spaces break `sed`):
 
 ```
 FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch -f --msg-filter "python .cursor/skills/lsb-pr/scripts/strip_cursor_trailer.py" HEAD~1..HEAD

@@ -5,10 +5,12 @@ description: >-
   non-retail, this server only, or the user asks for a custom module, init.txt
   enable, or not to touch era/core. Also use for HNM/NM timers, ToD persist,
   idle/unclaimed despawn, land-king style spawn systems, mission-gated
-  inventory/wardrobe storage, custom shop stock / xi.item vendor lists, or
+  inventory/wardrobe storage, custom shop stock / xi.item vendor lists,
   Live-missing city NPCs gated by SOA content_tag (Home Points, Artisan
-  Moogles, Ephemeral/crystal-storage Moogles), or buyable items that fail
-  synth because synth_recipes.content_tag is SOA/ROV (guild crafting kits).
+  Moogles, Ephemeral/crystal-storage Moogles), buyable items that fail synth
+  because synth_recipes.content_tag is SOA/ROV (guild crafting kits), or
+  RoV-gated trust QoL (Rhapsody KIs, Cipher Moogle, alliance trusts,
+  ENABLE_ROV = 0 substitutes).
 ---
 
 # Custom module
@@ -146,6 +148,27 @@ Use when gating **Mog Wardrobes** (or similar containers) behind mission progres
 - Strip existing characters’ wardrobes on login without a migration plan (items can become inaccessible).
 
 **Deploy notes:** new `init.txt` entries need **map restart**. Existing chars: backfill on login; veterans already at 80/80 keep DB size until policy says otherwise.
+
+## Trust / RoV Live (`rov_trust_live`)
+
+Live runs `ENABLE_ROV = 0`, so retail RoV trust upgrades and many cipher paths are unreachable. Reference: `modules/custom/lua/rov_trust_live.lua`.
+
+**Do**
+
+- Prefer **extending** `rov_trust_live.lua` over a parallel trust module.
+- Restore 4th/5th trust + LB5 battlefield access with **real** Rhapsody KIs (White/Umber/Crimson) from LB1/LB4/LB5 — note Curio Vendor / EXP side effects; do not invent fake KIs.
+- Story-gate Cipher Moogle stock with mission/quest checks; 10k gil + Trust permit. Gap-fill missing `xi.item.CIPHER_*` in `scripts/enum/item.lua` (SQL alone is not enough).
+- Before selling a cipher: open `scripts/actions/spells/trust/<name>.lua`. Gambits/job AI = ship; spawn/despawn-only = **stub** — discuss with the user; commented catalog TODOs are fine until AI exists.
+- Limited-time trusts (Cornelia / Matsui-P): `main.ENABLE_LIMITED_TIME_TRUST` is **1 or 2**, not shop ciphers; leave unset unless asked.
+- Alliance + trusts: Lua `canCast` alone is not enough — needs settings-gated C++ (`ALLOW_TRUST_IN_ALLIANCE`), rebuild, and **live** `settings/main.lua` (gitignored). Alliance-wide uniqueness / auto-dismiss dups belong in the module + C++ join path.
+
+**Do not**
+
+- Flip `ENABLE_ROV` / unlock RoV missions just to restore trusts.
+- Stock RoV/SoA-only story trusts, unfinished stub AI, or limited-time trusts without an explicit user call.
+- Put this QoL in `scripts/` or `modules/era/`.
+
+**Deploy:** enum + C++/settings need map restart; Cipher Moogle `insertDynamicEntity` position needs zone reinit or restart (`ssh-live`).
 
 ## GP daily cap vs craft skill
 

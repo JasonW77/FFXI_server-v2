@@ -17,6 +17,9 @@ description: >-
 | Item in `item_basic` / mods / kupon redeem | Obtainable or equippable base stats |
 | C++/exdata + `scripts/data/*` tables | Infrastructure |
 | Lua that **consumes** data (trade, apply mods, spend JP) | Playable system |
+| Trust cipher in `item_basic` / spell in `magic` enum | Obtainable / castable surface |
+| Trust script with gambits / job AI | Combat-ready alter ego |
+| Trust script spawn/despawn/death only | Stub — summons but not “working” |
 
 C++ comments like “Used in NPC Oboro” mean the API was intended for that NPC — not that the Lua exists.
 
@@ -30,10 +33,11 @@ Search narrow first (`scripts/zones/<Zone>/`, then `scripts/globals/`, `scripts/
 4. **Core/exdata** — structs, get/set ExData, unit tests?
 5. **Consumers** — any Lua/C++ that applies the data on create, upgrade, or equip? Data tables with zero references = unfinished.
 6. **Bypasses** — Dealer Moogle kupons, spark shop, GM `!additem` (players can have the item without the NPC flow).
+7. **Trusts** — `scripts/actions/spells/trust/<name>.lua`: gambits/listeners vs stub; cipher enum in `item.lua` vs SQL-only; unlock path (quest/mission/settings/`ENABLE_LIMITED_TIME_TRUST`). Do not recommend shop stock for stubs without calling that out.
 
 ## Report
 
 - Split **infrastructure** vs **playable**.
 - Cite concrete paths; peers help (e.g. Oboro `365` / Monisette `384` = event stubs).
 - Optional rough % only if evidence-backed; prefer tables over vibes.
-- For implement-next work, point at `npc-scripts`, `item-equipment`, `interaction-framework`, or `lsb-pr` — do not invent retail costs/events.
+- For implement-next work, point at `npc-scripts`, `item-equipment`, `interaction-framework`, `custom-module` (Live trust QoL), or `lsb-pr` — do not invent retail costs/events.
