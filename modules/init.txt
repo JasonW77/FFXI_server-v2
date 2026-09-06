@@ -51,6 +51,7 @@ custom/lua/helm_yield_multiplier.lua
 custom/lua/guild_daily_gp_multiplier.lua
 custom/lua/magian_ws_kill_reduce.lua
 custom/lua/awesomes_mission_wardrobe_unlocks.lua
+custom/lua/rov_trust_live.lua
 custom/cpp/gobbie_box_level_cap.cpp
 custom/sql/starter_zone_fast_repops.sql
 #custom/sql/mob_spawn_points.sql

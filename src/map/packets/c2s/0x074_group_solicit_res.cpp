@@ -23,6 +23,7 @@
 
 #include "alliance.h"
 #include "common/ipc_structs.h"
+#include "common/settings.h"
 #include "entities/charentity.h"
 #include "ipc_client.h"
 #include "packets/s2c/0x009_message.h"
@@ -77,9 +78,11 @@ void GP_CLI_COMMAND_GROUP_SOLICIT_RES::process(MapSession* PSession, CCharEntity
                             PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
                             ShowDebug("%s party added to %s alliance", PChar->getName(), PInviter->getName());
                         }
-                        else if (PChar->PParty->HasTrusts() || PInviter->PParty->HasTrusts())
+                        else if (
+                            !settings::get<bool>("main.ALLOW_TRUST_IN_ALLIANCE") &&
+                            (PChar->PParty->HasTrusts() || PInviter->PParty->HasTrusts()))
                         {
-                            // Cannot form alliance if you have Trusts
+                            // Cannot form alliance if you have Trusts (unless ALLOW_TRUST_IN_ALLIANCE)
                             PChar->pushPacket<GP_SERV_COMMAND_MESSAGE>(PChar, 0, 0, MsgStd::TrustCannotJoinAlliance);
                         }
                         else

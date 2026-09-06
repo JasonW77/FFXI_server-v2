@@ -23,16 +23,113 @@
 
 #include "common/ipp.h"
 #include "common/logging.h"
+#include "common/settings.h"
 
 #include <algorithm>
 #include <cstring>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 #include "conquest_system.h"
 #include "entities/battleentity.h"
+#include "entities/charentity.h"
+#include "entities/trustentity.h"
 #include "ipc_client.h"
 #include "party.h"
 #include "treasure_pool.h"
 #include "utils/charutils.h"
+
+namespace
+{
+// Spell IDs for Trust I / II pairs — joining party loses the duplicate on ally.
+const std::unordered_map<uint32, uint32> trustVariantPairs = {
+    { 906, 1010 }, { 1010, 906 }, // Zeid / Zeid II
+    { 907, 1009 }, { 1009, 907 }, // Lion / Lion II
+    { 908, 1014 }, { 1014, 908 }, // Tenzen / Tenzen II
+    { 913, 1011 }, { 1011, 913 }, // Prishe / Prishe II
+    { 923, 1012 }, { 1012, 923 }, // Nashmeira / Nashmeira II
+    { 945, 1013 }, { 1013, 945 }, // Lilisette / Lilisette II
+};
+
+void DismissConflictingTrustsFromJoiningParty(CAlliance* PAlliance, CParty* joiningParty)
+{
+    if (!settings::get<bool>("main.ALLOW_TRUST_IN_ALLIANCE") || !PAlliance || !joiningParty)
+    {
+        return;
+    }
+
+    std::unordered_set<uint32> existingTrustIds;
+
+    for (auto* existingParty : PAlliance->partyList)
+    {
+        if (existingParty == joiningParty)
+        {
+            continue;
+        }
+
+        for (auto* member : existingParty->members)
+        {
+            auto* PChar = dynamic_cast<CCharEntity*>(member);
+            if (!PChar)
+            {
+                continue;
+            }
+
+            for (auto* PTrust : PChar->PTrusts)
+            {
+                if (PTrust)
+                {
+                    existingTrustIds.insert(PTrust->m_TrustID);
+                }
+            }
+        }
+    }
+
+    if (existingTrustIds.empty())
+    {
+        return;
+    }
+
+    for (auto* member : joiningParty->members)
+    {
+        auto* PChar = dynamic_cast<CCharEntity*>(member);
+        if (!PChar || PChar->PTrusts.empty())
+        {
+            continue;
+        }
+
+        std::vector<CTrustEntity*> toRemove;
+        for (auto* PTrust : PChar->PTrusts)
+        {
+            if (!PTrust)
+            {
+                continue;
+            }
+
+            const uint32 trustId = PTrust->m_TrustID;
+            if (existingTrustIds.contains(trustId))
+            {
+                toRemove.push_back(PTrust);
+                continue;
+            }
+
+            if (auto it = trustVariantPairs.find(trustId); it != trustVariantPairs.end())
+            {
+                if (existingTrustIds.contains(it->second))
+                {
+                    toRemove.push_back(PTrust);
+                }
+            }
+        }
+
+        for (auto* PTrust : toRemove)
+        {
+            PChar->RemoveTrust(PTrust);
+        }
+    }
+}
+} // namespace
 
 CAlliance::CAlliance(CBattleEntity* PEntity)
 {
@@ -278,6 +375,10 @@ void CAlliance::addParty(CParty* party)
     party->m_PAlliance = this;
 
     partyList.emplace_back(party);
+
+    // Live QoL: when trusts-in-alliance is allowed, drop joining-party
+    // duplicates (exact ID and I/II pairs) so alliances stay unique.
+    DismissConflictingTrustsFromJoiningParty(this, party);
 
     uint8 newparty = 0;
 
