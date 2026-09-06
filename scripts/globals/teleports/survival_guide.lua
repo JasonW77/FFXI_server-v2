@@ -53,7 +53,10 @@ xi.survivalGuide.getTriggerEvent = function(player)
         return nil
     end
 
-    local param = bit.bor(tableIndex, bit.lshift(player:getCurrency('valor_point'), 16))
+    -- Bit 0x4000 is high when you do NOT have the tutorial free warp active.
+    local noTutorialFlag = 0x4000
+    local tabsCurrency   = bit.lshift(player:getCurrency('valor_point'), 16)
+    local param          = bit.bor(tableIndex, tabsCurrency + noTutorialFlag)
 
     local teleportMenu = player:getTeleportMenu(xi.teleport.type.SURVIVAL)
 
@@ -66,12 +69,13 @@ xi.survivalGuide.getTriggerEvent = function(player)
         param = bit.bor(param, 0x0800)
     end
 
-    if player:getCharVar('TutorialBypass') == 2 then
-        param = bit.bor(param, 0x1000)
-    end
-
     if player:hasKeyItem(xi.ki.RHAPSODY_IN_WHITE) then
         param = bit.bor(param, 0x2000)
+    end
+
+    -- Tutorial quest special option: clear 0x4000 to enable free warp.
+    if player:getCharVar('TutorialBypass') == 2 then
+        param = bit.band(param, bit.bnot(0x4000))
     end
 
     local g1, g2, g3, g4 = unpack(player:getTeleportTable(xi.teleport.type.SURVIVAL))
@@ -184,15 +188,15 @@ xi.survivalGuide.onEventFinish = function(player, eventId, option, npc)
         teleportCostGil  = 0
         teleportCostTabs = 0
 
-    -- If the player has the "Rhapsody in White" KI, the cost is 10% of original gil or 20% of original tabs.
+    -- If the player has the "Rhapsody in White" KI, the cost is 1/5 of original gil or 1/5 of original tabs.
     elseif player:hasKeyItem(xi.ki.RHAPSODY_IN_WHITE) then
-        teleportCostGil  = math.floor(teleportCostGil / 10)
+        teleportCostGil  = math.floor(teleportCostGil / 5)
         teleportCostTabs = math.floor(teleportCostTabs / 5)
     end
 
     -- Payment methods.
-    local paymentValor    = bit.band(bit.rshift(option, 8), 1) and true or false
-    local paymentTutorial = bit.band(bit.rshift(option, 9), 1) and true or false
+    local paymentValor    = bit.band(bit.rshift(option, 8), 1) == 1
+    local paymentTutorial = bit.band(bit.rshift(option, 9), 1) == 1
 
     -- Payment option when selecting "Travel using <amount> tabs." (Valor Points)
     if paymentValor then
