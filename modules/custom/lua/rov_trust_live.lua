@@ -1,7 +1,7 @@
 -----------------------------------
 -- Non-retail QoL: RoV trust substitutes for Live (ENABLE_ROV = 0).
 -- - Rhapsody White/Umber/Crimson from LB1/LB4/LB5
--- - Cipher Moogle in Ru'Lude (II + RoE starter trusts)
+-- - Cipher Moogle in Ru'Lude (story-gated cipher catalog)
 -- - Trusts allowed in alliances (alliance-wide uniqueness)
 -- Enable: custom/lua/rov_trust_live.lua in modules/init.txt
 -- Also set main.ALLOW_TRUST_IN_ALLIANCE = 1 (and rebuild xi_map for C++ gate)
@@ -47,7 +47,7 @@ local rovKIBattlefieldIDs = set{
 local cipherMooglePos =
 {
     x        = 12.500,
-    y        = 3.100,
+    y        = 2.200,
     z        = 118.200,
     rotation = 160,
 }
@@ -74,83 +74,143 @@ local kiGrants =
     },
 }
 
+-- Unlock helpers (shop already requires Trust permit).
+local function alwaysUnlocked()
+    return true
+end
+
+local function completedLB1(player)
+    return player:hasCompletedQuest(xi.questLog.JEUNO, xi.quest.id.jeuno.IN_DEFIANT_CHALLENGE)
+end
+
+local function completedLB4(player)
+    return player:hasCompletedQuest(xi.questLog.JEUNO, xi.quest.id.jeuno.RIDING_ON_THE_CLOUDS)
+end
+
+local function completedArkAngels(player)
+    return player:hasCompletedMission(xi.mission.log_id.ZILART, xi.mission.id.zilart.ARK_ANGELS)
+end
+
+local function completedAwakening(player)
+    return player:hasCompletedMission(xi.mission.log_id.ZILART, xi.mission.id.zilart.AWAKENING)
+end
+
+local function completedDawn(player)
+    return player:hasCompletedMission(xi.mission.log_id.COP, xi.mission.id.cop.DAWN)
+end
+
+local function completedEternalMercenary(player)
+    return player:hasCompletedMission(xi.mission.log_id.TOAU, xi.mission.id.toau.ETERNAL_MERCENARY)
+end
+
+local function completedLestWeForget(player)
+    return player:hasCompletedMission(xi.mission.log_id.WOTG, xi.mission.id.wotg.LEST_WE_FORGET)
+end
+
+local function completedAcpFin(player)
+    return player:hasCompletedMission(xi.mission.log_id.ACP, xi.mission.id.acp.A_CRYSTALLINE_PROPHECY_FIN)
+end
+
+local function completedAmkFin(player)
+    return player:hasCompletedMission(xi.mission.log_id.AMK, xi.mission.id.amk.SMASH_A_MALEVOLENT_MENACE)
+end
+
+local function completedAsaFin(player)
+    return player:hasCompletedMission(xi.mission.log_id.ASA, xi.mission.id.asa.A_SHANTOTTO_ASCENSION_FIN)
+end
+
 -- Shop entries: unlocked when unlock() is true. Price is always CIPHER_PRICE.
 local cipherCatalog =
 {
     -- RoE tutorial / starter trusts (permit opens shop)
-    {
-        item   = xi.item.CIPHER_OF_VALAINERALS_ALTER_EGO,
-        unlock = function()
-            return true
-        end,
-    },
-    {
-        item   = xi.item.CIPHER_OF_MIHLIS_ALTER_EGO,
-        unlock = function()
-            return true
-        end,
-    },
-    {
-        item   = xi.item.CIPHER_OF_TENZENS_ALTER_EGO,
-        unlock = function()
-            return true
-        end,
-    },
-    {
-        item   = xi.item.CIPHER_OF_ADELHEIDS_ALTER_EGO,
-        unlock = function()
-            return true
-        end,
-    },
-    {
-        item   = xi.item.CIPHER_OF_JOACHIMS_ALTER_EGO,
-        unlock = function()
-            return true
-        end,
-    },
-    {
-        item = xi.item.CIPHER_OF_KORU_MORUS_ALTER_EGO,
-        unlock = function(player)
-            return player:hasCompletedQuest(xi.questLog.JEUNO, xi.quest.id.jeuno.RIDING_ON_THE_CLOUDS)
-        end,
-    },
-    -- RoV II substitutes (story milestones)
-    {
-        item = xi.item.CIPHER_OF_LIONS_ALTER_EGO_II,
-        unlock = function(player)
-            return player:hasCompletedMission(xi.mission.log_id.ZILART, xi.mission.id.zilart.AWAKENING)
-        end,
-    },
-    {
-        item = xi.item.CIPHER_OF_ZEIDS_ALTER_EGO_II,
-        unlock = function(player)
-            return player:hasCompletedMission(xi.mission.log_id.ZILART, xi.mission.id.zilart.AWAKENING)
-        end,
-    },
-    {
-        item = xi.item.CIPHER_OF_TENZENS_ALTER_EGO_II,
-        unlock = function(player)
-            return player:hasCompletedMission(xi.mission.log_id.COP, xi.mission.id.cop.DAWN)
-        end,
-    },
-    {
-        item = xi.item.CIPHER_OF_PRISHES_ALTER_EGO_II,
-        unlock = function(player)
-            return player:hasCompletedMission(xi.mission.log_id.COP, xi.mission.id.cop.DAWN)
-        end,
-    },
-    {
-        item = xi.item.CIPHER_OF_NASHMEIRAS_ALTER_EGO_II,
-        unlock = function(player)
-            return player:hasCompletedMission(xi.mission.log_id.TOAU, xi.mission.id.toau.ETERNAL_MERCENARY)
-        end,
-    },
-    {
-        item = xi.item.CIPHER_OF_LILISETTES_ALTER_EGO_II,
-        unlock = function(player)
-            return player:hasCompletedMission(xi.mission.log_id.WOTG, xi.mission.id.wotg.LEST_WE_FORGET)
-        end,
-    },
+    { item = xi.item.CIPHER_OF_VALAINERALS_ALTER_EGO, unlock = alwaysUnlocked },
+    { item = xi.item.CIPHER_OF_MIHLIS_ALTER_EGO,      unlock = alwaysUnlocked },
+    { item = xi.item.CIPHER_OF_TENZENS_ALTER_EGO,     unlock = alwaysUnlocked },
+    { item = xi.item.CIPHER_OF_ADELHEIDS_ALTER_EGO,   unlock = alwaysUnlocked },
+    { item = xi.item.CIPHER_OF_JOACHIMS_ALTER_EGO,    unlock = alwaysUnlocked },
+
+    -- LB1 (In Defiant Challenge)
+    { item = xi.item.CIPHER_OF_SAKURAS_ALTER_EGO,   unlock = completedLB1 },
+    { item = xi.item.CIPHER_OF_F_COFFINS_ALTER_EGO, unlock = completedLB1 },
+    { item = xi.item.CIPHER_OF_QULTADAS_ALTER_EGO,  unlock = completedLB1 },
+    { item = xi.item.CIPHER_OF_KINGS_ALTER_EGO,     unlock = completedLB1 },
+    { item = xi.item.CIPHER_OF_CIDS_ALTER_EGO,      unlock = completedLB1 },
+    { item = xi.item.CIPHER_OF_GILGAMESHS_ALTER_EGO, unlock = completedLB1 },
+
+    -- LB4
+    { item = xi.item.CIPHER_OF_KORU_MORUS_ALTER_EGO, unlock = completedLB4 },
+
+    -- RoZ ZM14 Ark Angels (AAHM / AAEV implemented; others stubbed until AI done)
+    { item = xi.item.CIPHER_OF_AA_HMS_ALTER_EGO, unlock = completedArkAngels },
+    { item = xi.item.CIPHER_OF_AA_EVS_ALTER_EGO, unlock = completedArkAngels },
+    -- TODO: enable when AAMR / AATT / AAGK trust AI is finished
+    -- { item = xi.item.CIPHER_OF_AA_MRS_ALTER_EGO, unlock = completedArkAngels },
+    -- { item = xi.item.CIPHER_OF_AA_TTS_ALTER_EGO, unlock = completedArkAngels },
+    -- { item = xi.item.CIPHER_OF_AA_GKS_ALTER_EGO, unlock = completedArkAngels },
+
+    -- RoZ Awakening
+    { item = xi.item.CIPHER_OF_ZEIDS_ALTER_EGO,        unlock = completedAwakening },
+    { item = xi.item.CIPHER_OF_LIONS_ALTER_EGO,        unlock = completedAwakening },
+    { item = xi.item.CIPHER_OF_ALDOS_ALTER_EGO,        unlock = completedAwakening },
+    { item = xi.item.CIPHER_OF_BRYGIDS_ALTER_EGO,      unlock = completedAwakening },
+    { item = xi.item.CIPHER_OF_RONGELOUTSS_ALTER_EGO,  unlock = completedAwakening },
+    { item = xi.item.CIPHER_OF_RAHALS_ALTER_EGO,       unlock = completedAwakening },
+    { item = xi.item.CIPHER_OF_STAR_SIBYLS_ALTER_EGO,  unlock = completedAwakening },
+    { item = xi.item.CIPHER_OF_KARAHAS_ALTER_EGO,      unlock = completedAwakening },
+    { item = xi.item.CIPHER_OF_UKAS_ALTER_EGO,         unlock = completedAwakening },
+    { item = xi.item.CIPHER_OF_D_SHANTOTTOS_ALTER_EGO, unlock = completedAwakening },
+    { item = xi.item.CIPHER_OF_LEHKOS_ALTER_EGO,       unlock = completedAwakening },
+    { item = xi.item.CIPHER_OF_LIONS_ALTER_EGO_II,     unlock = completedAwakening },
+    { item = xi.item.CIPHER_OF_ZEIDS_ALTER_EGO_II,     unlock = completedAwakening },
+
+    -- CoP Dawn
+    { item = xi.item.CIPHER_OF_TENZENS_ALTER_EGO_II, unlock = completedDawn },
+    { item = xi.item.CIPHER_OF_PRISHES_ALTER_EGO_II, unlock = completedDawn },
+
+    -- ToAU Eternal Mercenary
+    { item = xi.item.CIPHER_OF_NAJAS_ALTER_EGO,           unlock = completedEternalMercenary },
+    { item = xi.item.CIPHER_OF_OVJANGS_ALTER_EGO,         unlock = completedEternalMercenary },
+    { item = xi.item.CIPHER_OF_MNEJINGS_ALTER_EGO,        unlock = completedEternalMercenary },
+    { item = xi.item.CIPHER_OF_LUZAFS_ALTER_EGO,          unlock = completedEternalMercenary },
+    { item = xi.item.CIPHER_OF_NAJELITHS_ALTER_EGO,       unlock = completedEternalMercenary },
+    { item = xi.item.CIPHER_OF_RUGHADJEENS_ALTER_EGO,     unlock = completedEternalMercenary },
+    { item = xi.item.CIPHER_OF_LHES_ALTER_EGO,            unlock = completedEternalMercenary },
+    { item = xi.item.CIPHER_OF_AUGUSTS_ALTER_EGO,         unlock = completedEternalMercenary },
+    { item = xi.item.CIPHER_OF_NASHMEIRAS_ALTER_EGO_II,   unlock = completedEternalMercenary },
+
+    -- WoTG Lest We Forget
+    { item = xi.item.CIPHER_OF_MONBERAUXS_ALTER_EGO,   unlock = completedLestWeForget },
+    { item = xi.item.CIPHER_OF_MUMORS_ALTER_EGO,       unlock = completedLestWeForget },
+    { item = xi.item.CIPHER_OF_MUMORS_ALTER_EGO_II,    unlock = completedLestWeForget },
+    { item = xi.item.CIPHER_OF_ELIVIRAS_ALTER_EGO,     unlock = completedLestWeForget },
+    { item = xi.item.CIPHER_OF_NOILLURIES_ALTER_EGO,   unlock = completedLestWeForget },
+    { item = xi.item.CIPHER_OF_LHUS_ALTER_EGO,         unlock = completedLestWeForget },
+    { item = xi.item.CIPHER_OF_LEONOYNES_ALTER_EGO,    unlock = completedLestWeForget },
+    { item = xi.item.CIPHER_OF_MAXIMILIANS_ALTER_EGO,  unlock = completedLestWeForget },
+    { item = xi.item.CIPHER_OF_KAYEELS_ALTER_EGO,      unlock = completedLestWeForget },
+    { item = xi.item.CIPHER_OF_RAINEMARDS_ALTER_EGO,   unlock = completedLestWeForget },
+    { item = xi.item.CIPHER_OF_ROBEL_AKBELS_ALTER_EGO, unlock = completedLestWeForget },
+    { item = xi.item.CIPHER_OF_LILISETTES_ALTER_EGO_II, unlock = completedLestWeForget },
+
+    -- ACP fin
+    { item = xi.item.CIPHER_OF_MILDAURIONS_ALTER_EGO, unlock = completedAcpFin },
+    { item = xi.item.CIPHER_OF_ULLEGORES_ALTER_EGO,   unlock = completedAcpFin },
+    { item = xi.item.CIPHER_OF_TEODORS_ALTER_EGO,     unlock = completedAcpFin },
+    { item = xi.item.CIPHER_OF_AREUHATS_ALTER_EGO,    unlock = completedAcpFin },
+
+    -- AMK (Smash a Malevolent Menace)
+    { item = xi.item.CIPHER_OF_A_MOOGLES_ALTER_EGO,   unlock = completedAmkFin },
+    { item = xi.item.CIPHER_OF_KUPOFRIEDS_ALTER_EGO,  unlock = completedAmkFin },
+    { item = xi.item.CIPHER_OF_FABLINIXS_ALTER_EGO,   unlock = completedAmkFin },
+    { item = xi.item.CIPHER_OF_ABENZIOS_ALTER_EGO,    unlock = completedAmkFin },
+
+    -- ASA fin
+    { item = xi.item.CIPHER_OF_KUYINS_ALTER_EGO,         unlock = completedAsaFin },
+    { item = xi.item.CIPHER_OF_MAYAKOVS_ALTER_EGO,       unlock = completedAsaFin },
+    { item = xi.item.CIPHER_OF_BABBANS_ALTER_EGO,        unlock = completedAsaFin },
+    { item = xi.item.CIPHER_OF_SHANTOTTOS_ALTER_EGO_II,  unlock = completedAsaFin },
+    { item = xi.item.CIPHER_OF_KUKKIS_ALTER_EGO,         unlock = completedAsaFin },
+    { item = xi.item.CIPHER_OF_MAKKIS_ALTER_EGO,         unlock = completedAsaFin },
 }
 
 local function tryGrantKeyItem(player, keyItem, label)
