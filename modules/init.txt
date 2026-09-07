@@ -53,6 +53,7 @@ custom/lua/magian_ws_kill_reduce.lua
 custom/lua/awesomes_mission_wardrobe_unlocks.lua
 custom/lua/rov_trust_live.lua
 custom/lua/garrison_trusts.lua
+custom/lua/bcnm_ksnm_trusts.lua
 custom/cpp/gobbie_box_level_cap.cpp
 custom/sql/starter_zone_fast_repops.sql
 #custom/sql/mob_spawn_points.sql
