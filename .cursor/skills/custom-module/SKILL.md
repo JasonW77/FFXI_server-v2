@@ -10,7 +10,7 @@ description: >-
   Moogles, Ephemeral/crystal-storage Moogles), buyable items that fail synth
   because synth_recipes.content_tag is SOA/ROV (guild crafting kits), or
   RoV-gated trust QoL (Rhapsody KIs, Cipher Moogle, alliance trusts,
-  ENABLE_ROV = 0 substitutes).
+  BCNM/KSNM allowTrusts, ENABLE_ROV = 0 substitutes).
 ---
 
 # Custom module
@@ -153,6 +153,13 @@ Use when gating **Mog Wardrobes** (or similar containers) behind mission progres
 
 Live runs `ENABLE_ROV = 0`, so retail RoV trust upgrades and many cipher paths are unreachable. Reference: `modules/custom/lua/rov_trust_live.lua`.
 
+Battlefield cast gating (core + this module):
+
+- Each battlefield content has `allowTrusts` (default **false**). `xi.trust.canCast` blocks with `TRUST_NO_CAST_TRUST` when false.
+- Rhapsody **Umber** unlocks only the LB5 set (`rovKIBattlefieldIDs`), not BCNM/KSNM. **White / Crimson** only raise max trust count.
+- BCNM/KSNM seal orbs (`requiredItems[1]`): Cloudy/Sky/Star/Comet/Moon + Clotho/Lachesis/Atropos/Themis. Live QoL to allow trusts belongs in **`rov_trust_live` `canCast`** (and often `checkBattlefieldTrustCount` when BCNM `maxPlayers` is below 6).
+- Level Restriction still `clearTrusts()` on entry; players summon after the cap unless you explicitly change `level_restriction` (see `garrison_trusts`).
+
 **Do**
 
 - Prefer **extending** `rov_trust_live.lua` over a parallel trust module.
@@ -167,6 +174,10 @@ Live runs `ENABLE_ROV = 0`, so retail RoV trust upgrades and many cipher paths a
 - Flip `ENABLE_ROV` / unlock RoV missions just to restore trusts.
 - Stock RoV/SoA-only story trusts, unfinished stub AI, or limited-time trusts without an explicit user call.
 - Put this QoL in `scripts/` or `modules/era/`.
+- Add a **second** module that `addOverride('xi.trust.canCast', …)` while `rov_trust_live` already owns that path — edit `rov_trust_live` instead. A sibling that only flips `allowTrusts` in `onServerStart` is easy to mis-debug when cast still fails.
+- Assume flipping `allowTrusts` alone is enough when `checkBattlefieldTrustCount` still caps at BCNM `maxPlayers` (often 3).
+
+**Verify:** after map restart, if trusts are still blocked in a BF, patch the module that already wraps `canCast` (live: `rov_trust_live`), not only an `onServerStart` flag flip. Confirm log evidence (`=== Module: … ===`, any diagnostic `print`).
 
 **Deploy:** enum + C++/settings need map restart; Cipher Moogle `insertDynamicEntity` position needs zone reinit or restart (`ssh-live`).
 
