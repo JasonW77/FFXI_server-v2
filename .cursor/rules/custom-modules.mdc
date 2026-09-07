@@ -21,10 +21,11 @@ Live-server QoL belongs in `modules/custom/`. Enable each file in `modules/init.
 - Live-relevant city NPCs hidden by `content_tag = 'SOA'` (Home Points, Artisan/Ephemeral Moogles): clear the tag in `modules/custom/sql/homepoints_live.sql`, not by enabling SoA.
 - Live-useful synth gated by `synth_recipes.content_tag` (e.g. guild craft kits buyable but CancelBadRecipe): clear tags in `modules/custom/sql/` (see `guild_craft_kits_live.sql`), not by enabling SoA or removing shop stock.
 - RoV-gated trust QoL (Rhapsody slots, Cipher Moogle, alliance trusts, BCNM/KSNM `allowTrusts`): extend `modules/custom/lua/rov_trust_live.lua` — do not flip `ENABLE_ROV`, and do not add a parallel `xi.trust.canCast` override module (`custom-module` skill).
+- City guard / NPC armor look QoL: `modules/custom/sql/*_guard_uniforms.sql` (extend Sandy/Jeuno files; preserve race/face). See `custom-module` skill (look Mid decode + deploy).
 
 ## Do not
 
-- Edit `scripts/`, `src/`, repo-root `sql/`, or `modules/era/` for server flavor. Custom SQL belongs in `modules/custom/sql/`.
+- Edit `scripts/`, `src/`, repo-root `sql/` (including core `npc_list` looks for Live flavor), or `modules/era/` for server flavor. Custom SQL belongs in `modules/custom/sql/`.
 - Put QoL in `modules/era/` (era is retail reverts only, with content tags).
 - Put missing retail features here; those go in core `scripts/` (upstream PR).
 - Leave HELM yield multipliers, city rest sprint, land-king QoL, and similar live flavor in core after a cleanup pass — move them here instead.

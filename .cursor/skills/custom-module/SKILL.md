@@ -10,7 +10,9 @@ description: >-
   Moogles, Ephemeral/crystal-storage Moogles), buyable items that fail synth
   because synth_recipes.content_tag is SOA/ROV (guild crafting kits), or
   RoV-gated trust QoL (Rhapsody KIs, Cipher Moogle, alliance trusts,
-  BCNM/KSNM allowTrusts, ENABLE_ROV = 0 substitutes).
+  BCNM/KSNM allowTrusts, ENABLE_ROV = 0 substitutes), or city guard /
+  NPC armor look unification via modules/custom/sql/*_guard_uniforms.sql
+  (npc_list.look Mid rewrite).
 ---
 
 # Custom module
@@ -86,6 +88,28 @@ Shop stock is `xi.shop.generalGuildStock` in `scripts/globals/shop.lua` (kits `_
 - Edit core `sql/synth_recipes.sql` or strip kits from `shop.lua` for this Live flavor.
 
 After any of the above SQL: targeted import on the target DB (`dbtool` / `ssh-live`), verify `content_tag`, restart `xi_map` (synth recipes and NPC spawn sets load at startup).
+
+## NPC look / city guard uniforms
+
+Unify present-day city guard armor via custom SQL — do not edit core `sql/npc_list.sql` for Live flavor looks.
+
+**References:** `modules/custom/sql/sandy_guard_uniforms.sql`, `modules/custom/sql/jeuno_guard_uniforms.sql`.
+
+**Do**
+
+- Prefer extending the related `*_guard_uniforms.sql` (same nation / concern) over a parallel file; enable in `modules/init.txt`.
+- Preserve each NPC **race/face**; rewrite armor slots only. Defer weapons until a Mid is proven on the target race (Sandy pattern).
+- Decode `npc_list.look` as: `01 00 | face | race | Mid+0x10 | Mid+0x20 | Mid+0x30 | Mid+0x40 | Mid+0x50 | Mid+0x60 | Mid+0x70 | …` — Mid is the **first** byte of each pair; the second byte is the **slot tag** (`0x10` head … `0x70` sub), not a little-endian u16.
+- Inventory guards by **look Mid signature** (and a known officer reference, e.g. Wolfgang), not name suffix alone — Jeuno Ducal Guards often have no `_DG` / `_IM` suffix.
+- Map Mid → items with `item_equipment.MId` + slot bit; many items share one Mid. Mixed retail kits (hands Mid ≠ legs/feet Mid) → ask which slots to keep and which body Mid before rewriting.
+- Zone npcid range: `0x1000000 + zoneId * 0x1000` … `+ 0xFFF` when scanning `npc_list`.
+- Deploy: push → live pull → **targeted** `import_file` (express `dbtool update` skips module SQL when `sql/` is unchanged) → verify `SELECT npcid, name, HEX(look) FROM npc_list WHERE npcid IN (...)` → remind `xi_map` restart (`npc_list` looks load at spawn).
+
+**Do not**
+
+- Assume `_TK` / `_IM` naming covers all city guards, or treat Voidwatch Purveyors / airship robe NPCs as guards because they share a head/body Mid.
+- Invent weapon Mids or copy player-item Mids onto races without a proven NPC look.
+- Stop at express “Database is up to date” after pulling only custom look SQL.
 
 ## Settings
 
