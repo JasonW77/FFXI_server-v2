@@ -1,6 +1,6 @@
 -----------------------------------
 -- Non-retail QoL: RoV trust substitutes for Live (ENABLE_ROV = 0).
--- - Rhapsody White/Umber/Crimson from LB1/LB4/LB5
+-- - Rhapsody White/Crimson/Umber via Cipher Moogle seal training
 -- - Cipher Moogle in Ru'Lude (story-gated cipher catalog)
 -- - Trusts allowed in alliances (alliance-wide uniqueness)
 -- Enable: custom/lua/rov_trust_live.lua in modules/init.txt
@@ -43,35 +43,13 @@ local rovKIBattlefieldIDs = set{
     1154, -- The Beast Within (BLU LB5)
 }
 
--- Maat is at ~10.88, 3.10, 119.47; place Cipher Moogle beside him.
+-- Slightly south of Maat in Ru'Lude Gardens.
 local cipherMooglePos =
 {
-    x        = 12.500,
-    y        = 2.200,
-    z        = 118.200,
-    rotation = 160,
-}
-
-local kiGrants =
-{
-    {
-        area    = xi.questLog.JEUNO,
-        quest   = xi.quest.id.jeuno.IN_DEFIANT_CHALLENGE,
-        keyItem = xi.ki.RHAPSODY_IN_WHITE,
-        label   = 'Rhapsody in White',
-    },
-    {
-        area    = xi.questLog.JEUNO,
-        quest   = xi.quest.id.jeuno.RIDING_ON_THE_CLOUDS,
-        keyItem = xi.ki.RHAPSODY_IN_UMBER,
-        label   = 'Rhapsody in Umber',
-    },
-    {
-        area    = xi.questLog.JEUNO,
-        quest   = xi.quest.id.jeuno.SHATTERING_STARS,
-        keyItem = xi.ki.RHAPSODY_IN_CRIMSON,
-        label   = 'Rhapsody in Crimson',
-    },
+    x        = 10.198,
+    y        = 3.100,
+    z        = 116.924,
+    rotation = 198,
 }
 
 -- Unlock helpers (shop already requires Trust permit).
@@ -213,24 +191,67 @@ local cipherCatalog =
     { item = xi.item.CIPHER_OF_MAKKIS_ALTER_EGO,         unlock = completedAsaFin },
 }
 
-local function tryGrantKeyItem(player, keyItem, label)
-    if player:hasKeyItem(keyItem) then
-        return
-    end
+-- Capacity / pact training (seal costs). Order: White -> Crimson -> Umber.
+local capacityQuests =
+{
+    {
+        menu      = 'Trust Capacity Training',
+        keyItem   = xi.ki.RHAPSODY_IN_WHITE,
+        sealItem  = xi.item.BEASTMENS_SEAL,
+        sealQty   = 15,
+        sealName  = 'Beastmen\'s Seals',
+        minLevel  = 30,
+        isReady   = function(player)
+            return not player:hasKeyItem(xi.ki.RHAPSODY_IN_WHITE)
+        end,
+        offer     = 'Trust Capacity Training, kupo! Those beastmen leave sticky seals everywhere... bring me 15 Beastmen\'s Seals, and I\'ll stretch your pact so a fourth alter ego can join you!',
+        confirm   = 'Hand over 15 Beastmen\'s Seals for Trust Capacity Training?',
+        success   = 'Oooh, sticky and perfect! Training complete -- your pact holds a fourth alter ego now, kupo!',
+        lack      = 'That\'s shy of 15 Beastmen\'s Seals, kupo. Count again -- I don\'t do IOUs!',
+    },
+    {
+        menu      = 'Trust Capacity Training II',
+        keyItem   = xi.ki.RHAPSODY_IN_CRIMSON,
+        sealItem  = xi.item.BEASTMENS_SEAL,
+        sealQty   = 30,
+        sealName  = 'Beastmen\'s Seals',
+        minLevel  = 50,
+        isReady   = function(player)
+            return player:hasKeyItem(xi.ki.RHAPSODY_IN_WHITE) and
+                not player:hasKeyItem(xi.ki.RHAPSODY_IN_CRIMSON)
+        end,
+        offer     = 'Trust Capacity Training II, kupo! Bigger roster, bigger pile -- 30 Beastmen\'s Seals this time. Pass, and a fifth alter ego answers your call!',
+        confirm   = 'Hand over 30 Beastmen\'s Seals for Trust Capacity Training II?',
+        success   = 'Thirty seals! My wings can barely flap! Training II done -- five alter egos, full chorus, kupo!',
+        lack      = 'Thirty Beastmen\'s Seals, kupo! Ambition is good -- empty pockets are not!',
+    },
+    {
+        menu      = 'Strengthen Alter Ego Pact',
+        keyItem   = xi.ki.RHAPSODY_IN_UMBER,
+        sealItem  = xi.item.KINDREDS_SEAL,
+        sealQty   = 15,
+        sealName  = 'Kindred\'s Seals',
+        minLevel  = 70,
+        isReady   = function(player)
+            return player:hasKeyItem(xi.ki.RHAPSODY_IN_WHITE) and
+                player:hasKeyItem(xi.ki.RHAPSODY_IN_CRIMSON) and
+                not player:hasKeyItem(xi.ki.RHAPSODY_IN_UMBER)
+        end,
+        offer     = 'Strengthen Alter Ego Pact, kupo! Beastmen seals won\'t cut it for the hard stuff -- I need 15 Kindred\'s Seals. Then your alter egos will follow you into the battlefields!',
+        confirm   = 'Hand over 15 Kindred\'s Seals to strengthen your alter ego pact?',
+        success   = 'Kindred seals... fancy! Pact strengthened -- take those alter egos into the battlefields, kupopo!',
+        lack      = 'Fifteen Kindred\'s Seals, kupo -- the red ones with attitude! Beastmen seals don\'t count here!',
+    },
+}
 
-    npcUtil.giveKeyItem(player, keyItem)
-    player:printToPlayer(
-        string.format('%s: alter ego benefits unlocked.', label),
-        xi.msg.channel.SYSTEM_3,
-        '')
+local function sayMoogle(player, message)
+    player:printToPlayer(message, xi.msg.channel.NS_SAY, 'Cipher Moogle')
 end
 
-local function backfillKeyItems(player)
-    for _, grant in ipairs(kiGrants) do
-        if player:hasCompletedQuest(grant.area, grant.quest) then
-            tryGrantKeyItem(player, grant.keyItem, grant.label)
-        end
-    end
+local function delaySendMenu(player, menu)
+    player:timer(50, function(playerArg)
+        playerArg:customMenu(menu)
+    end)
 end
 
 local function buildCipherStock(player)
@@ -243,6 +264,110 @@ local function buildCipherStock(player)
     end
 
     return stock
+end
+
+local function nextCapacityQuest(player)
+    for _, quest in ipairs(capacityQuests) do
+        if quest.isReady(player) then
+            if player:getMainLvl() >= quest.minLevel then
+                return quest
+            end
+
+            -- Next KI exists but level gate failed; do not skip ahead.
+            return nil
+        end
+    end
+
+    return nil
+end
+
+local function tryExchangeSeals(player, quest)
+    if player:hasKeyItem(quest.keyItem) then
+        return
+    end
+
+    if player:getItemCount(quest.sealItem) < quest.sealQty then
+        sayMoogle(player, quest.lack)
+        return
+    end
+
+    if not player:delItem(quest.sealItem, quest.sealQty) then
+        sayMoogle(player, quest.lack)
+        return
+    end
+
+    npcUtil.giveKeyItem(player, quest.keyItem)
+    sayMoogle(player, quest.success)
+end
+
+local function openCapacityConfirm(player, quest)
+    delaySendMenu(player, {
+        title = quest.menu,
+        options =
+        {
+            {
+                'Hand over the seals!',
+                function(playerArg)
+                    tryExchangeSeals(playerArg, quest)
+                end,
+            },
+            {
+                'Maybe later, kupo',
+                function(playerArg)
+                    sayMoogle(playerArg, 'No rush, kupo! Seals keep. My patience... mostly keeps.')
+                end,
+            },
+        },
+    })
+end
+
+local function openCipherMenu(player)
+    local options = {}
+
+    table.insert(options, {
+        'Browse Cipher Catalog',
+        function(playerArg)
+            local stock = buildCipherStock(playerArg)
+            if #stock == 0 then
+                sayMoogle(playerArg, 'Kupopo... nothing in the catalog for you yet. Story first, shopping later!')
+                return
+            end
+
+            sayMoogle(playerArg, 'Browsing time! Alter ego ciphers -- 10,000 gil each, kupo!')
+            xi.shop.general(playerArg, stock)
+        end,
+    })
+
+    local quest = nextCapacityQuest(player)
+    if quest then
+        table.insert(options, {
+            string.format('%s (%d %s)', quest.menu, quest.sealQty, quest.sealName),
+            function(playerArg)
+                sayMoogle(playerArg, quest.offer)
+                sayMoogle(playerArg, quest.confirm)
+                openCapacityConfirm(playerArg, quest)
+            end,
+        })
+    elseif
+        player:hasKeyItem(xi.ki.RHAPSODY_IN_WHITE) and
+        player:hasKeyItem(xi.ki.RHAPSODY_IN_CRIMSON) and
+        player:hasKeyItem(xi.ki.RHAPSODY_IN_UMBER)
+    then
+        table.insert(options, {
+            'Training complete',
+            function(playerArg)
+                sayMoogle(playerArg, 'Your roster\'s as full as my pouch after payday, kupo! White, Crimson, Umber -- every note I know!')
+            end,
+        })
+    end
+
+    player:customMenu({
+        title   = 'Cipher Moogle',
+        options = options,
+        onStart = function(playerArg)
+            sayMoogle(playerArg, 'Kupopo! Ciphers for sale, and a little capacity training if you\'re ready to grow that alter ego roster!')
+        end,
+    })
 end
 
 local function spawnCipherMoogle(zone)
@@ -258,23 +383,11 @@ local function spawnCipherMoogle(zone)
         widescan   = 1,
         onTrigger  = function(player, npc)
             if not xi.trust.hasPermit(player) then
-                player:printToPlayer(
-                    'Kupo! Come back once you have a Trust permit.',
-                    xi.msg.channel.NS_SAY,
-                    'Cipher Moogle')
+                sayMoogle(player, 'No Trust permit? No training, no ciphers, kupo! Come back when you\'re official!')
                 return
             end
 
-            local stock = buildCipherStock(player)
-            if #stock == 0 then
-                player:printToPlayer(
-                    'Kupopo... nothing for you yet.',
-                    xi.msg.channel.NS_SAY,
-                    'Cipher Moogle')
-                return
-            end
-
-            xi.shop.general(player, stock)
+            openCipherMenu(player)
         end,
     })
 end
@@ -325,25 +438,6 @@ local function trustConflicts(existingTrustId, spellId, notAllowedTrustIds)
 
     return false
 end
-
-m:addOverride('npcUtil.completeQuest', function(player, area, quest, params)
-    local result = super(player, area, quest, params)
-
-    if result then
-        for _, grant in ipairs(kiGrants) do
-            if area == grant.area and quest == grant.quest then
-                tryGrantKeyItem(player, grant.keyItem, grant.label)
-            end
-        end
-    end
-
-    return result
-end)
-
-m:addOverride('xi.player.onGameIn', function(player, firstLogin, zoning)
-    super(player, firstLogin, zoning)
-    backfillKeyItems(player)
-end)
 
 m:addOverride('xi.zones.RuLude_Gardens.Zone.onInitialize', function(zone)
     super(zone)
@@ -442,7 +536,7 @@ m:addOverride('xi.trust.canCast', function(caster, spell, notAllowedTrustIds)
         return xi.msg.basic.TRUST_NO_CAST_TRUST
     end
 
-    -- Limits set by ROV Key Items (granted via LB quests on Live)
+    -- Limits set by Rhapsody KIs (Cipher Moogle seal training on Live)
     if numTrusts >= 3 and not caster:hasKeyItem(xi.ki.RHAPSODY_IN_WHITE) then
         caster:messageSystem(xi.msg.system.TRUST_MAXIMUM_NUMBER)
         return -1
