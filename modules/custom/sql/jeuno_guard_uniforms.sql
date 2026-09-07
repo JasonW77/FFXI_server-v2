@@ -1,0 +1,58 @@
+-- Non-retail QoL: Unify Jeuno Ducal Guard armor looks (present timeline).
+-- Preserves each NPC race/face; rewrites armor only.
+-- Kits:
+--   Ru'Lude Gardens: circlet Mid 0x14 + Iron Musketeer plate Mid 0x19 (body/hands/legs/feet), unarmed
+--     (match Wolfgang; Wolfgang himself left unchanged)
+--   Upper / Lower / Port rank-and-file: circlet Mid 0x14 + Breastplate Mid 0x02 body +
+--     Coarse Gauntlets Mid 0x02 hands; keep retail legs/feet Mid 0x02 and main/sub
+-- Scope: no [S] zones.
+-- Event copies of Chapi_Galepilai / Crooked_Arrow (Ru'Lude) included for consistency.
+
+-- Ru'Lude Gardens Ducal Guards (Wolfgang kit)
+
+UPDATE npc_list SET look = 0x0100030814101920193019401950006000700000 WHERE npcid = 17772557; -- High_Wind
+UPDATE npc_list SET look = 0x0100030114101920193019401950006000700000 WHERE npcid = 17772558; -- Rainhard
+UPDATE npc_list SET look = 0x01000D0314101920193019401950006000700000 WHERE npcid = 17772559; -- Pherimociel
+UPDATE npc_list SET look = 0x01000F0514101920193019401950006000700000 WHERE npcid = 17772560; -- Neraf-Najiruf
+UPDATE npc_list SET look = 0x01000D0414101920193019401950006000700000 WHERE npcid = 17772561; -- Adolie
+UPDATE npc_list SET look = 0x0100060314101920193019401950006000700000 WHERE npcid = 17772562; -- Auchefort
+UPDATE npc_list SET look = 0x0100030714101920193019401950006000700000 WHERE npcid = 17772563; -- Chapi_Galepilai
+UPDATE npc_list SET look = 0x01000B0814101920193019401950006000700000 WHERE npcid = 17772564; -- Crooked_Arrow
+UPDATE npc_list SET look = 0x0100030314101920193019401950006000700000 WHERE npcid = 17772565; -- Morlepiche
+UPDATE npc_list SET look = 0x0100050114101920193019401950006000700000 WHERE npcid = 17772566; -- Baran
+UPDATE npc_list SET look = 0x0100010114101920193019401950006000700000 WHERE npcid = 17772567; -- Petva
+UPDATE npc_list SET look = 0x0100020614101920193019401950006000700000 WHERE npcid = 17772568; -- Muhoho
+UPDATE npc_list SET look = 0x0100030414101920193019401950006000700000 WHERE npcid = 17772569; -- Colti
+UPDATE npc_list SET look = 0x0100090114101920193019401950006000700000 WHERE npcid = 17772570; -- Anoop
+UPDATE npc_list SET look = 0x01000A0214101920193019401950006000700000 WHERE npcid = 17772571; -- Albiona
+UPDATE npc_list SET look = 0x0100080514101920193019401950006000700000 WHERE npcid = 17772572; -- Main-Harmain
+UPDATE npc_list SET look = 0x0100010514101920193019401950006000700000 WHERE npcid = 17772586; -- Perisa-Neburusa
+UPDATE npc_list SET look = 0x0100030714101920193019401950006000700000 WHERE npcid = 17772718; -- Chapi_Galepilai (event copy)
+UPDATE npc_list SET look = 0x01000B0814101920193019401950006000700000 WHERE npcid = 17772719; -- Crooked_Arrow (event copy)
+
+-- Upper Jeuno: Breastplate + Coarse Gauntlets (Wolfgang left unchanged)
+
+UPDATE npc_list SET look = 0x01000D0314100220023002400250056000700000 WHERE npcid = 17776699; -- Pherimociel
+UPDATE npc_list SET look = 0x01000F0514100220023002400250056000700000 WHERE npcid = 17776700; -- Neraf-Najiruf
+UPDATE npc_list SET look = 0x0100060314100220023002400250056000700000 WHERE npcid = 17776701; -- Auchefort
+UPDATE npc_list SET look = 0x0100030714100220023002400250056000700000 WHERE npcid = 17776702; -- Chapi_Galepilai
+UPDATE npc_list SET look = 0x01000B0814100220023002400250056000700000 WHERE npcid = 17776703; -- Crooked_Arrow
+UPDATE npc_list SET look = 0x01000D0514100220023002400250056000700000 WHERE npcid = 17776725; -- Zekobi-Morokobi
+UPDATE npc_list SET look = 0x0100030114100220023002400250056000700000 WHERE npcid = 17776738; -- Emitt
+
+-- Lower Jeuno: Breastplate + Coarse Gauntlets (Wolfgang left unchanged)
+
+UPDATE npc_list SET look = 0x01000D0314100220023002400250056000700000 WHERE npcid = 17780738; -- Pherimociel
+UPDATE npc_list SET look = 0x0100060314100220023002400250056000700000 WHERE npcid = 17780739; -- Auchefort
+UPDATE npc_list SET look = 0x0100030714100220023002400250056000700000 WHERE npcid = 17780815; -- Chapi_Galepilai
+UPDATE npc_list SET look = 0x01000B0814100220023002400250056000700000 WHERE npcid = 17780816; -- Crooked_Arrow
+UPDATE npc_list SET look = 0x0100010514100220023002400250056000700000 WHERE npcid = 17780856; -- Miladi-Nildi
+UPDATE npc_list SET look = 0x0100090314100220023002400250056000700000 WHERE npcid = 17780878; -- Alrauverat
+UPDATE npc_list SET look = 0x0100030814100220023002400250006000700000 WHERE npcid = 17780879; -- Zauko
+
+-- Port Jeuno: Breastplate + Coarse Gauntlets (legs/feet Mid 0x02, retail main)
+
+UPDATE npc_list SET look = 0x0100060314100220023002400250056000700000 WHERE npcid = 17784839; -- Cumetouflaix
+UPDATE npc_list SET look = 0x0100070514100220023002400250056000700000 WHERE npcid = 17784841; -- Yurugu-Homurugu
+UPDATE npc_list SET look = 0x01000A0814100220023002400250056000700000 WHERE npcid = 17784900; -- Red_Ghost
+UPDATE npc_list SET look = 0x0100070514100220023002400250056000700000 WHERE npcid = 17784912; -- Kochahy-Muwachahy
