@@ -3,6 +3,7 @@
 -- - Rhapsody White/Crimson/Umber via Cipher Moogle seal training
 -- - Cipher Moogle in Ru'Lude (story-gated cipher catalog)
 -- - Trusts allowed in alliances (alliance-wide uniqueness)
+-- - Trusts allowed in BCNM / KSNM (Beastmen's / Kindred's Seal orbs)
 -- Enable: custom/lua/rov_trust_live.lua in modules/init.txt
 -- Also set main.ALLOW_TRUST_IN_ALLIANCE = 1 (and rebuild xi_map for C++ gate)
 -----------------------------------
@@ -18,6 +19,32 @@ local m = Module:new('rov_trust_live')
 local CIPHER_PRICE = 10000
 
 local nomadMoogleLook = '0x0000D50300000000000000000000000000000000'
+
+-- Beastmen's Seal (BCNM) + Kindred's Seal (KSNM) entry orbs
+local sealOrbItems = set{
+    xi.item.CLOUDY_ORB,
+    xi.item.SKY_ORB,
+    xi.item.STAR_ORB,
+    xi.item.COMET_ORB,
+    xi.item.MOON_ORB,
+    xi.item.CLOTHO_ORB,
+    xi.item.LACHESIS_ORB,
+    xi.item.ATROPOS_ORB,
+    xi.item.THEMIS_ORB,
+}
+
+local function isSealOrbBattlefield(content)
+    if not content then
+        return false
+    end
+
+    local entryItem = content.requiredItems and content.requiredItems[1]
+    if not entryItem and content.tradeItems then
+        entryItem = content.tradeItems[1]
+    end
+
+    return entryItem ~= nil and sealOrbItems[entryItem] == true
+end
 
 -- Copied from scripts/globals/trust.lua (file-local there).
 local rovKIBattlefieldIDs = set{
@@ -525,15 +552,19 @@ m:addOverride('xi.trust.canCast', function(caster, spell, notAllowedTrustIds)
     end
 
     local casterBattlefieldID = caster:getBattlefieldID()
+    local bfContent           = xi.battlefield.contents[casterBattlefieldID]
+
     if rovKIBattlefieldIDs[casterBattlefieldID] then
         if not caster:hasKeyItem(xi.ki.RHAPSODY_IN_UMBER) then
             return xi.msg.basic.TRUST_NO_CAST_TRUST
         end
-    elseif
-        xi.battlefield.contents[casterBattlefieldID] and
-        not xi.battlefield.contents[casterBattlefieldID].allowTrusts
-    then
-        return xi.msg.basic.TRUST_NO_CAST_TRUST
+    elseif bfContent and not bfContent.allowTrusts then
+        -- Live QoL: BCNM/KSNM seal-orb fights allow Trusts
+        if isSealOrbBattlefield(bfContent) then
+            bfContent.allowTrusts = true
+        else
+            return xi.msg.basic.TRUST_NO_CAST_TRUST
+        end
     end
 
     -- Limits set by Rhapsody KIs (Cipher Moogle seal training on Live)
@@ -550,6 +581,33 @@ m:addOverride('xi.trust.canCast', function(caster, spell, notAllowedTrustIds)
     end
 
     return 0
+end)
+
+-- Seal-orb BCNM/KSNM: treat like RoV KI fights for trust party slots (up to 6).
+m:addOverride('xi.trust.checkBattlefieldTrustCount', function(caster)
+    local battlefield = caster:getBattlefield()
+    if not battlefield then
+        return true
+    end
+
+    local content = xi.battlefield.contents[battlefield:getID()]
+    if isSealOrbBattlefield(content) then
+        content.allowTrusts = true
+
+        local participants = battlefield:getPlayersAndTrusts()
+        local numPlayers   = battlefield:getPlayerCount()
+        local numTrusts    = 0
+
+        for _, entity in ipairs(participants) do
+            if entity:getObjType() == xi.objType.TRUST then
+                numTrusts = numTrusts + 1
+            end
+        end
+
+        return (numPlayers + numTrusts) < 6
+    end
+
+    return super(caster)
 end)
 
 return m
