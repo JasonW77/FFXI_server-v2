@@ -79,9 +79,17 @@ local cipherMooglePos =
     rotation = 198,
 }
 
--- Unlock helpers (shop already requires Trust permit).
-local function alwaysUnlocked()
-    return true
+-- Unlock helpers (shop already requires at least one Trust permit).
+local function hasSandyPermit(player)
+    return player:hasKeyItem(xi.ki.SAN_DORIA_TRUST_PERMIT)
+end
+
+local function hasBastokPermit(player)
+    return player:hasKeyItem(xi.ki.BASTOK_TRUST_PERMIT)
+end
+
+local function hasWindurstPermit(player)
+    return player:hasKeyItem(xi.ki.WINDURST_TRUST_PERMIT)
 end
 
 local function completedLB1(player)
@@ -127,20 +135,25 @@ end
 -- Shop entries: unlocked when unlock() is true. Price is always CIPHER_PRICE.
 local cipherCatalog =
 {
-    -- RoE tutorial / starter trusts (permit opens shop)
-    { item = xi.item.CIPHER_OF_VALAINERALS_ALTER_EGO, unlock = alwaysUnlocked },
-    { item = xi.item.CIPHER_OF_MIHLIS_ALTER_EGO,      unlock = alwaysUnlocked },
-    { item = xi.item.CIPHER_OF_TENZENS_ALTER_EGO,     unlock = alwaysUnlocked },
-    { item = xi.item.CIPHER_OF_ADELHEIDS_ALTER_EGO,   unlock = alwaysUnlocked },
-    { item = xi.item.CIPHER_OF_JOACHIMS_ALTER_EGO,    unlock = alwaysUnlocked },
+    -- Nation Trust permits
+    { item = xi.item.CIPHER_OF_VALAINERALS_ALTER_EGO, unlock = hasSandyPermit },
+    { item = xi.item.CIPHER_OF_QULTADAS_ALTER_EGO,    unlock = hasSandyPermit },
+    { item = xi.item.CIPHER_OF_F_COFFINS_ALTER_EGO,   unlock = hasSandyPermit },
 
-    -- LB1 (In Defiant Challenge)
-    { item = xi.item.CIPHER_OF_SAKURAS_ALTER_EGO,   unlock = completedLB1 },
-    { item = xi.item.CIPHER_OF_F_COFFINS_ALTER_EGO, unlock = completedLB1 },
-    { item = xi.item.CIPHER_OF_QULTADAS_ALTER_EGO,  unlock = completedLB1 },
-    { item = xi.item.CIPHER_OF_KINGS_ALTER_EGO,     unlock = completedLB1 },
-    { item = xi.item.CIPHER_OF_CIDS_ALTER_EGO,      unlock = completedLB1 },
-    { item = xi.item.CIPHER_OF_GILGAMESHS_ALTER_EGO, unlock = completedLB1 },
+    { item = xi.item.CIPHER_OF_ADELHEIDS_ALTER_EGO, unlock = hasBastokPermit },
+    { item = xi.item.CIPHER_OF_TENZENS_ALTER_EGO,   unlock = hasBastokPermit },
+    { item = xi.item.CIPHER_OF_CIDS_ALTER_EGO,      unlock = hasBastokPermit },
+
+    { item = xi.item.CIPHER_OF_MIHLIS_ALTER_EGO,  unlock = hasWindurstPermit },
+    { item = xi.item.CIPHER_OF_JOACHIMS_ALTER_EGO, unlock = hasWindurstPermit },
+    { item = xi.item.CIPHER_OF_KINGS_ALTER_EGO,   unlock = hasWindurstPermit },
+
+    -- LB1 (In Defiant Challenge): GEO/aura trusts + Gilgamesh
+    { item = xi.item.CIPHER_OF_SAKURAS_ALTER_EGO,     unlock = completedLB1 },
+    { item = xi.item.CIPHER_OF_A_MOOGLES_ALTER_EGO,   unlock = completedLB1 },
+    { item = xi.item.CIPHER_OF_KUPOFRIEDS_ALTER_EGO,  unlock = completedLB1 },
+    { item = xi.item.CIPHER_OF_KUYINS_ALTER_EGO,      unlock = completedLB1 },
+    { item = xi.item.CIPHER_OF_GILGAMESHS_ALTER_EGO,  unlock = completedLB1 },
 
     -- LB4
     { item = xi.item.CIPHER_OF_KORU_MORUS_ALTER_EGO, unlock = completedLB4 },
@@ -204,13 +217,10 @@ local cipherCatalog =
     { item = xi.item.CIPHER_OF_AREUHATS_ALTER_EGO,    unlock = completedAcpFin },
 
     -- AMK (Smash a Malevolent Menace)
-    { item = xi.item.CIPHER_OF_A_MOOGLES_ALTER_EGO,   unlock = completedAmkFin },
-    { item = xi.item.CIPHER_OF_KUPOFRIEDS_ALTER_EGO,  unlock = completedAmkFin },
-    { item = xi.item.CIPHER_OF_FABLINIXS_ALTER_EGO,   unlock = completedAmkFin },
-    { item = xi.item.CIPHER_OF_ABENZIOS_ALTER_EGO,    unlock = completedAmkFin },
+    { item = xi.item.CIPHER_OF_FABLINIXS_ALTER_EGO, unlock = completedAmkFin },
+    { item = xi.item.CIPHER_OF_ABENZIOS_ALTER_EGO,  unlock = completedAmkFin },
 
     -- ASA fin
-    { item = xi.item.CIPHER_OF_KUYINS_ALTER_EGO,         unlock = completedAsaFin },
     { item = xi.item.CIPHER_OF_MAYAKOVS_ALTER_EGO,       unlock = completedAsaFin },
     { item = xi.item.CIPHER_OF_BABBANS_ALTER_EGO,        unlock = completedAsaFin },
     { item = xi.item.CIPHER_OF_SHANTOTTOS_ALTER_EGO_II,  unlock = completedAsaFin },
@@ -348,6 +358,14 @@ local function openCapacityConfirm(player, quest)
     })
 end
 
+local function explainCipherUnlocks(player)
+    sayMoogle(player, 'Catalog unlocks with your story and nation permits, kupo -- not with seals!')
+    sayMoogle(player, 'Sandy permit: Valaineral, Qultada, Coffin. Bastok: Adelheid, Tenzen, Cid. Windurst: Mihli, Joachim, King.')
+    sayMoogle(player, 'LB1 adds Sakura, Moogle, Kupofried, Kuyin, and Gilgamesh. LB4 adds Koru-Moru.')
+    sayMoogle(player, 'Then RoZ, CoP, ToAU, WoTG, and the ACP / AMK / ASA finales open bigger shelves!')
+    sayMoogle(player, 'Seals are only for capacity training -- more slots, not more shop stock.')
+end
+
 local function openCipherMenu(player)
     local options = {}
 
@@ -368,7 +386,7 @@ local function openCipherMenu(player)
     local quest = nextCapacityQuest(player)
     if quest then
         table.insert(options, {
-            string.format('%s (%d %s)', quest.menu, quest.sealQty, quest.sealName),
+            quest.menu,
             function(playerArg)
                 sayMoogle(playerArg, quest.offer)
                 sayMoogle(playerArg, quest.confirm)
@@ -388,11 +406,18 @@ local function openCipherMenu(player)
         })
     end
 
+    table.insert(options, {
+        'How to unlock more',
+        function(playerArg)
+            explainCipherUnlocks(playerArg)
+        end,
+    })
+
     player:customMenu({
         title   = 'Cipher Moogle',
         options = options,
         onStart = function(playerArg)
-            sayMoogle(playerArg, 'Kupopo! Ciphers for sale, and a little capacity training if you\'re ready to grow that alter ego roster!')
+            sayMoogle(playerArg, 'Kupopo! Ciphers for sale -- and training to grow your roster!')
         end,
     })
 end
