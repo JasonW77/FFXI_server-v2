@@ -25,11 +25,14 @@
 #include "enums/msg_std.h"
 #include "items.h"
 #include "items/transactions/synth.h"
+#include "modifier.h"
 #include "packets/s2c/0x022_item_trade_res.h"
 #include "packets/s2c/0x029_battle_message.h"
 #include "universal_container.h"
 #include "utils/jailutils.h"
 #include "utils/synthutils.h"
+
+#include <algorithm>
 
 namespace
 {
@@ -82,10 +85,21 @@ void GP_CLI_COMMAND_COMBINE_ASK::process(MapSession* PSession, CCharEntity* PCha
     }
 
     // Force full synth duration wait no matter the synth animation length
-    // Thus players can synth on whatever fps they want
-    // TODO: Escutcheons will require changes to this block
-    // See SYNTH_SPEED_XXX mods
-    if (PChar->m_LastSynthTime + 15s > timer::now())
+    // Thus players can synth on whatever fps they want.
+    // Base animation is 16s with a 15s inter-synth gate; SYNTH_SPEED_* shortens
+    // both (Escutcheon / imagery QoL), or the gate would waste the speed bonus.
+    const int16 synthSpeedBonusMs = std::max({
+        PChar->getMod(Mod::SYNTH_SPEED_WOODWORKING),
+        PChar->getMod(Mod::SYNTH_SPEED_SMITHING),
+        PChar->getMod(Mod::SYNTH_SPEED_GOLDSMITHING),
+        PChar->getMod(Mod::SYNTH_SPEED_CLOTHCRAFT),
+        PChar->getMod(Mod::SYNTH_SPEED_LEATHERCRAFT),
+        PChar->getMod(Mod::SYNTH_SPEED_BONECRAFT),
+        PChar->getMod(Mod::SYNTH_SPEED_ALCHEMY),
+        PChar->getMod(Mod::SYNTH_SPEED_COOKING),
+    });
+    const auto minSynthWait = std::chrono::milliseconds(std::max<int16>(0, 15000 - synthSpeedBonusMs));
+    if (PChar->m_LastSynthTime + minSynthWait > timer::now())
     {
         PChar->pushPacket<GP_SERV_COMMAND_BATTLE_MESSAGE>(PChar, PChar, 0, 0, MsgBasic::WaitLonger);
         return;
