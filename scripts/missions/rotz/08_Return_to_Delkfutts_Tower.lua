@@ -79,23 +79,26 @@ mission.sections =
 
         [xi.zone.STELLAR_FULCRUM] =
         {
-            -- Pre-battle CS is event 0. Putting CS 0 in the 0x00A zone-in packet
-            -- (EventPara 0 + ANIMATION_EVENT) crashes the client. Play it after zone-in.
-            -- TODO: Confirm vs retail 0x00A capture whether this CS is meant to be zone-in.
+            -- Pre-battle CS 0 and post-battle CS 17 hang or crash if started from 0x00A.
+            -- Play them after zone-in. TODO: Confirm vs retail 0x00A capture.
             onZoneIn = function(player, prevZone)
                 local missionStatus = player:getMissionStatus(mission.areaId)
-                if missionStatus == 0 then
-                    return -1 -- Suppress Zone.lua CS 7; afterZoneIn starts CS 0.
-                elseif missionStatus == 2 then
-                    return 17 -- Post-Battle. Mission complete event.
+                if
+                    missionStatus == 0 or
+                    missionStatus == 2
+                then
+                    return -1 -- Suppress Zone.lua CS 7; afterZoneIn starts CS 0 or 17.
                 elseif player:getPreviousZone() == xi.zone.UPPER_DELKFUTTS_TOWER then
                     return 7 -- Ensure regular entering CS plays.
                 end
             end,
 
             afterZoneIn = function(player)
-                if player:getMissionStatus(mission.areaId) == 0 then
+                local missionStatus = player:getMissionStatus(mission.areaId)
+                if missionStatus == 0 then
                     player:startCutscene(0)
+                elseif missionStatus == 2 then
+                    player:startCutscene(17)
                 end
             end,
 
