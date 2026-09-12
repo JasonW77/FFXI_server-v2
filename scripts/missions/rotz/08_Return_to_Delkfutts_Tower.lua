@@ -79,15 +79,16 @@ mission.sections =
 
         [xi.zone.STELLAR_FULCRUM] =
         {
-            -- Pre-battle CS 0 and post-battle CS 17 hang or crash if started from 0x00A.
-            -- Play them after zone-in. TODO: Confirm vs retail 0x00A capture.
+            -- Stellar Fulcrum CS 0 / CS 17 crash this client from 0x00A and from startCutscene.
+            -- Skip them: intro -> status 1 (gate), outro -> complete to Ro'Maeve.
+            -- TODO: Restore CS playback when a retail 0x00A capture exists for this DAT.
             onZoneIn = function(player, prevZone)
                 local missionStatus = player:getMissionStatus(mission.areaId)
                 if
                     missionStatus == 0 or
                     missionStatus == 2
                 then
-                    return -1 -- Suppress Zone.lua CS 7; afterZoneIn starts CS 0 or 17.
+                    return -1 -- Suppress Zone.lua CS 7; afterZoneIn advances the mission.
                 elseif player:getPreviousZone() == xi.zone.UPPER_DELKFUTTS_TOWER then
                     return 7 -- Ensure regular entering CS plays.
                 end
@@ -96,9 +97,9 @@ mission.sections =
             afterZoneIn = function(player)
                 local missionStatus = player:getMissionStatus(mission.areaId)
                 if missionStatus == 0 then
-                    player:startCutscene(0)
+                    player:setMissionStatus(mission.areaId, 1)
                 elseif missionStatus == 2 then
-                    player:startCutscene(17)
+                    mission:complete(player)
                 end
             end,
 

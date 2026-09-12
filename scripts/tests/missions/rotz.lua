@@ -248,17 +248,18 @@ describe('Rise of the Zilart', function()
         it("should defeat Archduke Kam'lanaut", function()
             player:addMission(xi.mission.log_id.ZILART, xi.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER)
 
-            -- Go through the portal to Stellar Fulcrum. You will receive a cutscene.
+            -- CS 0 / CS 17 crash this client; afterZoneIn skips them.
             player:gotoZone(xi.zone.STELLAR_FULCRUM)
-            player.events:expect({ eventId = 0 })
+            player.events:expectNotInEvent()
+            player.assert:hasMission(xi.mission.log_id.ZILART, xi.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER)
 
             -- Fight and defeat Archduke Kam'lanaut.
             player.bcnm:enter('_4z0', xi.battlefield.id.RETURN_TO_DELKFUTTS_TOWER)
             player.bcnm:killMobs()
             player.bcnm:expectWin({ finishOption = 1 })
 
-            -- When the battle has concluded, be prepared for a long cutscene (approx. 6 minutes).
-            player.events:expect({ eventId = 17 })
+            -- Outro skipped; mission completes to Ro'Maeve on the post-win zone-in.
+            player.assert:hasMission(xi.mission.log_id.ZILART, xi.mission.id.zilart.ROMAEVE)
         end)
     end)
 
