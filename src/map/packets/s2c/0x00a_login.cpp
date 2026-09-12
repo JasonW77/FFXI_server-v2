@@ -209,7 +209,10 @@ GP_SERV_COMMAND_LOGIN::GP_SERV_COMMAND_LOGIN(CCharEntity* PChar, const EventInfo
     {
         packet.LoginState      = SAVE_LOGIN_STATE::SAVE_LOGIN_STATE_GAME;
         packet.MyroomMapNumber = 0x01FF;
-        packet.SendCount       = csid > 0 ? 0x01 : 0x00;                    // TODO: SendCount is where we should put the number of King NPCs needed for the upcoming CS
+        // Event 0 is a valid zone-in CS. `csid > 0` left SendCount 0 while EventPara/animation
+        // still started the event VM (client crash, e.g. Stellar Fulcrum ZM8). Retail SendCount
+        // is the King NPC count needed before the VM starts; 1 matches every other zone-in CS.
+        packet.SendCount       = csid >= 0 ? 0x01 : 0x00;
         packet.MogZoneFlag     = PChar->loc.zone->CanUseMisc(MISC_MOGMENU); // flag allows you to use Mog Menu outside Mog House
     }
 
